@@ -37,7 +37,7 @@ namespace se = ::perftools::gputools;
 
 namespace xla {
 
-// TODO(b/30467474) Once GPU infeed implementation settles, consider
+// TODO (b/30467474) Once GPU infeed implementation settles, consider id:341 gh:342
 // folding back the cpu and gpu infeed implementations into a generic
 // one if possible.
 GpuTransferManager::GpuTransferManager()
@@ -101,7 +101,7 @@ Status GpuTransferManager::EnqueueBuffersToInfeed(
   gpu::InfeedManager* infeed_manager = gpu::GetOrCreateInfeedManager();
   se::Stream* stream = infeed_manager->GetStream(executor);
 
-  // TODO(b/30467474): Since this stream is shared across different
+  // TODO (b/30467474): Since this stream is shared across different id:359 gh:360
   // infeed requests, blocking on the stream might be
   // heavy-handed. Figure out if finer-grained acknowledgement is
   // possible.

@@ -126,7 +126,7 @@ XLA_TEST_P(ReshapeTest, ScalarToSingleElementArray) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:487 gh:488
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(Trivial0x3)) {
@@ -142,7 +142,7 @@ XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(Trivial0x3)) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:450 gh:451
 // does not handle zero-sized shapes correctly. Failed last on 2017-05-15
 // with an incorrect result rank.
 XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(Trivial0x3WithParameter)) {
@@ -159,7 +159,7 @@ XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(Trivial0x3WithParameter)) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:455 gh:456
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(Trivial3x0)) {
@@ -201,7 +201,7 @@ XLA_TEST_P(ReshapeTest, Trivial3x1) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:519 gh:520
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 //
@@ -235,7 +235,7 @@ XLA_TEST_P(ReshapeTest, R1ToR2_6_To_2x3) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:457 gh:458
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 //
@@ -287,7 +287,7 @@ XLA_TEST_P(ReshapeTest, TransposeAsReshape) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:489 gh:490
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 //
@@ -320,7 +320,7 @@ XLA_TEST_P(ReshapeTest, Transpose4x3) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:460 gh:461
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 //
@@ -339,7 +339,7 @@ XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(ReshapeSplitNoShuffleZeroElements)) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:462 gh:463
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 XLA_TEST_P(ReshapeTest, DISABLED_ON_GPU(ReshapeR4ToR2ZeroElements)) {
@@ -373,7 +373,7 @@ XLA_TEST_P(ReshapeTest, ReshapeSplitNoShuffle) {
                            zero_error_spec_);
 }
 
-// TODO(b/29185393): Make this work with the GPU backend. The GPU backend
+// TODO (b/29185393): Make this work with the GPU backend. The GPU backend id:522 gh:523
 // does not handle zero-sized shapes correctly. Failed last on 2017-11-30
 // with an incorrect result rank.
 //
@@ -410,7 +410,7 @@ XLA_TEST_P(ReshapeTest, ReshapeSplitAndShuffle) {
 
 // The following tests use the same input 3D array; they test the examples we
 // show for the Reshape operation in the operation_semantics document.
-// TODO(b/34503277): find a way to show this code in the documentation without
+// TODO (b/34503277): find a way to show this code in the documentation without id:463 gh:464
 // duplication on the TF documentation server.
 static Array3D<float> ArrayForDocR3Tests() {
   return Array3D<float>({{{10, 11, 12}, {15, 16, 17}},

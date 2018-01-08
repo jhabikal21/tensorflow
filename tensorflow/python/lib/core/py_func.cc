@@ -151,7 +151,7 @@ bool IsSingleNone(PyObject* obj) {
 Status ExtractTensorFromEagerTensor(const PyObject* eager_tensor,
                                     Tensor* output_tensor,
                                     TF_Status* tf_status) {
-  // TODO(akshayka): Lift the restriction requiring output tensors to
+  // TODO (akshayka): Lift the restriction requiring output tensors to id:3117 gh:3118
   // lie in host memory; EagerPyFunc should be able to dispatch ops on GPU
   // tensors, so we should eventually implement a GPU kernel for EagerPyFunc.
   *output_tensor = *TFE_TensorHandleUnderlyingTensorInHostMemory(
@@ -188,7 +188,7 @@ Status DoCallPyFunc(PyCall* call, bool* out_log_on_error) {
       } else if (PyErr_ExceptionMatches(PyExc_NotImplementedError)) {
         return errors::Unimplemented(PyExceptionFetch());
       } else {
-        // TODO(ebrevdo): Check if exception is an OpError and use the
+        // TODO (ebrevdo): Check if exception is an OpError and use the id:3340 gh:3341
         // OpError.error_code property to map it back in the Status.
         return errors::Unknown(PyExceptionFetch());
       }

@@ -4696,7 +4696,7 @@ Stream &Stream::ThenRnnForward(
     DeviceMemory<Eigen::half> *output_c_data, bool is_training,
     ScratchAllocator *reserve_space_allocator,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:3589 gh:3590
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnForward(
@@ -4728,7 +4728,7 @@ Stream &Stream::ThenRnnForward(
     DeviceMemory<float> *output_c_data, bool is_training,
     ScratchAllocator *reserve_space_allocator,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:3352 gh:3353
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnForward(
@@ -4761,7 +4761,7 @@ Stream &Stream::ThenRnnForward(
     DeviceMemory<double> *output_c_data, bool is_training,
     ScratchAllocator *reserve_space_allocator,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:3511 gh:3512
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnForward(
@@ -4801,7 +4801,7 @@ Stream &Stream::ThenRnnBackward(
     DeviceMemory<Eigen::half> *params_backprop_data,
     DeviceMemory<uint8> *reserve_space_data,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:2679 gh:2680
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnBackward(
@@ -4842,7 +4842,7 @@ Stream &Stream::ThenRnnBackward(
     DeviceMemory<float> *params_backprop_data,
     DeviceMemory<uint8> *reserve_space_data,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:3402 gh:3404
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnBackward(
@@ -4884,7 +4884,7 @@ Stream &Stream::ThenRnnBackward(
     DeviceMemory<double> *params_backprop_data,
     DeviceMemory<uint8> *reserve_space_data,
     ScratchAllocator *workspace_allocator) {
-  // TODO(zhengxq): add VLOG PARAM calls.
+  // TODO (zhengxq): add VLOG PARAM calls. id:3590 gh:3591
   if (ok()) {
     if (dnn::DnnSupport *dnn = parent_->AsDnn()) {
       CheckError(dnn->DoRnnBackward(

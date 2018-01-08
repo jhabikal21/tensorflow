@@ -99,7 +99,7 @@ class GraphConstructor {
     std::vector<TensorId> return_tensors;
     std::vector<string> return_nodes;
 
-    // TODO(ashankar): This bool exists to separate out functionality required
+    // TODO (ashankar): This bool exists to separate out functionality required id:1237 gh:1238
     // to make ImportGraphDef a close equivalent of Python's import_graph_def
     // without affecting the behavior of ConvertGraphDefToGraph at the time
     // ImportGraphDef was added.
@@ -260,7 +260,7 @@ class GraphConstructor {
     int gdef_index;
     Node* node;  // nullptr until the NodeDef is converted to a Node.
   };
-  // TODO(vrv): Profile this data structure to see if we should use an
+  // TODO (vrv): Profile this data structure to see if we should use an id:2014 gh:2015
   // alternative implementation of std::unordered_map.
   std::unordered_map<StringPiece, NodeInfo, StringPieceHasher> gdef_nodes_;
 
@@ -663,7 +663,7 @@ Status GraphConstructor::ModifyNodeDefForImport(NodeDef* node_def) {
 void RemoveInputs(const std::vector<int>& inputs_to_remove, NodeDef* node_def,
                   std::vector<bool>* input_already_exists) {
   // Remove 'inputs_to_remove' from 'node_def'
-  // TODO(skyewm): is there a better way to do this?
+  // TODO (skyewm): is there a better way to do this? id:1792 gh:1793
   std::vector<string> inputs;
   inputs.reserve(node_def->input_size());
   for (int i = 0; i < node_def->input_size(); ++i) {
@@ -725,7 +725,7 @@ void GraphConstructor::AddControlDependencies(
     if ((*input_already_exists)[i]) continue;
 
     // If this input is a backedge, assume we won't inherit the dependencies.
-    // TODO(skyewm): we have many redundant ParseTensorName calls. It could be
+    // TODO (skyewm): we have many redundant ParseTensorName calls. It could be id:1355 gh:1356
     // worth optimizing these.
     TensorId id(ParseTensorName(node_def->input(i)));
     auto iter = gdef_nodes_.find(id.first);
@@ -930,7 +930,7 @@ Status GraphConstructor::Convert() {
         }
       }
 
-      // TODO(ashankar): The line below means an additional copy of the NodeDef,
+      // TODO (ashankar): The line below means an additional copy of the NodeDef, id:2525 gh:2527
       // which can be expensive if the NodeDef contains large tensors in it.
       // Might make sense to change the API for ImportGraphDef to take a mutable
       // GraphDef* and avoid the copying.
@@ -1182,7 +1182,7 @@ Status ConvertGraphDefToGraph(const GraphConstructorOptions& opts,
 Status ConvertNodeDefsToGraph(const GraphConstructorOptions& opts,
                               gtl::ArraySlice<NodeDef> nodes, Graph* g) {
   ShapeRefiner refiner(TF_GRAPH_DEF_VERSION, g->op_registry());
-  // TODO(irving): Copy will go away once NodeInfo exists
+  // TODO (irving): Copy will go away once NodeInfo exists id:1240 gh:1241
   std::vector<const NodeDef*> node_defs;
   for (const auto& n : nodes) {
     node_defs.push_back(&n);

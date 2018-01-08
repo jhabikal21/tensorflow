@@ -48,7 +48,7 @@ void FuseAddOrSubParamsIntoPrecedingAffine(Model* model, Operator* preceding_op,
   const auto& operand_buffer = operand.GetBuffer<ArrayDataType::kFloat>();
   const float* const operand_data = operand_buffer.data.data();
 
-  // TODO(b/62904716): Bias array should become 1-D when padding removed.
+  // TODO (b/62904716): Bias array should become 1-D when padding removed. id:933 gh:934
   const int depth = bias_shape.dims(bias_shape.dimensions_count() - 1);
   CHECK_EQ(depth, operand_shape.dims(operand_shape.dimensions_count() - 1));
 

@@ -23,12 +23,12 @@ limitations under the License.
 
 namespace tensorflow {
 
-// TODO(zhifengc/tucker): Figure out the bytes of available RAM.
+// TODO (zhifengc/tucker): Figure out the bytes of available RAM. id:1665 gh:1666
 class ThreadPoolDeviceFactory : public DeviceFactory {
  public:
   Status CreateDevices(const SessionOptions& options, const string& name_prefix,
                        std::vector<Device*>* devices) override {
-    // TODO(zhifengc/tucker): Figure out the number of available CPUs
+    // TODO (zhifengc/tucker): Figure out the number of available CPUs id:1118 gh:1119
     // and/or NUMA configuration.
     int n = 1;
     auto iter = options.config.device_count().find("CPU");

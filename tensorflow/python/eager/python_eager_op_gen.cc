@@ -447,7 +447,7 @@ string GenEagerPythonOp::Code() {
     if (num_outs_ == 1 && op_def_.is_stateful() &&
         (!op_def_.output_arg(0).number_attr().empty() ||
          !op_def_.output_arg(0).type_list_attr().empty())) {
-      // TODO(josh11b): Can skip this if the number_attr/type_list_attr has
+      // TODO (josh11b): Can skip this if the number_attr/type_list_attr has id:2925 gh:2926
       // a constraint indicating that this can never be empty.
       strings::StrAppend(&result_,
                          "    if not _result:\n"
@@ -639,7 +639,7 @@ void GenEagerPythonOp::AddEagerInferredAttrs() {
                              inputs_var, "\n");
         }
       } else if (attr.type() == "list(type)") {
-        // NOTE: We ignore default values for these attrs, since it is
+        // NOTE: We ignore default values for these attrs, since it is id:3168 gh:3169
         // unclear how you would use it, and the one use case is
         // parse_single_sequence_example which only needs it for
         // backwards compatibility.
@@ -717,7 +717,7 @@ string GetEagerPythonOps(const OpList& ops, const ApiDefMap& api_defs,
                          const string& source_file_name = "") {
   string result;
   // Header
-  // TODO(josh11b): Mention the library for which wrappers are being generated.
+  // TODO (josh11b): Mention the library for which wrappers are being generated. id:2261 gh:2262
   strings::StrAppend(&result, R"("""Python wrappers around TensorFlow ops.
 
 This file is MACHINE GENERATED! Do not edit.

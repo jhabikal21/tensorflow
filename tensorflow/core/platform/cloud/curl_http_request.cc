@@ -125,7 +125,7 @@ CurlHttpRequest::CurlHttpRequest(LibCurl* libcurl, Env* env)
   curl_ = libcurl_->curl_easy_init();
   CHECK(curl_ != nullptr) << "Couldn't initialize a curl session.";
 
-  // NOTE: CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt is configured by
+  // NOTE: CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt is configured by id:1769 gh:1770
   //       default in //third_party:curl.BUILD and can be customized via an
   //       environment variable.
 

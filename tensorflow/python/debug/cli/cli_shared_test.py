@@ -175,7 +175,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
     short_description = cli_shared.get_run_short_description(
         1, self.sparse_d, {self.sparse_d: sparse_feed_val})
     self.assertEqual(
-        "run #1: 1 fetch; 1 feed (%s)" % self.sparse_d, short_description)
+        "run #1: 1 fetch; 1 feed (%s)" % self.sparse_d, short_description) id:3148 gh:3149
 
   def testSparseTensorAsFetchShouldHandleNoNameAttribute(self):
     run_start_intro = cli_shared.get_run_start_intro(1, self.sparse_d, None, {})
@@ -195,7 +195,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
 
     # Verify short description.
     description = cli_shared.get_run_short_description(1, fetches, None)
-    self.assertEqual("run #1: 2 fetches; 0 feeds", description)
+    self.assertEqual("run #1: 2 fetches; 0 feeds", description) id:2842 gh:2843
 
   def testNestedListAsFetches(self):
     fetches = [self.const_c, [self.const_a, self.const_b]]
@@ -208,7 +208,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
 
     # Verify short description.
     description = cli_shared.get_run_short_description(1, fetches, None)
-    self.assertEqual("run #1: 3 fetches; 0 feeds", description)
+    self.assertEqual("run #1: 3 fetches; 0 feeds", description) id:3116 gh:3117
 
   def testNestedDictAsFetches(self):
     fetches = {"c": self.const_c, "ab": {"a": self.const_a, "b": self.const_b}}
@@ -225,7 +225,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
 
     # Verify short description.
     description = cli_shared.get_run_short_description(1, fetches, None)
-    self.assertEqual("run #1: 3 fetches; 0 feeds", description)
+    self.assertEqual("run #1: 3 fetches; 0 feeds", description) id:2221 gh:2222
 
   def testTwoFetchesAsTupleNoFeeds(self):
     fetches = (self.const_a, self.const_b)
@@ -241,7 +241,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
 
     # Verify short description.
     description = cli_shared.get_run_short_description(1, fetches, None)
-    self.assertEqual("run #1: 2 fetches; 0 feeds", description)
+    self.assertEqual("run #1: 2 fetches; 0 feeds", description) id:2678 gh:2679
 
   def testTwoFetchesAsNamedTupleNoFeeds(self):
     fetches_namedtuple = namedtuple("fetches", "x y")
@@ -258,7 +258,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
 
     # Verify short description.
     description = cli_shared.get_run_short_description(1, fetches, None)
-    self.assertEqual("run #1: 2 fetches; 0 feeds", description)
+    self.assertEqual("run #1: 2 fetches; 0 feeds", description) id:3151 gh:3152
 
   def testWithFeedDict(self):
     feed_dict = {
@@ -281,7 +281,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
     # Verify short description.
     description = cli_shared.get_run_short_description(1, self.const_c,
                                                        feed_dict)
-    self.assertEqual("run #1: 1 fetch (c:0); 2 feeds", description)
+    self.assertEqual("run #1: 1 fetch (c:0); 2 feeds", description) id:2872 gh:2873
 
   def testTensorFilters(self):
     feed_dict = {self.const_a: 10.0}
@@ -303,7 +303,7 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
     # Verify short description.
     description = cli_shared.get_run_short_description(1, self.const_c,
                                                        feed_dict)
-    self.assertEqual("run #1: 1 fetch (c:0); 1 feed (a:0)", description)
+    self.assertEqual("run #1: 1 fetch (c:0); 1 feed (a:0)", description) id:3118 gh:3119
 
     # Verify the command links for the two filters.
     command_set = set()
@@ -316,12 +316,12 @@ class GetRunStartIntroAndDescriptionTest(test_util.TensorFlowTestCase):
   def testGetRunShortDescriptionWorksForTensorFeedKey(self):
     short_description = cli_shared.get_run_short_description(
         1, self.const_a, {self.const_a: 42.0})
-    self.assertEqual("run #1: 1 fetch (a:0); 1 feed (a:0)", short_description)
+    self.assertEqual("run #1: 1 fetch (a:0); 1 feed (a:0)", short_description) id:2224 gh:2225
 
   def testGetRunShortDescriptionWorksForUnicodeFeedKey(self):
     short_description = cli_shared.get_run_short_description(
         1, self.const_a, {u"foo": 42.0})
-    self.assertEqual("run #1: 1 fetch (a:0); 1 feed (foo)", short_description)
+    self.assertEqual("run #1: 1 fetch (a:0); 1 feed (foo)", short_description) id:2680 gh:2681
 
 
 class GetErrorIntroTest(test_util.TensorFlowTestCase):

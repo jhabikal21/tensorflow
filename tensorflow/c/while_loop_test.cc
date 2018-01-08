@@ -67,7 +67,7 @@ class CApiWhileLoopTest : public ::testing::Test {
     TF_FinishWhile(params_.get(), s_, &outputs_[0]);
     EXPECT_EQ(expected_code, TF_GetCode(s_));
     EXPECT_EQ(expected_msg, TF_Message(s_));
-    // TODO(skyewm): this assert is currently broken. Fix or remove guarantee.
+    // TODO (skyewm): this assert is currently broken. Fix or remove guarantee. id:48 gh:49
     // ASSERT_EQ(original_graph_description_, GraphDebugString()) <<
     //     "TF_FinishWhile() altered graph on error";
   }
@@ -85,7 +85,7 @@ class CApiWhileLoopTest : public ::testing::Test {
       inputs[i] = {inputs_[i].oper, Int32Tensor(v)};
       ++i;
     }
-    // TODO(skyewm): use std::make_unique or absl::make_unique when possible.
+    // TODO (skyewm): use std::make_unique or absl::make_unique when possible. id:46 gh:47
     csession_.reset(new CSession(graph_, s_));
     csession_->SetInputs(inputs);
     csession_->SetOutputs(run_outputs);
@@ -315,7 +315,7 @@ TEST_F(CApiWhileLoopTest, InvalidCondOutputNode) {
   // Try to reuse node from parent graph
   params_->cond_output = inputs_[0];
   params_->body_outputs[0] = params_->body_inputs[0];
-  // TODO(skyewm): this error message could be more informative. Add explicit
+  // TODO (skyewm): this error message could be more informative. Add explicit id:67 gh:68
   // checks for this case in the while loop implementation?
   ExpectError(TF_INVALID_ARGUMENT,
               "Requested return tensor 'p0:0' not found in graph def");
@@ -331,7 +331,7 @@ TEST_F(CApiWhileLoopTest, InvalidCondOutputIndex) {
               "output(s)");
 }
 
-// TODO(skyewm): test bad cond output shape
+// TODO (skyewm): test bad cond output shape id:47 gh:48
 
 TEST_F(CApiWhileLoopTest, UnsetBodyOutput) {
   Init(1);
@@ -340,7 +340,7 @@ TEST_F(CApiWhileLoopTest, UnsetBodyOutput) {
               "TF_WhileParams `body_outputs[0]` field isn't set");
 }
 
-// TODO(skyewm): enable this when it works (currently doesn't error)
+// TODO (skyewm): enable this when it works (currently doesn't error) id:88 gh:89
 // TEST_F(CApiWhileLoopTest, WrongBodyOutputType) {
 //   Init(1);
 //   CreateCondGraph();
@@ -355,13 +355,13 @@ TEST_F(CApiWhileLoopTest, InvalidBodyOutputNode) {
   CreateCondGraph();
   // Try to reuse node from parent graph
   params_->body_outputs[0] = inputs_[0];
-  // TODO(skyewm): this error message could be more informative. Add explicit
+  // TODO (skyewm): this error message could be more informative. Add explicit id:51 gh:52
   // checks for this case in the while loop implementation?
   ExpectError(TF_INVALID_ARGUMENT,
               "Requested return tensor 'p0:0' not found in graph def");
 }
 
-// TODO(skyewm): enable this when it works (currently segfaults!)
+// TODO (skyewm): enable this when it works (currently segfaults!) id:49 gh:50
 // TEST_F(CApiWhileLoopTest, InvalidBodyOutputIndex) {
 //   Init(1);
 //   CreateCondGraph();
@@ -372,7 +372,7 @@ TEST_F(CApiWhileLoopTest, InvalidBodyOutputNode) {
 //               "output(s)");
 // }
 
-// TODO(skyewm): test bad body output shape
+// TODO (skyewm): test bad body output shape id:70 gh:71
 
 TEST_F(CApiWhileLoopTest, NullName) {
   Init(1);
@@ -387,7 +387,7 @@ TEST_F(CApiWhileLoopTest, WrongGraph) {
   CreateCondGraph();
   // Set body output to output from outer graph
   params_->body_outputs[0] = inputs_[0];
-  // TODO(skyewm): improve error message
+  // TODO (skyewm): improve error message id:52 gh:53
   ExpectError(TF_INVALID_ARGUMENT,
               "Requested return tensor 'p0:0' not found in graph def");
 }

@@ -274,7 +274,7 @@ class StridedSliceAssignOp : public XlaOpKernel {
       return;
     }
 
-    // TODO(aselle): This check is too strong, we only should need
+    // TODO (aselle): This check is too strong, we only should need id:221 gh:222
     // input_shape to be broadcastable to final_shape
     OP_REQUIRES(ctx, final_shape == rhs_shape,
                 errors::Unimplemented(
@@ -290,7 +290,7 @@ class StridedSliceAssignOp : public XlaOpKernel {
     gtl::InlinedVector<int64, 4> dimensions_to_reverse;
     gtl::InlinedVector<int64, 4> slice_begin, slice_dims;
     for (int i = 0; i < begin.size(); ++i) {
-      // TODO(phawkins): implement strides != 1
+      // TODO (phawkins): implement strides != 1 id:220 gh:221
       OP_REQUIRES(
           ctx, strides[i] == 1 || strides[i] == -1,
           errors::Unimplemented("Strides != 1 or -1 are not yet implemented"));
@@ -312,7 +312,7 @@ class StridedSliceAssignOp : public XlaOpKernel {
     rhs = ctx->builder()->Reshape(rhs, slice_dims);
 
     if (lhs_shape.dims() == 0) {
-      // TODO(b/38323843): DynamicUpdateSlice crashes on rank 0 inputs. Fix
+      // TODO (b/38323843): DynamicUpdateSlice crashes on rank 0 inputs. Fix id:218 gh:219
       // and remove this workaround.
       lhs = rhs;
     } else {

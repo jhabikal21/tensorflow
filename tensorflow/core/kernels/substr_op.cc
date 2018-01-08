@@ -88,7 +88,7 @@ class SubstrOp : public OpKernel {
       }
     } else {
       // Perform op with broadcasting
-      // TODO: Use ternary broadcasting for once available in Eigen. Current
+      // TODO: Use ternary broadcasting for once available in Eigen. Current id:2334 gh:2336
       //       implementation iterates through broadcasted ops element-wise;
       //       this should be parallelized.
 

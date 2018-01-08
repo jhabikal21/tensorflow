@@ -240,7 +240,7 @@ class _ASTCallVisitor(ast.NodeVisitor):
              reversed_preceding_text.isspace()):
             line = line - 1
             prev_line = self._lines[line - 1]
-            # TODO(aselle):
+            # TODO (aselle): id:3595 gh:3596
             # this is poor comment detection, but it is good enough for
             # cases where the comment does not contain string literal starting/
             # ending characters. If ast gave us start and end locations of the
@@ -316,7 +316,7 @@ class _ASTCallVisitor(ast.NodeVisitor):
         if argkey in renamed_keywords:
           argval_lineno, argval_col_offset = self._find_true_position(argval)
           if argval_lineno is not None and argval_col_offset is not None:
-            # TODO(aselle): We should scan backward to find the start of the
+            # TODO (aselle): We should scan backward to find the start of the id:3370 gh:3371
             # keyword key. Unfortunately ast does not give you the location of
             # keyword keys, so we are forced to infer it from the keyword arg
             # value.
@@ -656,7 +656,7 @@ class TFAPIChangeSpec(APIChangeSpec):
 
   @staticmethod
   def _reverse_handler(file_edit_recorder, node):
-    # TODO(aselle): Could check for a literal list of bools and try to convert
+    # TODO (aselle): Could check for a literal list of bools and try to convert id:3524 gh:3525
     # them to indices.
     comment = ("ERROR: tf.reverse has had its argument semantics changed\n"
                "significantly the converter cannot detect this reliably, so you"

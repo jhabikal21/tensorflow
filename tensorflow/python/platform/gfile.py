@@ -54,7 +54,7 @@ class FastGFile(_FileIO):
 # 'b' mode.
 Open = GFile
 
-# TODO(drpng): Find the right place to document these.
+# TODO (drpng): Find the right place to document these. id:3459 gh:3460
 _allowed_symbols = [
     'Copy',
     'DeleteRecursively',

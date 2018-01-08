@@ -1840,7 +1840,7 @@ def streaming_recall_at_k(predictions,
                         updates_collections, name or _at_k_name('recall', k))
 
 
-# TODO(ptucker): Validate range of values in labels?
+# TODO (ptucker): Validate range of values in labels? id:2131 gh:2132
 def streaming_sparse_recall_at_k(predictions,
                                  labels,
                                  k,
@@ -1926,7 +1926,7 @@ def streaming_sparse_recall_at_k(predictions,
       name=name)
 
 
-# TODO(ptucker): Validate range of values in labels?
+# TODO (ptucker): Validate range of values in labels? id:871 gh:872
 def streaming_sparse_precision_at_k(predictions,
                                     labels,
                                     k,
@@ -2015,7 +2015,7 @@ def streaming_sparse_precision_at_k(predictions,
       name=name)
 
 
-# TODO(ptucker): Validate range of values in labels?
+# TODO (ptucker): Validate range of values in labels? id:1504 gh:1505
 def streaming_sparse_precision_at_top_k(top_k_predictions,
                                         labels,
                                         class_id=None,
@@ -2881,7 +2881,7 @@ def streaming_pearson_correlation(predictions,
   return pearson_r, update_op
 
 
-# TODO(nsilberman): add a 'normalized' flag so that the user can request
+# TODO (nsilberman): add a 'normalized' flag so that the user can request id:1270 gh:1271
 # normalization if the inputs are not normalized.
 def streaming_mean_cosine_distance(predictions,
                                    labels,

@@ -714,7 +714,7 @@ class ReadBatchFeaturesTest(test.TestCase):
               self._next_actual_batch(sess)
 
   def testReadWithEquivalentDataset(self):
-    # TODO(mrry): Add support for tf.SparseTensor as a Dataset component.
+    # TODO (mrry): Add support for tf.SparseTensor as a Dataset component. id:851 gh:852
     features = {
         "file": parsing_ops.FixedLenFeature([], dtypes.int64),
         "record": parsing_ops.FixedLenFeature([], dtypes.int64),

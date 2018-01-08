@@ -198,7 +198,7 @@ std::unique_ptr<GrapplerItem> GrapplerItemFromMetaGraphDef(
     return nullptr;
   }
 
-  // TODO(yuefengz): consider handling saved_model_main_op and legacy_init_op.
+  // TODO (yuefengz): consider handling saved_model_main_op and legacy_init_op. id:1884 gh:1885
   // The reason why they are difficult to handle is because they may not intend
   // to initialize all variables that are required to run fetch nodes. We may
   // have to run restore op first.
@@ -229,7 +229,7 @@ std::unique_ptr<GrapplerItem> GrapplerItemFromMetaGraphDef(
         // Tables are initialized from files, which can take a long time. Add
         // 30 minutes to the initialization time for each table to avoid
         // timing out.
-        // TODO(bsteiner): adjust the timeout based on the file size.
+        // TODO (bsteiner): adjust the timeout based on the file size. id:1423 gh:1424
         new_item->expected_init_time += 30 * 60;
       }
     }

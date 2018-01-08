@@ -70,7 +70,7 @@ def load_variable(ckpt_dir_or_file, name):
   Returns:
     A numpy `ndarray` with a copy of the value of this variable.
   """
-  # TODO(b/29227106): Fix this in the right place and remove this.
+  # TODO (b/29227106): Fix this in the right place and remove this. id:3568 gh:3569
   if name.endswith(":0"):
     name = name[:-2]
   reader = load_checkpoint(ckpt_dir_or_file)
@@ -216,7 +216,7 @@ def init_from_checkpoint(ckpt_dir_or_file, assignment_map):
                    var_name, ckpt_dir_or_file, tensor_name_in_ckpt)
     else:
       scopes = ""
-      # TODO(vihanjain): Support list of 'current_var_or_name' here.
+      # TODO (vihanjain): Support list of 'current_var_or_name' here. id:3303 gh:3304
       if "/" in current_var_or_name:
         scopes = current_var_or_name[:current_var_or_name.rindex("/")]
       if not tensor_name_in_ckpt.endswith("/"):

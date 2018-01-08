@@ -32,7 +32,7 @@ class Summary;
 // The class currently supports accumulating `Histogram` objects, and we expect
 // to add other methods in future.
 //
-// NOTE(mrry): `StatsAggregator` is a virtual interface because we anticipate
+// NOTE (mrry): `StatsAggregator` is a virtual interface because we anticipate id:2176 gh:2177
 // that many different implementations will the same interface. For example, the
 // current implementation in "stats_aggregator_ops.cc" is a simple in-memory
 // implementation that integrates with the pull-based summary API, and we may
@@ -49,7 +49,7 @@ class StatsAggregator {
 
   // Stores a protocol buffer representation of the aggregator state in the
   // given `out_summary`.
-  // TODO(mrry): Consider separating this method from the `StatsAggregator`
+  // TODO (mrry): Consider separating this method from the `StatsAggregator` id:1982 gh:1983
   // interface. It is possible that not all implementations will support
   // encoding their state as a protocol buffer.
   virtual void EncodeToProto(Summary* out_summary) = 0;
@@ -58,7 +58,7 @@ class StatsAggregator {
 // A `StatsAggregatorResource` wraps a shareable `StatsAggregator` as a resource
 // in the TensorFlow resource manager.
 //
-// NOTE(mrry): This class is separate from `StatsAggregator` in order to
+// NOTE (mrry): This class is separate from `StatsAggregator` in order to id:1501 gh:1502
 // simplify the memory management of the shared object. Most users of
 // `StatsAggregator` interact with a `std::shared_ptr<StatsAggregator>` whereas
 // the `ResourceBase` API requires explicit reference counting.

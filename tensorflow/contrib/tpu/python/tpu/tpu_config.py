@@ -158,7 +158,7 @@ class RunConfig(run_config_lib.RunConfig):
 
 def _get_tpu_job_name_from_tf_config():
   """Extracts the TPU job name from TF_CONFIG env variable."""
-  # TODO(xiejw): Extends this to support both TF_CONFIG env variable and cluster
+  # TODO (xiejw): Extends this to support both TF_CONFIG env variable and cluster id:1038 gh:1039
   # spec propagation.
   tf_config = json.loads(os.environ.get(_TF_CONFIG_ENV, '{}'))
   tpu_job_name = tf_config.get(_SERVICE_KEY, {}).get(_TPU_WORKER_JOB_NAME)

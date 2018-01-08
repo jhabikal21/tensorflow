@@ -475,7 +475,7 @@ class ParallelInterleaveDatasetOp : public UnaryDatasetOpKernel {
       bool cancelled_ GUARDED_BY(mu_) = false;
       // The worker threads. This must be last to ensure the
       // threads have exited before any other members are deallocated.
-      // TODO(b/65178177): Avoid allocating additional threads.
+      // TODO (b/65178177): Avoid allocating additional threads. id:1509 gh:1510
       std::vector<std::unique_ptr<Thread>> worker_threads_ GUARDED_BY(mu_);
     };
 

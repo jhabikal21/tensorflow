@@ -46,7 +46,7 @@ typedef std::vector<TensorShape> TensorShapeList;
 enum AxisArgumentName { NAME_IS_AXIS, NAME_IS_CONCAT_DIM };
 
 
-// TODO(intelft) Check if we can reuse existing EigenConcatOp using Mutable
+// TODO (intelft) Check if we can reuse existing EigenConcatOp using Mutable id:2793 gh:2794
 // reference inputs.
 // --------------------------------------------------------------------------
 //                      Eigen Concat Op
@@ -130,12 +130,12 @@ class EigenConcatBaseOp : public OpKernel {
         inputs_flat.emplace_back(new typename TTypes<T, 2>::ConstMatrix(
             in.shaped<T, 2>({inputs_flat_dim0, inputs_flat_dim1})));
       }
-      // TODO(irving): Remove check once !allow_legacy_scalars().
+      // TODO (irving): Remove check once !allow_legacy_scalars(). id:1624 gh:1625
       output_concat_dim += in.dims() > 0 ? in.dim_size(axis) : 1;
     }
 
     TensorShape output_shape(input_shape);
-    // TODO(irving): Remove rank 0 case once !allow_legacy_scalars().
+    // TODO (irving): Remove rank 0 case once !allow_legacy_scalars(). id:2252 gh:2253
     if (output_shape.dims() == 0) {
       output_shape.AddDim(output_concat_dim);
     } else {

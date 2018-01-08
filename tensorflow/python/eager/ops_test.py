@@ -147,7 +147,7 @@ class OpsTest(test_util.TensorFlowTestCase):
     self.assertAllEqual([2, 4], output_shape[0])
     self.assertAllEqual([2, 3], output_shape[1])
 
-  # TODO(josh11b): Test an op that has multiple outputs, some but not
+  # TODO (josh11b): Test an op that has multiple outputs, some but not id:2259 gh:2260
   # all of which are lists. Examples: barrier_take_many (currently
   # unsupported since it uses a type list) or sdca_optimizer (I don't
   # have an example of legal inputs & outputs).
@@ -159,7 +159,7 @@ class OpsTest(test_util.TensorFlowTestCase):
     self.assertAllEqual(3, three_x)
 
   def testOperatorOverrides(self):
-    # TODO(henrytan): test with negative number.
+    # TODO (henrytan): test with negative number. id:2726 gh:2727
     a = constant_op.constant([1])
     b = constant_op.constant([2])
 
@@ -247,7 +247,7 @@ class OpsTest(test_util.TensorFlowTestCase):
     self.assertAllEqual([[1], [2]], reshaped.cpu())
 
     # And if the shape is in device memory, it should complain
-    # TODO(ashankar): Revisit this - perhaps instead of complaining,
+    # TODO (ashankar): Revisit this - perhaps instead of complaining, id:3202 gh:3203
     # it should implicitly copy the tensor to host memory?
     with self.assertRaisesRegexp(
         errors.InvalidArgumentError,

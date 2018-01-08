@@ -96,12 +96,12 @@ StatusOr<std::unique_ptr<ShapedBuffer>> Executable::ExecuteOnStreamWrapper(
       profile->set_compute_and_transfer_time_ns(timer->Nanoseconds());
     }
 
-    // TODO(b/28123297): On GPU we end up including transfer time in
+    // TODO (b/28123297): On GPU we end up including transfer time in id:330 gh:331
     // the compute time this way. Instead, we should get the correct
     // value by measuring it. Setting the field here at least lets
     // benchmarks provide *some* value for GPU computations.
     //
-    // TODO(b/28447609): The value in compute_and_transfer_time_ns is actually
+    // TODO (b/28447609): The value in compute_and_transfer_time_ns is actually id:327 gh:328
     // the compute time without the transfer time, so this way we get the
     // correct compute time. We should instead have the correct value for
     // compute_and_transfer_time and set compute_time to the compute time.

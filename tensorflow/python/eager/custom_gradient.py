@@ -74,7 +74,7 @@ def custom_gradient(f):
     with tape.stop_recording():
       result, grad_fn = f(*args, **kwargs)
       flat_result = nest.flatten(result)
-      # TODO(apassos) consider removing the identity below.
+      # TODO (apassos) consider removing the identity below. id:3150 gh:3151
       flat_result = [gen_array_ops.identity(x) for x in flat_result]
 
     def actual_grad_fn(*outputs):

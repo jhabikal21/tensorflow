@@ -41,7 +41,7 @@ from tensorflow.python.platform import test
 class InterleaveDatasetTest(test.TestCase):
 
   def _interleave(self, lists, cycle_length, block_length):
-    # TODO(b/69678297): Consolidate python interleave implementations.
+    # TODO (b/69678297): Consolidate python interleave implementations. id:849 gh:850
     num_open = 0
 
     # `all_iterators` acts as a queue of iterators over each element of `lists`.
@@ -85,7 +85,7 @@ class InterleaveDatasetTest(test.TestCase):
 
     # Cycle length > 1.
     expected_elements = [4, 5, 4, 5, 4, 5, 4,
-                         5, 5, 6, 6,  # NOTE(mrry): When we cycle back
+                         5, 5, 6, 6,  # NOTE (mrry): When we cycle back id:534 gh:535
                                       # to a list and are already at
                                       # the end of that list, we move
                                       # on to the next element.

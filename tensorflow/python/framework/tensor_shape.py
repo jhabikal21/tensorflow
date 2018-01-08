@@ -427,7 +427,7 @@ class TensorShape(object):
     Raises:
       TypeError: If dims cannot be converted to a list of dimensions.
     """
-    # TODO(irving): Eliminate the single integer special case.
+    # TODO (irving): Eliminate the single integer special case. id:2321 gh:2322
     if dims is None:
       self._dims = None
     elif isinstance(dims, compat.bytes_or_text_types):
@@ -525,16 +525,16 @@ class TensorShape(object):
         stop = key.stop
 
         if key.step is not None:
-          # TODO(mrry): Handle these maybe.
+          # TODO (mrry): Handle these maybe. id:2784 gh:2785
           raise ValueError("Steps are not yet handled")
         if stop is None:
-          # NOTE(mrry): This implies that TensorShape(None) is compatible with
+          # NOTE (mrry): This implies that TensorShape(None) is compatible with id:3429 gh:3430
           # TensorShape(None)[1:], which is obviously not true. It would be
           # possible to track the number of dimensions symbolically,
           # and perhaps we should do that.
           return unknown_shape()
         elif start < 0 or stop < 0:
-          # TODO(mrry): Handle this better, as it will be useful for handling
+          # TODO (mrry): Handle this better, as it will be useful for handling id:2998 gh:2999
           # suffixes of otherwise unknown shapes.
           return unknown_shape()
         else:
@@ -596,7 +596,7 @@ class TensorShape(object):
       A `TensorShape` whose dimensions are the concatenation of the
       dimensions in `self` and `other`.
     """
-    # TODO(mrry): Handle the case where we concatenate a known shape with a
+    # TODO (mrry): Handle the case where we concatenate a known shape with a id:3253 gh:3254
     # completely unknown shape, so that we can use the partial information.
     other = as_shape(other)
     if self._dims is None or other.dims is None:

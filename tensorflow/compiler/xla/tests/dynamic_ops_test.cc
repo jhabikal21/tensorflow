@@ -366,7 +366,7 @@ class DynamicUpdateSliceTest : public ClientLibraryTestBase {
     float val = 1000;
     update_values.FillIota(val);
 
-    // TODO(b/34128753) Expected values may vary depending on backend when
+    // TODO (b/34128753) Expected values may vary depending on backend when id:436 gh:437
     // the update wraps. According to documentation, the results are technically
     // implementation specific where the update is out of bounds, and hence
     // we don't really know what to pass into ComputeAndCompareR3.
@@ -524,7 +524,7 @@ XLA_TEST_F(DynamicUpdateSliceTest, R3ContiguousUnaligned) {
   RunR3Contiguous(operand_shape, /*index=*/1, /*size=*/1);
 }
 
-// TODO(b/34134076) Disabled on GPU 2016-01-06 due to out-of-memory error.
+// TODO (b/34134076) Disabled on GPU 2016-01-06 due to out-of-memory error. id:477 gh:478
 XLA_TEST_F(DynamicUpdateSliceTest, DISABLED_ON_GPU(R3ContiguousLarger)) {
   std::vector<int32> operand_shape({32, 128, 1024});
   RunR3Contiguous(operand_shape, /*index=*/7, /*size=*/1);

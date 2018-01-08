@@ -113,11 +113,11 @@ class OptimizerTest(test.TestCase):
       self.assertAlmostEqual(0.5, sess.run(sq_norm_update), places=5)
 
   def testComputeUpdateStepsRegular(self):
-    # TODO(olganw): implement this.
+    # TODO (olganw): implement this. id:690 gh:691
     pass
 
   def testComputeUpdateStepsAdam(self):
-    # TODO(olganw): implement this.
+    # TODO (olganw): implement this. id:630 gh:631
     pass
 
   def testUpdateVelocities(self):

@@ -26,7 +26,7 @@ TfLiteStatus GetQuantizedConvolutionMultipler(
   const double bias_scale = bias->params.scale;
   const double output_scale = output->params.scale;
 
-  // TODO(ahentz): The following conditions must be guaranteed by the training
+  // TODO (ahentz): The following conditions must be guaranteed by the training id:1451 gh:1452
   // pipeline.
   TF_LITE_ENSURE(context, std::abs(input_product_scale - bias_scale) <=
                               1e-6 * std::min(input_product_scale, bias_scale));

@@ -110,7 +110,7 @@ class BackpropTest(test.TestCase):
         raise RuntimeError('x')
       return x, grad
 
-    # TODO(apassos) raise the right error here
+    # TODO (apassos) raise the right error here id:3144 gh:3145
     with self.assertRaises(RuntimeError):
       backprop.gradients_function(f)(constant_op.constant(1.0))
 
@@ -135,7 +135,7 @@ class BackpropTest(test.TestCase):
 
     with context.graph_mode(), self.test_session():
       tf_x = array_ops.ones((batch_size), dtypes.int64)
-      # TODO(ashankar,apassos): Change to ResourceVariable.
+      # TODO (ashankar,apassos): Change to ResourceVariable. id:2246 gh:2247
       tf_embedding = variables.Variable(
           random_init.numpy(), name='tf_embedding')
       tf_embedded_x = embedding_ops.embedding_lookup(tf_embedding, tf_x)
@@ -258,7 +258,7 @@ class BackpropTest(test.TestCase):
       with context.device('/gpu:0'):
         b = constant_op.constant(2.0)
         c = math_ops.add(x.gpu(), b)
-        # TODO(apassos): remove cpu below by making TensorVSPace aware
+        # TODO (apassos): remove cpu below by making TensorVSPace aware id:2712 gh:2713
         # of devices.
         return math_ops.add(c, constant_op.constant(3.0)).cpu()
 

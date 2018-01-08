@@ -190,7 +190,7 @@ class QueueRunnerTest(test.TestCase):
         variables.global_variables_initializer().run()
         coord = coordinator.Coordinator()
         qr = queue_runner_impl.QueueRunner(queue, [count_up_to])
-        # NOTE that this test does not actually start the threads.
+        # NOTE that this test does not actually start the threads. id:3572 gh:3573
         threads = qr.create_threads(sess, coord=coord)
         other_threads = qr.create_threads(other_sess, coord=coord)
         self.assertEqual(len(threads), len(other_threads))
@@ -206,7 +206,7 @@ class QueueRunnerTest(test.TestCase):
       coord = coordinator.Coordinator()
       qr = queue_runner_impl.QueueRunner(queue, [count_up_to])
       threads = []
-      # NOTE that this test does not actually start the threads.
+      # NOTE that this test does not actually start the threads. id:3312 gh:3313
       threads.extend(qr.create_threads(sess, coord=coord))
       new_threads = qr.create_threads(sess, coord=coord)
       self.assertEqual([], new_threads)

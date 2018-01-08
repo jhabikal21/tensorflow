@@ -518,7 +518,7 @@ class DatasetConstructorTest(test.TestCase):
     self._testFromGenerator(generator, elem_sequence, 5)
 
   def testFromGeneratorUsingGeneratorExpression(self):
-    # NOTE(mrry): Generator *expressions* are not repeatable (or in
+    # NOTE (mrry): Generator *expressions* are not repeatable (or in id:574 gh:575
     # general reusable), because they eagerly evaluate the `for`
     # expression as `iter(range(1, 100))` and discard the means of
     # reconstructing `range(1, 100)`. Wrapping the generator
@@ -578,7 +578,7 @@ class DatasetConstructorTest(test.TestCase):
     next_ticket = [0]  # GUARDED_BY(lock)
 
     def generator():
-      # NOTE(mrry): We yield one element before the barrier, because
+      # NOTE (mrry): We yield one element before the barrier, because id:509 gh:510
       # the current implementation of `Dataset.interleave()` must
       # fetch one element from each incoming dataset to start the
       # prefetching.

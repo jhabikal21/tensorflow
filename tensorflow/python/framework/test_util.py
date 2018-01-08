@@ -301,7 +301,7 @@ def NCHWToNHWC(input_tensor):
     return [input_tensor[a] for a in new_axes[ndims]]
 
 
-# TODO(skyewm): remove this eventually
+# TODO (skyewm): remove this eventually id:2327 gh:2328
 # pylint: disable=protected-access
 def _use_c_api_wrapper(fn, use_c_api, *args, **kwargs):
   prev_value = ops._USE_C_API
@@ -339,7 +339,7 @@ def skip_if(condition):
   return real_skip_if
 
 
-# TODO(skyewm): remove this eventually
+# TODO (skyewm): remove this eventually id:2788 gh:2789
 def disable_c_api(fn):
   """Decorator for disabling the C API on a test.
 
@@ -357,7 +357,7 @@ def disable_c_api(fn):
   return wrapper
 
 
-# TODO(skyewm): remove this eventually
+# TODO (skyewm): remove this eventually id:3433 gh:3434
 def enable_c_api(fn):
   """Decorator for enabling the C API on a test.
 
@@ -377,7 +377,7 @@ def enable_c_api(fn):
 
 # This decorator is a hacky way to run all the test methods in a decorated
 # class with and without C API enabled.
-# TODO(iga): Remove this and its uses once we switch to using C API by default.
+# TODO (iga): Remove this and its uses once we switch to using C API by default. id:3027 gh:3028
 def with_c_api(cls):
   """Adds methods that call original methods but with C API enabled.
 
@@ -538,7 +538,7 @@ def assert_no_garbage_created(f):
     # This will fail if any garbage has been created, typically because of a
     # reference cycle.
     self.assertEqual(previous_garbage, len(gc.garbage))
-    # TODO(allenl): Figure out why this debug flag reset doesn't work. It would
+    # TODO (allenl): Figure out why this debug flag reset doesn't work. It would id:3257 gh:3258
     # be nice to be able to decorate arbitrary tests in a large test suite and
     # not hold on to every object in other tests.
     gc.set_debug(previous_debug_flags)
@@ -598,7 +598,7 @@ def run_in_graph_and_eager_modes(
           with context.device(gpu_name):
             f(self)
         elif use_gpu:
-          # TODO(xpan): Support softplacement and gpu by default when available.
+          # TODO (xpan): Support softplacement and gpu by default when available. id:2329 gh:2330
           f(self, **kwargs)
         else:
           with context.device("/device:CPU:0"):
@@ -629,7 +629,7 @@ def is_gpu_available(cuda_only=False, min_cuda_compute_capability=None):
   """
 
   def compute_capability_from_device_desc(device_desc):
-    # TODO(jingyue): The device description generator has to be in sync with
+    # TODO (jingyue): The device description generator has to be in sync with id:2790 gh:2791
     # this file. Another option is to put compute capability in
     # DeviceAttributes, but I avoided that to keep DeviceAttributes
     # target-independent. Reconsider this option when we have more things like
@@ -1091,7 +1091,7 @@ class TensorFlowTestCase(googletest.TestCase):
     if not np.allclose(a, b, rtol=rtol, atol=atol):
       # Prints more details than np.testing.assert_allclose.
       #
-      # NOTE: numpy.allclose (and numpy.testing.assert_allclose)
+      # NOTE: numpy.allclose (and numpy.testing.assert_allclose) id:3435 gh:3436
       # checks whether two arrays are element-wise equal within a
       # tolerance. The relative difference (rtol * abs(b)) and the
       # absolute difference atol are added together to compare against

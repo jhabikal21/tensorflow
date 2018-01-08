@@ -58,7 +58,7 @@ bool DecideMatchingValuesTest(const decision_trees::MatchingValuesTest& test,
 
 bool TensorDataSet::Decide(const decision_trees::BinaryNode& node,
                            int example) const {
-  // TODO(gilberth): Support missing values.
+  // TODO (gilberth): Support missing values. id:1581 gh:1582
   float val = 0;
   const auto& test = node.inequality_left_child_test();
 
@@ -144,7 +144,7 @@ void TensorDataSet::RandomSample(int example,
     *feature_id = decision_trees::FeatureId();
     feature_id->mutable_id()->set_value(strings::StrCat(saved_index));
 
-    // TODO(gilberth): Remove this shortcut when different sparse types are
+    // TODO (gilberth): Remove this shortcut when different sparse types are id:1389 gh:1390
     // allowed.
     *type = input_spec_.sparse(0).original_type();
   }

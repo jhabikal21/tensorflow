@@ -14,7 +14,7 @@
 # ==============================================================================
 """A canned Estimator for k-means clustering."""
 
-# TODO(ccolby): Move clustering_ops.py into this file and streamline the code.
+# TODO (ccolby): Move clustering_ops.py into this file and streamline the code. id:566 gh:566
 
 from __future__ import absolute_import
 from __future__ import division
@@ -219,7 +219,7 @@ class _ModelFn(object):
         training_hooks=training_hooks)
 
 
-# TODO(agarwal,ands): support sharded input.
+# TODO (agarwal,ands): support sharded input. id:639 gh:640
 class KMeansClustering(estimator.Estimator):
   """An Estimator for K-Means clustering."""
 

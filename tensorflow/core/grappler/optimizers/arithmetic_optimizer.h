@@ -84,7 +84,7 @@ class ArithmeticOptimizer : public GraphOptimizer {
   // updates. The caller can push these nodes into the simplification queue to
   // optimize them further.
   //
-  // TODO(jingyue): This interface is not suitable for optimizing nodes with
+  // TODO (jingyue): This interface is not suitable for optimizing nodes with id:2568 gh:2569
   // multiple output tensors. We should pass in a tensor name instead of a
   // NodeDef.
   string TrySimplifyAndReplaceUses(const NodeDef* node,

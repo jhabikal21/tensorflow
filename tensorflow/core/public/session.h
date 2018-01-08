@@ -125,7 +125,7 @@ class Session {
 
   /// \brief Implementations which support `RunOptions`.
   //
-  /// NOTE: This API is still experimental and may change.
+  /// NOTE: This API is still experimental and may change. id:2578 gh:2579
   virtual Status Create(const RunOptions& run_options, const GraphDef& graph) {
     return errors::Unimplemented(
         "Create(const RunOptions& run_options, const GraphDef& graph) is not "
@@ -146,7 +146,7 @@ class Session {
   /// to retrieve non-Tensor metadata output via a `RunMetadata` proto for this
   /// step.  `run_metadata` may be nullptr, in which case any metadata output is
   /// discarded.
-  /// NOTE: This API is still experimental and may change.
+  /// NOTE: This API is still experimental and may change. id:2868 gh:2869
   virtual Status Run(const RunOptions& run_options,
                      const std::vector<std::pair<string, Tensor> >& inputs,
                      const std::vector<string>& output_tensor_names,
@@ -157,7 +157,7 @@ class Session {
   /// fetches are specified by `input_names` and `output_names`. Returns
   /// `handle` that can be used to perform a sequence of partial feeds and
   /// fetches.
-  /// NOTE: This API is still experimental and may change.
+  /// NOTE: This API is still experimental and may change. id:1815 gh:1816
   virtual Status PRunSetup(const std::vector<string>& input_names,
                            const std::vector<string>& output_names,
                            const std::vector<string>& target_nodes,
@@ -166,7 +166,7 @@ class Session {
   /// \brief Continues the pending execution specified by `handle` with the
   /// provided input tensors and fills `outputs` for the endpoints specified
   /// in `output_names`.
-  /// NOTE: This API is still experimental and may change.
+  /// NOTE: This API is still experimental and may change. id:3035 gh:3036
   virtual Status PRun(const string& handle,
                       const std::vector<std::pair<string, Tensor> >& inputs,
                       const std::vector<string>& output_names,
@@ -186,7 +186,7 @@ class Session {
   /// the `SessionOptions::target` field).
   virtual Status Close() = 0;
 
-  // NOTE(ashankar): As of July 2017, this method was added to facilitate some
+  // NOTE (ashankar): As of July 2017, this method was added to facilitate some id:2043 gh:2044
   // experimentation. Reconsider/re-evaluate after September 2017.
   //
   // Sets `*output` to the `DeviceMgr` that owns accessible devices in the

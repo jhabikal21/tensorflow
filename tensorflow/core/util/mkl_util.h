@@ -253,7 +253,7 @@ class MklShape {
 #define TF_TO_MKL_DIM_MAP_OFFSET(dims) \
   (TF_LAYOUT_OFFSET(dims) + SIZE_OF_MKL_DNN_BUF)
 
-  // TODO(agramesh1) make sure to create a const to share with rewrite pass
+  // TODO (agramesh1) make sure to create a const to share with rewrite pass id:1826 gh:1827
   // for min size of MKL metadata tensor.
 
   void DeSerializeMklShape(const unsigned char* buf, size_t buf_size) {
@@ -563,7 +563,7 @@ class MklDnnShape {
   }
 
   inline void SetTfDimOrder(const size_t dimension, TensorFormat data_format) {
-    // TODO(nhasabni): Why do we restrict this to 4D?
+    // TODO (nhasabni): Why do we restrict this to 4D? id:3051 gh:3052
     CHECK_EQ(dimension, 4);
     CHECK(dimension == data_.dimension_);
     data_.map_[GetTensorDimIndex<2>(data_format, 'W')] = MklDnnDims::Dim_W;
@@ -987,7 +987,7 @@ inline void CopyMklTensorInToOut(OpKernelContext* context,
   Tensor output(data.dtype());
   Tensor meta_output(meta.dtype());
 
-  // TODO(intel_tf): alternatively, call forward_input_to_output_with_shape(...)
+  // TODO (intel_tf): alternatively, call forward_input_to_output_with_shape(...) id:2057 gh:2059
   CHECK(output.CopyFrom(data, data.shape()));
   CHECK(meta_output.CopyFrom(meta, meta.shape()));
   context->set_output(idx_data_out, output);
@@ -1008,7 +1008,7 @@ inline void CopyTfTensorInToOutWithShape(OpKernelContext* context,
   mkl_shape_output.SetMklTensor(false);
   AllocateOutputSetMklShape(context, idx_out, mkl_shape_output);
   Tensor output(data.dtype());
-  // TODO(intel_tf): alternatively, call forward_input_to_output_with_shape(...)
+  // TODO (intel_tf): alternatively, call forward_input_to_output_with_shape(...) id:2592 gh:2593
   CHECK(output.CopyFrom(data, shape));
   context->set_output(idx_data_out, output);
 }
@@ -1026,7 +1026,7 @@ inline void CopyTfTensorInToOutWithShape(OpKernelContext* context,
   mkl_shape_output.SetMklTensor(false);
   AllocateOutputSetMklShape(context, idx_out, mkl_shape_output);
   Tensor output(data.dtype());
-  // TODO(intel_tf): alternatively, call forward_input_to_output_with_shape(...)
+  // TODO (intel_tf): alternatively, call forward_input_to_output_with_shape(...) id:2885 gh:2886
   CHECK(output.CopyFrom(data, shape));
   context->set_output(idx_data_out, output);
 }
@@ -1206,7 +1206,7 @@ inline bool MklCompareShapes(const TensorShape* input_shape_0,
 
 // These functions do not compile with MKL-DNN since mkl.h is missing.
 // We may need to remove them later.
-// TODO(intel_tf): Remove this routine when faster MKL layout conversion is
+// TODO (intel_tf): Remove this routine when faster MKL layout conversion is id:1828 gh:1829
 // out.
 inline void MklNHWCToNCHW(const Tensor& input, Tensor** output) {
   const float* buf_in = input.flat<float>().data();
@@ -1539,7 +1539,7 @@ class MklDnnData {
   inline void SetUsrMem(const memory::primitive_desc& pd,
                         void* data_buffer = nullptr) {
     CHECK_NOTNULL(cpu_engine_);
-    // TODO(nhasabni): can we remove dynamic memory allocation?
+    // TODO (nhasabni): can we remove dynamic memory allocation? id:3056 gh:3057
     if (data_buffer) {
       user_memory_ = new memory(pd, data_buffer);
     } else {
@@ -1608,7 +1608,7 @@ class MklDnnData {
   /// but memory::format would be mkldnn::any because we want MKL-DNN to choose
   /// best layout/format for given input dimensions.
   inline void SetOpMemDesc(const memory::dims& dim, memory::format fm) {
-    // TODO(nhasabni): can we remove dynamic memory allocation?
+    // TODO (nhasabni): can we remove dynamic memory allocation? id:2061 gh:2062
     op_md_ = new memory::desc(dim, MklDnnType<T>(), fm);
   }
 
@@ -1664,7 +1664,7 @@ class MklDnnData {
     CHECK_NOTNULL(net);
     CHECK_NOTNULL(user_memory_);
     if (IsReorderNeeded(op_pd)) {
-      // TODO(nhasabni): can we remove dynamic memory allocation?
+      // TODO (nhasabni): can we remove dynamic memory allocation? id:2594 gh:2595
       reorder_memory_ = new memory(op_pd);
       net->push_back(CreateReorder(user_memory_, reorder_memory_));
       return true;
@@ -1689,7 +1689,7 @@ class MklDnnData {
     CHECK_NOTNULL(reorder_data_handle);
     CHECK_NOTNULL(user_memory_);
     if (IsReorderNeeded(op_pd)) {
-      // TODO(nhasabni): can we remove dynamic memory allocation?
+      // TODO (nhasabni): can we remove dynamic memory allocation? id:2888 gh:2889
       reorder_memory_ = new memory(op_pd, reorder_data_handle);
       net->push_back(CreateReorder(user_memory_, reorder_memory_));
       return true;
@@ -1731,7 +1731,7 @@ class MklDnnData {
       const memory::primitive_desc& op_pd) {
     CHECK_NOTNULL(user_memory_);
     if (IsReorderNeeded(op_pd)) {
-      // TODO(nhasabni): can we remove dynamic memory allocation?
+      // TODO (nhasabni): can we remove dynamic memory allocation? id:1831 gh:1832
       reorder_memory_ = new memory(op_pd);
       return true;
     }

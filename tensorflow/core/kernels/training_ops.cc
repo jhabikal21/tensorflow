@@ -91,7 +91,7 @@ struct ApplyProximalGradientDescent<CPUDevice, T> {
                   typename TTypes<T>::ConstFlat grad) {
     // Note that here is Fobos update, for details please refer:
     // http://papers.nips.cc/paper/3793-efficient-learning-using-forward-backward-splitting.pdf
-    // TODO(xbing): merge the logic for ProximalGradientDescent and
+    // TODO (xbing): merge the logic for ProximalGradientDescent and id:2928 gh:2929
     // ProximalAdagrad.
     auto prox_var = var;
     // compute v = w - lr * grad.
@@ -961,7 +961,7 @@ class SparseApplyProximalGradientDescentOp : public OpKernel {
         T l1_scalar = l1.scalar<T>()();
         T l2_scalar = l2.scalar<T>()();
 
-        // TODO(xbing): extract the common logic for the Fobos update.
+        // TODO (xbing): extract the common logic for the Fobos update. id:1905 gh:1906
         for (Tindex i = 0; i < N; i++) {
           const Tindex index = internal::SubtleMustCopy(indices_vec(i));
           OP_REQUIRES(ctx, FastBoundsCheck(index, first_dim_size),

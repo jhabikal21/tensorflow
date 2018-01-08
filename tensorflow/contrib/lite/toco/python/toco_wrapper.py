@@ -30,6 +30,6 @@ import tensorflow as tf
 def main():
   # Pip installs the binary in aux-bin off of main site-package install.
   # Just find it and exec, passing all arguments in the process.
-  # TODO(aselle): it is unfortunate to use all of tensorflow to lookup binary.
+  # TODO (aselle): it is unfortunate to use all of tensorflow to lookup binary. id:939 gh:940
   binary = os.path.join(tf.__path__[0], 'aux-bin/toco')
   os.execvp(binary, sys.argv)

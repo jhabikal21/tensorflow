@@ -85,7 +85,7 @@ class InfoGANDiscriminator(object):
 
 def acgan_discriminator_model(inputs, _, num_classes=10):
   return (discriminator_model(inputs, _), array_ops.one_hot(
-      # TODO(haeusser): infer batch size from input
+      # TODO (haeusser): infer batch size from input id:669 gh:670
       random_ops.random_uniform([3], maxval=num_classes, dtype=dtypes.int32),
       num_classes))
 
@@ -94,13 +94,13 @@ class ACGANDiscriminator(object):
 
   def __call__(self, inputs, _, num_classes=10):
     return (discriminator_model(inputs, _), array_ops.one_hot(
-        # TODO(haeusser): infer batch size from input
+        # TODO (haeusser): infer batch size from input id:957 gh:958
         random_ops.random_uniform([3], maxval=num_classes, dtype=dtypes.int32),
         num_classes))
 
 
 def get_gan_model():
-  # TODO(joelshor): Find a better way of creating a variable scope.
+  # TODO (joelshor): Find a better way of creating a variable scope. id:879 gh:880
   with variable_scope.variable_scope('generator') as gen_scope:
     pass
   with variable_scope.variable_scope('discriminator') as dis_scope:
@@ -509,7 +509,7 @@ class GANTrainOpsTest(test.TestCase):
   def test_output_type_callable_acgan(self):
     self._test_output_type_helper(create_callable_acgan_model)
 
-  # TODO(joelshor): Add a test to check that custom update op is run.
+  # TODO (joelshor): Add a test to check that custom update op is run. id:673 gh:674
   def _test_unused_update_ops(self, create_gan_model_fn, provide_update_ops):
     model = create_gan_model_fn()
     loss = train.gan_loss(model)
@@ -675,7 +675,7 @@ class GANTrainTest(test.TestCase):
     step = training_util.create_global_step()
     # Increment the global count every time a train op is run so we can count
     # the number of times they're run.
-    # NOTE: `use_locking=True` is required to avoid race conditions with
+    # NOTE: `use_locking=True` is required to avoid race conditions with id:605 gh:606
     # joint training.
     train_ops = namedtuples.GANTrainOps(
         generator_train_op=step.assign_add(generator_add, use_locking=True),

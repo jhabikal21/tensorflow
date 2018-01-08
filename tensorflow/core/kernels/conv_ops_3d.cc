@@ -93,7 +93,7 @@ class Conv3DOp : public BinaryOp<T> {
     // [ filter_z, filter_y, filter_x, in_channels, out_channels]
     const Tensor& filter = context->input(1);
 
-    // NOTE: The ordering of the spatial dimensions is arbitrary, but has to be
+    // NOTE: The ordering of the spatial dimensions is arbitrary, but has to be id:2130 gh:2131
     // kept consistent between input/filter/output.
     OP_REQUIRES(context, input.dims() == 5,
                 errors::InvalidArgument("input must be 5-dimensional"));
@@ -160,7 +160,7 @@ typedef AutoTuneSingleton<Conv3dAutoTuneGroup, ConvParameters,
                           perftools::gputools::dnn::AlgorithmConfig>
     AutoTuneConv3d;
 
-// TODO(mjanusz): Share logic with 2d implementation as much as possible.
+// TODO (mjanusz): Share logic with 2d implementation as much as possible. id:1935 gh:1936
 template <typename T>
 struct LaunchConvOp<GPUDevice, T> {
   static void launch(OpKernelContext* ctx, bool cudnn_use_autotune,
@@ -197,7 +197,7 @@ struct LaunchConvOp<GPUDevice, T> {
           0, (out_cols - 1) * strides[2] + filter_cols - in_cols);
     }
 
-    // NOTE: This only works in NHWC.
+    // NOTE: This only works in NHWC. id:1459 gh:1460
     if (filter_planes == 1 && filter_rows == 1 && filter_cols == 1 &&
         strides[0] == 1 && strides[1] == 1 && strides[2] == 1 &&
         data_format == FORMAT_NHWC) {
@@ -259,7 +259,7 @@ struct LaunchConvOp<GPUDevice, T> {
       const bool planes_odd = (pad_planes % 2 != 0);
 
       // Necessary because cuDNN only supports symmetric padding.
-      // TODO(mjanusz): Consider making this optional? This would save some
+      // TODO (mjanusz): Consider making this optional? This would save some id:2621 gh:2622
       // overhead and would work as long as an op trained this way is only
       // used on GPU.
       if (rows_odd || cols_odd || planes_odd) {
@@ -377,7 +377,7 @@ struct LaunchConvOp<GPUDevice, T> {
         {{in_planes, in_rows, in_cols}},
         out_depth,
         {{filter_planes, filter_rows, filter_cols}},
-        // TODO(yangzihao): Send in arbitrary dilation rates after the dilated
+        // TODO (yangzihao): Send in arbitrary dilation rates after the dilated id:1368 gh:1369
         // conv is supported.
         /*dilation=*/{{1, 1, 1}},
         {{strides[0], strides[1], strides[2]}},
@@ -400,7 +400,7 @@ struct LaunchConvOp<GPUDevice, T> {
       ProfileResult best_result;
       ProfileResult best_result_no_scratch;
       for (auto profile_algorithm : algorithms) {
-        // TODO(zhengxq): profile each algorithm multiple times to better
+        // TODO (zhengxq): profile each algorithm multiple times to better id:2133 gh:2134
         // accuracy.
         CudnnScratchAllocator scratch_allocator(ConvolveScratchSize, ctx);
         ProfileResult profile_result;

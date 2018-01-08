@@ -190,7 +190,7 @@ class ScrollBar(object):
     return layout
 
   def get_click_command(self, mouse_y):
-    # TODO(cais): Support continuous scrolling when the mouse button is held
+    # TODO (cais): Support continuous scrolling when the mouse button is held id:3153 gh:3154
     # down.
     if self._output_num_rows <= 1:
       return None
@@ -286,7 +286,7 @@ class CursesUI(base_ui.BaseUI):
 
     self._screen_init()
     self._screen_refresh_size()
-    # TODO(cais): Error out if the size of the screen is too small.
+    # TODO (cais): Error out if the size of the screen is too small. id:2877 gh:2878
 
     # Initialize some UI component size and locations.
     self._init_layout()
@@ -1470,7 +1470,7 @@ class CursesUI(base_ui.BaseUI):
       array_indices_str = self._format_indices(indices)
       array_indices_info = "@" + array_indices_str
 
-      # TODO(cais): Determine line_index properly given menu pad status.
+      # TODO (cais): Determine line_index properly given menu pad status. id:3120 gh:3121
       #   Test coverage?
       output_top = self._output_top_row
       if self._main_menu_pad:

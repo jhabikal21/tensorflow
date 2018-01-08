@@ -474,7 +474,7 @@ class _Pooling3D(base.Layer):
     if self.data_format == 'channels_first':
       # TF does not support `channels_first` with 3D pooling operations,
       # so we must handle this case manually.
-      # TODO(fchollet): remove this when TF pooling is feature-complete.
+      # TODO (fchollet): remove this when TF pooling is feature-complete. id:3009 gh:3010
       inputs = array_ops.transpose(inputs, (0, 2, 3, 4, 1))
 
     outputs = self.pool_function(

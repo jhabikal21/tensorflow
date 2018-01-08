@@ -18,7 +18,7 @@ limitations under the License.
 namespace tensorflow {
 
 namespace {
-// TODO(suharshs): Move this to a common location to allow other part of the
+// TODO (suharshs): Move this to a common location to allow other part of the id:1137 gh:1138
 // repo to use it.
 template <typename T, typename... Args>
 std::unique_ptr<T> MakeUnique(Args&&... args) {

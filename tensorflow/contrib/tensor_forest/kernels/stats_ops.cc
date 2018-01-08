@@ -282,7 +282,7 @@ class ProcessInputOp : public OpKernel {
       for (int i = 0; i < num_data; ++i) {
         const int32 id = leaf_ids(i);
         if (FindOrNull(locks, id) == nullptr) {
-          // TODO(gilberth): Consider using a memory pool for these.
+          // TODO (gilberth): Consider using a memory pool for these. id:999 gh:1000
           locks[id] = std::unique_ptr<mutex>(new mutex);
         }
       }
@@ -302,7 +302,7 @@ class ProcessInputOp : public OpKernel {
 
     TensorInputTarget target(input_labels, input_weights, num_targets);
 
-    // TODO(gilberth): This is a rough approximation based on measurements
+    // TODO (gilberth): This is a rough approximation based on measurements id:2179 gh:2180
     // from a digits run on local desktop.  Heuristics might be necessary
     // if it really matters that much.
     const int64 costPerUpdate = 1000;
@@ -390,7 +390,7 @@ class GrowTreeOp : public OpKernel {
       const int32 node = finished(i);
       std::unique_ptr<SplitCandidate> best(new SplitCandidate);
       int32 parent_depth;
-      // TODO(gilberth): Pushing these to an output would allow the complete
+      // TODO (gilberth): Pushing these to an output would allow the complete id:953 gh:954
       // decoupling of tree from resource.
       bool found =
           fertile_stats_resource->BestSplit(node, best.get(), &parent_depth);
@@ -420,7 +420,7 @@ void FinalizeLeaf(bool is_regression, bool drop_final_class,
     return;
   }
 
-  // TODO(gilberth): Calculate the leaf's sum.
+  // TODO (gilberth): Calculate the leaf's sum. id:1576 gh:1577
   float sum = 0;
   LOG(FATAL) << "FinalizeTreeOp is disabled for now.";
   if (sum <= 0.0) {
@@ -475,7 +475,7 @@ class FinalizeTreeOp : public OpKernel {
     core::ScopedUnref unref_me(tree_resource);
     core::ScopedUnref unref_stats(fertile_stats_resource);
 
-    // TODO(thomaswc): Add threads
+    // TODO (thomaswc): Add threads id:1327 gh:1328
     int num_nodes = tree_resource->decision_tree().decision_tree().nodes_size();
     for (int i = 0; i < num_nodes; i++) {
       auto* node = tree_resource->mutable_decision_tree()

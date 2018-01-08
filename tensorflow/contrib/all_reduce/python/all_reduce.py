@@ -732,7 +732,7 @@ def _build_nccl_hybrid(input_tensors, red_op, upper_level_f):
   # First stage: reduce within each worker using NCCL
   for w in range(0, num_workers):
     worker_values = build_nccl_all_reduce(per_worker_values[w], red_op)
-    # NOTE: these reductions will not run to completion unless
+    # NOTE: these reductions will not run to completion unless id:476 gh:477
     # every output value is used.  Since we only need one, we
     # need to put control dependencies on the rest.
     with ops.control_dependencies(worker_values):
@@ -746,7 +746,7 @@ def _build_nccl_hybrid(input_tensors, red_op, upper_level_f):
   for w in range(0, num_workers):
     dst_devices = per_worker_devices[w][1:]
     send_op, dst_tensors = nccl.broadcast(level_2_output[w], dst_devices)
-    # NOTE: need control dependency to ensure send_op executes
+    # NOTE: need control dependency to ensure send_op executes id:475 gh:476
     with ops.control_dependencies([send_op]):
       with ops.device(per_worker_devices[w][0]):
         dst_tensors.insert(0, array_ops.identity(level_2_output[w]))

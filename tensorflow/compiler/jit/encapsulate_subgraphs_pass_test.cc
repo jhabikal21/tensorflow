@@ -31,7 +31,7 @@ namespace {
 
 bool EqualFunctionDef(const FunctionDef& a, const FunctionDef& b,
                       string* diff) {
-  // TODO(phawkins) use a more sophisticated equality test.
+  // TODO (phawkins) use a more sophisticated equality test. id:129 gh:130
   if (a.DebugString() != b.DebugString()) {
     if (diff) {
       *diff = strings::StrCat("Definition mismatch for function ",
@@ -82,7 +82,7 @@ bool EqualFunctionDefLibrary(const FunctionDefLibrary& expected,
         << diff << "\nActual: " << actual.DebugString();          \
   } while (false)
 
-// TODO(misard): remove these fake registrations once there are real Ops to be
+// TODO (misard): remove these fake registrations once there are real Ops to be id:142 gh:143
 // compiled.
 REGISTER_OP("_XlaSendToHost")
     .Input("input: dtypes")

@@ -25,7 +25,7 @@ namespace {
 
 // Visitor which verifies that the output shape is correctly set. Verifies
 // against the inferred shape for the instruction.
-// TODO(b/26024837): Check output shape for all instruction types.
+// TODO (b/26024837): Check output shape for all instruction types. id:440 gh:441
 class ShapeVerifier : public DfsHloVisitor {
  public:
   explicit ShapeVerifier(
@@ -242,7 +242,7 @@ class ShapeVerifier : public DfsHloVisitor {
       max_operand_rank =
           std::max(max_operand_rank, ShapeUtil::Rank(operand->shape()));
     }
-    // TODO(b/65689298) Remove code below once Map is generalized to accept
+    // TODO (b/65689298) Remove code below once Map is generalized to accept id:389 gh:390
     // arbitrary map dimensions.
     std::vector<int64> map_dims(max_operand_rank);
     std::iota(map_dims.begin(), map_dims.end(), 0);
@@ -612,7 +612,7 @@ Status HloVerifier::CheckFusionInstruction(HloInstruction* fusion) const {
     }
   }
 
-  // TODO(b/65423525): We'd like to check that all operands are distinct.
+  // TODO (b/65423525): We'd like to check that all operands are distinct. id:393 gh:394
   // This is currently disabled due to the invariant being violated by
   // multi-output fusion.
   return tensorflow::Status::OK();

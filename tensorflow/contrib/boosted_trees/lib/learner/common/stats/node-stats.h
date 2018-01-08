@@ -130,7 +130,7 @@ struct NodeStats {
             grad_stats.second.Magnitude() <= min_node_weight) {
           return;
         }
-        // TODO(nponomareva): figure out l1 in matrix form.
+        // TODO (nponomareva): figure out l1 in matrix form. id:834 gh:835
         // g is a vector of gradients, H is a hessian matrix.
         Eigen::VectorXf g = TensorToEigenVector(grad_stats.first.t, grad_dim);
 
@@ -175,7 +175,7 @@ struct NodeStats {
             grad_stats.second.Magnitude() <= min_node_weight) {
           return;
         }
-        // TODO(nponomareva): figure out l1 in matrix form.
+        // TODO (nponomareva): figure out l1 in matrix form. id:495 gh:496
         // Diagonal of the hessian.
         Eigen::ArrayXf hessian =
             TensorToEigenArray(grad_stats.second.t, grad_dim);

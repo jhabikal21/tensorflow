@@ -117,7 +117,7 @@ class AdaptiveSharedBatchScheduler
     // responsive to changes in workload.
     int64 batches_to_average_over = 1000;
 
-    // TODO(kte): remove the rate based implementation and corresponding options
+    // TODO (kte): remove the rate based implementation and corresponding options id:479 gh:480
     // below once testing confirms the superiority of the in flight batches
     // implementation.
     // Initial batch scheduling period in microseconds. Will be altered for

@@ -145,7 +145,7 @@ class FuzzStringInputOp : public FuzzSession {
     Tensor input_tensor(tensorflow::DT_STRING, TensorShape({}));
     input_tensor.scalar<string>()() =
         string(reinterpret_cast<const char*>(data), size);
-    // TODO(b/32704451): Don't just ignore the ::tensorflow::Status object!
+    // TODO (b/32704451): Don't just ignore the ::tensorflow::Status object! id:1529 gh:1530
     RunOneInput(input_tensor).IgnoreError();
   }
 };

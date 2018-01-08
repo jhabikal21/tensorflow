@@ -127,7 +127,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
 
   TfLiteTensor* bias = nullptr;
 
-  // TODO(ahentz): At this point the optimized versions require 'bias'. We can
+  // TODO (ahentz): At this point the optimized versions require 'bias'. We can id:830 gh:831
   // either change that or document that convolution requires it.
   TF_LITE_ENSURE(context, hasBias);
 
@@ -259,7 +259,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
     hwcn_weights->type = data_type;
     hwcn_weights->allocation_type = kTfLiteDynamic;
     // Make sure we release any previous allocations before we reallocate.
-    // TODO(petewarden): Persistent arenas would be a better fit for this, but
+    // TODO (petewarden): Persistent arenas would be a better fit for this, but id:1936 gh:1937
     // they aren't fully implemented yet.
     if (hwcn_weights->data.raw) {
       free(hwcn_weights->data.raw);
@@ -270,7 +270,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
     if (hwcn_weights_status != kTfLiteOk) return hwcn_weights_status;
     hwcn_weights->data.raw = static_cast<char*>(malloc(hwcn_weights->bytes));
 
-    // TODO(petewarden): If Resize() is called when the size hasn't actually
+    // TODO (petewarden): If Resize() is called when the size hasn't actually id:797 gh:798
     // changed, this will do extra redundant work.
     data->have_weights_been_transposed = false;
   }
@@ -374,7 +374,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
     data->have_weights_been_transposed = true;
   }
 
-  // TODO(aselle): Consider whether float conv and quantized conv should be
+  // TODO (aselle): Consider whether float conv and quantized conv should be id:1393 gh:1394
   // separate ops to avoid dispatch overhead here.
   switch (input->type) {  // Already know in/outtypes are same.
     case kTfLiteFloat32:

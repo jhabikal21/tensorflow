@@ -459,9 +459,9 @@ class UnaryVariantBinaryOpRegistration {
       T>                                                                      \
       register_unary_variant_op_decoder_fn_##ctr(type_name)
 
-// ****** NOTE ******
+// ****** NOTE ****** id:1219 gh:1220
 // FOR INTERNAL USE ONLY.  IF YOU USE THIS WE MAY BREAK YOUR CODE.
-// ****** NOTE ******
+// ****** NOTE ****** id:1968 gh:1969
 //
 // Register a device copy variant function for the given copy
 // direction and type; where direction is the enum
@@ -489,9 +489,9 @@ class UnaryVariantBinaryOpRegistration {
 //   - using the provided copier function in the reverse direction.
 // Doing the latter will cause program failures.
 //
-// ****** NOTE ******
+// ****** NOTE ****** id:1775 gh:1776
 // FOR INTERNAL USE ONLY.  IF YOU USE THIS WE MAY BREAK YOUR CODE.
-// ****** NOTE ******
+// ****** NOTE ****** id:1345 gh:1346
 #define INTERNAL_REGISTER_UNARY_VARIANT_DEVICE_COPY_FUNCTION(       \
     T, direction, type_name, device_copy_fn)                        \
   INTERNAL_REGISTER_UNARY_VARIANT_DEVICE_COPY_FUNCTION_UNIQ_HELPER( \

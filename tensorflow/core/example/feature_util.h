@@ -43,7 +43,7 @@ limitations under the License.
 // (RepeatedPtrField for byte list). So refer to its documentation of
 // RepeatedField for full list of supported methods.
 //
-// NOTE: Due to the nature of oneof proto fields setting a feature of one type
+// NOTE: Due to the nature of oneof proto fields setting a feature of one type id:1713 gh:1714
 // automatically clears all values stored as another type with the same feature
 // key.
 //
@@ -114,7 +114,7 @@ namespace tensorflow {
 namespace internal {
 
 // DEPRECATED: Use GetFeature instead.
-// TODO(gorban): Update all clients in a followup CL.
+// TODO (gorban): Update all clients in a followup CL. id:1303 gh:1304
 // Returns a reference to a feature corresponding to the name.
 // Note: it will create a new Feature if it is missing in the example.
 Feature& ExampleFeature(const string& name, Example* example);
@@ -303,7 +303,7 @@ bool HasFeature(const string& key, const Example& example) {
 };
 
 // DEPRECATED: use HasFeature instead.
-// TODO(gorban): update all clients in a followup CL.
+// TODO (gorban): update all clients in a followup CL. id:2461 gh:2462
 template <typename... FeatureType>
 bool ExampleHasFeature(const string& key, const Example& example) {
   return HasFeature<FeatureType...>(key, example);

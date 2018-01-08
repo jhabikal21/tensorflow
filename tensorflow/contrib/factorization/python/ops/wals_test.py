@@ -68,7 +68,7 @@ class WALSMatrixFactorizationTest(test.TestCase):
         sp_inputs, current_rows, current_cols, self._regularization_coeff,
         self._unobserved_weight, row_wts, col_wts)
 
-  # TODO(walidk): Replace with input_reader_utils functions once open sourced.
+  # TODO (walidk): Replace with input_reader_utils functions once open sourced. id:642 gh:643
   def remap_sparse_tensor_rows(self, sp_x, row_ids, shape):
     """Remaps the row ids of a tf.SparseTensor."""
     old_row_ids, old_col_ids = array_ops.split(
@@ -78,7 +78,7 @@ class WALSMatrixFactorizationTest(test.TestCase):
     return sparse_tensor.SparseTensor(
         indices=new_indices, values=sp_x.values, dense_shape=shape)
 
-  # TODO(walidk): Add an option to shuffle inputs.
+  # TODO (walidk): Add an option to shuffle inputs. id:901 gh:902
   def input_fn(self, np_matrix, batch_size, mode,
                project_row=None, projection_weights=None,
                remove_empty_rows_columns=False):

@@ -372,7 +372,7 @@ Status GraphToFunctionDef(const Graph& fn_body, const string& fn_name,
 // Converts `ninputs` and `inputs` into `inputs_tensors` and `input_nodes` and
 // does various checks while doing so. `input_nodes` will contain the same
 // information as input_tensors just in a different structure to make
-// following processing easier. TODO(iga): Simplify this nested structure.
+// following processing easier. TODO (iga): Simplify this nested structure. id:41 gh:42
 Status ProcessInputs(
     const TF_Graph* fn_body, const char* fn_name, int ninputs,
     const TF_Output* inputs, std::vector<OutputTensor>* input_tensors,
@@ -533,7 +533,7 @@ void TF_GraphCopyFunction(TF_Graph* g, const TF_Function* func,
     return;
   }
 
-  // TODO(iga): Add AddFunctionDef() and AddGradientDef() methods to graph
+  // TODO (iga): Add AddFunctionDef() and AddGradientDef() methods to graph id:18 gh:19
   // to avoid the extra copy here.
   tensorflow::FunctionDefLibrary fdef_lib;
   *fdef_lib.add_function() = func->fdef;

@@ -90,7 +90,7 @@ def _FoldFusedBatchNorms(graph):
           multiplier_tensor = array_ops.reshape(
               multiplier_tensor, new_shape, name='scale_reshape')
 
-      # TODO(suharshs): This naming of the following ops needs to carefully
+      # TODO (suharshs): This naming of the following ops needs to carefully id:2155 gh:2156
       # follow the naming expected by quantize.py. Generalize the quantize code
       # to not require these delicate naming conventions.
       scaled_weight_tensor = math_ops.multiply(
@@ -210,7 +210,7 @@ def _FindFusedBatchNorms(graph):
       # FusedBatchNormGrad doesn't compute gradients of the batch_mean and
       # batch_variance outputs, so we need to substitute our own custom
       # gradient.
-      # TODO(suharshs, raghuramank): Find a way to avoid needing this hack.
+      # TODO (suharshs, raghuramank): Find a way to avoid needing this hack. id:923 gh:924
       # pylint: disable=protected-access
       bn_op._set_attr(
           '_gradient_op_type',

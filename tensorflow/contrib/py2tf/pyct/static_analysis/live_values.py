@@ -51,7 +51,7 @@ class LiveValueResolver(gast.NodeTransformer):
       if not symbol_is_local:
         if node.id in self.literals:
           anno.setanno(node, 'live_val', self.literals[node.id])
-          # TODO(mdan): Could live values have FQNs? i.e. 'a'.join()
+          # TODO (mdan): Could live values have FQNs? i.e. 'a'.join() id:2150 gh:2151
         elif node.id in self.namespace:
           obj = self.namespace[node.id]
           anno.setanno(node, 'live_val', obj)
@@ -60,8 +60,8 @@ class LiveValueResolver(gast.NodeTransformer):
           raise ValueError('Could not find global symbol %s.' % node.id)
       else:
         pass
-        # TODO(mdan): Attempt to trace its value through the local chain.
-        # TODO(mdan): Use type annotations as fallback.
+        # TODO (mdan): Attempt to trace its value through the local chain. id:919 gh:920
+        # TODO (mdan): Use type annotations as fallback. id:1530 gh:1531
     return node
 
   def visit_Attribute(self, node):
@@ -74,7 +74,7 @@ class LiveValueResolver(gast.NodeTransformer):
                                                          node.attr))
       anno.setanno(node, 'live_val', getattr(parent_object, node.attr))
       anno.setanno(node, 'fqn', anno.getanno(node.value, 'fqn') + (node.attr,))
-    # TODO(mdan): Figure out what to do when calling attribute on local object.
+    # TODO (mdan): Figure out what to do when calling attribute on local object. id:1287 gh:1288
     # Maybe just leave as-is?
     return node
 

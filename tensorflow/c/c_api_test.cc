@@ -1603,7 +1603,7 @@ class CApiAttributesTest : public ::testing::Test {
 };
 
 // Helper macros for the TF_OperationGetAttr* tests.
-// TODO(ashankar): Use gmock matchers instead?
+// TODO (ashankar): Use gmock matchers instead? id:45 gh:46
 // (https://github.com/google/googletest/blob/master/googlemock/docs/CookBook.md#writing-new-parameterized-matchers-quickly)
 // That will require setting up the tensorflow build with gmock.
 #define EXPECT_TF_META(attr_name, expected_list_size, expected_type, \
@@ -2104,7 +2104,7 @@ TEST(TestApiDef, TestCreateApiDefWithOverwrites) {
 }  // namespace
 }  // namespace tensorflow
 
-// TODO(josh11b): Test:
+// TODO (josh11b): Test: id:23 gh:24
 // * TF_SetDevice(desc, "/job:worker");
 // * control inputs / outputs
 // * targets

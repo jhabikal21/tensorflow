@@ -53,7 +53,7 @@ void TensorShape::CheckDimsAtLeast(int NDIMS) const {
 
 template <class Shape>
 bool TensorShapeBase<Shape>::IsValid(const TensorShapeProto& proto) {
-  // NOTE(irving): Unfortunately, TensorShape allows parsing protos with
+  // NOTE (irving): Unfortunately, TensorShape allows parsing protos with id:2507 gh:2506
   // unknown_shape() set, and it seems hard to remove this without backwards
   // compatibility issues.
   if (kIsPartial && proto.unknown_rank()) return proto.dim_size() == 0;
@@ -73,7 +73,7 @@ bool TensorShapeBase<Shape>::IsValid(const TensorShapeProto& proto) {
 
 template <class Shape>
 Status TensorShapeBase<Shape>::IsValidShape(const TensorShapeProto& proto) {
-  // NOTE(irving): Unfortunately, TensorShape allows parsing protos with
+  // NOTE (irving): Unfortunately, TensorShape allows parsing protos with id:1209 gh:1210
   // unknown_shape() set, and it seems hard to remove this without backwards
   // compatibility issues.
   if (kIsPartial && proto.unknown_rank()) {
@@ -117,7 +117,7 @@ template <class Shape>
 TensorShapeBase<Shape>::TensorShapeBase(const TensorShapeProto& proto) {
   set_tag(REP16);
   set_data_type(DT_INVALID);
-  // NOTE(irving): Unfortunately, TensorShape allows parsing protos with
+  // NOTE (irving): Unfortunately, TensorShape allows parsing protos with id:1961 gh:1962
   // unknown_shape() set, and it seems hard to remove this without backwards
   // compatibility issues.
   if (kIsPartial && proto.unknown_rank()) {

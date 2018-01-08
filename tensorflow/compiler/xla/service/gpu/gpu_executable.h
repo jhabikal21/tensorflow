@@ -84,7 +84,7 @@ class GpuExecutable : public Executable {
       tensorflow::gtl::ArraySlice<const ShapedBuffer*> arguments) override;
 
   const Status EqualOrFail(const Executable& executable) {
-    // TODO(b/62952745) Implement equality test on GPU executable.
+    // TODO (b/62952745) Implement equality test on GPU executable. id:339 gh:340
     return Unimplemented("Equality test on GPU executable is not implemented.");
   }
 

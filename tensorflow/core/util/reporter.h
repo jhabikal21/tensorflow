@@ -75,7 +75,7 @@ class TestReporter {
   Status Benchmark(int64 iters, double cpu_time, double wall_time,
                    double throughput);
 
-  // TODO(b/32704451): Don't just ignore the ::tensorflow::Status object!
+  // TODO (b/32704451): Don't just ignore the ::tensorflow::Status object! id:2596 gh:2597
   ~TestReporter() { Close().IgnoreError(); }  // Autoclose in destructor.
 
  private:

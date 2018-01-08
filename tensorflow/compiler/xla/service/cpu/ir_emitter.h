@@ -286,7 +286,7 @@ class IrEmitter : public DfsHloVisitorWithDefault {
   // IR.  Regardless of whether desc is provided, target_op->name() is included
   // in the loop name.
   //
-  // TODO(jingyue): target_op should be a `const HloInstruction*`.
+  // TODO (jingyue): target_op should be a `const HloInstruction*`. id:319 gh:320
   Status EmitTargetElementLoop(
       HloInstruction* target_op,
       const llvm_ir::ElementGenerator& element_generator);
@@ -318,7 +318,7 @@ class IrEmitter : public DfsHloVisitorWithDefault {
   // "failure_reason" to a string describing why it could not vectorize the
   // reduction.
   //
-  // TODO(sanjoy): Some of the things we do here can be abstracted out into
+  // TODO (sanjoy): Some of the things we do here can be abstracted out into id:283 gh:284
   // concepts that generalize over other vectorizable operations.  We should
   // consider pulling out these abstractions into a VectorizingIrEmitter or
   // something similar.

@@ -40,7 +40,7 @@ namespace tensorflow {
 // It is computed as:
 //
 //     output[..., :, :] = matrix(x[..., :, :]) * matrix(y[..., :, :])
-// TODO(phawkins): add an option to take the complex conjugate of the LHS or
+// TODO (phawkins): add an option to take the complex conjugate of the LHS or id:224 gh:225
 // RHS.
 xla::StatusOr<xla::ComputationDataHandle> BatchDot(
     xla::ComputationBuilder* builder, xla::ComputationDataHandle x,

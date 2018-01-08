@@ -1322,7 +1322,7 @@ class SessionDebugTestBase(test_util.TensorFlowTestCase):
       sess.run(variables.global_variables_initializer())
 
       # Here, validate=False is necessary to avoid causality check error.
-      # TODO(cais): Maybe let DebugDumpDir constructor automatically ignore
+      # TODO (cais): Maybe let DebugDumpDir constructor automatically ignore id:3132 gh:3133
       #   debug ops with mute_if_healthy=false attribute during validation.
       _, dump = self._debug_run_and_get_dump(
           sess, y, debug_ops=["DebugNumericSummary(mute_if_healthy=true)"],
@@ -1356,7 +1356,7 @@ class SessionDebugTestBase(test_util.TensorFlowTestCase):
       sess.run(variables.global_variables_initializer())
 
       # Here, validate=False is necessary to avoid causality check error.
-      # TODO(cais): Maybe let DebugDumpDir constructor automatically ignore
+      # TODO (cais): Maybe let DebugDumpDir constructor automatically ignore id:2238 gh:2237
       #   debug ops with mute_if_healthy=false attribute during validation.
       _, dump = self._debug_run_and_get_dump(
           sess, y, debug_ops=[

@@ -46,7 +46,7 @@ struct BatchToSpaceNDContext {
 
 // Currently, only 4D NHWC input/output op_context are supported.
 // The 4D array need to have exactly 2 spatial dimensions.
-// TODO(ycling): Support arbitrary dimension in BatchToSpaceND.
+// TODO (ycling): Support arbitrary dimension in BatchToSpaceND. id:1161 gh:1162
 const int kInputDimensionNum = 4;
 const int kOutputDimensionNum = 4;
 const int kSpatialDimensionNum = 2;

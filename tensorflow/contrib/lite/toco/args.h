@@ -44,7 +44,7 @@ struct StringMapList {
 // command_line_flags.h don't track whether or not a flag is specified. Arg
 // contains the value (which will be default if not specified) and also
 // whether the flag is specified.
-// TODO(aselle): consider putting doc string and ability to construct the
+// TODO (aselle): consider putting doc string and ability to construct the id:846 gh:847
 // tensorflow argument into this, so declaration of parameters can be less
 // distributed.
 // Every template specialization of Arg is required to implement
@@ -93,7 +93,7 @@ class Arg<toco::IntList> final {
     parsed_value_.elements.clear();
     specified_ = true;
     // strings::Split("") produces {""}, but we need {} on empty input.
-    // TODO(aselle): Moved this from elsewhere, but ahentz recommends we could
+    // TODO (aselle): Moved this from elsewhere, but ahentz recommends we could id:1480 gh:1481
     // use absl::SplitLeadingDec32Values(text.c_str(), &parsed_values_.elements)
     if (!text.empty()) {
       int32 element;
@@ -165,7 +165,7 @@ class Arg<toco::StringMapList> final {
     }
     return true;
 #else
-    // TODO(aselle): Fix argument parsing when absl supports structuredline
+    // TODO (aselle): Fix argument parsing when absl supports structuredline id:1235 gh:1236
     fprintf(stderr, "%s:%d StringMapList arguments not supported\n", __FILE__,
             __LINE__);
     abort();
@@ -201,7 +201,7 @@ struct ParsedModelFlags {
   Arg<toco::StringMapList> rnn_states;
   Arg<toco::StringMapList> model_checks;
   // Debugging output options.
-  // TODO(benoitjacob): these shouldn't be ModelFlags.
+  // TODO (benoitjacob): these shouldn't be ModelFlags. id:930 gh:931
   Arg<string> graphviz_first_array;
   Arg<string> graphviz_last_array;
   Arg<string> dump_graphviz;
@@ -217,7 +217,7 @@ struct ParsedTocoFlags {
   Arg<string> output_file;
   Arg<string> input_format;
   Arg<string> output_format;
-  // TODO(aselle): command_line_flags  doesn't support doubles
+  // TODO (aselle): command_line_flags  doesn't support doubles id:2107 gh:2108
   Arg<float> default_ranges_min = Arg<float>(0.);
   Arg<float> default_ranges_max = Arg<float>(0.);
   Arg<string> inference_type;

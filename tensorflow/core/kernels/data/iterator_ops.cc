@@ -310,7 +310,7 @@ class VariantTensorDataWriter : public IteratorStateWriter {
   }
 
   VariantTensorData* data_;
-  // TODO(srbs): Set the version string.
+  // TODO (srbs): Set the version string. id:1967 gh:1968
   IteratorStateMetadata metadata_proto_;
 };
 
@@ -400,7 +400,7 @@ class IteratorStateVariant {
 REGISTER_UNARY_VARIANT_DECODE_FUNCTION(IteratorStateVariant,
                                        kIteratorVariantTypeName);
 
-// TODO(mrry): Can we simply use the template kernel here?
+// TODO (mrry): Can we simply use the template kernel here? id:1489 gh:1490
 class IteratorHandleOp : public ResourceOpKernel<IteratorResource> {
  public:
   explicit IteratorHandleOp(OpKernelConstruction* ctx)
@@ -484,7 +484,7 @@ class ToSingleElementOp : public AsyncOpKernel {
                         errors::InvalidArgument("Dataset was empty."), done);
 
       for (int i = 0; i < components.size(); ++i) {
-        // TODO(mrry): Check that the shapes match the shape attrs.
+        // TODO (mrry): Check that the shapes match the shape attrs. id:2723 gh:2724
         ctx->set_output(i, components[i]);
       }
 
@@ -538,7 +538,7 @@ class OneShotIteratorOp : public AsyncOpKernel {
     }
   }
 
-  // NOTE(mrry): This is based on `ResourceOpKernel<T>::Compute()`,
+  // NOTE (mrry): This is based on `ResourceOpKernel<T>::Compute()`, id:1407 gh:1408
   // but due to the fact that `ResourceOpKernel<T>::CreateResource()`
   // does not provide access to the `OpKernelContext*` and we need
   // this to invoke the factory function, it's not possible to
@@ -552,7 +552,7 @@ class OneShotIteratorOp : public AsyncOpKernel {
       if (iterator_resource_ == nullptr && initialization_status_.ok()) {
         // The initialization thread will call `done`.
         if (!initialization_started_) {
-          // TODO(mrry): Convert the initialization code to use
+          // TODO (mrry): Convert the initialization code to use id:2166 gh:2167
           // callbacks instead of wasting a thread.
           thread_pool_->Schedule([this, ctx, done]() { Init(ctx, done); });
           initialization_started_ = true;
@@ -730,7 +730,7 @@ class IteratorGetNextOp : public AsyncOpKernel {
                             errors::OutOfRange("End of sequence"), done);
 
           for (int i = 0; i < components.size(); ++i) {
-            // TODO(mrry): Check that the shapes match the shape attrs.
+            // TODO (mrry): Check that the shapes match the shape attrs. id:1972 gh:1973
             ctx->set_output(i, components[i]);
           }
 
@@ -887,7 +887,7 @@ class IteratorSetStatsAggregatorOp : public OpKernel {
     OP_REQUIRES_OK(ctx, LookupResource(ctx, HandleFromInput(ctx, 1),
                                        &stats_aggregator_resource));
     core::ScopedUnref unref_stats_aggregator(stats_aggregator_resource);
-    // TODO(mrry): Consider allowing multiple StatsAggregator ops to
+    // TODO (mrry): Consider allowing multiple StatsAggregator ops to id:1491 gh:1492
     // subscribe to updates, and/or unsubscribing.
     OP_REQUIRES(ctx, !iterator_resource->stats_aggregator(),
                 errors::FailedPrecondition(

@@ -183,7 +183,7 @@ struct TensorEvaluator<const TensorMirrorPadOp<PaddingDimensions, ArgType>,
     eigen_assert(index + kPacketSize <= dimensions().TotalSize());
 
     // Find the effective inner-most dimension where padding actually happens.
-    // NOTE: This is independent of index argument, and can be done in the
+    // NOTE: This is independent of index argument, and can be done in the id:2060 gh:2061
     // constructor to save computation. However, if packet access does not
     // happen, then moving to constructor will incur needless overhead.
     int dim = -1;

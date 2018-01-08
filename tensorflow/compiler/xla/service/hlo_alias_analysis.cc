@@ -159,7 +159,7 @@ class BufferValueMap {
   void MergeBuffers(BufferNumber from, BufferNumber to) {
     auto& from_value_set = buffers_.at(from);
     buffers_.at(to).insert(from_value_set.begin(), from_value_set.end());
-    // NOTE: using a union-find algorithm to hold the colocated values might be
+    // NOTE: using a union-find algorithm to hold the colocated values might be id:416 gh:417
     // faster.
     for (const HloValue* value : from_value_set) {
       value_to_buffer_number_.at(value) = to;

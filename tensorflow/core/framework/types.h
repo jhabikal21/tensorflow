@@ -142,7 +142,7 @@ inline bool TypesCompatible(DataType expected, DataType actual) {
 DataTypeVector AllTypes();
 
 // Return the list of all numeric types.
-// NOTE: On Android, we only include the float and int32 types for now.
+// NOTE: On Android, we only include the float and int32 types for now. id:1215 gh:1216
 DataTypeVector RealNumberTypes();  // Types that support '<' and '>'.
 DataTypeVector NumberTypes();      // Includes complex and quantized types.
 

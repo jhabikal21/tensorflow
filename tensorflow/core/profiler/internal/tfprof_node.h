@@ -355,7 +355,7 @@ class TFGraphNode {
 
   void AddFloatOps(int64 float_ops) { node_.set_float_ops(float_ops); }
 
-  // TODO(xpan): This could take a lot of memory.
+  // TODO (xpan): This could take a lot of memory. id:2034 gh:2035
   void AddCode(const CodeDef& code,
                const std::map<int64, string>* id_to_string) {
     if (!call_stack_) {

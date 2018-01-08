@@ -123,7 +123,7 @@ class _Linear(object):
     return res
 
 
-# TODO(xpan): Remove this function in a follow up.
+# TODO (xpan): Remove this function in a follow up. id:1297 gh:1298
 def _linear(args,
             output_size,
             bias,

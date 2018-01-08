@@ -80,7 +80,7 @@ class TFProfTensor {
 
   // It assumes the flatten values are stored in row-major, which is mentioned
   // indirectly at various places:
-  // TODO(xpan): Further verifying it.
+  // TODO (xpan): Further verifying it. id:1811 gh:1812
   template <typename T>
   int64 BuildOutput(int64 start, int depth, const std::vector<T>& values,
                     TFProfTensorProto* dim) {
@@ -156,7 +156,7 @@ class TFProfTensor {
 
   template <typename T, typename U>
   void GetValueVec(std::vector<U>* value_vec) {
-    // TODO(xpan): Address the huge tensor problem.
+    // TODO (xpan): Address the huge tensor problem. id:3030 gh:3031
     if (tensor_->NumElements() > kTFProfTensorMaxWarnLen) {
       fprintf(stderr, "Showing huge tensor, the tool might halt...\n");
     }

@@ -153,7 +153,7 @@ adj_y: If `True`, adjoint the slices of `y`. Defaults to `False`.
 // --------------------------------------------------------------------------
 // Casting Ops
 //
-// NOTE: Only a smaller number of types are supported by
+// NOTE: Only a smaller number of types are supported by id:1766 gh:1767
 // Cast. The exact casting rule is TBD. The current
 // implementation uses C++ static cast rules for numeric
 // types, which may be changed in the future.
@@ -598,7 +598,7 @@ Returns x + y element-wise.
 [here](http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html)
 )doc");
 
-// TODO(rmlarsen): Add a Python wrapper that swiches non-string instances to
+// TODO (rmlarsen): Add a Python wrapper that swiches non-string instances to id:3002 gh:3003
 // use AddV2 (b/68646025).
 REGISTER_OP("AddV2")
     .Input("x: T")
@@ -1176,7 +1176,7 @@ REGISTER_OP("Select")
           const shape_inference::ShapeAndType& s1 = (*handle_data_1)[i];
           const shape_inference::ShapeAndType& s2 = (*handle_data_2)[i];
           if (s1.dtype != s2.dtype) {
-            // TODO(apassos) resolve this in the manner of b/32476923
+            // TODO (apassos) resolve this in the manner of b/32476923 id:2007 gh:2008
             return errors::InvalidArgument(
                 "Trying to merge handles pointing to different dtypes.");
           }

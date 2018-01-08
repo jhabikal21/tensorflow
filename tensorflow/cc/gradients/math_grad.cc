@@ -50,7 +50,7 @@ Output ConjugateHelper(const Scope& scope, const Output& out) {
   }
 }
 
-// TODO(andydavis) Add control dependencies to gradient functions (as needed).
+// TODO (andydavis) Add control dependencies to gradient functions (as needed). id:98 gh:99
 
 Status AbsGrad(const Scope& scope, const Operation& op,
                const std::vector<Output>& grad_inputs,

@@ -85,7 +85,7 @@ class AcceleratorUtilizationChecker : public Checker {
     }
     ExecStats& stats = accelerator_exec_stats_.at(node->canonical_device());
 
-    // TODO(xpan): Use multiple steps?
+    // TODO (xpan): Use multiple steps? id:2027 gh:2028
     const ExecStep& exec = execs.rbegin()->second;
 
     if (stats.start_micros == 0) {

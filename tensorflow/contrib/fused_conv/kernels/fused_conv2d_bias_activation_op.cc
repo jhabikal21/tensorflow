@@ -188,7 +188,7 @@ class FusedConv2DBiasActivationOp : public OpKernel {
       OP_REQUIRES_OK(context, CheckShape(side_input, "side_input"));
     }
 
-    // TODO(pauldonnelly): Switch to a more efficient mechanism to access
+    // TODO (pauldonnelly): Switch to a more efficient mechanism to access id:651 gh:652
     // dimension indexes and per-dimension attributes.
     const int32 filter_rows = GetFilterDim(filter, filter_format_, 'H');
     const int32 filter_cols = GetFilterDim(filter, filter_format_, 'W');
@@ -287,7 +287,7 @@ void AdjustPaddingForCudnn(int padding, bool is_int8x4, int filter_size,
                            int* extra_padding_after) {
 #if CUDNN_VERSION < 7000
   if (is_int8x4 && filter_size >= 6) {
-    // TODO(b/70795525): Remove after NVIDIA fixes this bug with int8 fused
+    // TODO (b/70795525): Remove after NVIDIA fixes this bug with int8 fused id:579 gh:580
     // convolution. I don't know cuDNN7 still has the bug, so enable this
     // workaround for cuDNN6 or older.
     *adjusted_padding = 0;
@@ -313,7 +313,7 @@ void LaunchFusedConv2DBiasActivationOp<GPUDevice, T, BiasType, ScaleType>::
   auto* stream = ctx->op_device_context()->stream();
   OP_REQUIRES(ctx, stream, errors::Internal("No GPU stream available."));
 
-  // TODO(yangzihao): refactor all the complicated/duplicated code in regular
+  // TODO (yangzihao): refactor all the complicated/duplicated code in regular id:652 gh:653
   // conv ops to a shared conv utility.
 
   // Assuming qint8 <--> NCHW_VECT_C, OIHW_VECT_I (int8x4) here.
@@ -409,7 +409,7 @@ void LaunchFusedConv2DBiasActivationOp<GPUDevice, T, BiasType, ScaleType>::
   const Tensor* side_input = &side_input_param;
   Tensor* output = output_param;
 
-  // NOTE: Here and elsewhere, checking 'is_int8x4' may look unnecessary
+  // NOTE: Here and elsewhere, checking 'is_int8x4' may look unnecessary id:909 gh:910
   // and inefficient, but it is actually both a time and code size optimization,
   // since 'is_int8x4' is a constexpr determined by the template parameter.
   if (!is_int8x4 && data_format == FORMAT_NHWC) {
@@ -528,7 +528,7 @@ void LaunchFusedConv2DBiasActivationOp<GPUDevice, T, BiasType, ScaleType>::
       {{conv_input_rows, conv_input_cols}},
       output_depth,
       {{filter_rows, filter_cols}},
-      // TODO(yangzihao): Add support for arbitrary dilations for fused conv.
+      // TODO (yangzihao): Add support for arbitrary dilations for fused conv. id:615 gh:616
       {{1, 1}},  // dilation_rows, dilation_cols
       {{row_stride, col_stride}},
       {{padding_rows, padding_cols}},
@@ -548,7 +548,7 @@ void LaunchFusedConv2DBiasActivationOp<GPUDevice, T, BiasType, ScaleType>::
     dnn::ProfileResult best_result;
     dnn::ProfileResult best_result_no_scratch;
     for (auto profile_algorithm : algorithms) {
-      // TODO(zhengxq): profile each algorithm multiple times to better
+      // TODO (zhengxq): profile each algorithm multiple times to better id:653 gh:654
       // accuracy.
       CudnnScratchAllocator scratch_allocator(ConvolveScratchSize, ctx);
       dnn::ProfileResult profile_result;

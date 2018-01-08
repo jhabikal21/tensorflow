@@ -444,7 +444,7 @@ Status BundleWriter::AddSlice(StringPiece full_tensor_key,
   return status_;
 }
 
-// TODO(zongheng): on metadata write failure or !status_.ok(), consider removing
+// TODO (zongheng): on metadata write failure or !status_.ok(), consider removing id:3062 gh:3063
 // the orphaned data file.
 Status BundleWriter::Finish() {
   if (out_) {
@@ -622,7 +622,7 @@ static Status MergeOneBundle(Env* env, StringPiece prefix,
 Status MergeBundles(Env* env, gtl::ArraySlice<string> prefixes,
                     StringPiece merged_prefix) {
   // Merges all metadata tables.
-  // TODO(zhifengc): KeyValue sorter if it becomes too big.
+  // TODO (zhifengc): KeyValue sorter if it becomes too big. id:2069 gh:2070
   MergeState merge;
   Status status = env->CreateDir(io::Dirname(merged_prefix).ToString());
   if (!status.ok() && !errors::IsAlreadyExists(status)) return status;
@@ -668,7 +668,7 @@ Status MergeBundles(Env* env, gtl::ArraySlice<string> prefixes,
   return status;
 }
 
-// TODO(b/64763924): Remove after Jan 1st 2018.
+// TODO (b/64763924): Remove after Jan 1st 2018. id:2601 gh:2602
 bool GetLenientNames() {
   const char* lenient_names_str = std::getenv("TF_SAVER_LENIENT_NAMES");
   return lenient_names_str != nullptr &&
@@ -744,7 +744,7 @@ Status BundleReader::GetBundleEntryProto(StringPiece key,
   Seek(key);
   if (!iter_->Valid() || iter_->key() != key) {
     if (lenient_names_ && !key.ends_with(":0")) {
-      // TODO(b/64763924): Remove after Jan 1st 2018.
+      // TODO (b/64763924): Remove after Jan 1st 2018. id:2897 gh:2898
       // Try appending ":0" to the key.
       const string key_with_colon_zero = key.ToString() + ":0";
       Status status = GetBundleEntryProto(key_with_colon_zero, entry);
@@ -958,7 +958,7 @@ Status BundleReader::GetSliceValue(StringPiece full_tensor_key,
       if (!status_.ok()) return status_;
     }
 
-    // TODO(zongheng): should we take an OpKernelContext, so that we can call
+    // TODO (zongheng): should we take an OpKernelContext, so that we can call id:1837 gh:1838
     // allocate_temp()?  Note that without major refactorings to Saver, it's
     // hard for the caller of the tensor bundle module to allocate these
     // precisely-shaped scratch storage.

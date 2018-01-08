@@ -66,7 +66,7 @@ def should_record_summaries():
   return should_record_collection[0]
 
 
-# TODO(apassos) consider how to handle local step here.
+# TODO (apassos) consider how to handle local step here. id:2175 gh:2176
 @tf_contextlib.contextmanager
 def record_summaries_every_n_global_steps(n, global_step=None):
   """Sets the should_record_summaries Tensor to true if global_step % n == 0."""
@@ -265,7 +265,7 @@ def create_db_writer(db_uri,
 
 def _make_summary_writer(name, factory, **kwargs):
   resource = gen_summary_ops.summary_writer(shared_name=name)
-  # TODO(apassos): Consider doing this instead.
+  # TODO (apassos): Consider doing this instead. id:947 gh:948
   # node = factory(resource, **kwargs)
   # if not context.in_eager_mode():
   #   ops.get_default_session().run(node)

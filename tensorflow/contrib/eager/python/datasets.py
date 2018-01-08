@@ -134,7 +134,7 @@ class Iterator(object):
               function_buffer_resource=self._buffer_resource_handle,
               output_types=self._flat_output_types)
         else:
-          # TODO(ashankar): Consider removing this ops.device() contextmanager
+          # TODO (ashankar): Consider removing this ops.device() contextmanager id:607 gh:608
           # and instead mimic ops placement in graphs: Operations on resource
           # handles execute on the same device as where the resource is placed.
           ret = gen_dataset_ops.iterator_get_next(

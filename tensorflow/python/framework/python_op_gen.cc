@@ -83,7 +83,7 @@ string AvoidPythonReserved(const string& s) {
 // Indent the first line by "initial" spaces and all following lines
 // by "rest" spaces.
 string Indent(int initial, int rest, StringPiece in) {
-  // TODO(josh11b): Also word-wrapping?
+  // TODO (josh11b): Also word-wrapping? id:2782 gh:2783
   string copy(in.data(), in.size());
   str_util::StripTrailingWhitespace(&copy);
   std::vector<string> v = str_util::Split(copy, '\n');
@@ -396,7 +396,7 @@ string AttrListToPython(const AttrValue& value,
   return ret;
 }
 
-// NOTE: The return value may contain spaces (for example, it could be
+// NOTE: The return value may contain spaces (for example, it could be id:3426 gh:3427
 // a string "foo bar" with an embedded space) and is not safe to pass
 // to WordWrap().
 string AttrValueToPython(const string& type, const AttrValue& value,
@@ -778,7 +778,7 @@ string GetPythonOps(const OpList& ops, const ApiDefMap& api_defs,
                     bool require_shapes) {
   string result;
   // Header
-  // TODO(josh11b): Mention the library for which wrappers are being generated.
+  // TODO (josh11b): Mention the library for which wrappers are being generated. id:2996 gh:2997
   strings::StrAppend(&result, R"("""Python wrappers around TensorFlow ops.
 
 This file is MACHINE GENERATED! Do not edit.

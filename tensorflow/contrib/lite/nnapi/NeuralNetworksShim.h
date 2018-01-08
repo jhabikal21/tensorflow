@@ -32,7 +32,7 @@ limitations under the License.
 #define EXECUTE_FUNCTION_RETURN(...) return fn != nullptr ? fn(__VA_ARGS__) : 0;
 
 inline void* loadLibrary(const char* name) {
-  // TODO: change RTLD_LOCAL? Assumes there can be multiple instances of nn
+  // TODO: change RTLD_LOCAL? Assumes there can be multiple instances of nn id:915 gh:916
   // api RT
   void* handle = dlopen(name, RTLD_LAZY | RTLD_LOCAL);
   if (handle == nullptr) {

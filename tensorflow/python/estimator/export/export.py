@@ -173,7 +173,7 @@ def build_raw_serving_input_receiver_fn(features, default_batch_size=None):
       # t.name = "%s:%d" % (t.op.name, t._value_index)
       receiver_tensors[name] = array_ops.placeholder(
           dtype=t.dtype, shape=shape, name=t.op.name)
-    # TODO(b/34885899): remove the unnecessary copy
+    # TODO (b/34885899): remove the unnecessary copy id:3219 gh:3220
     # The features provided are simply the placeholders, but we defensively copy
     # the dict because it may be mutated.
     return ServingInputReceiver(receiver_tensors, receiver_tensors.copy())
@@ -249,7 +249,7 @@ def _log_signature_report(signature_def_map, excluded_signatures):
   for signature_name, sig in signature_def_map.items():
     sig_names_by_method_name[sig.method_name].append(signature_name)
 
-  # TODO(b/67733540): consider printing the full signatures, not just names
+  # TODO (b/67733540): consider printing the full signatures, not just names id:2936 gh:2937
   for method_name, sig_names in sig_names_by_method_name.items():
     if method_name in _FRIENDLY_METHOD_NAMES:
       method_name = _FRIENDLY_METHOD_NAMES[method_name]

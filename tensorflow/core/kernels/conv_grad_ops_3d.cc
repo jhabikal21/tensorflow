@@ -43,7 +43,7 @@ namespace tensorflow {
 typedef Eigen::ThreadPoolDevice CPUDevice;
 typedef Eigen::GpuDevice GPUDevice;
 
-// TODO(mjanusz): Get rid of the macro and return shapes directly.
+// TODO (mjanusz): Get rid of the macro and return shapes directly. id:1455 gh:1456
 #define EXTRACT_AND_VERIFY_DIMENSIONS(label)                                   \
   const Tensor& out_backprop = context->input(2);                              \
   OP_REQUIRES(                                                                 \
@@ -645,7 +645,7 @@ class Conv3DBackpropInputOp<GPUDevice, T> : public OpKernel {
         {{input_size[0], input_size[1], input_size[2]}},
         out_depth,
         {{filter_size[0], filter_size[1], filter_size[2]}},
-        // TODO(yangzihao): Send in arbitrary dilation rates after the dilated
+        // TODO (yangzihao): Send in arbitrary dilation rates after the dilated id:2615 gh:2616
         // conv is supported.
         /*dilation=*/{{1, 1, 1}},
         {{strides[0], strides[1], strides[2]}},
@@ -666,7 +666,7 @@ class Conv3DBackpropInputOp<GPUDevice, T> : public OpKernel {
       ProfileResult best_result;
       ProfileResult best_result_no_scratch;
       for (auto profile_algorithm : algorithms) {
-        // TODO(zhengxq): profile each algorithm multiple times to better
+        // TODO (zhengxq): profile each algorithm multiple times to better id:1364 gh:1365
         // accuracy.
         CudnnScratchAllocator scratch_allocator(ConvolveBackwardDataScratchSize,
                                                 context);
@@ -1033,7 +1033,7 @@ class Conv3DBackpropFilterOp<GPUDevice, T> : public OpKernel {
       ProfileResult best_result;
       ProfileResult best_result_no_scratch;
       for (auto profile_algorithm : algorithms) {
-        // TODO(zhengxq): profile each algorithm multiple times to better
+        // TODO (zhengxq): profile each algorithm multiple times to better id:2127 gh:2128
         // accuracy.
         CudnnScratchAllocator scratch_allocator(
             ConvolveBackwardFilterScratchSize, context);

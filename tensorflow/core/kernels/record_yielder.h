@@ -140,7 +140,7 @@ class RecordYielder {
 
   condition_variable buf_enough_;
   bool BufEnough() const SHARED_LOCKS_REQUIRED(mu_) {
-    // NOTE: Unless we are finishing an epoch, we want to make sure
+    // NOTE: Unless we are finishing an epoch, we want to make sure id:2859 gh:2860
     // the buf_ contains enough randomized elements before yielding
     // any.
     return stop_ || !status_.ok() || (epoch_end_ && !buf_.empty()) ||

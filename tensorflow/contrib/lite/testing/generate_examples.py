@@ -37,20 +37,20 @@ import zipfile
 import numpy as np
 from six import StringIO
 
-# TODO(aselle): Disable GPU for now
+# TODO (aselle): Disable GPU for now id:2093 gh:2094
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # pylint: disable=g-import-not-at-top
 import tensorflow as tf
 from google.protobuf import text_format
-# TODO(aselle): switch to TensorFlow's resource_loader
+# TODO (aselle): switch to TensorFlow's resource_loader id:837 gh:838
 from tensorflow.contrib.lite.testing import generate_examples_report as report_lib
 from tensorflow.python.framework import graph_util as tf_graph_util
 
 parser = argparse.ArgumentParser(description="Script to generate TFLite tests.")
 parser.add_argument("output_path",
                     help="Directory where the outputs will be go.")
-# TODO(ahentz): remove this flag
+# TODO (ahentz): remove this flag id:1472 gh:1473
 parser.add_argument("type", help="zipped")
 parser.add_argument("--zip_to_output",
                     type=str,
@@ -122,7 +122,7 @@ def toco_options(data_types,
   """
   shape_str = ":".join([",".join(str(y) for y in x) for x in shapes])
   inference_type = "FLOAT"
-  # TODO(ahentz): if we get multi-input quantization to work we need this
+  # TODO (ahentz): if we get multi-input quantization to work we need this id:1222 gh:1223
   # to change
   if data_types[0] == "QUANTIZED_UINT8":
     inference_type = "QUANTIZED_UINT8"
@@ -315,7 +315,7 @@ def toco_convert(graph_def_str, input_tensors, output_tensors,
     graphdef_file.write(graph_def_str)
     graphdef_file.flush()
 
-    # TODO(aselle): Switch this to subprocess at some point.
+    # TODO (aselle): Switch this to subprocess at some point. id:922 gh:923
     cmd = ("%s --input_file=%s --output_file=%s %s > %s 2>&1" %
            (bin_path, graphdef_file.name, output_file.name, opts,
             stdout_file.name))
@@ -353,7 +353,7 @@ def make_zip_of_tests(zip_path,
     RuntimeError: if there are toco errors that can't be ignored.
   """
 
-  # TODO(aselle): Make this allow multiple inputs outputs.
+  # TODO (aselle): Make this allow multiple inputs outputs. id:2096 gh:2097
   archive = zipfile.PyZipFile(zip_path, "w")
   zip_manifest = []
   convert_report = []
@@ -506,10 +506,10 @@ def make_pool_tests(pool_op_in):
     test_parameters = [{
         "ksize": [[2, 1, 1, 2], [1, 1, 1, 1], [1, 1, 2, 1], [1, 10, 11, 1]],
         "strides": [[2, 1, 1, 2], [1, 1, 1, 1], [1, 1, 2, 1], [1, 10, 11, 1]],
-        # TODO(aselle): should add in a degenerate shape (e.g. [1, 0, 1, 1]).
+        # TODO (aselle): should add in a degenerate shape (e.g. [1, 0, 1, 1]). id:840 gh:841
         "input_shape": [[], [1, 1, 1, 1], [1, 15, 14, 1], [3, 15, 14, 3]],
         "padding": ["SAME", "VALID"],
-        "data_format": ["NHWC"],  # TODO(aselle): NCHW  would be good
+        "data_format": ["NHWC"],  # TODO (aselle): NCHW  would be good id:1474 gh:1475
     }]
 
     def build_graph(parameters):
@@ -714,10 +714,10 @@ def make_gather_tests(zip_path):
   """Make a set of tests to do gather."""
 
   test_parameters = [{
-      # TODO(mgubin): add string tests when they are supported by Toco.
-      # TODO(mgubin): add tests for Nd indices when they are supported by
+      # TODO (mgubin): add string tests when they are supported by Toco. id:1226 gh:1227
+      # TODO (mgubin): add tests for Nd indices when they are supported by id:924 gh:925
       # TfLite.
-      # TODO(mgubin): add tests for axis != 0 when it is supported by TfLite.
+      # TODO (mgubin): add tests for axis != 0 when it is supported by TfLite. id:2099 gh:2100
       "params_dtype": [tf.float32, tf.int32],
       "params_shape": [[10], [1, 2, 20]],
       "indices_dtype": [tf.int32],
@@ -835,13 +835,13 @@ def make_conv_tests(zip_path):
       "filter_shape": [[1, 1, 3, 2]],
       "strides": [[1, 1, 1, 1], [1, 2, 3, 1]],
       "padding": ["SAME", "VALID"],
-      "data_format": ["NHWC"],  # TODO(aselle): NCHW  would be good
+      "data_format": ["NHWC"],  # TODO (aselle): NCHW  would be good id:842 gh:843
   }, {
       "input_shape": [[2, 14, 14, 2]],
       "filter_shape": [[6, 6, 2, 2]],
       "strides": [[1, 1, 1, 1], [1, 2, 3, 1]],
       "padding": ["SAME", "VALID"],
-      "data_format": ["NHWC"],  # TODO(aselle): NCHW  would be good
+      "data_format": ["NHWC"],  # TODO (aselle): NCHW  would be good id:1476 gh:1477
   }]
 
   def build_graph(parameters):
@@ -1205,7 +1205,7 @@ def make_space_to_depth_tests(zip_path):
 def make_space_to_batch_nd_tests(zip_path):
   """Make a set of tests to do space_to_batch_nd."""
 
-  # TODO(nupurgarg): Add test for uint8.
+  # TODO (nupurgarg): Add test for uint8. id:1229 gh:1230
   test_parameters = [
       {
           "dtype": [tf.int32, tf.int64, tf.float32],

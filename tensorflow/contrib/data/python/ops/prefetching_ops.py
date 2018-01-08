@@ -25,7 +25,7 @@ _prefetching_ops = loader.load_op_library(
     resource_loader.get_path_to_datafile("../../_prefetching_ops.so"))
 
 
-# TODO(rohanj): Add a python class that constructs resource in the __init__
+# TODO (rohanj): Add a python class that constructs resource in the __init__ id:535 gh:536
 # method and provides a get_next() that calls the prefetch op.
 def function_buffering_resource(string_arg,
                                 target_device,

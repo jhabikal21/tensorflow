@@ -57,7 +57,7 @@ GraphView::InputPort GraphView::GetInputPort(const string& node_name,
                                              int port_id) const {
   InputPort result;
   result.node = GetNode(node_name);
-  // TODO(bsteiner): verify that the node has at least port_id input ports
+  // TODO (bsteiner): verify that the node has at least port_id input ports id:2561 gh:2562
   result.port_id = port_id;
   return result;
 }
@@ -66,7 +66,7 @@ GraphView::OutputPort GraphView::GetOutputPort(const string& node_name,
                                                int port_id) const {
   OutputPort result;
   result.node = GetNode(node_name);
-  // TODO(bsteiner): verify that the node has at least port_id output ports
+  // TODO (bsteiner): verify that the node has at least port_id output ports id:1328 gh:1329
   result.port_id = port_id;
   return result;
 }

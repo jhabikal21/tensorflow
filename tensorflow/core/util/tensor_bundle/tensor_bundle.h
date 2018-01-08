@@ -294,7 +294,7 @@ class BundleReader {
 
   // If set to true, try reading key + ":0" whenever key is not found in the
   // bundle. This is a temporary measure that will be removed on Jan 1st 2018.
-  // TODO(b/64763924): Remove after Jan 1st 2018.
+  // TODO (b/64763924): Remove after Jan 1st 2018. id:3064 gh:3065
   bool lenient_names_;
 
   TF_DISALLOW_COPY_AND_ASSIGN(BundleReader);

@@ -70,7 +70,7 @@ class Barrier : public ResourceBase {
       queue_component_types.push_back(dt);
     }
 
-    // NOTE(mrry): PriorityQueue expects all shapes specified because
+    // NOTE (mrry): PriorityQueue expects all shapes specified because id:1901 gh:1902
     // we'll be issuing TakeMany.
     queue_component_shapes.push_back(TensorShape({}));
     queue_component_shapes.push_back(TensorShape({}));
@@ -383,7 +383,7 @@ class Barrier : public ResourceBase {
       // followed by the value components.
       Tuple ready_tuple;
       ready_tuple.reserve(2 + num_components());  // index, key, rest
-      // Build a tensor for the key. TODO(mrry): Something more efficient.
+      // Build a tensor for the key. TODO (mrry): Something more efficient. id:1435 gh:1436
       PersistentTensor key;
       Tensor* allocated_key;
       TF_RETURN_IF_ERROR(ctx->allocate_persistent(DT_STRING, TensorShape({}),
@@ -566,7 +566,7 @@ class TakeManyOp : public BarrierOpKernel {
   explicit TakeManyOp(OpKernelConstruction* context)
       : BarrierOpKernel(context) {
     OP_REQUIRES_OK(context, context->GetAttr("timeout_ms", &timeout_));
-    // TODO(keveman): Enable timeout.
+    // TODO (keveman): Enable timeout. id:2585 gh:2586
     OP_REQUIRES(context, timeout_ == -1,
                 errors::InvalidArgument("Timeout not supported yet."));
 

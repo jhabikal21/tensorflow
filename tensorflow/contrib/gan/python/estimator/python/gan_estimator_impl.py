@@ -53,7 +53,7 @@ _summary_type_map = {
 }
 
 
-# TODO(joelshor): For now, this only supports 1:1 generator:discriminator
+# TODO (joelshor): For now, this only supports 1:1 generator:discriminator id:619 gh:620
 # training sequentially. Find a nice way to expose options to the user without
 # exposing internals.
 class GANEstimator(estimator.Estimator):
@@ -147,7 +147,7 @@ class GANEstimator(estimator.Estimator):
         If `None`, uses defaults.
       config: `RunConfig` object to configure the runtime settings.
     """
-    # TODO(joelshor): Explicitly validate inputs.
+    # TODO (joelshor): Explicitly validate inputs. id:657 gh:658
 
     def _model_fn(features, labels, mode):
       gopt = (generator_optimizer() if callable(generator_optimizer) else

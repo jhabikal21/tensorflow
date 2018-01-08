@@ -40,7 +40,7 @@ class ReplaceTransformer(gast.NodeTransformer):
     """
     self.replacements = replacements
 
-  # TODO(mdan): Make a more detailed pass and clean up if needed.
+  # TODO (mdan): Make a more detailed pass and clean up if needed. id:1533 gh:1534
 
   def visit_Expr(self, node):
     if (isinstance(node.value, gast.Name) and
@@ -63,9 +63,9 @@ class ReplaceTransformer(gast.NodeTransformer):
   def visit_Name(self, node):
     # Note: The caller is reposnsible with making sure the replacement
     # Name nodes have the proper ctx set up.
-    # TODO(mdan): Is it possible to always infer the proper context here?
+    # TODO (mdan): Is it possible to always infer the proper context here? id:1289 gh:1290
     if node.id in self.replacements:
-      # TODO(mdan): Sanitize the nodes by erasing scope-dependent annotations.
+      # TODO (mdan): Sanitize the nodes by erasing scope-dependent annotations. id:977 gh:978
       new_nodes = self.replacements[node.id]
       if isinstance(new_nodes, gast.AST):
         new_nodes = [new_nodes]

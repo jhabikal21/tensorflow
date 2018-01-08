@@ -641,7 +641,7 @@ string Literal::ToString(bool print_layout) const {
            GetAsString(indices);
   };
 
-  // TODO(b/32894291): refactor this code to reduce code duplication.
+  // TODO (b/32894291): refactor this code to reduce code duplication. id:262 gh:263
   if (ShapeUtil::IsTuple(shape())) {
     pieces.push_back(shape_to_string(shape()));
     pieces.push_back(" (\n");
@@ -777,7 +777,7 @@ const void* Literal::InternalData() const {
 }
 
 void* Literal::MutableInternalData() {
-  // NOTE: We access the vectors directly to avoid the const reference
+  // NOTE: We access the vectors directly to avoid the const reference id:301 gh:302
   // created by the accessor functions.
   switch (shape().element_type()) {
     case PRED:

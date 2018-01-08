@@ -49,7 +49,7 @@ TEST_F(ExamplePartitionerTest, EmptyTree) {
 
 TEST_F(ExamplePartitionerTest, UpdatePartitions) {
   // Create tree with one split.
-  // TODO(salehay): figure out if we can use PARSE_TEXT_PROTO.
+  // TODO (salehay): figure out if we can use PARSE_TEXT_PROTO. id:490 gh:491
   boosted_trees::trees::DecisionTreeConfig tree_config;
   auto* split = tree_config.add_nodes()->mutable_dense_float_binary_split();
   split->set_feature_column(0);
@@ -72,7 +72,7 @@ TEST_F(ExamplePartitionerTest, UpdatePartitions) {
 
 TEST_F(ExamplePartitionerTest, PartitionExamples) {
   // Create tree with one split.
-  // TODO(salehay): figure out if we can use PARSE_TEXT_PROTO.
+  // TODO (salehay): figure out if we can use PARSE_TEXT_PROTO. id:514 gh:515
   boosted_trees::trees::DecisionTreeConfig tree_config;
   auto* split = tree_config.add_nodes()->mutable_dense_float_binary_split();
   split->set_feature_column(0);

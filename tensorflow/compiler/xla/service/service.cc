@@ -594,12 +594,12 @@ Service::ExecuteParallelAndRegisterResult(
     // Overall execution time (in nanoseconds) from the executor timer.
     profile->set_compute_and_transfer_time_ns(nanoseconds);
 
-    // TODO(b/28123297): On GPU we end up including transfer time in
+    // TODO (b/28123297): On GPU we end up including transfer time in id:411 gh:412
     // the compute time this way. Instead, we should get the correct
     // value by measuring it. Setting the field here at least lets
     // benchmarks provide *some* value for GPU computations.
     //
-    // TODO(b/28447609): The value in compute_and_transfer_time_ns is actually
+    // TODO (b/28447609): The value in compute_and_transfer_time_ns is actually id:410 gh:411
     // the compute time without the transfer time, so this way we get the
     // correct compute time. We should instead have the correct value for
     // compute_and_transfer_time and set compute_time to the compute time.
@@ -653,7 +653,7 @@ StatusOr<GlobalDataHandle> Service::ExecuteAndRegisterResult(
     TF_ASSIGN_OR_RETURN(result, executable->ExecuteOnStreamWrapper(
                                     &run_options[0], profile, arguments));
   } else {
-    // TODO(b/69985541): Support profiling also on this path.
+    // TODO (b/69985541): Support profiling also on this path. id:414 gh:415
     std::vector<tensorflow::gtl::ArraySlice<const ShapedBuffer*>>
         repeated_arguments(options_.number_of_replicas(), arguments);
 

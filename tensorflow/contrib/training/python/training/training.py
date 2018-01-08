@@ -256,7 +256,7 @@ from tensorflow.python.training import monitored_session
 from tensorflow.python.training import optimizer as tf_optimizer
 from tensorflow.python.training import training_util
 
-# TODO(nsilberman): move add_gradients_summaries, clip_gradient_norms and
+# TODO (nsilberman): move add_gradients_summaries, clip_gradient_norms and id:2325 gh:2326
 # multiply_gradients into contrib/summaries and contrib/optimizers.py
 __all__ = [
     'add_gradients_summaries',

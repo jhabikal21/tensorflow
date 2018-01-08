@@ -75,7 +75,7 @@ XLAJIT_MAKE_UNARY(Cosh,
 XLAJIT_MAKE_UNARY(Sin, b->Sin(x));
 XLAJIT_MAKE_UNARY(Exp, b->Exp(x));
 
-// TODO(b/34703906): use a more accurate implementation of expm1.
+// TODO (b/34703906): use a more accurate implementation of expm1. id:287 gh:288
 XLAJIT_MAKE_UNARY(Expm1, b->Sub(b->Exp(x), XlaHelpers::One(b, input_type(0))));
 
 XLAJIT_MAKE_UNARY(Floor, b->Floor(x));
@@ -90,7 +90,7 @@ XLAJIT_MAKE_UNARY(Inv, b->Div(XlaHelpers::One(b, input_type(0)), x));
 XLAJIT_MAKE_UNARY(Reciprocal, b->Div(XlaHelpers::One(b, input_type(0)), x));
 XLAJIT_MAKE_UNARY(Log, b->Log(x));
 
-// TODO(b/34703906): use a more accurate implementation of log1p.
+// TODO (b/34703906): use a more accurate implementation of log1p. id:219 gh:220
 XLAJIT_MAKE_UNARY(Log1p, b->Log(b->Add(XlaHelpers::One(b, input_type(0)), x)));
 
 XLAJIT_MAKE_UNARY(Invert, b->Not(x));

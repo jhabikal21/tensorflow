@@ -80,7 +80,7 @@ TF_CAPI_EXPORT extern void TFE_DeleteContextOptions(TFE_ContextOptions*);
 // "Context" under which operations/functions are executed. It encapsulates
 // things like the available devices, resource manager etc.
 //
-// TODO(ashankar): Merge with TF_Session?
+// TODO (ashankar): Merge with TF_Session? id:29 gh:30
 typedef struct TFE_Context TFE_Context;
 
 TF_CAPI_EXPORT extern TFE_Context* TFE_NewContext(
@@ -169,7 +169,7 @@ TF_CAPI_EXPORT extern void TFE_OpSetAttrShape(TFE_Op* op, const char* attr_name,
 
 // Sets the attribute attr_name to be a function specified by 'function'.
 //
-// TODO(ashankar,iga): Add this functionality to the C API for graph
+// TODO (ashankar,iga): Add this functionality to the C API for graph id:53 gh:54
 // construction. Perhaps we want an AttrValueMap equivalent in the C API?
 TF_CAPI_EXPORT extern void TFE_OpSetAttrFunction(TFE_Op* op,
                                                  const char* attr_name,
@@ -234,7 +234,7 @@ TF_CAPI_EXPORT extern void TFE_ContextExportRunMetadata(TFE_Context* ctx,
 // A workaround to ease conversion to and from numpy objects and
 // TFE_TensorHandle's.
 //
-// TODO(ashankar): Figure out an alternative scheme that precludes the need for
+// TODO (ashankar): Figure out an alternative scheme that precludes the need for id:32 gh:33
 // these API-boundary breaking methods.
 namespace tensorflow {
 class Tensor;

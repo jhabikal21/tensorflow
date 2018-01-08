@@ -211,7 +211,7 @@ def CheckInputFromValidContext(op, input_op):
       # op is in a gradient context and input_op is in the associated forward
       # pass context or an ancestor thereof. This case is need to build while
       # loop gradients.
-      # NOTE(skyewm): we theoretically also need this case for custom gradient
+      # NOTE (skyewm): we theoretically also need this case for custom gradient id:3525 gh:3526
       # functions that close over tensors from ancestor contexts, but I haven't
       # verified this.
       valid = True

@@ -69,7 +69,7 @@ int64 GraphMemory::GetWorstCaseMemoryUsage() const {
 void GraphMemory::InferMemUsageForNodes(
     const std::vector<const NodeDef*>& nodes, GraphProperties* properties,
     int64* worst_case_memory_usage, int64* best_case_memory_usage) const {
-  // TODO(bsteiner) refine this: we should consider the multidevice case.
+  // TODO (bsteiner) refine this: we should consider the multidevice case. id:1278 gh:1279
   *worst_case_memory_usage = 0;
   *best_case_memory_usage = 0;
   for (const auto& node : item_.graph.node()) {

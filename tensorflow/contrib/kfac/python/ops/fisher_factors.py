@@ -307,7 +307,7 @@ class InverseProvidingFactor(FisherFactor):
   _cov_shape properties.
   """
 
-  # TODO(b/69108481): This class (and its subclasses) should be refactored to
+  # TODO (b/69108481): This class (and its subclasses) should be refactored to id:687 gh:688
   # serve the matrix quantities it computes as both (potentially stale)
   # variables, updated by the inverse update ops, and fresh values stored in
   # tensors that recomputed once every session.run() call.  Currently matpower
@@ -666,7 +666,7 @@ class ConvDiagonalFactor(DiagonalFactor):
       if self._patches is None:
         filter_height, filter_width, _, _ = self._filter_shape
 
-        # TODO(b/64144716): there is potential here for a big savings in terms
+        # TODO (b/64144716): there is potential here for a big savings in terms id:1081 gh:1082
         # of memory use.
         patches = array_ops.extract_image_patches(
             self._inputs,
@@ -806,7 +806,7 @@ class ConvInputKroneckerFactor(InverseProvidingFactor):
     with _maybe_colocate_with(self._inputs):
       filter_height, filter_width, in_channels, _ = self._filter_shape
 
-      # TODO(b/64144716): there is potential here for a big savings in terms of
+      # TODO (b/64144716): there is potential here for a big savings in terms of id:980 gh:981
       # memory use.
       patches = array_ops.extract_image_patches(
           self._inputs,
@@ -941,7 +941,7 @@ class FullyConnectedMultiKF(InverseProvidingFactor):
         op2 = moving_averages.assign_moving_average(
             self._cov_dt1, new_cov_dt1, ema_decay, zero_debias=ZERO_DEBIAS)
 
-        # TODO(b/69112164):
+        # TODO (b/69112164): id:694 gh:695
         # It's important that _cov and _cov_dt1 remain consistent with each
         # other while the inverse ops are happening. How can we ensure this?
         # We will need to add explicit synchronization for this to
@@ -1067,7 +1067,7 @@ class FullyConnectedMultiKF(InverseProvidingFactor):
 
   def make_inverse_update_ops(self):
     """Create and return update ops corresponding to registered computations."""
-    # TODO(b/69918258): Add correctness tests for this method.
+    # TODO (b/69918258): Add correctness tests for this method. id:634 gh:635
     # pylint: disable=invalid-name
 
     ops = super(FullyConnectedMultiKF, self).make_inverse_update_ops()
@@ -1085,7 +1085,7 @@ class FullyConnectedMultiKF(InverseProvidingFactor):
       # Get the eigendecomposition of C0  (= self.get_cov())
       eigen_e, eigen_V = self.get_eigendecomp()
 
-      # TODO(b/69678661): Note, there is an implicit assumption here that C1
+      # TODO (b/69678661): Note, there is an implicit assumption here that C1 id:689 gh:690
       # and C0 (as represented here by its eigen-decomp) are consistent.  This
       # could fail to be the case if self._cov and self._cov_dt1 are not updated
       # consistently, or are somehow read between or during the cov updates.

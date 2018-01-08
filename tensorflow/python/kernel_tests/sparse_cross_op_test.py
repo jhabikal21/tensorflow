@@ -292,7 +292,7 @@ class SparseCrossOpTest(test.TestCase):
     with self.test_session() as sess:
       self._assert_sparse_tensor_equals(expected_out, sess.run(op))
 
-  # TODO(sibyl-Aix6ihai): Add benchmark to compare Hashed vs Non-hashed.
+  # TODO (sibyl-Aix6ihai): Add benchmark to compare Hashed vs Non-hashed. id:3323 gh:3323
   def test_hashed_no_hash_key(self):
     op = sparse_ops._sparse_cross_hashed(
         [
@@ -356,7 +356,7 @@ class SparseCrossOpTest(test.TestCase):
   def _assert_sparse_tensor_empty(self, sp):
     self.assertEquals(0, sp.indices.size)
     self.assertEquals(0, sp.values.size)
-    # TODO(zakaria): check if we can ignore the first dim of the shape.
+    # TODO (zakaria): check if we can ignore the first dim of the shape. id:2480 gh:2481
     self.assertEquals(0, sp.dense_shape[1])
 
   def _assert_sparse_tensor_equals(self, sp1, sp2):

@@ -33,7 +33,7 @@ class FakeQuantizeTrainingTest : public ::testing::Test {};
 // For now, since the fake_quantize_training transform just calls the
 // quantize_training rewrite from tensorflow/core/graph/quantize_training.h,
 // we just test that the graph has been changed by the transform.
-// TODO(suharshs): Once we implement the fake_quantize_training transform
+// TODO (suharshs): Once we implement the fake_quantize_training transform id:3439 gh:3440
 // using the GTT, write proper tests of the transform here.
 TEST_F(FakeQuantizeTrainingTest, TransformOccurred) {
   auto root = tensorflow::Scope::DisabledShapeInferenceScope();

@@ -222,7 +222,7 @@ class ParseSingleExampleOp : public OpKernel {
 
     example::Result result;
 
-    // TODO(mrry): Build the configuration once and cache it.
+    // TODO (mrry): Build the configuration once and cache it. id:1575 gh:1576
     example::FastParseExampleConfig config;
     for (int d = 0; d < attrs_.dense_keys.size(); ++d) {
       config.dense.push_back({attrs_.dense_keys[d], attrs_.dense_types[d],

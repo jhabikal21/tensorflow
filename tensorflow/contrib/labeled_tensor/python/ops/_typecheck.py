@@ -17,7 +17,7 @@
 
 This module should not be considered public API.
 """
-# TODO(ericmc,shoyer): Delete this in favor of using pytype or mypy
+# TODO (ericmc,shoyer): Delete this in favor of using pytype or mypy id:698 gh:699
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function

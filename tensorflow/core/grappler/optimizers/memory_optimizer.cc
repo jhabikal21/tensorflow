@@ -47,7 +47,7 @@ const char* kRecomputeTriggerNodePrefix = "RecomputeTrigger";
 const char* kRecomputeHint = "_recompute_hint";
 
 // Ops which we wouldn't mind recomputing to save memory.
-// TODO(allenl): Replace this list with a cost model.
+// TODO (allenl): Replace this list with a cost model. id:2100 gh:2101
 std::unordered_set<string> GetCheapToRecomputeOps() {
   std::unordered_set<string> cheap_ops = {
       "Add",      "AddN",       "BiasAdd",        "Cast",   "Fill",
@@ -435,7 +435,7 @@ void RecomputationRewritingPass(RewriterConfig::MemOptType optimization_level,
         // be gradients (recomputation_targets_name_prefix="gradients/"),
         // although the prefix is configurable since gradients may be created
         // in a name scope.
-        // TODO(allenl): Use a static schedule
+        // TODO (allenl): Use a static schedule id:1896 gh:1897
         // (grappler::EstimateEarliestExecutionTimes) to recompute only nodes
         // whose outputs will sit around for a while.
         return node.name().find(recomputation_targets_name_prefix) == 0;
@@ -443,7 +443,7 @@ void RecomputationRewritingPass(RewriterConfig::MemOptType optimization_level,
 
   if (optimization_level == RewriterConfig::RECOMPUTATION_HEURISTICS ||
       optimization_level == RewriterConfig::HEURISTICS) {
-    // TODO(allenl): Handle ResNet-like architectures better. Right now all of
+    // TODO (allenl): Handle ResNet-like architectures better. Right now all of id:1431 gh:1432
     // the cheap forward ops get grouped into a single subgraph which must
     // execute before gradients start executing (unless layers are manually
     // separated by identity ops).
@@ -668,7 +668,7 @@ static void IdentifySwappingCandidates(Cluster* cluster,
       continue;
     }
     int64 required_savings = mem_usage.used_memory - prop.memory_size();
-    // TODO(bsteiner): sort the tensors by how long they're live.
+    // TODO (bsteiner): sort the tensors by how long they're live. id:2575 gh:2575
 
     std::unordered_map<string, Costs::NanoSeconds> execution_times;
     {

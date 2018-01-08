@@ -59,7 +59,7 @@ namespace tensorflow {
 // This way, MasterSession can clear up the cache mapping Run requests to
 // compiled graphs while the compiled graph is still being used.
 //
-// TODO(zhifengc): Cleanup this class. It's becoming messy.
+// TODO (zhifengc): Cleanup this class. It's becoming messy. id:1127 gh:1128
 class MasterSession::ReffedClientGraph : public core::RefCounted {
  public:
   ReffedClientGraph(const string& handle, const BuildGraphOptions& bopts,
@@ -118,7 +118,7 @@ class MasterSession::ReffedClientGraph : public core::RefCounted {
         // ReffedClientGraph owns p.worker so we need to hold a ref to
         // ensure that the method doesn't attempt to access p.worker after
         // ReffedClient graph has deleted it.
-        // TODO(suharshs): Simplify this ownership model.
+        // TODO (suharshs): Simplify this ownership model. id:1857 gh:1858
         Unref();
       });
     }
@@ -286,7 +286,7 @@ Status MasterSession::ReffedClientGraph::RegisterPartitions(
       std::unordered_map<string, GraphDef> graph_defs;
       Status s = DoBuildPartitions(popts, &graph_defs);
       if (s.ok()) {
-        // NOTE(mrry): The pointers in `graph_defs_for_publishing` do not remain
+        // NOTE (mrry): The pointers in `graph_defs_for_publishing` do not remain id:1682 gh:1684
         // valid after the call to DoRegisterPartitions begins, so
         // `stats_publisher_` must make a copy if it wants to retain the
         // GraphDef objects.
@@ -365,7 +365,7 @@ Status MasterSession::ReffedClientGraph::DoBuildPartitions(
   if (popts.need_to_record_start_times) {
     CostModel cost_model(true);
     cost_model.InitFromGraph(client_graph()->graph);
-    // TODO(yuanbyu): Use the real cost model.
+    // TODO (yuanbyu): Use the real cost model. id:1227 gh:1228
     // execution_state_->MergeFromGlobal(&cost_model);
     SlackAnalysis sa(&client_graph()->graph, &cost_model);
     sa.ComputeAsap(&popts.start_times);
@@ -571,7 +571,7 @@ Status MasterSession::ReffedClientGraph::RunPartitions(
         }
         TF_RETURN_IF_ERROR(c->req->AddSendFromRunStepRequest(req, i, key));
       }
-      // TODO(suharshs): Make a map from feed to fetch_key to make this faster.
+      // TODO (suharshs): Make a map from feed to fetch_key to make this faster. id:2423 gh:2424
       // For now, we just iterate through partitions to find the matching key.
       for (int i = 0; static_cast<size_t>(i) < req.num_fetches(); ++i) {
         const string& req_fetch = req.fetch_name(i);
@@ -799,7 +799,7 @@ void MasterSession::ReffedClientGraph::ProcessDeviceStats(
       if (!found_node_in_graph && ns.timeline_label().empty()) {
         // The counter incrementing is not thread-safe. But we don't really
         // care.
-        // TODO(zhengxq): we should implement a LOG_FIRST_N and LOG_EVERY_N for
+        // TODO (zhengxq): we should implement a LOG_FIRST_N and LOG_EVERY_N for id:1129 gh:1129
         // more general usage.
         static int log_counter = 0;
         if (log_counter < 10) {
@@ -825,11 +825,11 @@ void MasterSession::ReffedClientGraph::ProcessDeviceStats(
   }
 }
 
-// TODO(suharshs): Merge with CheckFetches in DirectSession.
-// TODO(suharsh,mrry): Build a map from fetch target to set of feeds it depends
+// TODO (suharshs): Merge with CheckFetches in DirectSession. id:1860 gh:1861
+// TODO (suharsh,mrry): Build a map from fetch target to set of feeds it depends id:1684 gh:1683
 // on once at setup time to prevent us from computing the dependencies
 // everytime.
-// TODO(suharshs,mrry): Consider removing the need for execution_state to reduce
+// TODO (suharshs,mrry): Consider removing the need for execution_state to reduce id:1230 gh:1231
 // contention.
 Status MasterSession::ReffedClientGraph::CheckFetches(
     const RunStepRequestWrapper& req, const RunState* run_state,
@@ -901,7 +901,7 @@ void MasterSession::ReffedClientGraph::DeregisterPartitions() {
       Call* c = new Call;
       c->req.set_session_handle(session_handle_);
       c->req.set_graph_handle(part.graph_handle);
-      // NOTE(mrry): We must capture `worker_cache_` since `this`
+      // NOTE (mrry): We must capture `worker_cache_` since `this` id:2426 gh:2427
       // could be deleted before the callback is called.
       WorkerCacheInterface* worker_cache = worker_cache_;
       const string name = part.name;
@@ -954,7 +954,7 @@ void BuildBuildGraphOptions(const PartialRunSetupRequest& req,
     opts->target_nodes.push_back(target);
   }
 
-  // TODO(cais): Add TFDBG support to partial runs.
+  // TODO (cais): Add TFDBG support to partial runs. id:1131 gh:1132
 
   std::sort(opts->feed_endpoints.begin(), opts->feed_endpoints.end());
   std::sort(opts->target_nodes.begin(), opts->target_nodes.end());
@@ -1042,7 +1042,7 @@ Status MasterSession::Create(GraphDef* graph_def,
         "Distributed session does not support session thread pool options.");
   }
   if (session_opts_.config.graph_options().place_pruned_graph()) {
-    // TODO(b/29900832): Fix this or remove the option.
+    // TODO (b/29900832): Fix this or remove the option. id:1863 gh:1864
     LOG(WARNING) << "Distributed session does not support the "
                     "place_pruned_graph option.";
     session_opts_.config.mutable_graph_options()->set_place_pruned_graph(false);
@@ -1056,7 +1056,7 @@ Status MasterSession::Create(GraphDef* graph_def,
     TF_RETURN_IF_ERROR(GraphExecutionState::MakeForBaseGraph(
         graph_def, execution_options, &execution_state_));
   }
-  // TODO(b/36574172): Remove these conditions when ClusterSpec
+  // TODO (b/36574172): Remove these conditions when ClusterSpec id:1686 gh:1687
   // propagation is supported in all servers.
   if (options.cluster_def != nullptr ||
       session_opts_.config.isolate_session_state()) {
@@ -1268,7 +1268,7 @@ Status MasterSession::StartStep(const BuildGraphOptions& opts, int64* count,
     // this session.
     int64* c = &subgraph_execution_counts_[hash];
     *count = (*c)++;
-    // TODO(suharshs): We cache partial run graphs and run graphs separately
+    // TODO (suharshs): We cache partial run graphs and run graphs separately id:1233 gh:1234
     // because there is preprocessing that needs to only be run for partial
     // run calls.
     RCGMap* m = is_partial ? &partial_run_graphs_ : &run_graphs_;
@@ -1566,7 +1566,7 @@ Status MasterSession::CreateDebuggerState(
     target_names.push_back(req.target_name(i));
   }
 
-  // TODO(cais): We currently use -1 as a dummy value for session run count.
+  // TODO (cais): We currently use -1 as a dummy value for session run count. id:2430 gh:2431
   // While this counter value is straightforward to define and obtain for
   // DirectSessions, it is less so for non-direct Sessions. Devise a better
   // way to get its value when the need arises.

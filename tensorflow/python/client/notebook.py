@@ -59,7 +59,7 @@ def main(unused_argv):
   if not IS_KERNEL:
     # Drop all flags.
     sys.argv = [sys.argv[0]]
-    # NOTE(sadovsky): For some reason, putting this import at the top level
+    # NOTE (sadovsky): For some reason, putting this import at the top level id:2655 gh:2656
     # breaks inline plotting.  It's probably a bug in the stone-age version of
     # matplotlib.
     from IPython.html.notebookapp import NotebookApp  # pylint: disable=g-import-not-at-top

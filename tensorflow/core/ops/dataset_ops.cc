@@ -27,7 +27,7 @@ namespace tensorflow {
 // to a stateful "iterator" by passing the "dataset" to the
 // "MakeIterator" op.
 //
-// TODO(b/65524810): DT_VARIANT tensors that represent "dataset" objects are
+// TODO (b/65524810): DT_VARIANT tensors that represent "dataset" objects are id:2985 gh:2986
 // not presently serializable. To avoid issues with constant folding, ensure
 // that any "source dataset" ops (i.e. ops that output a dataset and do not
 // take one as input) are marked "stateful".
@@ -37,9 +37,9 @@ REGISTER_OP("TensorDataset")
     .Output("handle: variant")
     .Attr("Toutput_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:1994 gh:1995
                       // stateful to inhibit constant folding.
-    .SetShapeFn(shape_inference::ScalarShape)  // TODO(mrry): Validate that
+    .SetShapeFn(shape_inference::ScalarShape)  // TODO (mrry): Validate that id:2454 gh:2455
                                                // `components` have shapes
                                                // compatible with
                                                // `output_shapes`.
@@ -52,9 +52,9 @@ REGISTER_OP("TensorSliceDataset")
     .Output("handle: variant")
     .Attr("Toutput_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:2808 gh:2809
                       // stateful to inhibit constant folding.
-    .SetShapeFn(shape_inference::ScalarShape)  // TODO(mrry): Validate that the
+    .SetShapeFn(shape_inference::ScalarShape)  // TODO (mrry): Validate that the id:1746 gh:1747
                                                // dim-0 slices of `components`
                                                // have shapes compatible with
                                                // `output_shapes`.
@@ -68,7 +68,7 @@ REGISTER_OP("SparseTensorSliceDataset")
     .Input("dense_shape: int64")
     .Output("handle: variant")
     .Attr("Tvalues: type")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:2987 gh:2988
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(
@@ -103,7 +103,7 @@ REGISTER_OP("RepeatDataset")
     .Output("handle: variant")
     .Attr("output_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetShapeFn(shape_inference::ScalarShape)  // TODO(mrry): Validate the shape
+    .SetShapeFn(shape_inference::ScalarShape)  // TODO (mrry): Validate the shape id:1996 gh:1997
                                                // of `count`.
     .Doc(R"doc(
 Creates a dataset that emits the outputs of `input_dataset` `count` times.
@@ -356,7 +356,7 @@ REGISTER_OP("GroupByWindowDataset")
     .Doc(R"doc(
 Creates a dataset that computes a windowed group-by on `input_dataset`.
 
-// TODO(mrry): Support non-int64 keys.
+// TODO (mrry): Support non-int64 keys. id:2456 gh:2457
 
 key_func: A function mapping an element of `input_dataset`, concatenated
   with `key_func_other_arguments` to a scalar value of type DT_INT64.
@@ -408,7 +408,7 @@ REGISTER_OP("PaddedBatchDataset")
     .Attr("Toutput_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
     .Attr("N: int >= 1")
-    .SetShapeFn(shape_inference::ScalarShape)  // TODO(mrry): Validate that
+    .SetShapeFn(shape_inference::ScalarShape)  // TODO (mrry): Validate that id:2811 gh:2812
                                                // `padded_shapes` are all
                                                // vectors, the lengths of
                                                // `output_types` and
@@ -458,7 +458,7 @@ REGISTER_OP("RangeDataset")
     .Output("handle: variant")
     .Attr("output_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:1748 gh:1749
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(
@@ -475,7 +475,7 @@ REGISTER_OP("RandomDataset")
     .Output("handle: variant")
     .Attr("output_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:2989 gh:2990
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(
@@ -573,9 +573,9 @@ REGISTER_OP("TextLineDataset")
     .Input("compression_type: string")
     .Input("buffer_size: int64")
     .Output("handle: variant")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:1998 gh:1999
                       // stateful to inhibit constant folding.
-    .SetShapeFn(shape_inference::ScalarShape)  // TODO(mrry): validate
+    .SetShapeFn(shape_inference::ScalarShape)  // TODO (mrry): validate id:2458 gh:2459
                                                // that `filenames` is
                                                // a scalar or a
                                                // vector.
@@ -596,7 +596,7 @@ REGISTER_OP("SqlDataset")
     .Output("handle: variant")
     .Attr("output_types: list(type) >= 1")
     .Attr("output_shapes: list(shape) >= 1")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:2814 gh:2815
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(
@@ -614,7 +614,7 @@ REGISTER_OP("FixedLengthRecordDataset")
     .Input("footer_bytes: int64")
     .Input("buffer_size: int64")
     .Output("handle: variant")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:1751 gh:1752
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(
@@ -635,7 +635,7 @@ REGISTER_OP("TFRecordDataset")
     .Input("compression_type: string")
     .Input("buffer_size: int64")
     .Output("handle: variant")
-    .SetIsStateful()  // TODO(b/65524810): Source dataset ops must be marked
+    .SetIsStateful()  // TODO (b/65524810): Source dataset ops must be marked id:2992 gh:2993
                       // stateful to inhibit constant folding.
     .SetShapeFn(shape_inference::ScalarShape)
     .Doc(R"doc(

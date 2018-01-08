@@ -505,7 +505,7 @@ class _TrainingExecutor(object):
 
     # Distributed case.
     if not config.task_type:
-      # TODO(xiejw): Improve the error message about how to set the TF_CONFIG
+      # TODO (xiejw): Improve the error message about how to set the TF_CONFIG id:2938 gh:2939
       # correctly.
       raise ValueError(
           '`estimator.config` must have task_type set. This usually means '
@@ -532,12 +532,12 @@ class _TrainingExecutor(object):
 
   def run_chief(self):
     """Runs task chief."""
-    # TODO(xiejw): To allow execution framework to add train hooks.
+    # TODO (xiejw): To allow execution framework to add train hooks. id:3188 gh:3189
     return self._start_distributed_training()
 
   def run_worker(self):
     """Runs task (training) worker."""
-    # TODO(xiejw): To allow execution framework to add train hooks.
+    # TODO (xiejw): To allow execution framework to add train hooks. id:2274 gh:2275
     return self._start_distributed_training()
 
   def run_master(self):
@@ -594,7 +594,7 @@ class _TrainingExecutor(object):
 
   def run_evaluator(self):
     """Runs task evaluator."""
-    # TODO(xiejw): To allow execution framework to add continuous eval listener.
+    # TODO (xiejw): To allow execution framework to add continuous eval listener. id:2740 gh:2741
     return self._start_continuous_evaluation()
 
   def run_ps(self):
@@ -709,7 +709,7 @@ class _TrainingExecutor(object):
     # with task id x (0-based) should wait (x+1) * _DELAY_SECS_PER_WORKER.
     start_delay_secs = 0
     if config.task_type == run_config_lib.TaskType.WORKER:
-      # TODO(xiejw): Replace the hard code logic (task_id + 1) with unique id in
+      # TODO (xiejw): Replace the hard code logic (task_id + 1) with unique id in id:3227 gh:3229
       # training cluster.
       start_delay_secs = min(_MAX_DELAY_SECS,
                              (config.task_id + 1) * _DELAY_SECS_PER_WORKER)

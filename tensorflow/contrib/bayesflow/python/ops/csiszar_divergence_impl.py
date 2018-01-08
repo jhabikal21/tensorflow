@@ -889,7 +889,7 @@ def monte_carlo_csiszar_f_divergence(
                                == distribution.FULLY_REPARAMETERIZED)
     elif (use_reparametrization and
           q.reparameterization_type != distribution.FULLY_REPARAMETERIZED):
-      # TODO(jvdillon): Consider only raising an exception if the gradient is
+      # TODO (jvdillon): Consider only raising an exception if the gradient is id:507 gh:508
       # requested.
       raise ValueError(
           "Distribution `q` must be reparameterized, i.e., a diffeomorphic "

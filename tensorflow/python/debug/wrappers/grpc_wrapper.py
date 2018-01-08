@@ -47,7 +47,7 @@ def publish_traceback(debug_server_urls,
     If `graph.version > old_graph_version`, the new graph version as an `int`.
     Else, the `old_graph_version` is returned.
   """
-  # TODO(cais): Consider moving this back to the top, after grpc becomes a
+  # TODO (cais): Consider moving this back to the top, after grpc becomes a id:2902 gh:2903
   # pip dependency of tensorflow or tf_debug.
   # pylint:disable=g-import-not-at-top
   from tensorflow.python.debug.lib import source_remote

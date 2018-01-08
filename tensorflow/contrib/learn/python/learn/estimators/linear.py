@@ -62,7 +62,7 @@ def _get_optimizer(spec):
   return spec
 
 
-# TODO(ispir): Remove this function by fixing '_infer_model' with single outputs
+# TODO (ispir): Remove this function by fixing '_infer_model' with single outputs id:1204 gh:1205
 # and as_iteable case.
 def _as_iterable(preds, output):
   for pred in preds:
@@ -72,7 +72,7 @@ def _as_iterable(preds, output):
 def _add_bias_column(feature_columns, columns_to_tensors, bias_variable,
                      columns_to_variables):
   """Adds a fake bias feature column filled with all 1s."""
-  # TODO(b/31008490): Move definition to a common constants place.
+  # TODO (b/31008490): Move definition to a common constants place. id:1029 gh:1030
   bias_column_name = "tf_virtual_bias_column"
   if any(col.name is bias_column_name for col in feature_columns):
     raise ValueError("%s is a reserved column name." % bias_column_name)

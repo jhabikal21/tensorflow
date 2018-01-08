@@ -36,7 +36,7 @@ class RecordWriter;
 // by multiple threads.
 class PyRecordWriter {
  public:
-  // TODO(vrv): make this take a shared proto to configure
+  // TODO (vrv): make this take a shared proto to configure id:3345 gh:3346
   // the compression options.
   static PyRecordWriter* New(const string& filename,
                              const string& compression_type_string,

@@ -860,7 +860,7 @@ def fused_batch_norm(
   # prevent exception (see cudnn.h).
   min_epsilon = 1.001e-5
   epsilon = epsilon if epsilon > min_epsilon else min_epsilon
-  # TODO(reedwm): In a few weeks, switch to using the V2 version exclusively. We
+  # TODO (reedwm): In a few weeks, switch to using the V2 version exclusively. We id:2557 gh:2558
   # currently only use the V2 version for float16 inputs, which is not supported
   # by the V1 version.
   # pylint: disable=protected-access
@@ -1011,7 +1011,7 @@ def _compute_sampled_logits(weights,
           num_sampled=num_sampled,
           unique=True,
           range_max=num_classes)
-    # NOTE: pylint cannot tell that 'sampled_values' is a sequence
+    # NOTE: pylint cannot tell that 'sampled_values' is a sequence id:3252 gh:3253
     # pylint: disable=unpacking-non-sequence
     sampled, true_expected_count, sampled_expected_count = (
         array_ops.stop_gradient(s) for s in sampled_values)

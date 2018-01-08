@@ -143,7 +143,7 @@ REGISTER_OP("LookupTableInsert")
       DimensionHandle unused_dim;
       TF_RETURN_IF_ERROR(c->WithValue(c->Dim(handle, 0), 2, &unused_dim));
 
-      // TODO(ebrevdo): Validate keys and values shape.
+      // TODO (ebrevdo): Validate keys and values shape. id:1757 gh:1758
       return Status::OK();
     })
     .Doc(R"doc(
@@ -167,7 +167,7 @@ REGISTER_OP("LookupTableInsertV2")
       ShapeHandle handle;
       TF_RETURN_IF_ERROR(c->WithRank(c->input(0), 0, &handle));
 
-      // TODO: Validate keys and values shape.
+      // TODO: Validate keys and values shape. id:2997 gh:2998
       return Status::OK();
     })
     .Doc(R"doc(
@@ -267,7 +267,7 @@ REGISTER_OP("LookupTableImport")
       DimensionHandle unused_dim;
       TF_RETURN_IF_ERROR(c->WithValue(c->Dim(handle, 0), 2, &unused_dim));
 
-      // TODO(ebrevdo): Validate keys and values shape.
+      // TODO (ebrevdo): Validate keys and values shape. id:2003 gh:2004
       return Status::OK();
     })
     .Doc(R"doc(
@@ -291,7 +291,7 @@ REGISTER_OP("LookupTableImportV2")
       ShapeHandle handle;
       TF_RETURN_IF_ERROR(c->WithRank(c->input(0), 0, &handle));
 
-      // TODO: Validate keys and values shape.
+      // TODO: Validate keys and values shape. id:2465 gh:2466
       return Status::OK();
     })
     .Doc(R"doc(

@@ -37,7 +37,7 @@ class HingeLossUpdater : public DualLossUpdater {
   //
   // The CoCoA+ modification is detailed in readme.md.
   //
-  // TODO(sibyl-vie3Poto): Write up a doc with concrete derivation and point to it from
+  // TODO (sibyl-vie3Poto): Write up a doc with concrete derivation and point to it from id:2779 gh:2780
   // here.
   double ComputeUpdatedDual(const int num_loss_partitions, const double label,
                             const double example_weight,

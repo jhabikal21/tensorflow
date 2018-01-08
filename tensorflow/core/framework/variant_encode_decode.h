@@ -190,7 +190,7 @@ template <typename T,
           bool = can_strcat<typename std::decay<T>::type>::value>
 struct DebugStringResolver {};
 
-// TODO(ebrevdo): Expand DebugStringResolver to return TypeString if
+// TODO (ebrevdo): Expand DebugStringResolver to return TypeString if id:1343 gh:1344
 // there is no StrCat<T>() constructor.
 template <typename T>
 string DebugStringVariantImpl(

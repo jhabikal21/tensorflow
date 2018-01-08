@@ -63,7 +63,7 @@ def SlowAppendBFloat16ArrayToTensorProto(tensor_proto, proto_values):
 if _FAST_TENSOR_UTIL_AVAILABLE:
   _NP_TO_APPEND_FN = {
       dtypes.bfloat16.as_numpy_dtype: SlowAppendBFloat16ArrayToTensorProto,
-      # TODO(sesse): We should have a
+      # TODO (sesse): We should have a id:2324 gh:2325
       # fast_tensor_util.AppendFloat16ArrayToTensorProto,
       # but it seems np.float16_t doesn't exist?
       np.float16: SlowAppendFloat16ArrayToTensorProto,
@@ -91,7 +91,7 @@ if _FAST_TENSOR_UTIL_AVAILABLE:
           fast_tensor_util.AppendUInt8ArrayToTensorProto,
       dtypes.qint32.as_numpy_dtype:
           fast_tensor_util.AppendInt32ArrayToTensorProto,
-      # NOTE(touts): Intentionally no way to feed a DT_BFLOAT16.
+      # NOTE (touts): Intentionally no way to feed a DT_BFLOAT16. id:2786 gh:2787
   }
 else:
 
@@ -154,12 +154,12 @@ else:
       dtypes.qint16.as_numpy_dtype: SlowAppendQIntArrayToTensorProto,
       dtypes.quint16.as_numpy_dtype: SlowAppendQIntArrayToTensorProto,
       dtypes.qint32.as_numpy_dtype: SlowAppendQIntArrayToTensorProto,
-      # NOTE(touts): Intentionally no way to feed a DT_BFLOAT16.
+      # NOTE (touts): Intentionally no way to feed a DT_BFLOAT16. id:3431 gh:3432
   }
 
 
 def GetFromNumpyDTypeDict(dtype_dict, dtype):
-  # NOTE: dtype_dict.get(dtype) always returns None.
+  # NOTE: dtype_dict.get(dtype) always returns None. id:3023 gh:3024
   for key, val in six.iteritems(dtype_dict):
     if key == dtype:
       return val
@@ -634,7 +634,7 @@ def ShapeEquals(tensor_proto, shape):
 
 
 def _ConstantValue(tensor, partial):
-  # TODO(touts): Support Variables?
+  # TODO (touts): Support Variables? id:3255 gh:3256
   if not isinstance(tensor, ops.Tensor):
     raise TypeError("tensor is not a Tensor")
   if tensor.op.type == "Const":

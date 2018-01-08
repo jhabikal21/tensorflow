@@ -579,7 +579,7 @@ class Seq2SeqTest(test.TestCase):
         self.assertEqual(3, len(res))
         self.assertEqual((2, 2), res[0].shape)
 
-        # TODO(ebrevdo, lukaszkaiser): Re-enable once RNNCells allow reuse
+        # TODO (ebrevdo, lukaszkaiser): Re-enable once RNNCells allow reuse id:771 gh:772
         # within a variable scope that already has a weights tensor.
         #
         # # Test that previous-feeding model ignores inputs after the first.
@@ -770,7 +770,7 @@ class Seq2SeqTest(test.TestCase):
       res = sess.run(loss_per_sequence)
       self.assertAllClose(np.asarray([4.828314, 4.828314]), res)
 
-  # TODO(ebrevdo, lukaszkaiser): Re-enable once RNNCells allow reuse
+  # TODO (ebrevdo, lukaszkaiser): Re-enable once RNNCells allow reuse id:1302 gh:1303
   # within a variable scope that already has a weights tensor.
   #
   # def testModelWithBucketsScopeAndLoss(self):

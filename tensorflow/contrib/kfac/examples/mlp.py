@@ -52,7 +52,7 @@ def fc_layer(layer_id, inputs, output_size):
       layer immediately after the activation function.
     params: Tuple of (weights, bias), parameters for this layer.
   """
-  # TODO(b/67004004): Delete this function and rely on tf.layers exclusively.
+  # TODO (b/67004004): Delete this function and rely on tf.layers exclusively. id:683 gh:684
   layer = tf.layers.Dense(
       output_size,
       kernel_initializer=tf.random_normal_initializer(),

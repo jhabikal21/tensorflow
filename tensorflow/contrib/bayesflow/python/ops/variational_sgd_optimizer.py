@@ -222,7 +222,7 @@ class VariationalSGDOptimizer(optimizer.Optimizer):
                 array_ops.gather_nd(avg_second, grad.indices) - decay_tensor *
                 math_ops.square(delta)))
         avg_second = array_ops.gather_nd(avg_second, grad.indices)
-        # TODO(b/70783772)
+        # TODO (b/70783772) id:488 gh:489
         diag_preconditioner = clip_ops.clip_by_value(avg_second, 1e-12, 1e12)
     else:
       raise errors.InvalidArgumentError(

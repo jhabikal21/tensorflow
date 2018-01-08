@@ -87,7 +87,7 @@ llvm::Function* IrEmitterNested::EmitBasePointersForNestedComputation(
     }
   }
 
-  // TODO(b/65380986): Investigate if adding fast math flags for generated
+  // TODO (b/65380986): Investigate if adding fast math flags for generated id:351 gh:352
   // kernels makes sense.
 
   llvm::BasicBlock* entry_bb =

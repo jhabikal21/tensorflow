@@ -73,7 +73,7 @@ struct PoolParameters {
 };
 
 // An implementation of MaxPooling (forward).
-// TODO (yongtang): Remove MaxPoolingOp and use MaxPoolingV2Op,
+// TODO (yongtang): Remove MaxPoolingOp and use MaxPoolingV2Op, id:1580 gh:1581
 //     QuantizedMaxPoolingOp depends on MaxPoolingOp so keep intact for now
 template <typename Device, typename T>
 class MaxPoolingOp : public OpKernel {
@@ -141,7 +141,7 @@ class MaxPoolingOp : public OpKernel {
   // does not handle all of the same options as SpatialMaxPool
   // (strict assumptions on no padding, stride).
   //
-  // TODO(vrv): implement a more general depthwise-max pool that works
+  // TODO (vrv): implement a more general depthwise-max pool that works id:2839 gh:2840
   // on GPU as well.
   void DepthwiseMaxPool(OpKernelContext* context, Tensor* output,
                         const Tensor& tensor_in, const PoolParameters& params) {
@@ -160,7 +160,7 @@ class MaxPoolingOp : public OpKernel {
     // EigenMatrix version that is currently faster than Eigen's
     // Spatial MaxPooling implementation.
     //
-    // TODO(vrv): Remove this once we no longer need it.
+    // TODO (vrv): Remove this once we no longer need it. id:1639 gh:1640
     if (std::is_same<Device, GPUDevice>::value) {
       Eigen::PaddingType pt = BrainPadding2EigenPadding(padding);
       functor::SpatialMaxPooling<Device, T>()(
@@ -247,8 +247,8 @@ class MaxPoolingOp : public OpKernel {
         }
       };
 
-      // TODO(andydavis) Consider sharding across batch x rows x cols.
-      // TODO(andydavis) Consider a higher resolution shard cost model.
+      // TODO (andydavis) Consider sharding across batch x rows x cols. id:2264 gh:2265
+      // TODO (andydavis) Consider a higher resolution shard cost model. id:2358 gh:2359
       const int64 shard_cost =
           params.tensor_in_rows * params.tensor_in_cols * params.depth;
       Shard(worker_threads.num_threads, worker_threads.workers,
@@ -381,7 +381,7 @@ class MaxPoolingV2Op : public OpKernel {
   // does not handle all of the same options as SpatialMaxPool
   // (strict assumptions on no padding, stride).
   //
-  // TODO(vrv): implement a more general depthwise-max pool that works
+  // TODO (vrv): implement a more general depthwise-max pool that works id:1583 gh:1584
   // on GPU as well.
   void DepthwiseMaxPool(OpKernelContext* context, Tensor* output,
                         const Tensor& tensor_in, const PoolParameters& params) {
@@ -400,7 +400,7 @@ class MaxPoolingV2Op : public OpKernel {
     // EigenMatrix version that is currently faster than Eigen's
     // Spatial MaxPooling implementation.
     //
-    // TODO(vrv): Remove this once we no longer need it.
+    // TODO (vrv): Remove this once we no longer need it. id:2844 gh:2845
 #ifdef GOOGLE_CUDA
     if (std::is_same<Device, GPUDevice>::value) {
       Eigen::PaddingType pt = BrainPadding2EigenPadding(padding);
@@ -495,8 +495,8 @@ class MaxPoolingV2Op : public OpKernel {
         }
       };
 
-      // TODO(andydavis) Consider sharding across batch x rows x cols.
-      // TODO(andydavis) Consider a higher resolution shard cost model.
+      // TODO (andydavis) Consider sharding across batch x rows x cols. id:1642 gh:1643
+      // TODO (andydavis) Consider a higher resolution shard cost model. id:2266 gh:2267
       const int64 shard_cost =
           params.tensor_in_rows * params.tensor_in_cols * params.depth;
       Shard(worker_threads.num_threads, worker_threads.workers,
@@ -593,7 +593,7 @@ void SpatialAvgPool(OpKernelContext* context, Tensor* output,
 
   const int64 work_unit_size =
       params.tensor_in_rows * params.tensor_in_cols * params.depth;
-  // NOTE: Constants in calculation below were estimated based on benchmarking.
+  // NOTE: Constants in calculation below were estimated based on benchmarking. id:2362 gh:2363
   // Nanoseconds/work_unit for benchmarks ranged from 0.01 to 0.001, and
   // so the factor 0.01 (i.e. 1/100) with a max of 10000, was chosen to limit
   // the work unit cost to an operating range in which it emperically performed

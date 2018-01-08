@@ -76,7 +76,7 @@ class LinearOperatorDerivedClassTest(test.TestCase):
 
   @property
   def _dtypes_to_test(self):
-    # TODO(langmore) Test tf.float16 once tf.matrix_solve works in 16bit.
+    # TODO (langmore) Test tf.float16 once tf.matrix_solve works in 16bit. id:2532 gh:2533
     return [dtypes.float32, dtypes.float64, dtypes.complex64, dtypes.complex128]
 
   @property
@@ -392,7 +392,7 @@ class NonSquareLinearOperatorDerivedClassTest(LinearOperatorDerivedClassTest):
     return [(2, 1), (1, 2), (1, 3, 2), (3, 3, 4), (2, 1, 2, 4)]
 
   def _make_rhs(self, operator, adjoint):
-    # TODO(langmore) Add once we're testing solve_ls.
+    # TODO (langmore) Add once we're testing solve_ls. id:3220 gh:3221
     raise NotImplementedError(
         "_make_rhs not implemented because we don't test solve")
 

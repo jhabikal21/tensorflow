@@ -49,7 +49,7 @@ fi
 WORKSPACE_PATH=`pwd`
 
 # Build the OpenBLAS library, which is faster than Eigen on the Pi Zero/One.
-# TODO(petewarden) - It would be nicer to move this into the main Bazel build
+# TODO (petewarden) - It would be nicer to move this into the main Bazel build id:3593 gh:3594
 # process if we can maintain a build file for this.
 TOOLCHAIN_INSTALL_PATH=/tmp/toolchain_install/
 sudo rm -rf ${TOOLCHAIN_INSTALL_PATH}

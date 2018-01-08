@@ -146,7 +146,7 @@ error::Code ErrnoToCode(int err_number) {
     case ECANCELED:  // Operation cancelled
       code = error::CANCELLED;
       break;
-    // NOTE: If you get any of the following (especially in a
+    // NOTE: If you get any of the following (especially in a id:2850 gh:2851
     // reproducible way) and can propose a better mapping,
     // please email the owners about updating this mapping.
     case EBADMSG:      // Bad message

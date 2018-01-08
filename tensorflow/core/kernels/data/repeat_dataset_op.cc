@@ -115,7 +115,7 @@ class RepeatDatasetOp : public UnaryDatasetOpKernel {
       Status GetNextInternal(IteratorContext* ctx,
                              std::vector<Tensor>* out_tensors,
                              bool* end_of_sequence) override {
-        mutex_lock l(mu_);  // TODO(mrry): Make locking less conservative.
+        mutex_lock l(mu_);  // TODO (mrry): Make locking less conservative. id:2731 gh:2732
         if (!input_impl_) {
           *end_of_sequence = true;
           return Status::OK();
@@ -173,7 +173,7 @@ class RepeatDatasetOp : public UnaryDatasetOpKernel {
       Status GetNextInternal(IteratorContext* ctx,
                              std::vector<Tensor>* out_tensors,
                              bool* end_of_sequence) override {
-        mutex_lock l(mu_);  // TODO(mrry): Make locking less conservative.
+        mutex_lock l(mu_);  // TODO (mrry): Make locking less conservative. id:1511 gh:1512
         do {
           bool first_call = false;
           if (!input_impl_) {

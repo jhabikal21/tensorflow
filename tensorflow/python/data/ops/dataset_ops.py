@@ -124,7 +124,7 @@ class Dataset(object):
       raise RuntimeError(
           "dataset.make_one_shot_iterator is not supported when eager "
           "execution is enabled.")
-    # NOTE(mrry): We capture by value here to ensure that `_make_dataset()` is
+    # NOTE (mrry): We capture by value here to ensure that `_make_dataset()` is id:2209 gh:2210
     # a 0-argument function.
     @function.Defun(capture_by_value=True)
     def _make_dataset():
@@ -249,7 +249,7 @@ class Dataset(object):
       with self._lock:
         ret = self._next_id
         self._next_id += 1
-      # NOTE(mrry): Explicitly create an array of `np.int64` because implicit
+      # NOTE (mrry): Explicitly create an array of `np.int64` because implicit id:2668 gh:2669
       # casting in `py_func()` will create an array of `np.int32` on Windows,
       # leading to a runtime error.
       return np.array(ret, dtype=np.int64)
@@ -473,7 +473,7 @@ class Dataset(object):
     For example:
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:3139 gh:3140
     # contents of a dataset.
     a = { 1, 2, 3 }
     b = { 4, 5, 6 }
@@ -508,7 +508,7 @@ class Dataset(object):
     """Creates a `Dataset` by concatenating given dataset with this dataset.
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:2824 gh:2825
     # contents of a dataset.
     a = { 1, 2, 3 }
     b = { 4, 5, 6, 7 }
@@ -824,11 +824,11 @@ class Dataset(object):
     For example:
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:3108 gh:3109
     # contents of a dataset.
     a = { 1, 2, 3, 4, 5 }
 
-    # NOTE: New lines indicate "block" boundaries.
+    # NOTE: New lines indicate "block" boundaries. id:2211 gh:2212
     a.interleave(lambda x: Dataset.from_tensors(x).repeat(6),
                  cycle_length=2, block_length=4) == {
         1, 1, 1, 1,
@@ -1455,7 +1455,7 @@ class PaddedBatchDataset(Dataset):
     """See `Dataset.batch()` for details."""
     super(PaddedBatchDataset, self).__init__()
     if sparse.any_sparse(input_dataset.output_classes):
-      # TODO(b/63669786): support batching of sparse tensors
+      # TODO (b/63669786): support batching of sparse tensors id:2670 gh:2671
       raise TypeError(
           "Batching of padded sparse tensors is not currently supported")
     self._input_dataset = input_dataset

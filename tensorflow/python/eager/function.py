@@ -141,7 +141,7 @@ class CapturingGraph(ops.Graph):
     # for resource tensors.
     self._last_op_using_resource_tensor = {}
 
-  # TODO(apassos) remove once the C API is used by default.
+  # TODO (apassos) remove once the C API is used by default. id:2916 gh:2917
   def _use_c_api_hack(self):
     return True
 
@@ -159,12 +159,12 @@ class CapturingGraph(ops.Graph):
       op_def=None,
       compute_shapes=True,
       compute_device=True):
-    # TODO(apassos) probably control flow has to be handled delicately here as
+    # TODO (apassos) probably control flow has to be handled delicately here as id:3154 gh:3155
     # in if a resource is accessed inside a control flow context we need the
     # control dependency to point to something outside the context which is
     # guaranteed to happen after the access.
     #
-    # TODO(apassos) this should do some form of alias analysis as ops which
+    # TODO (apassos) this should do some form of alias analysis as ops which id:2253 gh:2254
     # forward the resources such as Identity and Switch can cause serialization
     # to fail.
     resource_inputs = set()
@@ -186,7 +186,7 @@ class CapturingGraph(ops.Graph):
     return op
 
 
-# TODO(apassos): it'd be really nice if we could scope this registration.
+# TODO (apassos): it'd be really nice if we could scope this registration. id:2720 gh:2721
 # Note that we register this at a higher priority than ops.Tensor since we want
 # to handle subclass specific conversion before a superclass conversion.
 ops.register_tensor_conversion_function(
@@ -237,7 +237,7 @@ def _inference_name(n):
   return "__inference_%s_%s" % (n, ops.uid())
 
 
-# TODO(apassos) get rid of this by splitting framework.function._DefinedFunction
+# TODO (apassos) get rid of this by splitting framework.function._DefinedFunction id:3193 gh:3194
 # so it doesn't have the definition-generating logic and is just a container for
 # an already-defined function.
 class _EagerDefinedFunction(object):
@@ -266,7 +266,7 @@ class _EagerDefinedFunction(object):
           None,
           compat.as_str(""),
           status)
-    # TODO(apassos) avoid creating a FunctionDef (specially to grab the
+    # TODO (apassos) avoid creating a FunctionDef (specially to grab the id:2918 gh:2919
     # signature, but also in general it's nice not to depend on it.
     with c_api_util.tf_buffer() as buffer_:
       with errors.raise_exception_on_not_ok_status() as status:
@@ -424,7 +424,7 @@ class GraphModeFunction(object):
 
   @property
   def output_shapes(self):
-    # TODO(ebrevdo): Should we only keep the output shapes associated
+    # TODO (ebrevdo): Should we only keep the output shapes associated id:3157 gh:3158
     # with len(self._returns) outputs?
     return nest.pack_sequence_as(self._func_outputs, self._output_shapes)
 
@@ -575,10 +575,10 @@ def _defun_internal(name, func, args, kwds):
   operations = tuple(x for x in tmp_graph.get_operations()
                      if x not in all_ignored_ops)
   # Register any other functions defined in the graph
-  # TODO(ashankar): Oh lord, forgive me for this lint travesty.
+  # TODO (ashankar): Oh lord, forgive me for this lint travesty. id:2255 gh:2256
   if context.in_eager_mode():
     for f in tmp_graph._functions.values():  # pylint: disable=protected-access
-      # TODO(ashankar): What about the gradient registry?
+      # TODO (ashankar): What about the gradient registry? id:2722 gh:2723
       _register(f._c_func)  # pylint: disable=protected-access
   return GraphModeFunction(
       fname, all_inputs, extra_inputs, tmp_graph, operations, func_def_outputs,
@@ -611,7 +611,7 @@ def _register(fn):
   context.context().add_function(fn)
 
 
-# TODO(apassos): better error messages for non-hashable arguments.
+# TODO (apassos): better error messages for non-hashable arguments. id:3196 gh:3197
 def named_defun(func, name):
   """Defines a function with a given name.
 
@@ -693,7 +693,7 @@ def defun(func):
      A callable that will execute the compiled function (and return zero
      or more Tensor objects).
   """
-  # TODO(apassos): deal with captured global state. Deal with control flow.
+  # TODO (apassos): deal with captured global state. Deal with control flow. id:2921 gh:2922
   return tf_decorator.make_decorator(func, named_defun(func, func.__name__))
 
 

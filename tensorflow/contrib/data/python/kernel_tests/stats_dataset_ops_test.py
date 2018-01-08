@@ -204,7 +204,7 @@ class StatsDatasetTest(test.TestCase):
 
     with self.test_session() as sess:
       sess.run(stats_aggregator_0.subscribe(iterator))
-      # TODO(mrry): Consider making this allowable (and also allowing
+      # TODO (mrry): Consider making this allowable (and also allowing id:580 gh:581
       # aggregators to unsubscribe).
       with self.assertRaises(errors.FailedPreconditionError):
         sess.run(stats_aggregator_1.subscribe(iterator))

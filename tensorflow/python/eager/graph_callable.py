@@ -108,7 +108,7 @@ class _VariableCapturingScope(object):
     Yields:
       nothing
     """
-    # TODO(apassos) ignoring the regularizer and partitioner here; figure out
+    # TODO (apassos) ignoring the regularizer and partitioner here; figure out id:3162 gh:3163
     # how to deal with these.
     def _custom_getter(getter=None, name=None, shape=None, dtype=dtypes.float32,  # pylint: disable=missing-docstring
                        initializer=None, regularizer=None, reuse=None,
@@ -134,7 +134,7 @@ class _VariableCapturingScope(object):
     Yields:
       nothing
     """
-    # TODO(apassos) ignoring the regularizer and partitioner here; figure out
+    # TODO (apassos) ignoring the regularizer and partitioner here; figure out id:2257 gh:2258
     # how to deal with these.
     def _custom_getter(getter=None, name=None, shape=None, dtype=dtypes.float32,  # pylint: disable=missing-docstring
                        initializer=None, regularizer=None, reuse=None,
@@ -149,7 +149,7 @@ class _VariableCapturingScope(object):
         else:
           raise ValueError("Specified reuse=%s but tried to reuse variables."
                            % reuse)
-      # TODO(apassos): ensure this is on the same device as above
+      # TODO (apassos): ensure this is on the same device as above id:2724 gh:2725
       v = _CapturedVariable(name, initializer, shape, dtype, trainable)
       self.variables[name] = v
 
@@ -319,7 +319,7 @@ def _graph_callable_internal(func, shape_and_dtypes):
 
   func_def_outputs = [x for x in outputs_list if isinstance(x, tf_ops.Tensor)]
   initialization_name = function._inference_name(func.__name__)  # pylint: disable=protected-access
-  # TODO(ashankar): Oh lord, forgive me for this lint travesty.
+  # TODO (ashankar): Oh lord, forgive me for this lint travesty. id:3199 gh:3200
   # Also, what about the gradient registry of these functions? Those need to be
   # addressed as well.
   for f in tmp_graph._functions.values():  # pylint: disable=protected-access
@@ -403,7 +403,7 @@ def graph_callable(shape_and_dtypes):
   Returns:
     A callable graph object.
   """
-  # TODO(alive,apassos): support initialized_value and friends from tf.Variable.
+  # TODO (alive,apassos): support initialized_value and friends from tf.Variable. id:2923 gh:2924
   assert context.in_eager_mode(), (
       "graph_callable can only be used when Eager execution is enabled.")
   def decorator(func):

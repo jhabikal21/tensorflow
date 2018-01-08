@@ -208,7 +208,7 @@ void ParseURI(StringPiece remaining, StringPiece* scheme, StringPiece* host,
               StringPiece* path) {
   // 0. Parse scheme
   // Make sure scheme matches [a-zA-Z][0-9a-zA-Z.]*
-  // TODO(keveman): Allow "+" and "-" in the scheme.
+  // TODO (keveman): Allow "+" and "-" in the scheme. id:2951 gh:2952
   // Keep URI pattern in tensorboard/backend/server.py updated accordingly
   if (!strings::Scanner(remaining)
            .One(strings::Scanner::LETTER)

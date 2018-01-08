@@ -124,7 +124,7 @@ class GraphExecutionState {
   // After calling `old_state->Extend()`, `old_state` may no longer be
   // used.
   //
-  // NOTE(mrry): This method respects the placement of stateful nodes in
+  // NOTE (mrry): This method respects the placement of stateful nodes in id:2368 gh:2369
   // in *this, but currently does not transfer any other placement
   // or cost model information to the new graph.
   Status Extend(const GraphDef& extension_def,

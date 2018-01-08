@@ -140,7 +140,7 @@ int64_t TFE_TensorHandleDim(TFE_TensorHandle* h, int dim_index) {
 const char* TFE_TensorHandleDeviceName(TFE_TensorHandle* h) {
   // This might be a bit confusing as a tensor on CPU can sometimes return
   // "CPU:0" and sometimes "/job:localhost/replica:0/task:0/cpu:0".
-  // TODO(ashankar): Figure out which one would be nicer.
+  // TODO (ashankar): Figure out which one would be nicer. id:24 gh:25
   return (h->d == nullptr) ? "CPU:0" : h->d->name().c_str();
 }
 
@@ -199,7 +199,7 @@ TFE_TensorHandle* TFE_TensorHandleCopyToDevice(TFE_TensorHandle* h,
   if (!dst_cpu) {
     dst_device_context = dstd->tensorflow_gpu_device_info()->default_context;
   }
-  // TODO(ashankar): The Sync() call below may be more aggressive than
+  // TODO (ashankar): The Sync() call below may be more aggressive than id:25 gh:26
   // necessary. It is based on knowledge of implementation details - that
   // GPU devices are implemented using 3 streams - one for host->device copies,
   // one for device->host copies and one for sending operations to the GPU.
@@ -432,7 +432,7 @@ tensorflow::Status ValidateInputTypeAndPlacement(
     if (expected_device != actual_device) {
       switch (ctx->policy) {
         case TFE_DEVICE_PLACEMENT_EXPLICIT:
-          // TODO(xpan): See if we could bubble python related error up
+          // TODO (xpan): See if we could bubble python related error up id:50 gh:51
           // to python level.
           return tensorflow::errors::InvalidArgument(
               "Tensors on conflicting devices:"
@@ -491,7 +491,7 @@ tensorflow::Status ValidateInputTypeAndPlacement(
 void TFE_Execute(TFE_Op* op, TFE_TensorHandle** retvals, int* num_retvals,
                  TF_Status* status) {
   TFE_Context* ctx = op->ctx;
-  // TODO(ashankar): ASSUMPTION: ctx->devices()[0] is always CPU
+  // TODO (ashankar): ASSUMPTION: ctx->devices()[0] is always CPU id:27 gh:28
   tensorflow::Device* device =
       (op->device == nullptr) ? ctx->devices()[0] : op->device;
   std::vector<tensorflow::Tensor> outputs(1);
@@ -537,7 +537,7 @@ void TFE_Execute(TFE_Op* op, TFE_TensorHandle** retvals, int* num_retvals,
     maybe_stats->set_all_start_micros(tensorflow::Env::Default()->NowMicros());
     maybe_stats->set_op_start_rel_micros(0);
     maybe_stats->set_scheduled_micros(tensorflow::Env::Default()->NowMicros());
-    // TODO(apassos) track referenced tensors
+    // TODO (apassos) track referenced tensors id:30 gh:31
   }
   // WARNING: kernel->Run utilizes the FunctionLibraryRuntime
   // (ctx->func_lib(device)), which in turn holds a pointer to func_lib_def,
@@ -546,7 +546,7 @@ void TFE_Execute(TFE_Op* op, TFE_TensorHandle** retvals, int* num_retvals,
   // FunctionLibraryRuntime::Run(), so there is no thread-safety concern here.
   // This is quite subtle. Re-work things to make this better?  (Would it make
   // sense for FunctionLibraryRuntime to ensure thread-safe access to
-  // FunctionLibraryDefinition?).  TODO(apassos) figure out how to record stats
+  // FunctionLibraryDefinition?).  TODO (apassos) figure out how to record stats id:28 gh:29
   // for ops which are a part of functions.
   status->status = kernel->Run(&op->inputs, &outputs, maybe_stats.get());
   for (auto* t : copied_tensors) {

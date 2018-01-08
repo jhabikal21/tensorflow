@@ -45,7 +45,7 @@ namespace {
 // Testing that an array is what is expected
 void ExpectIdenticalFloatArrays(const float* expected, int size,
                                 const float* actual) {
-  // TODO(yangke): copy some of the Dump* functions over
+  // TODO (yangke): copy some of the Dump* functions over id:2909 gh:2910
   //  LOG(INFO) << "Expected = " << DumpFloatArray(expected, size);
   //  LOG(INFO) << "Actual   = " << DumpFloatArray(actual, size);
   for (int i = 0; i < size; ++i) {
@@ -67,7 +67,7 @@ inline size_t ArraySize(const T (&v)[SIZE]) {
 }
 
 // A simple test on writing a few tensor slices
-// TODO(yangke): refactor into smaller tests: will do as we add more stuff to
+// TODO (yangke): refactor into smaller tests: will do as we add more stuff to id:1843 gh:1844
 // the writer.
 TEST(TensorSliceWriteTest, SimpleWrite) {
   const string filename = io::JoinPath(testing::TmpDir(), "checkpoint");

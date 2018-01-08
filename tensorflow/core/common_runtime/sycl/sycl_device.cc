@@ -28,7 +28,7 @@ SYCLDevice::~SYCLDevice() {}
 void SYCLDevice::Compute(OpKernel* op_kernel, OpKernelContext* context) {
   assert(context);
   if (port::Tracing::IsActive()) {
-    // TODO(pbar) We really need a useful identifier of the graph node.
+    // TODO (pbar) We really need a useful identifier of the graph node. id:1109 gh:1110
     const uint64 id = Hash64(op_kernel->name());
     port::Tracing::ScopedActivity region(port::Tracing::EventCategory::kCompute,
                                          id);

@@ -134,7 +134,7 @@ class FixedLengthRecordReader : public ReaderBase {
     return ReaderBase::ResetLocked();
   }
 
-  // TODO(josh11b): Implement serializing and restoring the state.
+  // TODO (josh11b): Implement serializing and restoring the state. id:2204 gh:2205
 
  private:
   enum { kBufferSize = 256 << 10 /* 256 kB */ };

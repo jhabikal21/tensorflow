@@ -90,7 +90,7 @@ class MasterInterface {
                        ResetResponse* response) = 0;
 
  protected:
-  // NOTE: This should only be called by implementations of this
+  // NOTE: This should only be called by implementations of this id:2421 gh:2422
   // interface whose CreateRunStepResponse() method returns a
   // proto-based wrappers for the RunStepResponse message.
   RunStepResponse* get_proto_from_wrapper(

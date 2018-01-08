@@ -185,7 +185,7 @@ def numpy_text(tensor, is_repr=False):
   return text
 
 
-# NOTE(ebrevdo): Do not subclass this.  If you do, I will break you on purpose.
+# NOTE (ebrevdo): Do not subclass this.  If you do, I will break you on purpose. id:3401 gh:3402
 class _TensorLike(object):
   """Internal cls for grouping Tensor, SparseTensor, ..., for is_instance."""
   pass
@@ -560,11 +560,11 @@ class Tensor(_TensorLike):
     # Necessary to support Python's collection membership operators
     return id(self) == id(other)
 
-  # NOTE(mrry): This enables the Tensor's overloaded "right" binary
+  # NOTE (mrry): This enables the Tensor's overloaded "right" binary id:2971 gh:2972
   # operators to run when the left operand is an ndarray, because it
   # accords the Tensor class higher priority than an ndarray, or a
   # numpy matrix.
-  # TODO(mrry): Convert this to using numpy's __numpy_ufunc__
+  # TODO (mrry): Convert this to using numpy's __numpy_ufunc__ id:3228 gh:3228
   # mechanism, which allows more control over how Tensors interact
   # with ndarrays.
   __array_priority__ = 100
@@ -639,7 +639,7 @@ class Tensor(_TensorLike):
     return _eval_using_default_session(self, feed_dict, self.graph, session)
 
 
-# TODO(agarwal): consider getting rid of this.
+# TODO (agarwal): consider getting rid of this. id:2302 gh:2303
 class _EagerTensorBase(Tensor):
   """Base class for EagerTensor."""
 
@@ -1240,7 +1240,7 @@ def convert_n_to_tensor_or_indexed_slices(values, dtype=None, name=None):
       values=values, dtype=dtype, name=name, as_ref=False)
 
 
-# TODO(josh11b): Add ctx argument to conversion_func() signature.
+# TODO (josh11b): Add ctx argument to conversion_func() signature. id:2768 gh:2769
 def register_tensor_conversion_function(base_type,
                                         conversion_func,
                                         priority=100):
@@ -1426,7 +1426,7 @@ def _NodeDef(op_type, name, device=None, attrs=None):  # pylint: disable=redefin
 
 
 # Copied from core/framework/node_def_util.cc
-# TODO(mrry,josh11b): Consolidate this validation in C++ code.
+# TODO (mrry,josh11b): Consolidate this validation in C++ code. id:3404 gh:3403
 _VALID_OP_NAME_REGEX = re.compile("^[A-Za-z0-9.][A-Za-z0-9_.\\-/]*$")
 _VALID_SCOPE_NAME_REGEX = re.compile("^[A-Za-z0-9_.\\-/]*$")
 
@@ -1465,7 +1465,7 @@ def _create_c_op(graph, node_def, inputs, control_inputs):
   # Add attrs
   for name, attr_value in node_def.attr.items():
     serialized = attr_value.SerializeToString()
-    # TODO(skyewm): this creates and deletes a new TF_Status for every attr.
+    # TODO (skyewm): this creates and deletes a new TF_Status for every attr. id:2973 gh:2974
     # It might be worth creating a convenient way to re-use the same status.
     with errors.raise_exception_on_not_ok_status() as status:
       c_api.TF_SetAttrValueProto(op_desc,
@@ -1619,12 +1619,12 @@ class Operation(object):
 
     # Initialize self._c_op.
     if c_op:
-      # TODO(skyewm): remove this assert when we remove USE_C_API
+      # TODO (skyewm): remove this assert when we remove USE_C_API id:3230 gh:3231
       assert self._graph._c_graph  # pylint: disable=protected-access
       self._c_op = c_op
     elif self._graph._c_graph:  # pylint: disable=protected-access
       if self._op_def:
-        # TODO(skyewm): op_def_library.apply_op() flattens the incoming
+        # TODO (skyewm): op_def_library.apply_op() flattens the incoming id:2304 gh:2305
         # inputs. Refactor so we don't have to do this here.
         grouped_inputs = self._reconstruct_sequence_inputs(
             self._op_def, self._inputs, self._node_def.attr)
@@ -1793,7 +1793,7 @@ class Operation(object):
           c_api.TF_OperationOutputType(self._tf_output(i))
           for i in xrange(num_outputs)
       ]
-      # TODO(iga): Remove this assert after converting to C API by default.
+      # TODO (iga): Remove this assert after converting to C API by default. id:2770 gh:2771
       # Just being a bit paranoid here.
       assert self._output_types_val == output_types
       # In all the tests we have output_types that are passed into
@@ -1948,7 +1948,7 @@ class Operation(object):
 
   # Methods below are used when building the NodeDef and Graph proto.
   def _recompute_node_def(self):
-    # TODO(skyewm): remove this function when we switch to C API
+    # TODO (skyewm): remove this function when we switch to C API id:3408 gh:3409
     if self._c_op: return
 
     del self._node_def.input[:]
@@ -2386,7 +2386,7 @@ def _set_shapes_for_outputs_c_api(op):
       output.set_shape(tensor_shape.TensorShape(shape_vector))
 
 
-# TODO(skyewm): remove this when _USE_C_API flag is removed.
+# TODO (skyewm): remove this when _USE_C_API flag is removed. id:2976 gh:2977
 def _set_shapes_for_outputs(op):
   """set_shapes_for_outputs implementation when C API is disabled."""
   try:
@@ -2630,7 +2630,7 @@ class Graph(object):
     # `get_collection_ref()`) is by the lock. Thread-safety is provided on a
     # best-effort basis to support buggy programs, and is not guaranteed by the
     # public `tf.Graph` API.
-    # NOTE(mrry): This does not protect the various stacks. A warning will
+    # NOTE (mrry): This does not protect the various stacks. A warning will id:3234 gh:3235
     # be reported if these are used from multiple threads
     self._lock = threading.Lock()
     self._nodes_by_id = dict()  # GUARDED_BY(self._lock)
@@ -2696,14 +2696,14 @@ class Graph(object):
     self._container = self._container_prefix
     self._registered_ops = op_def_registry.get_registered_ops()
 
-    # TODO(skyewm): fold as much of the above as possible into the C
+    # TODO (skyewm): fold as much of the above as possible into the C id:2306 gh:2307
     # implementation
     if _USE_C_API or self._use_c_api_hack():
       self._scoped_c_graph = c_api_util.ScopedTFGraph()
     else:
       self._scoped_c_graph = None
 
-  # TODO(apassos) remove once the C API is used by default.
+  # TODO (apassos) remove once the C API is used by default. id:2772 gh:2773
   def _use_c_api_hack(self):
     """Temporary hack; can be overridden to force C API usage."""
     return False
@@ -3191,16 +3191,16 @@ class Graph(object):
 
   def _create_op_helper(self, op, compute_shapes=True, compute_device=True):
     """Common logic for creating an op in this graph."""
-    # TODO(vrv): Instead of eagerly filling in shape property for every op, only
+    # TODO (vrv): Instead of eagerly filling in shape property for every op, only id:3411 gh:3412
     # populate the shape when requested.
     #
-    # TODO(skyewm): unlike in the original Python implementation, the C API
+    # TODO (skyewm): unlike in the original Python implementation, the C API id:2978 gh:2979
     # always computes shape information (even for function calls, which the
     # original Python shape inference code doesn't handle). Deprecate the
     # compute_shapes argument.
     if op._c_op or compute_shapes:  # pylint: disable=protected-access
       set_shapes_for_outputs(op)
-    # TODO(b/XXXX): move to Operation.__init__ once _USE_C_API flag is removed.
+    # TODO (b/XXXX): move to Operation.__init__ once _USE_C_API flag is removed. id:3237 gh:3238
     self._add_op(op)
 
     # Apply any additional attributes requested. Do not overwrite any existing
@@ -4234,7 +4234,7 @@ class Graph(object):
           break
       if not dominated:
         # Don't add a control input if we already have a data dependency on i.
-        # NOTE(mrry): We do not currently track transitive data dependencies,
+        # NOTE (mrry): We do not currently track transitive data dependencies, id:2308 gh:2309
         #   so we may add redundant control inputs.
         ret.extend([c for c in controller.control_inputs if c not in input_ops])
     return ret
@@ -4324,7 +4324,7 @@ class Graph(object):
     if control_inputs is None:
       return self._ControlDependenciesController(self, None)
     # First convert the inputs to ops, and deduplicate them.
-    # NOTE(mrry): Other than deduplication, we do not currently track direct
+    # NOTE (mrry): Other than deduplication, we do not currently track direct id:2774 gh:2776
     #   or indirect dependencies between control_inputs, which may result in
     #   redundant control inputs.
     control_ops = []
@@ -4555,7 +4555,7 @@ class Graph(object):
       return tensor_or_op not in self._unfetchable_ops
 
 
-# TODO(agarwal): currently device directives in an outer eager scope will not
+# TODO (agarwal): currently device directives in an outer eager scope will not id:3414 gh:3415
 # apply to inner graph mode code. Fix that.
 def device(device_name_or_function):
   """Wrapper for `Graph.device()` using the default graph.
@@ -4578,7 +4578,7 @@ def device(device_name_or_function):
   if context.in_graph_mode():
     return get_default_graph().device(device_name_or_function)
   else:
-    # TODO(agarwal): support device functions in EAGER mode.
+    # TODO (agarwal): support device functions in EAGER mode. id:2981 gh:2982
     if callable(device_name_or_function):
       raise RuntimeError(
           "tf.device does not support functions when eager execution "
@@ -4834,7 +4834,7 @@ class _DefaultGraphStack(_DefaultStack):  # pylint: disable=protected-access
 
   def _GetGlobalDefaultGraph(self):
     if self._global_default_graph is None:
-      # TODO(mrry): Perhaps log that the default graph is being used, or set
+      # TODO (mrry): Perhaps log that the default graph is being used, or set id:3239 gh:3240
       #   provide some other feedback to prevent confusion when a mixture of
       #   the global default graph and an explicit graph are combined in the
       #   same process.
@@ -5131,7 +5131,7 @@ def _get_graph_from_inputs(op_input_list, graph=None):
   original_graph_element = None
   for op_input in op_input_list:
     # Determine if this is a valid graph_element.
-    # TODO(josh11b): Note that we exclude subclasses of Tensor. Need to clean this
+    # TODO (josh11b): Note that we exclude subclasses of Tensor. Need to clean this id:2310 gh:2311
     # up.
     graph_element = None
     if (isinstance(op_input, (Operation, _TensorLike)) and
@@ -5289,7 +5289,7 @@ class GraphKeys(object):
   ]
 
   # Key for streaming model ports.
-  # NOTE(yuanbyu): internal and experimental.
+  # NOTE (yuanbyu): internal and experimental. id:2776 gh:2777
   _STREAMING_MODEL_PORTS = "streaming_model_ports"
 
   @decorator_utils.classproperty

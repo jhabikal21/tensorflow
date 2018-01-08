@@ -48,8 +48,8 @@ using ops::Sub;
 using ops::Sum;
 using ops::Where3;
 
-// TODO(andydavis) Test gradient function against numeric gradients output.
-// TODO(andydavis) As more gradients are added move common test functions
+// TODO (andydavis) Test gradient function against numeric gradients output. id:119 gh:120
+// TODO (andydavis) As more gradients are added move common test functions id:147 gh:148
 // to a testutil library.
 
 class CWiseUnaryGradTest : public ::testing::Test {
@@ -445,7 +445,7 @@ TEST_F(CWiseUnaryGradTest, Asin_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{0.5, 0}, {0, 0.5}, {0.25, -0.75}, {0.5, 0.25}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:84 gh:85
   // Enable test when the asin kernel supports complex numbers
   if (false) {
     TestCWiseGrad<complex64, complex64>(ASIN, x_fn);
@@ -461,7 +461,7 @@ TEST_F(CWiseUnaryGradTest, Acos_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{0.5, 0}, {0, 0.5}, {0.25, -0.75}, {0.5, 0.25}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:94 gh:95
   // Add test when the acos kernel supports complex numbers
   if (false) {
     TestCWiseGrad<complex64, complex64>(ACOS, x_fn);
@@ -477,7 +477,7 @@ TEST_F(CWiseUnaryGradTest, Tan_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{1, 0}, {0, 1}, {2, -1}, {1, 2}, {3, 4}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:103 gh:104
   // Enable when tan kernel supports complex inputs
   if (false) {
     TestCWiseGrad<complex64, complex64>(TAN, x_fn);
@@ -493,7 +493,7 @@ TEST_F(CWiseUnaryGradTest, Atan_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{1, 0}, {0, 1}, {2, -1}, {1, 2}, {3, 4}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:122 gh:123
   // Add test when the atan kernel supports complex numbers
   if (false) {
     TestCWiseGrad<complex64, complex64>(ATAN, x_fn);
@@ -544,7 +544,7 @@ TEST_F(CWiseUnaryGradTest, Lgamma_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{-3.5, 0.5}, {-1.5, -0.5}, {1.5, -1.0}, {3.5, 1.0}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:150 gh:151
   // Add test when the lgamma kernel supports complex numbers
   if (false) {
     TestCWiseGrad<complex64, complex64>(LGAMMA, x_fn);
@@ -562,7 +562,7 @@ TEST_F(CWiseUnaryGradTest, Erf_Complex) {
   auto x_fn = [this](const int i) {
     return CRV({{-1.2, 0.5}, {-0.5, -0.5}, {0.5, 0.5}, {1.2, -0.5}});
   };
-  // TODO(kbsriram)
+  // TODO (kbsriram) id:87 gh:88
   // Add test when the erf kernel supports complex numbers
   if (false) {
     TestCWiseGrad<complex64, complex64>(ERF, x_fn);

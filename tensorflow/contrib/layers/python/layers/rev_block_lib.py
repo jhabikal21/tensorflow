@@ -451,7 +451,7 @@ def _recompute_grad(fn, args):
   @_fn_with_custom_grad(grad_fn)
   def fn_with_recompute(*args):
     cached_vs.append(variable_scope.get_variable_scope())
-    # TODO(rsepassi): Rm conditional in TF 1.4
+    # TODO (rsepassi): Rm conditional in TF 1.4 id:1157 gh:1158
     if hasattr(contrib_framework_ops, "current_arg_scope"):
       cached_arg_scope.append(contrib_framework_ops.current_arg_scope())
     else:

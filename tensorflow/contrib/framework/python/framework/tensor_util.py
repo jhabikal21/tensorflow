@@ -258,7 +258,7 @@ def with_shape(expected_shape, tensor):
     with ops.name_scope('%s/' % tensor.op.name, values=[tensor]):
       if (not tensor_util.is_tensor(expected_shape)
           and (len(expected_shape) < 1)):
-        # TODO(irving): Remove scalar special case
+        # TODO (irving): Remove scalar special case id:645 gh:646
         return array_ops.reshape(tensor, [])
       with ops.control_dependencies([_assert_shape_op(expected_shape, tensor)]):
         result = array_ops.identity(tensor)
@@ -269,7 +269,7 @@ def with_shape(expected_shape, tensor):
   if (not tensor_util.is_tensor(expected_shape) and
       not actual_shape.is_compatible_with(expected_shape)):
     if (len(expected_shape) < 1) and actual_shape.is_compatible_with([1]):
-      # TODO(irving): Remove scalar special case.
+      # TODO (irving): Remove scalar special case. id:903 gh:904
       with ops.name_scope('%s/' % tensor.op.name, values=[tensor]):
         return array_ops.reshape(tensor, [])
     raise ValueError('Invalid shape for tensor %s, expected %s, got %s.' % (

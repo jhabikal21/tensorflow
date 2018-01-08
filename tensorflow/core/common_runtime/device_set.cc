@@ -40,7 +40,7 @@ void DeviceSet::AddDevice(Device* device) {
 
 void DeviceSet::FindMatchingDevices(const DeviceNameUtils::ParsedName& spec,
                                     std::vector<Device*>* devices) const {
-  // TODO(jeff): If we are going to repeatedly lookup the set of devices
+  // TODO (jeff): If we are going to repeatedly lookup the set of devices id:1059 gh:1060
   // for the same spec, maybe we should have a cache of some sort
   devices->clear();
   for (Device* d : devices_) {

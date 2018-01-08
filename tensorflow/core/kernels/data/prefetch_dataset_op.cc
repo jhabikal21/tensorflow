@@ -91,7 +91,7 @@ class PrefetchDatasetOp : public UnaryDatasetOpKernel {
         // Signal the prefetch thread to terminate it. We will then
         // join that thread when we delete `this->prefetch_thread_`.
         //
-        // TODO(mrry): Replace this cancellation logic with a
+        // TODO (mrry): Replace this cancellation logic with a id:1980 gh:1981
         // CancellationManager. The syntax would be more heavyweight,
         // but it would be possible to thread a cancellation manager
         // through the IteratorContext to upstream,
@@ -135,7 +135,7 @@ class PrefetchDatasetOp : public UnaryDatasetOpKernel {
             // Wake the prefetch thread, in case it has been waiting
             // for space in the buffer.
             // Also wake up threads from other calls to GetNext.
-            // TODO(mrry): Consider using different condition variables
+            // TODO (mrry): Consider using different condition variables id:1497 gh:1498
             // for GetNext and Prefetch.
             cond_var_.notify_all();
             return s;

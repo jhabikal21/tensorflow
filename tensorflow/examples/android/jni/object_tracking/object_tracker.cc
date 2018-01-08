@@ -524,7 +524,7 @@ bool ObjectTracker::GetBestObjectForDetection(
     LOGV("Distance: %.2f, Allowed distance %.2f, Overlap: %.2f",
          jump_distance, allowed_distance, overlap);
 
-    // TODO(andrewharp): No need to do this verification twice, eliminate
+    // TODO (andrewharp): No need to do this verification twice, eliminate id:3080 gh:3081
     // one of the score checks (the other being in OnDetection).
     if (jump_distance < allowed_distance &&
         overlap > best_overlap &&
@@ -579,7 +579,7 @@ void ObjectTracker::ProcessDetections(
         LOGV("No match, adding it!");
         const ObjectModelBase* model = detection.GetObjectModel();
         std::ostringstream ss;
-        // TODO(andrewharp): Generate this in a more general fashion.
+        // TODO (andrewharp): Generate this in a more general fashion. id:2088 gh:2089
         ss << "hand_" << num_detected_++;
         std::string object_name = ss.str();
         MaybeAddObject(object_name, *frame2_->GetImage(),
@@ -647,7 +647,7 @@ void ObjectTracker::DetectTargets() {
 
 
 void ObjectTracker::TrackObjects() {
-  // TODO(andrewharp): Correlation should be allowed to remove objects too.
+  // TODO (andrewharp): Correlation should be allowed to remove objects too. id:2634 gh:2635
   const bool automatic_removal_allowed = detector_.get() != NULL ?
       detector_->AllowSpontaneousDetections() : false;
 

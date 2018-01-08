@@ -178,7 +178,7 @@ const ShowMultiNode* TFOp::ShowInternal(const Options& opts,
       display_str += FormatNode(node, root_.get(), opts);
     }
     // In op view, we don't show root (total). But it will still in proto.
-    // TODO(xpan): Is it the right choice?
+    // TODO (xpan): Is it the right choice? id:2571 gh:2572
     root_->formatted_str = display_str;
   }
   // Populate the chidren field.

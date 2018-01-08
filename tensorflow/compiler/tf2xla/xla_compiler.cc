@@ -286,7 +286,7 @@ Status BuildArguments(const Graph& graph,
     switch (arg.kind) {
       case XlaCompiler::Argument::kResource:
         TF_RET_CHECK(arg.resource_kind != XlaResource::kInvalid);
-        // TODO(phawkins): this code assumes that resource arguments do not
+        // TODO (phawkins): this code assumes that resource arguments do not id:235 gh:237
         // alias.
         XlaResource* resource;
         TF_RETURN_IF_ERROR(

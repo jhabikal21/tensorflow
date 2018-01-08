@@ -371,7 +371,7 @@ TEST(VariantOpCopyTest, CreateCopyCPUToGPUStringFailsSafely) {
       << err.error_message();
 }
 
-// TODO(ebrevdo): Identify a way to create two virtual GPUs within a
+// TODO (ebrevdo): Identify a way to create two virtual GPUs within a id:2513 gh:2514
 // single session, so that we can test the Device <-> Device copy
 // branch.
 

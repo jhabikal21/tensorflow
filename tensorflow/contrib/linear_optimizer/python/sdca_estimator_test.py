@@ -238,7 +238,7 @@ class SDCALogisticClassifierTest(test.TestCase):
 class SDCALinearRegressorTest(test.TestCase):
 
   def _single_threaded_test_session(self):
-    # TODO(andreasst): figure out why SDCALinearRegressor needs a single
+    # TODO (andreasst): figure out why SDCALinearRegressor needs a single id:753 gh:754
     # threaded session to pass in tsan mode but SDCALogisticClassifier does not.
     config = config_pb2.ConfigProto(
         inter_op_parallelism_threads=1, intra_op_parallelism_threads=1)
@@ -465,7 +465,7 @@ class SDCALinearRegressorTest(test.TestCase):
       self.assertIn('linear/bias_weight', variable_names)
       self.assertIn('linear/a/weight', variable_names)
       self.assertIn('linear/b/weight', variable_names)
-      # TODO(b/29339026): Change the expected results to expect a centered bias.
+      # TODO (b/29339026): Change the expected results to expect a centered bias. id:780 gh:781
       self.assertNear(
           regressor.get_variable_value('linear/bias_weight')[0], 0.2, err=0.05)
       self.assertNear(

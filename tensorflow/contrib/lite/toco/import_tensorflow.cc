@@ -1195,7 +1195,7 @@ void ConvertPlaceholderOperator(const NodeDef& node,
         has_wildcard = true;
       }
     }
-    // TODO(b/62716978): This logic needs to be revisted.  During dims
+    // TODO (b/62716978): This logic needs to be revisted.  During dims id:1248 gh:1249
     // refactoring it is an interim fix.
     if (num_dims > 0 && !has_wildcard) {
       auto& dst_array_dims = *array.mutable_shape()->mutable_dims();
@@ -1288,7 +1288,7 @@ void ConvertBatchNormWithGlobalNormalizationOperator(
   CHECK_EQ(node.op(), "BatchNormWithGlobalNormalization");
   CheckInputsCount(node, tf_import_flags, 5);
 
-  // TODO(ahentz): to really match tensorflow we need to add variance_epsilon
+  // TODO (ahentz): to really match tensorflow we need to add variance_epsilon id:937 gh:938
   // to the input, before feeding it into TensorFlowRsqrtOperator.
   // CHECK_EQ(GetFloatAttr(node, "variance_epsilon"), 0.001f);
 

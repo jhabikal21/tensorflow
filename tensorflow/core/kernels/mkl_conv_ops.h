@@ -137,7 +137,7 @@ class MklDnnConvUtil {
   // Input gets shape of input tensor rather than actual tensor (Convolution
   // forward gets actual tensor as input).
   //
-  // TODO(nhasabni): Add similar function for input and filter in MklShape.
+  // TODO (nhasabni): Add similar function for input and filter in MklShape. id:1565 gh:1566
   virtual inline void
   GetFilterSizeInMklOrder(const TensorShape& input_shape,
                           const TensorShape& filter_shape,
@@ -211,7 +211,7 @@ class MklDnnConvUtil {
   // left, right, top and bottom pads. Function does not return any status -
   // status is returned via context status.
   //
-  // TODO(nhasabni): Add similar function for input and filter in MklShape.
+  // TODO (nhasabni): Add similar function for input and filter in MklShape. id:2796 gh:2797
   virtual inline void
   GetOutputAndPadSizeInMklOrder(const TensorShape& input_shape,
                                 const TensorShape& filter_shape,

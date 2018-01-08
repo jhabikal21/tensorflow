@@ -75,7 +75,7 @@ class SimpleMemoryArena {
   std::unique_ptr<char[]> underlying_buffer_;
   size_t underlying_buffer_size_;
   char* underlying_buffer_aligned_ptr_;
-  // TODO(maciekc): add list iterator to the ArenaAlloc to lookup quickly.
+  // TODO (maciekc): add list iterator to the ArenaAlloc to lookup quickly. id:1220 gh:1221
   std::list<ArenaAlloc> allocs_;
 };
 

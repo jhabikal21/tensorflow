@@ -260,7 +260,7 @@ def _dnn_linear_combined_model_fn(features, labels, mode, params, config=None):
             net = layers.dropout(
                 net,
                 keep_prob=(1.0 - dnn_dropout))
-        # TODO(b/31209633): Consider adding summary before dropout.
+        # TODO (b/31209633): Consider adding summary before dropout. id:1173 gh:1174
         _add_layer_summary(net, dnn_hidden_layer_scope.name)
 
       with variable_scope.variable_scope(
@@ -668,7 +668,7 @@ class DNNLinearCombinedClassifier(estimator.Estimator):
       raise ValueError("Either linear_feature_columns or dnn_feature_columns "
                        "must be defined.")
 
-    # TODO(b/35922130): Replace with `input_layer_partitioner` arg.
+    # TODO (b/35922130): Replace with `input_layer_partitioner` arg. id:1004 gh:1006
     input_layer_partitioner = None
     if input_layer_min_slice_size is not None:
       input_layer_partitioner = (
@@ -980,7 +980,7 @@ class DNNLinearCombinedRegressor(estimator.Estimator):
       raise ValueError("Either linear_feature_columns or dnn_feature_columns "
                        "must be defined.")
 
-    # TODO(b/35922130): Replace with `input_layer_partitioner` arg.
+    # TODO (b/35922130): Replace with `input_layer_partitioner` arg. id:725 gh:726
     input_layer_partitioner = None
     if input_layer_min_slice_size is not None:
       input_layer_partitioner = (
@@ -1025,7 +1025,7 @@ class DNNLinearCombinedRegressor(estimator.Estimator):
                checkpoint_path=None,
                hooks=None):
     """See evaluable.Evaluable."""
-    # TODO(zakaria): remove once deprecation is finished (b/31229024)
+    # TODO (zakaria): remove once deprecation is finished (b/31229024) id:665 gh:666
     custom_metrics = {}
     if metrics:
       for key, metric in six.iteritems(metrics):
@@ -1147,5 +1147,5 @@ class DNNLinearCombinedRegressor(estimator.Estimator):
         exports_to_keep=exports_to_keep)
 
 # Aliases
-# TODO(zakaria): Remove these aliases, See b/34751732
+# TODO (zakaria): Remove these aliases, See b/34751732 id:716 gh:718
 _DNNLinearCombinedEstimator = DNNLinearCombinedEstimator

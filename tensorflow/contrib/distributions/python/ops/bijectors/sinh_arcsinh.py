@@ -155,7 +155,7 @@ class SinhArcsinh(bijector.Bijector):
         # from cosh((arcsinh(y) / tailweight) - skewness) and sqrt(x**2 + 1).
         math_ops.log(math_ops.cosh(
             math_ops.asinh(y) / self.tailweight - self.skewness)
-                     # TODO(srvasude): Consider using cosh(arcsinh(x)) in cases
+                     # TODO (srvasude): Consider using cosh(arcsinh(x)) in cases id:529 gh:530
                      # where (arcsinh(x) / tailweight) - skewness ~= arcsinh(x).
                      / _sqrtx2p1(y))
         - math_ops.log(self.tailweight),
@@ -172,7 +172,7 @@ class SinhArcsinh(bijector.Bijector):
         # from cosh((arcsinh(x) + skewness) * tailweight) and sqrt(x**2 + 1).
         math_ops.log(math_ops.cosh(
             (math_ops.asinh(x) + self.skewness) * self.tailweight)
-                     # TODO(srvasude): Consider using cosh(arcsinh(x)) in cases
+                     # TODO (srvasude): Consider using cosh(arcsinh(x)) in cases id:551 gh:552
                      # where (arcsinh(x) + skewness) * tailweight ~= arcsinh(x).
                      / _sqrtx2p1(x))
         + math_ops.log(self.tailweight),

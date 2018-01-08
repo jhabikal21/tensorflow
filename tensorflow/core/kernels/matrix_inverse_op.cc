@@ -57,14 +57,14 @@ class MatrixInverseOp : public LinearAlgebraOp<Scalar> {
     }
     Eigen::PartialPivLU<Matrix> lu_decomposition;
     if (adjoint_) {
-      // TODO(rmlarsen): For Eigen 3.2, this creates a temporary copy.
+      // TODO (rmlarsen): For Eigen 3.2, this creates a temporary copy. id:2245 gh:2246
       // Make sure to backport: https://bitbucket.org/eigen/eigen/commits/
       // bd2219a74c96dfe3f6bc2c23588749e36d2d8173
       lu_decomposition.compute(input.adjoint());
     } else {
       lu_decomposition.compute(input);
     }
-    // TODO(rmlarsen): Add check based on condition number estimation.
+    // TODO (rmlarsen): Add check based on condition number estimation. id:2052 gh:2053
     // PartialPivLU cannot give strong guarantees on invertibility, but
     // we can at least guard against exact zero pivots. This can occur as
     // a result of basic user mistakes, such as providing integer valued
@@ -124,7 +124,7 @@ class MatrixInverseOpGpu : public AsyncOpKernel {
                              {0}, 0, input.shape(), &output),
                          done);
 
-    // TODO(rmlarsen): Convert to std::make_unique when available.
+    // TODO (rmlarsen): Convert to std::make_unique when available. id:1553 gh:1554
     std::unique_ptr<CudaSolver> solver(new CudaSolver(context));
 
     // Make a copy of the (possible adjointed) input that we will use for the
@@ -167,7 +167,7 @@ class MatrixInverseOpGpu : public AsyncOpKernel {
       // For small matrices or very large batch sizes, we use the batched
       // interfaces in cuBlas to avoid being dominated by kernel launch
       // overhead.
-      // TODO(rmlarsen): Come up with a better heuristic based on a simple
+      // TODO (rmlarsen): Come up with a better heuristic based on a simple id:2787 gh:2788
       // cost model.
       const Scalar** input_copy_ptr_array_base =
           reinterpret_cast<const Scalar**>(input_copy_ptr_array.mutable_data());

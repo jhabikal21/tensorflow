@@ -227,7 +227,7 @@ class TreePredictionsV4Op : public OpKernel {
                                                      &output_tree_paths));
     auto out_paths = output_tree_paths->unaligned_flat<string>();
 
-    // TODO(gilberth): If this slows down inference too much, consider having
+    // TODO (gilberth): If this slows down inference too much, consider having id:1574 gh:1575
     // a filter that only serializes paths for the predicted label that we're
     // interested in.
     for (int i = 0; i < tree_paths.size(); ++i) {
@@ -352,7 +352,7 @@ class UpdateModelV4Op : public OpKernel {
 
     TensorInputTarget target(input_labels, input_weights, num_targets);
 
-    // TODO(gilberth): Make this thread safe and multi-thread.
+    // TODO (gilberth): Make this thread safe and multi-thread. id:1324 gh:1325
     UpdateModel(leaf_ids, target, 0, num_data, decision_tree_resource);
   }
 

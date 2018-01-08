@@ -74,7 +74,7 @@ class DenseToSparseBatchDatasetOp : public UnaryDatasetOpKernel {
   }
 
  private:
-  // TODO(mrry): Push the templated code down to the raw copying routine.
+  // TODO (mrry): Push the templated code down to the raw copying routine. id:1485 gh:1487
   template <class T>
   class Dataset : public GraphDatasetBase {
    public:
@@ -180,7 +180,7 @@ class DenseToSparseBatchDatasetOp : public UnaryDatasetOpKernel {
               batch_elements.push_back(std::move(batch_element_tuple[0]));
               total_elements += batch_element_tuple[0].NumElements();
 
-              // TODO(mrry): Investigate how to hoist this check when we
+              // TODO (mrry): Investigate how to hoist this check when we id:2719 gh:2720
               // have static information that renders it unnecessary.
               if (batch_element_tuple[0].shape().dims() != row_ndims) {
                 return errors::InvalidArgument(
@@ -228,7 +228,7 @@ class DenseToSparseBatchDatasetOp : public UnaryDatasetOpKernel {
         for (int64 i = 0; i < batch_elements.size(); ++i) {
           const Tensor& t = batch_elements[i];
           const auto& t_flat = t.flat<T>();
-          // TODO(mrry): Replace with a memcpy or something more
+          // TODO (mrry): Replace with a memcpy or something more id:1402 gh:1403
           // efficient. (Maybe an Eigen assign op?)
           gtl::InlinedVector<int64, 4> strides(row_ndims);
           if (!strides.empty()) {

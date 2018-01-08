@@ -13,7 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-# TODO(ptucker,ipolosukhin): Improve descriptions.
+# TODO (ptucker,ipolosukhin): Improve descriptions. id:1163 gh:1164
 """High level API for learning.
 
 See the @{$python/contrib.learn} guide.

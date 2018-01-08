@@ -67,7 +67,7 @@ class RichLine(object):
         entire text.  Extending this object via concatenation allows creation
         of text with varying attributes.
     """
-    # TODO(ebreck) Make .text and .font_attr protected members when we no
+    # TODO (ebreck) Make .text and .font_attr protected members when we no id:3156 gh:3157
     # longer need public access.
     self.text = text
     if font_attr:
@@ -185,12 +185,12 @@ class RichTextLines(object):
     self._font_attr_segs = font_attr_segs
     if not self._font_attr_segs:
       self._font_attr_segs = {}
-      # TODO(cais): Refactor to collections.defaultdict(list) to simplify code.
+      # TODO (cais): Refactor to collections.defaultdict(list) to simplify code. id:2880 gh:2881
 
     self._annotations = annotations
     if not self._annotations:
       self._annotations = {}
-      # TODO(cais): Refactor to collections.defaultdict(list) to simplify code.
+      # TODO (cais): Refactor to collections.defaultdict(list) to simplify code. id:3122 gh:3123
 
   @property
   def lines(self):
@@ -354,7 +354,7 @@ class RichTextLines(object):
       for line in self._lines:
         f.write(line + "\n")
 
-  # TODO(cais): Add a method to allow appending to a line in RichTextLines with
+  # TODO (cais): Add a method to allow appending to a line in RichTextLines with id:2227 gh:2228
   # both text and font_attr_segs.
 
 
@@ -818,7 +818,7 @@ class TabCompletionRegistry(object):
   def __init__(self):
     self._comp_dict = {}
 
-  # TODO(cais): Rename method names with "comp" to "*completion*" to avoid
+  # TODO (cais): Rename method names with "comp" to "*completion*" to avoid id:2684 gh:2685
   # confusion.
 
   def register_tab_comp_context(self, context_words, comp_items):
@@ -1073,7 +1073,7 @@ class CommandHistory(object):
 
     return commands[-n:]
 
-  # TODO(cais): Lookup by regex.
+  # TODO (cais): Lookup by regex. id:3158 gh:3159
 
 
 class MenuItem(object):

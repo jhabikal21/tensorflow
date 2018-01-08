@@ -152,7 +152,7 @@ class DestroyTemporaryVariableOp : public OpKernel {
   }
 
   void Compute(OpKernelContext* context) override {
-    // NOTE(pbar): All other mutators of the Tensor Ref *must* have completed
+    // NOTE (pbar): All other mutators of the Tensor Ref *must* have completed id:1907 gh:1908
     // their execution before this DestroyTemporaryVariable op executes.
     // This is typically achieved using control dependencies.
     CHECK(IsRefType(context->input_dtype(0)));

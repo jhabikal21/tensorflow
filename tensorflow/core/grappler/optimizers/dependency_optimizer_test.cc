@@ -143,7 +143,7 @@ TEST_F(DependencyOptimizerTest, ChangeToNoop) {
   }
 }
 
-// TODO(rmlarsen): Add test to make sure we skip Switch and Merge.
+// TODO (rmlarsen): Add test to make sure we skip Switch and Merge. id:2098 gh:2099
 TEST_F(DependencyOptimizerTest, ChangeToNoop_NoFetch) {
   tensorflow::Scope s = tensorflow::Scope::NewRootScope();
   Output x = ops::RandomUniform(s.WithOpName("x"), {1, 2}, DT_FLOAT);

@@ -129,7 +129,7 @@ struct TF_Session {
   tensorflow::mutex mu;
   int last_num_graph_nodes;
 
-  // NOTE(ashankar): Experimental fields to help keep the
+  // NOTE (ashankar): Experimental fields to help keep the id:22 gh:23
   // buffers of a TF_Tensor pinned in device memory.
   const tensorflow::DeviceMgr* device_mgr;   // Owned by session.
   std::vector<tensorflow::Device*> devices;  // Owned by device_mgr.
@@ -139,7 +139,7 @@ struct TF_ImportGraphDefOptions {
   tensorflow::ImportGraphDefOptions opts;
 
   // Backing memory for TensorId fields in opts.
-  // TODO(skyewm): it'd be better if ImportGraphDefOptions owned this.
+  // TODO (skyewm): it'd be better if ImportGraphDefOptions owned this. id:20 gh:21
   std::list<tensorflow::string> tensor_id_data;
 };
 
@@ -201,7 +201,7 @@ Status MessageToBuffer(const tensorflow::protobuf::Message& in, TF_Buffer* out);
 // rank is known), then it must be equal to the length of `shapes[i]`; if
 // `ranks[i] == 1`, then `shapes[i]` may be nullptr.
 //
-// TODO(akshayka): Implement a corresponding getter method.
+// TODO (akshayka): Implement a corresponding getter method. id:21 gh:22
 void TF_GraphSetOutputHandleShapesAndTypes(TF_Graph* graph, TF_Output output,
                                            int num_shapes_and_types,
                                            const int64_t** shapes,

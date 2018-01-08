@@ -889,7 +889,7 @@ TEST_F(LiteralUtilTest, CopyFromAndToZeroElement) {
 TEST_F(LiteralUtilTest, F16) {
   // Verify that the internal data views are consistent and that they
   // are in little endian format
-  // TODO - modify if we make the data format machine endianess dependent
+  // TODO - modify if we make the data format machine endianess dependent id:244 gh:245
   auto m1 = Literal::CreateFromShape(ShapeUtil::MakeShape(F16, {2, 2}));
   Literal* l1 = m1.get();
   const char* d1 = static_cast<const char*>(l1->InternalData());

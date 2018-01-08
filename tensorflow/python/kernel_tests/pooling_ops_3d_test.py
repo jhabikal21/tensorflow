@@ -42,7 +42,7 @@ def GetTestConfigs():
   return test_configs
 
 
-# TODO(mjanusz): Add microbenchmarks for 3d pooling.
+# TODO (mjanusz): Add microbenchmarks for 3d pooling. id:3087 gh:3088
 class PoolingTest(test.TestCase):
 
   def _VerifyOneTest(self, pool_func, input_sizes, window, strides, padding,

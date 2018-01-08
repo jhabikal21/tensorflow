@@ -498,7 +498,7 @@ class ScopedFilterDescriptor {
     }
 
 #if CUDNN_VERSION >= 5000
-    // TODO(b/23032134): Even if the filter layout is not supported,
+    // TODO (b/23032134): Even if the filter layout is not supported, id:3324 gh:3325
     // cudnnSetFilter4DDescriptor_v4 will return CUDNN_STATUS_SUCCESS because it
     // does not take layout as an input. Maybe force cuDNN by giving wrong
     // inputs intentionally?
@@ -598,7 +598,7 @@ class ScopedConvolutionDescriptor {
                    &CheckedNarrowing<int64, int>);
     std::transform(padding64.cbegin(), padding64.cend(), padding.begin(),
                    &CheckedNarrowing<int64, int>);
-    // TODO(yangzihao): Test with negative dilation to make sure that cudnn
+    // TODO (yangzihao): Test with negative dilation to make sure that cudnn id:3489 gh:3488
     // doesn't crash.
     std::transform(dilations64.cbegin(), dilations64.cend(), dilations.begin(),
                    &CheckedNarrowing<int64, int>);
@@ -606,7 +606,7 @@ class ScopedConvolutionDescriptor {
     status = wrap::cudnnSetConvolutionNdDescriptor(
         parent_, handle_, convolution_descriptor.ndims(), padding.data(),
         strides.data(), dilations.data(),
-        // NOTE(keveman): cuDNN supports convolution and cross correlation.
+        // NOTE (keveman): cuDNN supports convolution and cross correlation. id:2657 gh:2659
         // However, almost all the use cases do cross correlation, so just
         // hard coding it here.
         CUDNN_CROSS_CORRELATION, data_type);
@@ -615,7 +615,7 @@ class ScopedConvolutionDescriptor {
       LOG(FATAL) << "could not set cudnn convolution descriptor: "
                  << ToString(status);
     }
-    // NOTE(benbarsdell): This only applies if tensor op math is enabled
+    // NOTE (benbarsdell): This only applies if tensor op math is enabled id:3373 gh:3374
     //                      and algo selection is set to Default.
     this->set_use_tensor_op_math(true);
   }
@@ -1064,7 +1064,7 @@ class CudnnRnnDescriptor : public CudnnDescriptorCommon<dnn::RnnDescriptor> {
     cudnnStatus_t status = wrap::cudnnCreateRNNDescriptor(parent_, &rnn_desc_);
     CUDNN_RETURN_IF_FAIL(status, "Unable to create RNN descriptor");
 #if CUDNN_VERSION >= 6000
-    // TODO: allow the user to choose an algorithm.
+    // TODO: allow the user to choose an algorithm. id:3579 gh:3580
     cudnnRNNAlgo_t rnn_algo = CUDNN_RNN_ALGO_STANDARD;
     status = wrap::cudnnSetRNNDescriptor_v6(
         parent, cudnn_handle, rnn_desc_ /*rnnDesc*/, hidden_size /*hiddenSize*/,
@@ -2213,7 +2213,7 @@ class CudnnEnvVar {
 // enable the algorithm through an env-var "TF_ENABLE_FFT_TILING_FORWARD=1".
 struct FftTilingForward {
   static constexpr const char* kName = "TF_ENABLE_FFT_TILING_FORWARD";
-  // TODO(yangzihao): turn the default to True when the memory corruption bug
+  // TODO (yangzihao): turn the default to True when the memory corruption bug id:3326 gh:3327
   // is fixed.
   static constexpr bool kDefaultFlag = CUDNN_VERSION < 5100;
 };
@@ -2245,7 +2245,7 @@ struct ConvDoFP32ComputationFP16Input {
 
 // A group of helper functions to return the internal compute type for
 // convolutions in cudnn.
-// TODO(yangzihao): Add support for float64.
+// TODO (yangzihao): Add support for float64. id:3491 gh:3492
 template <typename T>
 cudnnDataType_t GetConvComputeType() {
   return CUDNN_DATA_FLOAT;
@@ -2298,7 +2298,7 @@ bool CudnnSupport::DoConvolveImpl(
   bool use_tensor_ops;
   DeviceMemory<uint8> scratch;
 
-  // TODO(pauldonnelly): Replace the following code with a call to
+  // TODO (pauldonnelly): Replace the following code with a call to id:2659 gh:2660
   //   GetCudnnConvolutionForwardAlgorithm().
   if (algorithm_config.algorithm().is_default()) {
     // With the default algorithm, use Cudnn's heuristics.
@@ -3732,7 +3732,7 @@ bool CudnnSupport::DoMatMul(Stream* stream,
     // for each point (y,x) in contiguous memory while the
     // kBatchDepthYX layout does not.
     //
-    // TODO(broune): Consider a special case for when output depth ==
+    // TODO (broune): Consider a special case for when output depth == id:3376 gh:3377
     // 1, as then possibly this could all be done as one matrix
     // multiplication instead of a batched one, which should be
     // faster. Another possibility would be to add a weights layout
@@ -3872,12 +3872,12 @@ bool CudnnSupport::DoActivate(Stream* stream,
   cudnnActivationMode_t mode;
   switch (activation_mode) {
     case dnn::ActivationMode::kRelu6:
-      // TODO(leary) should probably do a post-pass to clip at 6?
+      // TODO (leary) should probably do a post-pass to clip at 6? id:3580 gh:3581
       LOG(WARNING) << "user requested Relu6, but providing Relu instead";
       mode = CUDNN_ACTIVATION_RELU;
       break;
     case dnn::ActivationMode::kReluX:
-      // TODO(broune) should probably do a post-pass to clip at X?
+      // TODO (broune) should probably do a post-pass to clip at X? id:3328 gh:3329
       LOG(WARNING) << "user requested ReluX, but providing Relu instead";
       mode = CUDNN_ACTIVATION_RELU;
       break;
@@ -4140,7 +4140,7 @@ bool CudnnSupport::DoPoolBackward(
 bool CudnnSupport::DoNormalize(
     Stream* stream, const dnn::NormalizeDescriptor& normalize_descriptor,
     const DeviceMemory<float>& input_data, DeviceMemory<float>* output_data) {
-  LOG(FATAL) << "not yet implemented";  // TODO(leary)
+  LOG(FATAL) << "not yet implemented";  // TODO (leary) id:3493 gh:3494
   return false;
 }
 
@@ -4292,7 +4292,7 @@ bool CudnnSupport::DoElementwiseOperate(
     port::ArraySlice<const DeviceMemory<float>*> input_data,
     const dnn::BatchDescriptor& output_dimensions,
     DeviceMemory<float>* output_data) {
-  LOG(FATAL) << "not yet implemented";  // TODO(leary)
+  LOG(FATAL) << "not yet implemented";  // TODO (leary) id:2661 gh:2662
   return false;
 }
 
@@ -4301,7 +4301,7 @@ bool CudnnSupport::DoXYPad(Stream* stream,
                            const DeviceMemory<float>& input_data,
                            int64 left_pad, int64 right_pad, int64 top_pad,
                            int64 bottom_pad, DeviceMemory<float>* output_data) {
-  LOG(FATAL) << "not yet implemented";  // TODO(leary)
+  LOG(FATAL) << "not yet implemented";  // TODO (leary) id:3377 gh:3379
   return false;
 }
 
@@ -4311,7 +4311,7 @@ bool CudnnSupport::DoXYSlice(Stream* stream,
                              int64 left_trim, int64 right_trim, int64 top_trim,
                              int64 bottom_trim,
                              DeviceMemory<float>* output_data) {
-  LOG(FATAL) << "not yet implemented";  // TODO(leary)
+  LOG(FATAL) << "not yet implemented";  // TODO (leary) id:3581 gh:3582
   return false;
 }
 

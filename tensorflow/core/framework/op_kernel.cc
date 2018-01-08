@@ -229,7 +229,7 @@ Status OpKernelConstruction::allocate_persistent(
     DataType type, const TensorShape& shape, PersistentTensor* out_persistent,
     Tensor** out_tensor) {
   // for now just do the same thing as allocate_temp
-  // TODO(misard) add specific memory tracking for persistent tensors
+  // TODO (misard) add specific memory tracking for persistent tensors id:1943 gh:1944
   Tensor persistent;
   Status s = allocate_temp(type, shape, &persistent);
   if (!s.ok()) {
@@ -480,7 +480,7 @@ std::unique_ptr<Tensor> OpKernelContext::forward_input(
   if (!output_attr.IsEqualOrLessRestrictiveThan(input_attr)) {
     return nullptr;
   }
-  // TODO(rmlarsen): Use MakeUnique here. There is already a copy in
+  // TODO (rmlarsen): Use MakeUnique here. There is already a copy in id:1733 gh:1734
   // tensorflow/compiler/xla/ptr_util.h. Perhaps this should be part of
   // general cleanup of ownership in this code.
   std::unique_ptr<Tensor> output_tensor(new Tensor());
@@ -926,7 +926,7 @@ Status AttrsMatch(AttrSlice attrs, const KernelDef& kernel_def, bool* match) {
 
 static const StringPiece kKernelAttr("_kernel");
 
-// TODO(irving): Replace with const Node& version below.
+// TODO (irving): Replace with const Node& version below. id:1319 gh:1320
 Status FindKernelRegistration(const DeviceType& device_type,
                               const NodeDef& node_def,
                               const KernelRegistration** reg,
@@ -968,7 +968,7 @@ Status FindKernelRegistration(const DeviceType& device_type, const Node& node,
 
 }  // namespace
 
-// TODO(irving): Change const NodeDef& to const Node&
+// TODO (irving): Change const NodeDef& to const Node& id:2491 gh:2492
 Status FindKernelDef(const DeviceType& device_type, const NodeDef& node_def,
                      const KernelDef** def, string* kernel_class_name) {
   const KernelRegistration* reg = nullptr;
@@ -996,7 +996,7 @@ Status FindKernelDef(const DeviceType& device_type, const NodeDef& node_def,
 Status SupportedDeviceTypesForNode(
     const std::vector<DeviceType>& prioritized_types, const NodeDef& def,
     DeviceTypeVector* device_types) {
-  // TODO(zhifengc): Changes the callers (SimplePlacer and
+  // TODO (zhifengc): Changes the callers (SimplePlacer and id:1188 gh:1189
   // DynamicPlacer) to consider the possibility that 'def' is call to
   // a user-defined function and only calls this
   // SupportedDeviceTypesForNode for primitive ops.
@@ -1144,7 +1144,7 @@ Status ValidateKernelRegistrations(const OpRegistryInterface& op_registry) {
     const OpRegistrationData* op_reg_data;
     const Status status = op_registry.LookUp(kernel_def.op(), &op_reg_data);
     if (!status.ok()) {
-      // TODO(josh11b): Make this a hard error.
+      // TODO (josh11b): Make this a hard error. id:1945 gh:1946
       LOG(ERROR) << "OpKernel ('" << ProtoShortDebugString(kernel_def)
                  << "') for unknown op: " << kernel_def.op();
       continue;

@@ -69,7 +69,7 @@ class GrpcMasterService : public AsyncServiceInterface {
       }
     }
     if (did_shutdown) {
-      // NOTE(mrry): This enqueues a special event (with a null tag)
+      // NOTE (mrry): This enqueues a special event (with a null tag) id:1875 gh:1876
       // that causes the completion queue to be shut down on the
       // polling thread.
       shutdown_alarm_ =
@@ -120,7 +120,7 @@ class GrpcMasterService : public AsyncServiceInterface {
       if (callback_tag) {
         callback_tag->OnCompleted(this, ok);
       } else {
-        // NOTE(mrry): A null `callback_tag` indicates that this is
+        // NOTE (mrry): A null `callback_tag` indicates that this is id:1696 gh:1697
         // the shutdown alarm.
         cq_->Shutdown();
       }

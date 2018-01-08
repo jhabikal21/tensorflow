@@ -52,7 +52,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_ENSURE(context, axis >= 0);
   TF_LITE_ENSURE(context, axis < t0->dims->size);
 
-  // TODO(ahentz): These are limitations of our implementation that could be
+  // TODO (ahentz): These are limitations of our implementation that could be id:828 gh:829
   // removed with a bit of effort.
   TF_LITE_ENSURE(context, t0->dims->size <= 4);
   TF_LITE_ENSURE_EQ(context, params->activation, kTfLiteActNone);
@@ -134,9 +134,9 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 
   TfLiteTensor* output = &context->tensors[node->outputs->data[0]];
 
-// TODO(ahentz): Creating 'all_inputs' below is not very efficient. We should
+// TODO (ahentz): Creating 'all_inputs' below is not very efficient. We should id:768 gh:769
 // allocate and populate these during Prepare().
-// TODO(ycling): Activation function parameter is ignored. For now we dont have
+// TODO (ycling): Activation function parameter is ignored. For now we dont have id:795 gh:796
 // a model with a Concatenation with fused activation function.
 #define TF_LITE_CONCATENATION(type, scalar)                                 \
   VectorOfInputs<scalar> all_inputs(*context, *node->inputs);               \
@@ -190,7 +190,7 @@ TfLiteRegistration* Register_CONCATENATION_GENERIC_OPT() {
 }
 
 TfLiteRegistration* Register_CONCATENATION() {
-  // TODO(ahentz): It turns out the two versions of Concatenation are almost
+  // TODO (ahentz): It turns out the two versions of Concatenation are almost id:1390 gh:1391
   // identical, so we should consider removing one.
   return Register_CONCATENATION_GENERIC_OPT();
 }

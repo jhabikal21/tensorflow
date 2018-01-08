@@ -27,7 +27,7 @@ limitations under the License.
 namespace tensorflow {
 
 typedef Eigen::ThreadPoolDevice CPUDevice;
-// NOTE: does not support GPU yet.
+// NOTE: does not support GPU yet. id:2319 gh:2320
 
 namespace {
 

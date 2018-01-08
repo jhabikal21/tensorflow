@@ -33,7 +33,7 @@ enum KernelType {
   kGenericOptimized,
 };
 
-// TODO(nupurgarg): Padding represented as a tensor is ignored. Only use the
+// TODO (nupurgarg): Padding represented as a tensor is ignored. Only use the id:1456 gh:1457
 // `left_padding` and `right_padding` specified in `params`.
 struct PadContext {
   PadContext(TfLiteContext* context, TfLiteNode* node) {
@@ -55,7 +55,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   int dims = NumDimensions(op_context.input);
   TF_LITE_ENSURE_EQ(context, dims, op_context.params->num_dimensions);
 
-  // TODO(nupurgarg): Our current implementations rely on the inputs being 4D.
+  // TODO (nupurgarg): Our current implementations rely on the inputs being 4D. id:1196 gh:1197
   TF_LITE_ENSURE_EQ(context, dims, 4);
 
   const TfLiteIntArray* input_size = op_context.input->dims;
@@ -77,7 +77,7 @@ template <KernelType kernel_type>
 TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   PadContext op_context(context, node);
 
-  // TODO(nupurgarg): Support different data types.
+  // TODO (nupurgarg): Support different data types. id:902 gh:903
   if (op_context.output->type == kTfLiteFloat32) {
     std::vector<int> before_padding(
         op_context.params->before_padding,
@@ -86,7 +86,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
         op_context.params->after_padding,
         op_context.params->after_padding + op_context.params->num_dimensions);
 
-    // TODO(nupurgarg): Change TOCO's implementation to use padding arrays
+    // TODO (nupurgarg): Change TOCO's implementation to use padding arrays id:2077 gh:2078
     // in forward order (depth, width, height, batch).
     // Converts from int[] = {depth, width, height, batch} to int[] = {batch,
     // height, width, depth} to match TOCO's implementation of pad in

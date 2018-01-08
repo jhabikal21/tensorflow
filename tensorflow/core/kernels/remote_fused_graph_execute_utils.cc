@@ -1449,7 +1449,7 @@ RemoteFusedGraphExecuteUtils::BuildNodeMapFromOpsDefinitions(
       placeholder_node.set_name(node_name);
       AddNodeAttr("dtype", type, &placeholder_node);
       AddNodeAttr("shape", shape, &placeholder_node);
-      // TODO(satok): Remove once we merge attributes
+      // TODO (satok): Remove once we merge attributes id:2289 gh:2290
       AddOutputTensorShapeType({type}, {shape}, &placeholder_node);
       node.Clear();
       node = placeholder_node;

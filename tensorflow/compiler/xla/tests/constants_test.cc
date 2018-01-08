@@ -156,7 +156,7 @@ TEST_F(ConstantsTest, Small_3x2x1x1) {
   }
 }
 
-// TODO(b/29263943): Support tuple constants.
+// TODO (b/29263943): Support tuple constants. id:435 gh:436
 TEST_F(ConstantsTest, DISABLED_TupleConstant) {
   ComputationBuilder builder(client_, TestName());
   builder.ConstantLiteral(

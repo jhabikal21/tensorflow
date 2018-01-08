@@ -73,7 +73,7 @@ TEST_F(RemoveEMATest, FakeQuant_RemoveEMA_QuantizeTraining) {
 
   // (3) Freeze the graph. Create a "frozen graph" that matches what we would
   // expect if we actually froze the above graph.
-  // TODO(suharshs): Use a c++ freeze graph alternative, when one is available.
+  // TODO (suharshs): Use a c++ freeze graph alternative, when one is available. id:3393 gh:3394
   GraphDef frozen_graph_def;
   for (const NodeDef& node : fake_quantized_graph_def.node()) {
     if (node.op() == "Variable" || node.op() == "VariableV2") {
@@ -102,7 +102,7 @@ TEST_F(RemoveEMATest, FakeQuant_RemoveEMA_QuantizeTraining) {
   EXPECT_LT(removed_ema_graph_def.node_size(), frozen_graph_def.node_size());
 
   // (5) QuantizeNodes and inspect the final graph.
-  // TODO(suharshs): Add a more thorough inspection of the structure of
+  // TODO (suharshs): Add a more thorough inspection of the structure of id:3538 gh:3539
   // the output graph.
   GraphDef quantized_graph_def;
   TF_ASSERT_OK(

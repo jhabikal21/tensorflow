@@ -113,7 +113,7 @@ class StatusOr : private internal_statusor::StatusOrData<T>,
   StatusOr& operator=(StatusOr&&) = default;
 
   // Conversion copy/move constructor, T must be convertible from U.
-  // TODO(b/62186717): These should not participate in overload resolution if U
+  // TODO (b/62186717): These should not participate in overload resolution if U id:468 gh:469
   // is not convertible to T.
   template <typename U>
   StatusOr(const StatusOr<U>& other);
@@ -130,7 +130,7 @@ class StatusOr : private internal_statusor::StatusOrData<T>,
   // constructor, calls to ValueOrDie() will succeed, and calls to status() will
   // return OK.
   //
-  // NOTE: Not explicit - we want to use StatusOr<T> as a return type
+  // NOTE: Not explicit - we want to use StatusOr<T> as a return type id:426 gh:427
   // so it is convenient and sensible to be able to do 'return T()'
   // when the return type is StatusOr<T>.
   //
@@ -140,7 +140,7 @@ class StatusOr : private internal_statusor::StatusOrData<T>,
   // Constructs a new StatusOr with the given non-ok status. After calling
   // this constructor, calls to ValueOrDie() will CHECK-fail.
   //
-  // NOTE: Not explicit - we want to use StatusOr<T> as a return
+  // NOTE: Not explicit - we want to use StatusOr<T> as a return id:427 gh:428
   // value, so it is convenient and sensible to be able to do 'return
   // Status()' when the return type is StatusOr<T>.
   //
@@ -150,7 +150,7 @@ class StatusOr : private internal_statusor::StatusOrData<T>,
   StatusOr(const Status& status);
   StatusOr& operator=(const Status& status);
 
-  // TODO(b/62186997): Add operator=(T) overloads.
+  // TODO (b/62186997): Add operator=(T) overloads. id:456 gh:457
 
   // Similar to the `const T&` overload.
   //

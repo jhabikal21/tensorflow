@@ -66,7 +66,7 @@ TF_CALL_ALL_TYPES(REGISTER)
 
 #undef REGISTER
 
-// NOTE(chizeng): We are phasing out the use of SummaryTensorOp in favor of
+// NOTE (chizeng): We are phasing out the use of SummaryTensorOp in favor of id:2606 gh:2607
 // SummaryTensorOpV2. This is because SummaryTensorOpV2 allows the callers to
 // pass a tag (more consistent with other summaries) as well as serialized
 // summary metadata used by plugins (which lets TensorBoard determine which

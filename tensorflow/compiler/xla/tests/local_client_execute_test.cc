@@ -415,9 +415,9 @@ XLA_TEST_F(LocalClientExecuteTest, LargeTuple) {
 
   // A larger number of elements would make for a better, more strenuous test,
   // but:
-  // TODO(b/66959878): On cpu a large number of elements results in long
+  // TODO (b/66959878): On cpu a large number of elements results in long id:461 gh:462
   //   compilation time.
-  // TODO(b/66954197): On gpu a large number of elements OOMs.
+  // TODO (b/66954197): On gpu a large number of elements OOMs. id:441 gh:442
   const int kElementCount = 100;
 
   // Each element is a 2-element vector.
@@ -459,7 +459,7 @@ XLA_TEST_F(LocalClientExecuteTest, LargeTuple) {
   }
 }
 
-// TODO(b/66968986): Test times out on CPU parallel backend. Disabled
+// TODO (b/66968986): Test times out on CPU parallel backend. Disabled id:480 gh:481
 // 2017-09-26.
 XLA_TEST_F(LocalClientExecuteTest, DISABLED_ON_CPU_PARALLEL(LargeNestedTuple)) {
   // Construct and run a computation which takes a two-level nested tuple
@@ -858,7 +858,7 @@ XLA_TEST_F(LocalClientExecuteTest, ShapeBufferToLiteralConversion64bit) {
                            Literal::CreateR0<int64>(123456789000LL).get()}));
 }
 
-// TODO(b/34359662): Support infeed/outfeed on GPU and CPU parallel.
+// TODO (b/34359662): Support infeed/outfeed on GPU and CPU parallel. id:443 gh:444
 // 2017-10-18.
 XLA_TEST_F(LocalClientExecuteTest,
            DISABLED_ON_GPU(DISABLED_ON_CPU_PARALLEL(InfeedOutfeedTest))) {

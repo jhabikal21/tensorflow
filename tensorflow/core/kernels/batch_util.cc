@@ -61,7 +61,7 @@ Status HandleElementToSlice<string>(Tensor element, Tensor* parent, int64 index,
   return Status::OK();
 }
 
-// TODO(jsimsa): Add HandleElementToSlice<variant> specialization that moves
+// TODO (jsimsa): Add HandleElementToSlice<variant> specialization that moves id:1437 gh:1439
 // the data when possible.
 
 template <typename T>

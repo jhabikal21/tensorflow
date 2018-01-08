@@ -35,7 +35,7 @@ RE2_URL="$(grep -o 'https://mirror.bazel.build/github.com/google/re2/.*tar\.gz' 
 FFT2D_URL="$(grep -o 'http.*fft\.tgz' "${BZL_FILE_PATH}" | grep -v mirror.bazel | head -n1)"
 ABSL_URL="$(grep -o 'https://github.com/abseil/abseil-cpp/.*tar.gz' "${BZL_FILE_PATH}" | head -n1)"
 
-# TODO(petewarden): Some new code in Eigen triggers a clang bug with iOS arm64,
+# TODO (petewarden): Some new code in Eigen triggers a clang bug with iOS arm64, id:2125 gh:2126
 #                   so work around it by patching the source.
 replace_by_sed() {
   local regex="${1}"
@@ -89,7 +89,7 @@ replace_by_sed 's#static uint32x2_t p2ui_CONJ_XOR = vld1_u32( conj_XOR_DATA );#s
   "${DOWNLOADS_DIR}/eigen/Eigen/src/Core/arch/NEON/Complex.h"
 replace_by_sed 's#static uint64x2_t p2ul_CONJ_XOR = vld1q_u64( p2ul_conj_XOR_DATA );#static uint64x2_t p2ul_CONJ_XOR;// = vld1q_u64( p2ul_conj_XOR_DATA ); - Removed by script#' \
   "${DOWNLOADS_DIR}/eigen/Eigen/src/Core/arch/NEON/Complex.h"
-# TODO(satok): Remove this once protobuf/autogen.sh is fixed.
+# TODO (satok): Remove this once protobuf/autogen.sh is fixed. id:866 gh:867
 replace_by_sed 's#https://googlemock.googlecode.com/files/gmock-1.7.0.zip#http://download.tensorflow.org/deps/gmock-1.7.0.zip#' \
   "${DOWNLOADS_DIR}/protobuf/autogen.sh"
 

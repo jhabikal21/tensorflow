@@ -222,7 +222,7 @@ class NodeStepperCLI(object):
   def list_sorted_nodes(self, args, screen_info=None):
     """List the sorted transitive closure of the stepper's fetches."""
 
-    # TODO(cais): Use pattern such as del args, del screen_info python/debug.
+    # TODO (cais): Use pattern such as del args, del screen_info python/debug. id:2686 gh:2687
     _ = args
     _ = screen_info
 
@@ -255,7 +255,7 @@ class NodeStepperCLI(object):
       if i < index_range[0] or i >= index_range[1]:
         continue
 
-      # TODO(cais): Use fixed-width text to show node index.
+      # TODO (cais): Use fixed-width text to show node index. id:3160 gh:3161
       if i == self._next:
         node_prefix = RL("  ") + RL(self.NEXT_NODE_POINTER_STR, "bold")
       else:
@@ -580,9 +580,9 @@ class NodeStepperCLI(object):
 
     return debugger_cli_common.RichTextLines(lines)
 
-  # TODO(cais): Implement list_inputs
-  # TODO(cais): Implement list_outputs
-  # TODO(cais): Implement node_info
+  # TODO (cais): Implement list_inputs id:2886 gh:2887
+  # TODO (cais): Implement list_outputs id:3126 gh:3127
+  # TODO (cais): Implement node_info id:2231 gh:2232
 
   def _resolve_tensor_names(self, element_name):
     """Resolve tensor name from graph element name.

@@ -420,7 +420,7 @@ class Optimizer(object):
         raise RuntimeError(
             "`loss` passed to Optimizer.compute_gradients should "
             "be a function when eager execution is enabled.")
-      # TODO(agarwal): consider passing parameters to the `loss` function.
+      # TODO (agarwal): consider passing parameters to the `loss` function. id:2636 gh:2637
       if var_list is None:
         return backprop.implicit_grad(loss)()
       else:
@@ -522,7 +522,7 @@ class Optimizer(object):
           continue
         # We colocate all ops created in _apply_dense or _apply_sparse
         # on the same device as the variable.
-        # TODO(apassos): figure out how to get the variable name here.
+        # TODO (apassos): figure out how to get the variable name here. id:3354 gh:3355
         scope_name = var.op.name if context.in_graph_mode() else ""
         with ops.name_scope("update_" + scope_name), ops.colocate_with(var):
           update_ops.append(processor.update_op(self, grad))

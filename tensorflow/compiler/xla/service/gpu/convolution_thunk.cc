@@ -313,7 +313,7 @@ tensorflow::Status ConvolutionThunk::ConvolveWithTune(
     se::DeviceMemory<float> output_data,
     const ConvolutionDescriptor& convolution_descriptor,
     const BufferAllocations& buffer_allocations, se::Stream* stream) {
-  // TODO(b/29126320): Try cudnn v5's new auto-tuner when it's rolled out.
+  // TODO (b/29126320): Try cudnn v5's new auto-tuner when it's rolled out. id:348 gh:349
   if (!best_algorithm_.has_value()) {
     best_algorithm_.emplace();
 

@@ -27,7 +27,7 @@ _DEFAULT_NUMBER_OF_SHARDS = 1
 _DEFAULT_SHARD_DIMENSION = 0
 
 
-# TODO(b/36777903) change other parts of tpu.py to use this class.
+# TODO (b/36777903) change other parts of tpu.py to use this class. id:1424 gh:1425
 class ShardingPolicy(object):
   """An object use to hold the sharding policy for a Tensor.
   """

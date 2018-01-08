@@ -176,7 +176,7 @@ class CudnnCompatibleGRUCell(rnn_cell_impl.GRUCell):
     return new_h, new_h
 
 
-# TODO(yaozhang): make sure we only save the canonical version of params and
+# TODO (yaozhang): make sure we only save the canonical version of params and id:567 gh:568
 # don't save the platform-specific version to avoid potential race
 # conditions where params is updated by both versions when being restored.
 # Currently, checkpointing will function properly, despite that we save both
@@ -1253,7 +1253,7 @@ class _CudnnRNN(object):
   """
   __doc__ += _cudnn_rnn_common_doc_string
 
-  # TODO(jamesqin): support float16 CuDNN RNN
+  # TODO (jamesqin): support float16 CuDNN RNN id:505 gh:506
   def __init__(self,
                rnn_mode,
                num_layers,

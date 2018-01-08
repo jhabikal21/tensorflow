@@ -172,7 +172,7 @@ Status ToRNNInputMode(TFRNNInputMode tf_input_mode, int num_units,
   return Status::OK();
 }
 
-// TODO(zhengxq): Merge those into stream_executor_util.h.
+// TODO (zhengxq): Merge those into stream_executor_util.h. id:843 gh:844
 template <typename T>
 const DeviceMemory<T> AsDeviceMemory(const Tensor* tensor) {
   return DeviceMemory<T>::MakeFromByteSize(
@@ -808,7 +808,7 @@ class CudnnRNNForwardOp<GPUDevice, T> : public CudnnRNNKernelCommon {
     OP_REQUIRES_OK(context,
                    ToRNNInputMode(rnn_input_mode(), model_shapes.num_units,
                                   model_shapes.input_size, &input_mode));
-    // TODO(zhengxq): cache the descriptor so we don't have to create them all
+    // TODO (zhengxq): cache the descriptor so we don't have to create them all id:508 gh:509
     // the time.
     auto data_type = ToDataType<T>::value;
     {
@@ -1022,7 +1022,7 @@ class CudnnRNNBackwardOp<GPUDevice, T> : public CudnnRNNKernelCommon {
     OP_REQUIRES_OK(context,
                    ToRNNInputMode(rnn_input_mode(), model_shapes.num_units,
                                   model_shapes.input_size, &input_mode));
-    // TODO(zhengxq): cache the descriptor so we don't have to create them all
+    // TODO (zhengxq): cache the descriptor so we don't have to create them all id:564 gh:565
     // the time.
     {
       mutex_lock l(mu_);
@@ -1135,7 +1135,7 @@ TF_CALL_float(REGISTER_GPU);
 TF_CALL_double(REGISTER_GPU);
 #undef REGISTER_GPU
 
-// TODO(zhengxq): Add the conversion of Cudnn RNN Params from and to
+// TODO (zhengxq): Add the conversion of Cudnn RNN Params from and to id:501 gh:502
 // its canonical form.
 
 #endif  // GOOGLE_CUDA

@@ -24,7 +24,7 @@ limitations under the License.
 namespace tensorflow {
 namespace {
 
-// TODO(annarev): Remove this op_gen_overrides.pbtxt reference.
+// TODO (annarev): Remove this op_gen_overrides.pbtxt reference. id:59 gh:60
 // It is needed only because WriteCCOps takes it as an argument.
 constexpr char kOverridesFnames[] =
     "tensorflow/cc/ops/op_gen_overrides.pbtxt";

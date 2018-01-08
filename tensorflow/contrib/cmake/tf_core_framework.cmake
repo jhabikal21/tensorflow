@@ -191,7 +191,7 @@ file(GLOB_RECURSE tf_core_lib_srcs
     "${tensorflow_source_dir}/tensorflow/core/lib/*.h"
     "${tensorflow_source_dir}/tensorflow/core/lib/*.cc"
     "${tensorflow_source_dir}/tensorflow/core/public/*.h"
-    # TODO(@jart): Move StatusOr into core.
+    # TODO (@jart): Move StatusOr into core. id:494 gh:495
     "${tensorflow_source_dir}/tensorflow/compiler/xla/statusor.cc"
     "${tensorflow_source_dir}/tensorflow/compiler/xla/statusor.h"
     "${tensorflow_source_dir}/tensorflow/compiler/xla/statusor_internals.h"
@@ -319,7 +319,7 @@ file(GLOB_RECURSE tf_core_framework_exclude_srcs
     "${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/*test*.cc"
 )
 
-# TODO(jart): Why doesn't this work?
+# TODO (jart): Why doesn't this work? id:518 gh:519
 # set_source_files_properties(
 #     ${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/snapfn.cc
 #     PROPERTIES COMPILE_FLAGS -DSQLITE_OMIT_LOAD_EXTENSION)

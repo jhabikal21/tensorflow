@@ -164,7 +164,7 @@ class DeterminantOpGpu : public AsyncOpKernel {
       return;
     }
 
-    // TODO(rmlarsen): Convert to absl::make_unique when available.
+    // TODO (rmlarsen): Convert to absl::make_unique when available. id:2002 gh:2003
     std::unique_ptr<CudaSolver> solver(new CudaSolver(context));
 
     // Reuse the input buffer or make a copy for the factorization step,
@@ -192,7 +192,7 @@ class DeterminantOpGpu : public AsyncOpKernel {
     auto pivots_mat = pivots.template matrix<int>();
 
     // Prepare pointer arrays for cuBlas' batch interface.
-    // TODO(rmlarsen): Find a way to encode pointer arrays in pinned host memory
+    // TODO (rmlarsen): Find a way to encode pointer arrays in pinned host memory id:1521 gh:1522
     // without the ugly casting.
     auto input_copy_ptrs = solver->GetScratchSpace<uint8>(
         sizeof(Scalar*) * batch_size, "input_copy_ptrs",
@@ -309,7 +309,7 @@ class LogDeterminantOpGpu : public AsyncOpKernel {
       return;
     }
 
-    // TODO(rmlarsen): Convert to absl::make_unique when available.
+    // TODO (rmlarsen): Convert to absl::make_unique when available. id:2749 gh:2750
     std::unique_ptr<CudaSolver> solver(new CudaSolver(context));
 
     // Reuse the input buffer or make a copy for the factorization step,
@@ -337,7 +337,7 @@ class LogDeterminantOpGpu : public AsyncOpKernel {
     auto pivots_mat = pivots.template matrix<int>();
 
     // Prepare pointer arrays for cuBlas' batch interface.
-    // TODO(rmlarsen): Find a way to encode pointer arrays in pinned host memory
+    // TODO (rmlarsen): Find a way to encode pointer arrays in pinned host memory id:1569 gh:1570
     // without the ugly casting.
     auto input_copy_ptrs = solver->GetScratchSpace<uint8>(
         sizeof(Scalar*) * batch_size, "input_copy_ptrs",

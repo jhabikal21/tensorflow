@@ -26,7 +26,7 @@ using ::testing::ElementsAreArray;
 
 class BasePoolingOpModel : public SingleOpModel {
  public:
-  // TODO(ahentz): Also test different activation types, bias, padding types,
+  // TODO (ahentz): Also test different activation types, bias, padding types, id:1458 gh:1459
   // stride values.
   BasePoolingOpModel(BuiltinOperator type, const TensorData& input,
                      int filter_width, int filter_height,

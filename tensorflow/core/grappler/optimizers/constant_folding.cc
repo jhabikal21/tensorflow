@@ -224,7 +224,7 @@ Status ConvertShapeToConstant(const string& op, const DataType& type,
   return Status::OK();
 }
 
-// TODO(rmlarsen): Perhaps we should move this to the GraphOptimizer base class.
+// TODO (rmlarsen): Perhaps we should move this to the GraphOptimizer base class. id:2097 gh:2098
 bool ConstantFolding::OptimizedNodeExists(const NodeDef& node,
                                           StringPiece suffix) const {
   return node_map_->NodeExists(OptimizedNodeName(node, suffix));
@@ -1378,7 +1378,7 @@ Status ConstantFolding::SimplifyGraph(GraphDef* output,
       const bool y_matches_output_shape = ShapesEqual(output_shape, y_shape);
       if (y_matches_output_shape &&
           ((is_mul && x_is_one) || (is_add && x_is_zero))) {
-        // TODO(rmlarsen): Handle subtraction 0 - y.
+        // TODO (rmlarsen): Handle subtraction 0 - y. id:1890 gh:1891
         // 1 * y = y or 0 + y = y.
         ReplaceOperationWithIdentity(1, node);
         continue;
@@ -1483,7 +1483,7 @@ Status ConstantFolding::SimplifyGraph(GraphDef* output,
     //
     //    Add(C1, Add(C2, X)) -> Add(X, Add(C1, C2)) -> Add(X, C1 + C2)
     //
-    // TODO(rmlarsen): Handle non-associative/non-commutative operators like
+    // TODO (rmlarsen): Handle non-associative/non-commutative operators like id:1427 gh:1428
     // subtraction and division, as well as mixed subtraction/addition,
     // division/multiplication.
     // Don't touch BiasAdd since they can't handle vectors as their first

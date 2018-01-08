@@ -21,7 +21,7 @@ limitations under the License.
 extern "C" {
 #endif  // __cplusplus
 
-// TODO(aselle): Consider using "if this then that" for testing.
+// TODO (aselle): Consider using "if this then that" for testing. id:1372 gh:1373
 
 // Possible padding types (for convolutions)
 typedef enum {
@@ -36,7 +36,7 @@ typedef struct {
 } TfLitePaddingValues;
 
 // Possible fused activation functions.
-// TODO(aselle): rename to TfLiteActivation
+// TODO (aselle): rename to TfLiteActivation id:1148 gh:1149
 typedef enum {
   kTfLiteActNone = 0,
   kTfLiteActRelu,
@@ -108,7 +108,7 @@ typedef struct {
   // Number of spatial dimensions.
   // For now only NHWC is supported, and the value should always be 2.
   int num_spatial_dimensions;
-  // TODO(ahentz): We can't have dynamic data in this struct, at least not yet.
+  // TODO (ahentz): We can't have dynamic data in this struct, at least not yet. id:816 gh:817
   // For now we will fix the maximum possible number of dimensions.
   int block_shape[2];
   int before_paddings[2];
@@ -119,7 +119,7 @@ typedef struct {
   // Number of spatial dimensions.
   // For now only NHWC is supported, and the value should always be 2.
   int num_spatial_dimensions;
-  // TODO(ahentz): We can't have dynamic data in this struct, at least not yet.
+  // TODO (ahentz): We can't have dynamic data in this struct, at least not yet. id:757 gh:758
   // For now we will fix the maximum possible number of dimensions.
   int block_shape[2];
   int before_crops[2];
@@ -153,7 +153,7 @@ typedef struct {
 } TfLiteResizeBilinearParams;
 
 typedef struct {
-  // TODO(ahentz): We can't have dynamic data in this struct, at least not yet.
+  // TODO (ahentz): We can't have dynamic data in this struct, at least not yet. id:784 gh:786
   // For now we will fix the maximum possible number of dimensions.
   int before_padding[8];
   int after_padding[8];
@@ -161,7 +161,7 @@ typedef struct {
 } TfLitePadParams;
 
 typedef struct {
-  // TODO(ahentz): We can't have dynamic data in this struct, at least not yet.
+  // TODO (ahentz): We can't have dynamic data in this struct, at least not yet. id:1373 gh:1374
   // For now we will fix the maximum possible number of dimensions.
   int shape[8];
   int num_dimensions;

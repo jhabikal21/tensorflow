@@ -88,7 +88,7 @@ xla::StatusOr<xla::ComputationDataHandle> SliceInMinorDims(
 xla::StatusOr<xla::ComputationDataHandle> UpdateSlice(
     xla::ComputationBuilder* builder, const xla::ComputationDataHandle& x,
     const xla::ComputationDataHandle& update, gtl::ArraySlice<int64> start) {
-  // TODO(phawkins): make int64 work on all backends, remove the int32 cast.
+  // TODO (phawkins): make int64 work on all backends, remove the int32 cast. id:293 gh:294
   std::vector<int32> start_as_int32(start.begin(), start.end());
   return builder->DynamicUpdateSlice(
       x, update, builder->ConstantR1<int32>(start_as_int32));

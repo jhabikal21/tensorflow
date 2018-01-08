@@ -392,7 +392,7 @@ class DeserializeSparseOp : public OpKernel {
                 i, "] was: ", shape.dims() - 1, " but rank of SparseTensor[", i,
                 "] is: ", expanded_tensor_shape.dims() - 1));
         for (int j = 1; j < shape.dims(); ++j) {
-          // NOTE(mrry): For compatibility with the implementations of
+          // NOTE (mrry): For compatibility with the implementations of id:1791 gh:1792
           // DeserializeManySparse, and many ops that generate
           // SparseTensors to batch that do not have a fixed
           // dense_shape (e.g. `tf.parse_single_example()`), we

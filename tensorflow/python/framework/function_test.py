@@ -722,7 +722,7 @@ class FunctionTest(test.TestCase):
         return y
 
       with self.assertRaisesRegexp(ValueError, "not an element of this graph."):
-        # NOTE: We still do not support capturing control deps.
+        # NOTE: We still do not support capturing control deps. id:2754 gh:2755
         _ = Foo(x)
 
   def testCaptureInWhileLoop(self):
@@ -764,7 +764,7 @@ class FunctionTest(test.TestCase):
       return math_ops.tanh(math_ops.matmul(x, y) + z)
 
     # We added more randomness to function names in C API.
-    # TODO(iga): Remove this if statement when we switch to C API.
+    # TODO (iga): Remove this if statement when we switch to C API. id:3247 gh:3248
     if ops._USE_C_API:  # pylint: disable=protected-access
       if sys.byteorder == 'big':
         self.assertEqual("Foo_kEdkAG8SJvg",
@@ -929,9 +929,9 @@ class FunctionTest(test.TestCase):
     def Bar(x):
       return x
 
-    # NOTE(mrry): All functions are currently considered stateless by the
+    # NOTE (mrry): All functions are currently considered stateless by the id:2956 gh:2957
     # runtime, so we simulate a "stateful" function.
-    # TODO(b/70565970): Remove this hack when we are able to build stateful
+    # TODO (b/70565970): Remove this hack when we are able to build stateful id:3211 gh:3212
     # functions using the API.
     # pylint: disable=protected-access
     Foo._signature.is_stateful = True

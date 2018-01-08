@@ -14,7 +14,7 @@ limitations under the License.
 ==============================================================================*/
 
 // Copied from tensorflow/core/kernels/eigen_spatial_convolutions.h.
-// TODO(petewarden) - move this to a common location in Eigen itself.
+// TODO (petewarden) - move this to a common location in Eigen itself. id:1440 gh:1441
 
 #ifndef THIRD_PARTY_TENSORFLOW_CONTRIB_LITE_KERNELS_INTERNAL_OPTIMIZED_EIGEN_SPATIAL_CONVOLUTIONS_H_
 #define THIRD_PARTY_TENSORFLOW_CONTRIB_LITE_KERNELS_INTERNAL_OPTIMIZED_EIGEN_SPATIAL_CONVOLUTIONS_H_
@@ -22,7 +22,7 @@ limitations under the License.
 #define EIGEN_USE_CUSTOM_THREAD_POOL
 #define EIGEN_USE_THREADS
 
-// NOTE: Eigen is slightly different internally and externally. We need to
+// NOTE: Eigen is slightly different internally and externally. We need to id:1175 gh:1176
 // hack the unsupported/Eigen/CXX11/Tensor header instantiation macros at
 // specific places, so we need two copies of the hacked file, one for
 // internal and one for external.
@@ -213,7 +213,7 @@ EIGEN_DEVICE_FUNC
     kernel_dims[0] = kernelChannels * kernelRows * kernelCols;
     kernel_dims[1] = kernelFilters;
   }
-  // TODO(yangke): choose() is defined in TensorContraction.h -- consider
+  // TODO (yangke): choose() is defined in TensorContraction.h -- consider id:881 gh:882
   // moving it to somewhere more "common".
   return
       input

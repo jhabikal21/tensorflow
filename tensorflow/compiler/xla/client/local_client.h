@@ -163,14 +163,14 @@ class LocalClient : public Client {
       const ShapedBuffer& shaped_buffer);
 
   // Transfer the given literal to the infeed queue of the given device.
-  // TODO(b/69670845): Remove the 'Local' from the name when LocalClient does
+  // TODO (b/69670845): Remove the 'Local' from the name when LocalClient does id:243 gh:244
   // not inherit from Client and there is no possibility of confusion with
   // Client::TransferToInfeed.
   Status TransferToInfeedLocal(const Literal& literal, int device_ordinal);
 
   // Transfer and return a value of the given shape from the outfeed of the
   // given device.
-  // TODO(b/69670845): Remove the 'Local' from the name when LocalClient does
+  // TODO (b/69670845): Remove the 'Local' from the name when LocalClient does id:242 gh:243
   // not inherit from Client and there is no possibility of confusion with
   // Client::TransferFromOutfeed.
   StatusOr<std::unique_ptr<Literal>> TransferFromOutfeedLocal(

@@ -263,11 +263,11 @@ Status CpuCompiler::RunHloPasses(HloModule* module, bool is_aot_compile) {
       &pipeline, module->config().debug_options(),
       ReducePrecisionInsertion::PassTiming::BEFORE_OPTIMIZATION);
 
-  // TODO(b/35786417): Re-enable inliner pass after fixing the bug and deciding
+  // TODO (b/35786417): Re-enable inliner pass after fixing the bug and deciding id:271 gh:272
   // where we will take this pass in future.
   // pipeline.AddPass<Inliner>();
 
-  // TODO(b/65775800): Fix wrong output bug in Call and remove the CallInliner
+  // TODO (b/65775800): Fix wrong output bug in Call and remove the CallInliner id:275 gh:276
   // pass.
   pipeline.AddPass<CallInliner>();
   pipeline.AddPass<DotDecomposer>();
@@ -335,7 +335,7 @@ Status CpuCompiler::RunHloPasses(HloModule* module, bool is_aot_compile) {
     // Note this is not run for AOT because it would bring in thread pool
     // and thread synchronization dependencies which would likely increase
     // binary size (and most AOT applications are single-threaded).
-    // TODO(29630486) Support multi-threaded AOT.
+    // TODO (29630486) Support multi-threaded AOT. id:277 gh:278
     pipeline.AddPass<ParallelTaskAssigner>(max_parallelism,
                                            ShapeSizeBytesFunction());
   }

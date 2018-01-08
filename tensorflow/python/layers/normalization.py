@@ -217,14 +217,14 @@ class BatchNormalization(base.Layer):
     if self.fused:
       # Currently fused batch norm doesn't support renorm. It also only supports
       # an input tensor of rank 4 and a channel dimension on axis 1 or 3.
-      # TODO(yaozhang): if input is not 4D, reshape it to 4D and reshape the
+      # TODO (yaozhang): if input is not 4D, reshape it to 4D and reshape the id:3113 gh:3114
       # output back to its original shape accordingly.
       self.fused = (not self.renorm and
                     ndims == 4 and
                     self.axis in [[1], [3]] and
                     self.virtual_batch_size is None and
                     self.adjustment is None)
-      # TODO(chrisying): fused batch norm is currently not supported for
+      # TODO (chrisying): fused batch norm is currently not supported for id:3333 gh:3334
       # multi-axis batch norm and by extension virtual batches. In some cases,
       # it might be possible to use fused batch norm but would require reshaping
       # the Tensor to 4D with the axis in 1 or 3 (preferred 1) which is
@@ -323,7 +323,7 @@ class BatchNormalization(base.Layer):
         # These are used in training and thus are different from the moving
         # averages above. The renorm variables are colocated with moving_mean
         # and moving_variance.
-        # NOTE: below, the outer `with device` block causes the current device
+        # NOTE: below, the outer `with device` block causes the current device id:2490 gh:2491
         # stack to be cleared. The nested ones use a `lambda` to set the desired
         # device and ignore any devices that may be set by the custom getter.
         def _renorm_variable(name, shape):

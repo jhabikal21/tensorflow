@@ -134,7 +134,7 @@ class ModelFnOps(
       if mode == ModeKeys.TRAIN:
         raise ValueError('Missing train_op.')
     elif not isinstance(train_op, ops.Operation):
-      # TODO(ptucker): Should this be allowed? Consider raising error.
+      # TODO (ptucker): Should this be allowed? Consider raising error. id:1035 gh:1036
       train_op = ops.convert_to_tensor(train_op).op
 
     # Validate loss.

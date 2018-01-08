@@ -654,7 +654,7 @@ class Layer(object):
                                'Eager mode. Found an activity_regularizer in '
                                '%s(%s).' % (self.__class__.__name__, self))
           if not in_graph_mode and not in_deferred_mode:
-            # TODO(agarwal): support _keras_history in Eager mode.
+            # TODO (agarwal): support _keras_history in Eager mode. id:3329 gh:3330
             for x in input_list:
               if hasattr(x, '_keras_history'):
                 raise ValueError('_keras_history currently unsupported in '
@@ -683,7 +683,7 @@ class Layer(object):
           # Note: not all sub-classes of Layer call Layer.__init__ (especially
           # the ones under tensorflow/python/keras). Hence we recompute this
           # attribute here if it is not set.
-          # TODO(agarwal): Fix the sub-classes and avoid this complexity.
+          # TODO (agarwal): Fix the sub-classes and avoid this complexity. id:2487 gh:2488
           call_has_scope_arg = self._call_has_scope_arg
         except AttributeError:
           call_has_scope_arg = 'scope' in estimator_util.fn_args(self.call)
@@ -704,7 +704,7 @@ class Layer(object):
           output_shapes = self.compute_output_shape(input_shapes)
           output_shapes = nest.flatten(output_shapes)
           outputs = [
-              # TODO(fchollet): name the deferred tensors?
+              # TODO (fchollet): name the deferred tensors? id:3005 gh:3006
               _DeferredTensor(shape=shape, dtype=self._dtype)
               for shape in output_shapes
           ]
@@ -723,7 +723,7 @@ class Layer(object):
               self.add_loss(activity_regularization, inputs=inputs)
 
         if not in_deferred_mode:
-          # TODO(fchollet): consider how masking will work with deferred mode.
+          # TODO (fchollet): consider how masking will work with deferred mode. id:3504 gh:3505
           # Handle mask computation and propagation to the next layer.
           if hasattr(self, 'compute_mask'):
             output_mask = self.compute_mask(inputs, previous_mask)

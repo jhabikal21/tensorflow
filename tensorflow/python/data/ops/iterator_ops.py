@@ -27,7 +27,7 @@ from tensorflow.python.framework import tensor_shape
 from tensorflow.python.ops import gen_dataset_ops
 
 
-# NOTE(mrry): It is legitimate to call `Iterator.get_next()` multiple
+# NOTE (mrry): It is legitimate to call `Iterator.get_next()` multiple id:3141 gh:3142
 # times, e.g. when you are distributing different elements to multiple
 # devices in a single step. However, a common pitfall arises when
 # users call `Iterator.get_next()` in each iteration of their training
@@ -250,7 +250,7 @@ class Iterator(object):
     if self._initializer is not None:
       return self._initializer
     else:
-      # TODO(mrry): Consider whether one-shot iterators should have
+      # TODO (mrry): Consider whether one-shot iterators should have id:2828 gh:2829
       # initializers that simply reset their state to the beginning.
       raise ValueError("Iterator does not have an initializer.")
 

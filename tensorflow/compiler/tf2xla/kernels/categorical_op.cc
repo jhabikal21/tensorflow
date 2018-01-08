@@ -72,7 +72,7 @@ class CategoricalOp : public XlaOpKernel {
     // Use Gumbel softmax trick to generate categorical samples.
     // See:
     // https://hips.seas.harvard.edu/blog/2013/04/06/the-gumbel-max-trick-for-discrete-distributions/
-    // TODO(b/68769470): Switch to using a cumulative sum approach.
+    // TODO (b/68769470): Switch to using a cumulative sum approach. id:198 gh:199
     auto softmax_entries =
         builder->Sub(logits, builder->Log(builder->Neg(builder->Log(uniforms))),
                      /*broadcast_dimensions=*/{0, 2});
@@ -91,7 +91,7 @@ class CategoricalOp : public XlaOpKernel {
   TF_DISALLOW_COPY_AND_ASSIGN(CategoricalOp);
 };
 
-// TODO(b/68769717): Rename this sampler to Categorical.
+// TODO (b/68769717): Rename this sampler to Categorical. id:200 gh:201
 REGISTER_XLA_OP(Name("Multinomial").CompileTimeConstInput("num_samples"),
                 CategoricalOp);
 

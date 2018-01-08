@@ -119,7 +119,7 @@ class XlaCompiledCpuFunction {
 
   // Returns the error message from the previous failed Run call.
   //
-  // TODO(fschneider): For now this always returns an empty string because there
+  // TODO (fschneider): For now this always returns an empty string because there id:232 gh:233
   // is no support for error reporting in XLA. Remove this once all callers are
   // updated.
   string error_msg() const { return {}; }

@@ -234,7 +234,7 @@ Status TensorSliceReader::GetTensor(
     }
 
     if (tss->Slices().size() > 1) {
-      // TODO(sherrym): Support multi-slice checkpoints.
+      // TODO (sherrym): Support multi-slice checkpoints. id:2604 gh:2605
       return errors::Unimplemented("Sliced checkpoints are not supported");
     }
 

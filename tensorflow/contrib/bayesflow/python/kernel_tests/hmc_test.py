@@ -33,7 +33,7 @@ from tensorflow.python.platform import test
 from tensorflow.python.platform import tf_logging as logging
 
 
-# TODO(b/66964210): Test float16.
+# TODO (b/66964210): Test float16. id:486 gh:487
 class HMCTest(test.TestCase):
 
   def setUp(self):

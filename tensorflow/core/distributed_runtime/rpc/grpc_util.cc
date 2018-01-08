@@ -80,7 +80,7 @@ grpc::protobuf::int64 GrpcByteBufferSource::ByteCount() const {
 
 void GrpcMaybeUnparseProto(const protobuf::Message& src,
                            grpc::ByteBuffer* dst) {
-  // TODO(sanjay): For bigger protos, serialize into a ZeroCopyOutputStream.
+  // TODO (sanjay): For bigger protos, serialize into a ZeroCopyOutputStream. id:1255 gh:1256
   ::grpc::Slice s(src.ByteSizeLong());
   src.SerializeWithCachedSizesToArray(
       const_cast<uint8*>(reinterpret_cast<const uint8*>(s.begin())));

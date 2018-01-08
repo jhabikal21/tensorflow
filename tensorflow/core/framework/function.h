@@ -126,7 +126,7 @@ class FunctionDefHelper {
                             gtl::ArraySlice<std::pair<string, string>> ret_def);
 
   // The two Define() functions use the old FunctionDef::Node field.
-  // TODO(josh11b): Get rid of these and transition to the one above.
+  // TODO (josh11b): Get rid of these and transition to the one above. id:1174 gh:1175
   static FunctionDef Define(const string& function_name,
                             gtl::ArraySlice<string> arg_def,
                             gtl::ArraySlice<string> ret_def,
@@ -350,7 +350,7 @@ class FunctionLibraryDefinition : public OpRegistryInterface {
   // Given a node def 'ndef', inspects attributes of the callee
   // function to derive the attribute 'value' for 'attr'. Returns OK
   // iff the attribute is given by the function's definition.
-  // TODO(irving): Remove; keep only the const Node& version.
+  // TODO (irving): Remove; keep only the const Node& version. id:1927 gh:1928
   template <typename T>
   Status GetAttr(const NodeDef& ndef, const string& attr, T* value) const;
 
@@ -580,10 +580,10 @@ Status ArgNumType(AttrSlice attrs, const OpDef::ArgDef& arg_def,
 //   return Status::OK();
 // }
 //
-// NOTE: $T is substituted with the type variable "T" when the
+// NOTE: $T is substituted with the type variable "T" when the id:1723 gh:1724
 // gradient function MatMul is instantiated.
 //
-// TODO(zhifengc): Better documentation somewhere.
+// TODO (zhifengc): Better documentation somewhere. id:1314 gh:1315
 
 // Macros to define a gradient function factory for a primitive
 // operation.

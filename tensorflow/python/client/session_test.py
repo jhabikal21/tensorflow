@@ -58,7 +58,7 @@ from tensorflow.python.training import server_lib
 from tensorflow.python.util import compat
 
 
-# NOTE(mrry): Dummy shape registration for ops used in the tests, since they
+# NOTE (mrry): Dummy shape registration for ops used in the tests, since they id:2810 gh:2811
 # don't have C++ op registrations on which to attach C++ shape fns.
 ops.RegisterShape('ConstructionFails')(common_shapes.unknown_shape)
 
@@ -89,7 +89,7 @@ class SessionTest(test_util.TensorFlowTestCase):
       inp = constant_op.constant(10.0, shape=[2, 3], name='W1')
       copy = array_ops.identity(inp)
       # Test with feed.
-      # TODO(mrry): Investigate why order='F' didn't work.
+      # TODO (mrry): Investigate why order='F' didn't work. id:3100 gh:3101
       arr = np.asarray([[0, 1, 2], [3, 4, 5]], dtype=np.float32, order='C')
       copy_val = copy.eval({'W1:0': arr})
       self.assertAllEqual(arr, copy_val)
@@ -99,7 +99,7 @@ class SessionTest(test_util.TensorFlowTestCase):
                                      dtype=np.float32), copy_val)
 
   def testManyCPUs(self):
-    # TODO(keveman): Implement ListDevices and test for the number of
+    # TODO (keveman): Implement ListDevices and test for the number of id:2199 gh:2200
     # devices returned by ListDevices.
     with session.Session(
         config=config_pb2.ConfigProto(device_count={'CPU': 2})):
@@ -107,7 +107,7 @@ class SessionTest(test_util.TensorFlowTestCase):
       self.assertAllEqual(inp.eval(), 10.0)
 
   def testPerSessionThreads(self):
-    # TODO(keveman): Implement ListDevices and test for the number of
+    # TODO (keveman): Implement ListDevices and test for the number of id:2662 gh:2663
     # devices returned by ListDevices.
     with session.Session(
         config=config_pb2.ConfigProto(use_per_session_threads=True)):
@@ -181,7 +181,7 @@ class SessionTest(test_util.TensorFlowTestCase):
   def testErrorBasedOn(self):
     with session.Session() as sess:
       a = constant_op.constant(0.0, shape=[2, 3])
-      # NOTE(mrry): The original_op is nonsense, but used here to test that the
+      # NOTE (mrry): The original_op is nonsense, but used here to test that the id:3054 gh:3055
       #   errors are reported correctly.
       # pylint: disable=protected-access
       with sess.graph._original_op(a.op):
@@ -1454,7 +1454,7 @@ class SessionTest(test_util.TensorFlowTestCase):
         self.assertEquals(len(run_metadata.step_stats.dev_stats), 1)
 
   def testFeedShapeCompatibility(self):
-    # TODO(nolivia): C API doesn't yet handle marking nodes as not feedable.
+    # TODO (nolivia): C API doesn't yet handle marking nodes as not feedable. id:2813 gh:2814
     if ops._USE_C_API: return
 
     with session.Session() as sess:

@@ -295,7 +295,7 @@ def random_crop(value, size, seed=None, name=None):
   Returns:
     A cropped tensor of the same rank as `value` and shape `size`.
   """
-  # TODO(shlens): Implement edge case to guarantee output size dimensions.
+  # TODO (shlens): Implement edge case to guarantee output size dimensions. id:3556 gh:3557
   # If size > value.shape, zero pad the result so that it always has shape
   # exactly size.
   with ops.name_scope(name, "random_crop", [value, size]) as name:

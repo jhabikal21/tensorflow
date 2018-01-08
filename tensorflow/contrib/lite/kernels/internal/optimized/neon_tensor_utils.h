@@ -15,7 +15,7 @@ limitations under the License.
 #ifndef THIRD_PARTY_TENSORFLOW_CONTRIB_LITE_KERNELS_INTERNAL_OPTIMIZED_NEON_TENSOR_UTILS_H_
 #define THIRD_PARTY_TENSORFLOW_CONTRIB_LITE_KERNELS_INTERNAL_OPTIMIZED_NEON_TENSOR_UTILS_H_
 
-// TODO(ghodrat): Remove this header file and the dependency to internal data
+// TODO (ghodrat): Remove this header file and the dependency to internal data id:807 gh:808
 // structure.
 #include "tensorflow/contrib/lite/builtin_op_data.h"
 #include "tensorflow/contrib/lite/kernels/internal/optimized/cpu_check.h"

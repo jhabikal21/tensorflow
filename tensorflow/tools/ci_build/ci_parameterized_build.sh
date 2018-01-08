@@ -62,7 +62,7 @@
 #   TF_GPU_COUNT:
 #                      Run this many parallel tests for serial builds.
 #                      For now, only can be edited for PIP builds.
-#                      TODO(gunan): Find a way to pass this environment variable
+#                      TODO (gunan): Find a way to pass this environment variable id:3516 gh:3517
 #                      to the script bazel runs (using --run_under).
 #   TF_BUILD_TEST_TUTORIALS:
 #                      If set to any non-empty and non-0 value, will perform
@@ -94,7 +94,7 @@
 #
 # This script can be used by Jenkins parameterized / matrix builds.
 
-# TODO(jhseu): Temporary for the gRPC pull request due to the
+# TODO (jhseu): Temporary for the gRPC pull request due to the id:2683 gh:2684
 # protobuf -> protobuf_archive rename. Remove later.
 TF_BUILD_BAZEL_CLEAN=1
 

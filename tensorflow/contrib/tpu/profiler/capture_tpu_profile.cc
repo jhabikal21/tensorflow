@@ -55,7 +55,7 @@ ProfileResponse Profile(const string& service_addr, int duration_ms) {
             << std::endl;
   ::grpc::ClientContext context;
   ::grpc::ChannelArguments channel_args;
-  // TODO(ioeric): use `SetMaxReceiveMessageSize` instead once it's available.
+  // TODO (ioeric): use `SetMaxReceiveMessageSize` instead once it's available. id:1037 gh:1038
   channel_args.SetInt(GRPC_ARG_MAX_MESSAGE_LENGTH,
                       std::numeric_limits<int32>::max());
   std::unique_ptr<TPUProfiler::Stub> stub =

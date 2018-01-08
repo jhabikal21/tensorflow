@@ -271,7 +271,7 @@ def input_layer(features,
                                trainable, cols_to_vars)
 
 
-# TODO(akshayka): InputLayer should be a subclass of Layer, and it
+# TODO (akshayka): InputLayer should be a subclass of Layer, and it id:3191 gh:3192
 # should implement the logic in input_layer using Layer's build-and-call
 # paradigm; input_layer should create an instance of InputLayer and
 # return the result of inovking its apply method, just as functional layers do.
@@ -1922,7 +1922,7 @@ class _LazyBuilder(object):
           lambda: feature_tensor)
 
 
-# TODO(ptucker): Move to third_party/tensorflow/python/ops/sparse_ops.py
+# TODO (ptucker): Move to third_party/tensorflow/python/ops/sparse_ops.py id:2276 gh:2277
 def _shape_offsets(shape):
   """Returns moving offset for each dimension given shape."""
   offsets = []
@@ -1935,7 +1935,7 @@ def _shape_offsets(shape):
   return offsets
 
 
-# TODO(ptucker): Move to third_party/tensorflow/python/ops/sparse_ops.py
+# TODO (ptucker): Move to third_party/tensorflow/python/ops/sparse_ops.py id:2742 gh:2743
 def _to_sparse_input(input_tensor, ignore_value=None):
   """Converts a `Tensor` to a `SparseTensor`, dropping ignore_value cells.
 
@@ -1965,7 +1965,7 @@ def _to_sparse_input(input_tensor, ignore_value=None):
       elif input_tensor.dtype.is_integer:
         ignore_value = -1  # -1 has a special meaning of missing feature
       else:
-        # NOTE: `as_numpy_dtype` is a property, so with the parentheses this is
+        # NOTE: `as_numpy_dtype` is a property, so with the parentheses this is id:3229 gh:3230
         # constructing a new numpy object of the given type, which yields the
         # default value for that type.
         ignore_value = input_tensor.dtype.as_numpy_dtype()
@@ -2731,7 +2731,7 @@ def _collect_leaf_level_keys(cross):
   return leaf_level_keys
 
 
-# TODO(zakaria): Move this to embedding_ops and make it public.
+# TODO (zakaria): Move this to embedding_ops and make it public. id:2943 gh:2944
 def _safe_embedding_lookup_sparse(embedding_weights,
                                   sparse_ids,
                                   sparse_weights=None,

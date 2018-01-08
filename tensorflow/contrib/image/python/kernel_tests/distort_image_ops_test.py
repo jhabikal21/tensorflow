@@ -37,7 +37,7 @@ from tensorflow.python.platform import googletest
 from tensorflow.python.platform import test
 
 
-# TODO(huangyp): also measure the differences between AdjustHsvInYiq and
+# TODO (huangyp): also measure the differences between AdjustHsvInYiq and id:679 gh:680
 # AdjustHsv in core.
 class AdjustHueInYiqTest(test_util.TensorFlowTestCase):
 

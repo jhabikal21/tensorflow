@@ -35,7 +35,7 @@ enum KernelType {
 
 // Inputs specified in the 2nd tensor (block_shape) and 3rd tensor (paddings)
 // are ignored. Only use the `block_shape` and `paddings` specified in params.
-// TODO(nupurgarg): Support inputs as tensors in SpaceToBatchND.
+// TODO (nupurgarg): Support inputs as tensors in SpaceToBatchND. id:1460 gh:1461
 struct SpaceToBatchNDContext {
   SpaceToBatchNDContext(TfLiteContext* context, TfLiteNode* node) {
     params = reinterpret_cast<TfLiteSpaceToBatchNDParams*>(node->builtin_data);
@@ -49,7 +49,7 @@ struct SpaceToBatchNDContext {
 
 // Currently, only 4D NHWC input/output op_context are supported.
 // The 4D array need to have exactly 2 spatial dimensions.
-// TODO(nupurgarg): Support arbitrary dimension in SpaceToBatchND.
+// TODO (nupurgarg): Support arbitrary dimension in SpaceToBatchND. id:1202 gh:1203
 const int kInputDimensionNum = 4;
 const int kOutputDimensionNum = 4;
 const int kSpatialDimensionNum = 2;
@@ -99,7 +99,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   Dims<4> block_shape_dims = GetTensorDims(block_shape_dims_array, 1);
 
   // Initialize padding array in the format accepted by the kernel code.
-  // TODO(nupurgarg): Make kernel code accept padding array format that is
+  // TODO (nupurgarg): Make kernel code accept padding array format that is id:908 gh:909
   // consistent with Pad operation (i.e. before_paddings and after_paddings).
   TfLiteIntArray* padding_data = TfLiteIntArrayCreate(kPaddingDimensionNum);
   padding_data->data[0] = op_context.params->before_paddings[0];

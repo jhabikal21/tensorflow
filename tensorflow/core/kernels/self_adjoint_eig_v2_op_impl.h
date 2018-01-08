@@ -64,7 +64,7 @@ class SelfAdjointEigV2Op : public LinearAlgebraOp<Scalar> {
     Eigen::SelfAdjointEigenSolver<Matrix> eig(
         inputs[0],
         compute_v_ ? Eigen::ComputeEigenvectors : Eigen::EigenvaluesOnly);
-    // TODO(rmlarsen): Output more detailed error info on failure.
+    // TODO (rmlarsen): Output more detailed error info on failure. id:1672 gh:1673
     OP_REQUIRES(
         context, eig.info() == Eigen::Success,
         errors::InvalidArgument("Self-adjoint eigen decomposition was not "

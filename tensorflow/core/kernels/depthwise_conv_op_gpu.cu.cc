@@ -394,7 +394,7 @@ __global__ void __launch_bounds__(1024, 2)
         const int filter_offset_temp = filter_cols * f_r;
         UNROLL for (int f_c = 0; f_c < filter_cols; ++f_c) {
           const int in_c = input_col_start + f_c;
-          // TODO(vrv): the in_r check can be done outside of this loop;
+          // TODO (vrv): the in_r check can be done outside of this loop; id:1519 gh:1520
           // benchmark both methods to determine the better decision.
           if (in_r >= 0 && in_r < in_rows && in_c >= 0 && in_c < in_cols) {
             const int in_c = input_col_start + f_c;
@@ -802,7 +802,7 @@ __global__ void __launch_bounds__(640, 2)
   const int out_cols = args.out_cols;
   const int out_depth = args.out_depth;
 
-  // TODO(vrv): Consider assigning threads to output and using
+  // TODO (vrv): Consider assigning threads to output and using id:2747 gh:2748
   // atomics for accumulation, similar to the filter case.
   CUDA_1D_KERNEL_LOOP(thread_id, num_in_backprop) {
     // Compute the indexes of this thread in the input.
@@ -1004,7 +1004,7 @@ __global__ void __launch_bounds__(640, 2)
                 (dm + depth_multiplier * (in_d + in_depth * (f_c + addr_temp)));
             // Potentially many threads can add to the same address so we have
             // to use atomic add here.
-            // TODO(jmchen): If atomic add turns out to be slow, we can:
+            // TODO (jmchen): If atomic add turns out to be slow, we can: id:1566 gh:1567
             // 1. allocate multiple buffers for the gradients (one for each
             // example in a batch, for example). This can reduce the
             // contention on the destination; 2. Have each thread compute one
@@ -1278,7 +1278,7 @@ __global__ void __launch_bounds__(640, 2)
                 (dm + depth_multiplier * (in_d + in_depth * (f_c + addr_temp)));
             // Potentially many threads can add to the same address so we have
             // to use atomic add here.
-            // TODO(jmchen): If atomic add turns out to be slow, we can:
+            // TODO (jmchen): If atomic add turns out to be slow, we can: id:2192 gh:2193
             // 1. allocate multiple buffers for the gradients (one for each
             // example in a batch, for example). This can reduce the
             // contention on the destination; 2. Have each thread compute one

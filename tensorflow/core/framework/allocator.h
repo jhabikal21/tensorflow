@@ -114,7 +114,7 @@ class Allocator {
   template <typename T>
   T* Allocate(size_t num_elements,
               const AllocationAttributes& allocation_attr) {
-    // TODO(jeff): Do we need to allow clients to pass in alignment
+    // TODO (jeff): Do we need to allow clients to pass in alignment id:1165 gh:1166
     // requirements?
 
     if (num_elements > (std::numeric_limits<size_t>::max() / sizeof(T))) {
@@ -238,7 +238,7 @@ class Allocator {
     for (size_t i = 0; i < n; ++p, ++i) p->~Variant();
   }
 
-  // TODO(jeff): Maybe provide some interface to give info about
+  // TODO (jeff): Maybe provide some interface to give info about id:1913 gh:1914
   // current allocation state (total number of bytes available for
   // allocation, number of bytes free on device, etc.)
 };
@@ -361,7 +361,7 @@ struct AllocatorAttributes {
     return (value | other.value) == other.value;
   }
 
-  // NOTE: The upper 8 bits of the value are reserved for
+  // NOTE: The upper 8 bits of the value are reserved for id:1715 gh:1716
   // device-specific uses.  Implementors of a device can interpret these
   // upper 8 bits in device-specific ways, and ops implemented for those
   // devices are responsible for setting those 8 bits appropriately.

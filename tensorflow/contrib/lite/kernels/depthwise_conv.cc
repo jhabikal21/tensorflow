@@ -77,7 +77,7 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
       reinterpret_cast<TfLiteDepthwiseConvParams*>(node->builtin_data);
   OpData* data = reinterpret_cast<OpData*>(node->user_data);
 
-  // TODO(ahentz): use could use GetOptionalInputTensor() here, but we need to
+  // TODO (ahentz): use could use GetOptionalInputTensor() here, but we need to id:832 gh:833
   // decide whether we are OK with optional tensors being completely absent, as
   // opposed to having -1 as their index.
   bool hasBias = NumInputs(node) == 3;
@@ -235,7 +235,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   TfLiteTensor* bias =
       (NumInputs(node) == 3) ? GetInput(context, node, kBiasTensor) : nullptr;
 
-  // TODO(aselle): Consider whether float conv and quantized conv should be
+  // TODO (aselle): Consider whether float conv and quantized conv should be id:1940 gh:1941
   // separate ops to avoid dispatch overhead here.
   switch (input->type) {  // Already know in/out types are same.
     case kTfLiteFloat32:

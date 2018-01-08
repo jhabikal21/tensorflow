@@ -49,9 +49,9 @@ StatusOr<bool> HloConstantFolding::Run(HloModule* module) {
         continue;
       }
       // Skip Constant, Parameter, Reduce operation.
-      // TODO(b/35975797): Enable Reduce operation once arbitrary computation
+      // TODO (b/35975797): Enable Reduce operation once arbitrary computation id:365 gh:366
       // are supported by the evaluator.
-      // TODO(b/64407269): Enable Tuple once the timeout issue is resolved.
+      // TODO (b/64407269): Enable Tuple once the timeout issue is resolved. id:364 gh:365
       if (instruction->opcode() == HloOpcode::kParameter ||
           instruction->opcode() == HloOpcode::kConstant ||
           instruction->opcode() == HloOpcode::kTuple ||
@@ -72,7 +72,7 @@ StatusOr<bool> HloConstantFolding::Run(HloModule* module) {
 
       std::unique_ptr<Literal> result = evaluator->TryEvaluate(instruction);
       // Currently we skip unimplemented operations.
-      // TODO(b/35975797): Fold constant computations for more operations.
+      // TODO (b/35975797): Fold constant computations for more operations. id:380 gh:381
       if (result == nullptr) {
         VLOG(2) << "Constant folding failed for instruction: "
                 << instruction->ToString();

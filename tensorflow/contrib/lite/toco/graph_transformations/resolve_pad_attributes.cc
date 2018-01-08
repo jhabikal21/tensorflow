@@ -48,7 +48,7 @@ bool ResolvePadAttributes::Run(Model* model, std::size_t op_index) {
     op->right_padding.push_back(buffer[i * 2 + 1]);
   }
 
-  // TODO(dkalenichenko): Delete the extra input?
+  // TODO (dkalenichenko): Delete the extra input? id:935 gh:936
 
   return true;
 }

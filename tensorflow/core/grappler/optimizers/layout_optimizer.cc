@@ -2039,7 +2039,7 @@ int GetNumGPUs(const Cluster& cluster) {
       if (device.second.environment().find("architecture") !=
           device.second.environment().end()) {
         const string arch = device.second.environment().at("architecture");
-        // TODO(yaozhang): Enable for Volta GPUs (compute capability version 7).
+        // TODO (yaozhang): Enable for Volta GPUs (compute capability version 7). id:1429 gh:1430
         if (arch < "7") {
           num_gpus++;
         }
@@ -2084,7 +2084,7 @@ Status LayoutOptimizer::Optimize(Cluster* cluster, const GrapplerItem& item,
 
   TuningConfig config;
   config.no_gemm = true;
-  // TODO(yaozhang): Enable tuning with various TuningConfig choices wtih
+  // TODO (yaozhang): Enable tuning with various TuningConfig choices wtih id:2572 gh:2573
   // the measurement-based estimator.
   status = Tune(item, graph_properties, config, output);
   if (!status.ok()) {

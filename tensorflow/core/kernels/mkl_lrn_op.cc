@@ -276,7 +276,7 @@ class MklLRNOp : public OpKernel {
     }
 
     // Fallback implementation - Taken from lrn_op.cc
-    // TODO(inteltf) Check if we can use EigenLRNOp directly instead of making a
+    // TODO (inteltf) Check if we can use EigenLRNOp directly instead of making a id:2151 gh:2152
     // copy.
     void MklDefaultToEigen(OpKernelContext* context, int depth_radius_,
                            float bias_, float alpha_, float beta_,
@@ -621,7 +621,7 @@ class MklLRNGradOp : public OpKernel {
     }
 
     // Fallback implementation - Taken from lrn_op.cc
-    // TODO(intelft) Check if we can use EigenLRNOp directly instead of making a
+    // TODO (intelft) Check if we can use EigenLRNOp directly instead of making a id:1568 gh:1569
     // copy.
     void MklDefaultToEigen(OpKernelContext* context) {
       Tensor in_grads;
@@ -893,7 +893,7 @@ class MklLRNOp : public OpKernel {
     }
 
     // Fallback implementation - Taken from lrn_op.cc
-    // TODO(inteltf) Check if we can use EigenLRNOp directly instead of making a
+    // TODO (inteltf) Check if we can use EigenLRNOp directly instead of making a id:2825 gh:2826
     // copy.
     void MklDefaultToEigen(OpKernelContext* context,
                            const Tensor& input) {
@@ -1209,7 +1209,7 @@ class MklLRNGradOp : public OpKernel {
   }
 
     // Fallback implementation - Taken from lrn_op.cc
-    // TODO(intelft) Check if we can use EigenLRNOp directly instead of making a
+    // TODO (intelft) Check if we can use EigenLRNOp directly instead of making a id:1629 gh:1630
     // copy.
     void MklDefaultToEigen(OpKernelContext* context) {
       Tensor input_gradient_tensor;

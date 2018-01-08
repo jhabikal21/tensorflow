@@ -28,7 +28,7 @@ namespace xla {
 //
 // This requires that m = 1 or n = 1.
 //
-// TODO(b/64684907): Compare runtime performance of these functions with dot
+// TODO (b/64684907): Compare runtime performance of these functions with dot id:340 gh:341
 // simplification.
 void EigenMatVecF32(float* out, float* lhs, float* rhs, tensorflow::int64 m,
                     tensorflow::int64 n, tensorflow::int64 k,

@@ -307,7 +307,7 @@ class InverseProvidingFactorTest(test.TestCase):
       cov = np.array([[6., 2.], [2., 4.]])
       factor = InverseProvidingFactorTestingDummy(cov.shape)
       factor._cov = array_ops.constant(cov, dtype=dtypes.float32)
-      exp = 2  # NOTE(mattjj): must be int to test with np.linalg.matrix_power
+      exp = 2  # NOTE (mattjj): must be int to test with np.linalg.matrix_power id:1041 gh:1042
       damping = 0.5
 
       factor.register_matpower(exp, damping)
@@ -323,7 +323,7 @@ class InverseProvidingFactorTest(test.TestCase):
   def testMakeInverseUpdateOpsNoEigenDecomp(self):
     with tf_ops.Graph().as_default(), self.test_session() as sess:
       random_seed.set_random_seed(200)
-      cov = np.array([[5., 2.], [2., 4.]])  # NOTE(mattjj): must be symmetric
+      cov = np.array([[5., 2.], [2., 4.]])  # NOTE (mattjj): must be symmetric id:896 gh:897
       factor = InverseProvidingFactorTestingDummy(cov.shape)
       factor._cov = array_ops.constant(cov, dtype=dtypes.float32)
 

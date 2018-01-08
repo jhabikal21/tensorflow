@@ -58,7 +58,7 @@ void PruneControlInputs(NodeDef* node) {
   int pos = 0;
   while (pos < node->input_size()) {
     const string& input = node->input(pos);
-    // TODO(rmlarsen): Remove control inputs that also appears as a regular
+    // TODO (rmlarsen): Remove control inputs that also appears as a regular id:2570 gh:2571
     // inputs. Currently, doing so breaks testControlFlowStrictness in
     // python/framework/function_test.
     //    if (!inputs.insert(NodeName(input)).second && IsControlInput(input)) {
@@ -104,7 +104,7 @@ bool DependencyOptimizer::SafeToConvertToNoOp(const NodeDef& node) {
     return false;
   }
 
-  // TODO(rmlarsen): We have to skip Identity nodes to make an obsolete test in
+  // TODO (rmlarsen): We have to skip Identity nodes to make an obsolete test in id:1334 gh:1335
   // python/training/session_manager_test.py pass. See if we can fix or get rid
   // of that test.
   const std::unordered_set<string> do_not_rewrite_ops{

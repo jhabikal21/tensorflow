@@ -33,7 +33,7 @@ namespace toco {
 #define TOCO_FROM_CPPSTRING_TO_PY PyString_FromStringAndSize
 #endif
 
-// NOTE(aselle): We are using raw PyObject's here because we want to make
+// NOTE (aselle): We are using raw PyObject's here because we want to make id:1250 gh:1251
 // sure we input and output bytes rather than unicode strings for Python3.
 PyObject* TocoConvert(PyObject* model_flags_proto_txt_raw,
                       PyObject* toco_flags_proto_txt_raw,

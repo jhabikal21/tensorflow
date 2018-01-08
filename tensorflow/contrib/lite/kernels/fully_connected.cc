@@ -195,7 +195,7 @@ TfLiteStatus EvalQuantized(TfLiteContext* context, TfLiteNode* node,
   if (kernel_type == kReference) {
     TF_LITE_FULLY_CONNECTED(reference_ops);
   } else if (kernel_type == kPie) {
-    // TODO(ahentz): we don't have a quantized version of the PIE kernels, so
+    // TODO (ahentz): we don't have a quantized version of the PIE kernels, so id:1168 gh:1169
     // we just defer to the MINI ones.
     TF_LITE_FULLY_CONNECTED(optimized_ops);
   } else {
@@ -290,7 +290,7 @@ TfLiteRegistration* Register_FULLY_CONNECTED_PIE() {
 }
 
 TfLiteRegistration* Register_FULLY_CONNECTED() {
-  // TODO(ahentz): We don't have a dedicated quantized version of the PIE
+  // TODO (ahentz): We don't have a dedicated quantized version of the PIE id:838 gh:839
   // kernel. For now, the quantized version just defer to the corresponding
   // optimized MINI kernel. At some point we will allow different libraries to
   // be built with different kernels, but for now we have to pick one here.

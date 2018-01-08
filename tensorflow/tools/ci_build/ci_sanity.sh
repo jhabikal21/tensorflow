@@ -402,7 +402,7 @@ cmd_status(){
 }
 
 # Run bazel build --nobuild to test the validity of the BUILD files
-# TODO(mikecase): Remove TF Lite exclusion from this list. Exclusion is
+# TODO (mikecase): Remove TF Lite exclusion from this list. Exclusion is id:3407 gh:3406
 # necessary since the @androidsdk WORKSPACE dependency is commented
 # out by default in TF WORKSPACE file.
 do_bazel_nobuild() {
@@ -471,7 +471,7 @@ do_clang_format_check() {
       return 0
     fi
   elif [[ -z "$1" ]]; then
-    # TODO (yongtang): Always pass --incremental until all files have
+    # TODO (yongtang): Always pass --incremental until all files have id:3592 gh:3593
     # been sanitized gradually. Then this --incremental could be removed.
     CLANG_SRC_FILES=$(get_clang_files_to_check --incremental)
   else

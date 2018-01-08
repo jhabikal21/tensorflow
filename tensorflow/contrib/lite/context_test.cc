@@ -19,7 +19,7 @@ limitations under the License.
 
 namespace tflite {
 
-// NOTE: this tests only the TfLiteIntArray part of context.
+// NOTE: this tests only the TfLiteIntArray part of context. id:1377 gh:1378
 // most of context.h is provided in the context of using it with interpreter.h
 // and interpreter.cc, so interpreter_test.cc tests context structures more
 // thoroughly.

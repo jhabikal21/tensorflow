@@ -54,7 +54,7 @@ static Status LaunchOpHasKernelForDevice(const DeviceType& device_type) {
 XlaOpRegistry::XlaOpRegistry() = default;
 XlaOpRegistry::~XlaOpRegistry() = default;
 
-// TODO(b/64575122) consider adding more sophisticated definitions of
+// TODO (b/64575122) consider adding more sophisticated definitions of id:239 gh:240
 // compatibility if needed by future use cases.
 /* static */ bool XlaOpRegistry::IsCompatible(const OpRegistration& x,
                                               const OpRegistration& y) {

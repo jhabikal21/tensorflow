@@ -70,7 +70,7 @@ class GroupByWindowDatasetOp : public UnaryDatasetOpKernel {
     for (const Tensor& t : window_size_func_other_argument_inputs) {
       window_size_func_other_arguments.push_back(t);
     }
-    // TODO(mrry): Refactor CapturedFunction to share the runtime
+    // TODO (mrry): Refactor CapturedFunction to share the runtime id:1487 gh:1488
     // state between multiple functions?
     std::unique_ptr<CapturedFunction> captured_key_func;
     OP_REQUIRES_OK(ctx,
@@ -255,7 +255,7 @@ class GroupByWindowDatasetOp : public UnaryDatasetOpKernel {
               if (key_func_output.size() != 1 ||
                   key_func_output[0].dtype() != DT_INT64 ||
                   key_func_output[0].NumElements() != 1) {
-                // TODO(mrry): Support non-int64 keys.
+                // TODO (mrry): Support non-int64 keys. id:2721 gh:2722
                 return errors::InvalidArgument(
                     "`key_func` must return a scalar int64.");
               }
@@ -285,7 +285,7 @@ class GroupByWindowDatasetOp : public UnaryDatasetOpKernel {
                 if (window_size_func_output.size() != 1 ||
                     window_size_func_output[0].dtype() != DT_INT64 ||
                     window_size_func_output[0].NumElements() != 1) {
-                  // TODO(mrry): Support non-int64 window sizes.
+                  // TODO (mrry): Support non-int64 window sizes. id:1404 gh:1405
                   return errors::InvalidArgument(
                       "`window_size_func` must return a scalar int64.");
                 }
@@ -530,7 +530,7 @@ class GroupByWindowDatasetOp : public UnaryDatasetOpKernel {
 
       mutex mu_;
       std::unique_ptr<IteratorBase> input_impl_ GUARDED_BY(mu_);
-      // TODO(mrry): Optimize for dense key space if appropriate.
+      // TODO (mrry): Optimize for dense key space if appropriate. id:2164 gh:2165
       bool end_of_input_ GUARDED_BY(mu_) = false;
       int64 current_key_ GUARDED_BY(mu_);
       std::map<int64, std::vector<std::vector<Tensor>>> groups_ GUARDED_BY(mu_);

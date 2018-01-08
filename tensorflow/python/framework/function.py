@@ -341,7 +341,7 @@ class _DefinedFunction(object):
       # anything and a function returning None in Python.
       # We need to allow the former and ideally want to forbid the latter as
       # it is most likely user error.
-      # TODO(iga): Consider adding a @NoOutput decorator on top of @Defun to
+      # TODO (iga): Consider adding a @NoOutput decorator on top of @Defun to id:2286 gh:2287
       # allow users to explicitly mark the function as not returning anything.
       # For now, we allow a single None return and interpret it as a function
       # with no output.
@@ -429,7 +429,7 @@ class _DefinedFunction(object):
     """
     for name, attr_value in attrs.items():
       serialized = attr_value.SerializeToString()
-      # TODO(skyewm): this creates and deletes a new TF_Status for every attr.
+      # TODO (skyewm): this creates and deletes a new TF_Status for every attr. id:2752 gh:2753
       # It might be worth creating a convenient way to re-use the same status.
       with errors.raise_exception_on_not_ok_status() as status:
         c_api.TF_FunctionSetAttrValueProto(self._c_func, compat.as_str(name),
@@ -474,7 +474,7 @@ class _DefinedFunction(object):
       update_str(n.op)
       update_strs(n.input)
       update_num(len(n.attr))
-      # NOTE: protobuf map serialization does not guarantee ordering.
+      # NOTE: protobuf map serialization does not guarantee ordering. id:3244 gh:3245
       for k in sorted(n.attr):
         update_str(k)
         update_str(n.attr[k].SerializeToString())
@@ -675,7 +675,7 @@ class _FuncGraph(ops.Graph):
       if isinstance(var, resource_variable_ops.ResourceVariable):
         # For resource-based variables read the variable outside the function
         # and pass in the value. This ensures that the function is pure and
-        # differentiable. TODO(apassos) this may have performance problems if
+        # differentiable. TODO (apassos) this may have performance problems if id:2954 gh:2955
         # the function will only do embedding lookups on the variable.
         return var.value()
       return var
@@ -802,7 +802,7 @@ def _from_definition(fdef, grad_func=None):
   Returns:
     A _DefinedFunction representing fdef
   """
-  # TODO(iga): This method does major surgery on _DefinedFunction.
+  # TODO (iga): This method does major surgery on _DefinedFunction. id:3209 gh:3210
   # Make it a named constructor using @classmethod of _DefinedFunction.
 
   # The Python callable is only needed to create a FunctionDef. Since we have
@@ -997,7 +997,7 @@ def _type_list_to_str(types):
   return "".join([_DTYPE_TO_STR[_] for _ in types])
 
 
-# NOTE: The list needs to be extended when more data types are added.
+# NOTE: The list needs to be extended when more data types are added. id:2288 gh:2289
 _DTYPE_TO_STR = {
     dtypes.float16: "f16",
     dtypes.float32: "f32",

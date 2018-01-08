@@ -134,7 +134,7 @@ thread::ThreadPool* GlobalThreadPool(const SessionOptions& options) {
   return thread_pool;
 }
 
-// TODO(vrv): Figure out how to unify the many different functions
+// TODO (vrv): Figure out how to unify the many different functions id:2335 gh:2337
 // that generate RendezvousKey, since many of them have to be
 // consistent with each other.
 string GetRendezvousKey(const string& tensor_name,
@@ -192,7 +192,7 @@ class DirectSessionFactory : public SessionFactory {
     for (auto session : sessions_to_reset) {
       s.Update(session->Reset(containers));
     }
-    // TODO(suharshs): Change the Reset behavior of all SessionFactories so that
+    // TODO (suharshs): Change the Reset behavior of all SessionFactories so that id:1056 gh:1057
     // it doesn't close the sessions?
     for (auto session : sessions_to_reset) {
       s.Update(session->Close());
@@ -221,7 +221,7 @@ static DirectSessionRegistrar registrar;
 
 std::atomic_int_fast64_t DirectSession::step_id_counter_(1);
 
-// NOTE: On Android with a single device, there is never
+// NOTE: On Android with a single device, there is never id:1767 gh:1768
 // a risk of an OpKernel blocking indefinitely:
 //
 // 1) No operations do I/O that depends on other simultaneous kernels,
@@ -238,7 +238,7 @@ std::atomic_int_fast64_t DirectSession::step_id_counter_(1);
 // revisit this decision.
 void DirectSession::SchedClosure(thread::ThreadPool* pool,
                                  std::function<void()> c) {
-// TODO(sanjay): Get rid of __ANDROID__ path
+// TODO (sanjay): Get rid of __ANDROID__ path id:1552 gh:1553
 #ifdef __ANDROID__
   // On Android, there is no implementation of ThreadPool that takes
   // std::function, only Closure, which we cannot easily convert.
@@ -283,7 +283,7 @@ DirectSession::DirectSession(const SessionOptions& options,
   if (!status.ok()) {
     LOG(ERROR) << status.error_message();
   }
-  // NOTE(mrry): We do not need to use a unique string for the session
+  // NOTE (mrry): We do not need to use a unique string for the session id:1061 gh:1062
   // handle, because DirectSession owns its devices. This may change
   // in future versions.
   session_handle_ = "direct";
@@ -339,14 +339,14 @@ Status DirectSession::MaybeInitializeExecutionState(
     return Status::OK();
   }
   // Set up the per-session execution state.
-  // NOTE(mrry): The function library created here will be used for
+  // NOTE (mrry): The function library created here will be used for id:2337 gh:2338
   // all subsequent extensions of the graph.
   flib_def_.reset(
       new FunctionLibraryDefinition(OpRegistry::Global(), graph.library()));
   GraphExecutionStateOptions options;
   options.device_set = &device_set_;
   options.session_options = &options_;
-  // TODO(mrry,suharshs): We explicitly copy `graph` so that
+  // TODO (mrry,suharshs): We explicitly copy `graph` so that id:1058 gh:1059
   // `MakeForBaseGraph()` can take ownership of its
   // contents. Previously this happened implicitly in calls to the
   // `GraphExecutionState`. Other sessions call
@@ -575,7 +575,7 @@ Status DirectSession::Run(const RunOptions& run_options,
         step_cancellation_manager.StartCancel();
       });
   if (already_cancelled) {
-    // NOTE(mrry): If we don't explicitly notify
+    // NOTE (mrry): If we don't explicitly notify id:1770 gh:1771
     // `run_state.executors_done`, the RunState destructor would
     // block on this notification.
     run_state.executors_done.Notify();
@@ -588,8 +588,8 @@ Status DirectSession::Run(const RunOptions& run_options,
     SchedClosure(pool, std::move(c));
   };
   for (const auto& item : executors_and_keys->items) {
-    // TODO(zhengxq): support partial run.
-    // TODO(zhengxq): if the device picks its own threadpool, we need to assign
+    // TODO (zhengxq): support partial run. id:1557 gh:1558
+    // TODO (zhengxq): if the device picks its own threadpool, we need to assign id:1063 gh:1064
     //     less threads to the main compute pool by default.
     thread::ThreadPool* device_thread_pool =
         item.device->tensorflow_device_thread_pool();
@@ -724,7 +724,7 @@ Status DirectSession::PRunSetup(const std::vector<string>& input_names,
 
   // Check if we already have an executor for these arguments.
   ExecutorsAndKeys* executors_and_keys;
-  // TODO(cais): TFDBG support for partial runs.
+  // TODO (cais): TFDBG support for partial runs. id:2339 gh:2340
   DebugOptions debug_options;
   RunStateArgs run_state_args(debug_options);
   run_state_args.is_partial_run = true;
@@ -1203,7 +1203,7 @@ Status DirectSession::GetOrCreateExecutors(
                                               OpKernel** kernel) {
       // We do not share the kernel via the OpSegment if the node is
       // stateless, or a function.
-      // NOTE(mrry): We must not share function kernels (implemented
+      // NOTE (mrry): We must not share function kernels (implemented id:1060 gh:1061
       // using `CallOp`) between subgraphs, because `CallOp::handle_`
       // is tied to a particular subgraph. Even if the function itself
       // is stateful, the `CallOp` that invokes it is not.

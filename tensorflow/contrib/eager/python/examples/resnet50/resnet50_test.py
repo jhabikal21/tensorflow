@@ -159,7 +159,7 @@ class ResNet50Benchmarks(tf.test.Benchmark):
         # Avoid OOM errors with larger batch sizes, which seem to cause errors
         # later on even if caught.
         #
-        # TODO(allenl): Base this on device memory; memory limit information
+        # TODO (allenl): Base this on device memory; memory limit information id:608 gh:609
         # during the test seems to exclude the amount TensorFlow has allocated,
         # which isn't useful.
         if 'K20' in device.physical_device_desc:

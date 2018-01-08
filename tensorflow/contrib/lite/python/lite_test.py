@@ -35,7 +35,7 @@ class LiteTest(test_util.TensorFlowTestCase):
     # Try running on valid graph
     result = lite.toco_convert(sess.graph_def, [in_tensor], [out_tensor])
     self.assertTrue(result)
-    # TODO(aselle): remove tests that fail.
+    # TODO (aselle): remove tests that fail. id:2091 gh:2092
     # Try running on identity graph (known fail)
     # with self.assertRaisesRegexp(RuntimeError, "!model->operators.empty()"):
     #   result = lite.toco_convert(sess.graph_def, [in_tensor], [in_tensor])

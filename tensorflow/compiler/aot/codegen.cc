@@ -139,7 +139,7 @@ Status AddRewritesForShape(int i, const xla::Shape& shape,
 // the size of the code and M is the number of rewrites.  It's fine for now
 // since N and M are pretty small.
 //
-// TODO(toddw): If this becomes a problem, we should be able to change the
+// TODO (toddw): If this becomes a problem, we should be able to change the id:104 gh:105
 // algorithm to O(N) by using a state machine, e.g. regexps or a real
 // text-templating mechanism.
 string RewriteWithName(const string& name, string code,
@@ -286,7 +286,7 @@ string GenProgramShapeCode(xla::ProgramShape program_shape, bool generate) {
   const string proto_str = program_shape.SerializeAsString();
   // Embed the program shape as a serialized protobuf in the header file.
   //
-  // TODO(toddw): This strategy will likely fail for larger protobufs, depending
+  // TODO (toddw): This strategy will likely fail for larger protobufs, depending id:143 gh:144
   // on the C++ compiler that is used. Figure out another solution if necessary.
   string code = R"({
     static const xla::ProgramShape* kShape = []() {

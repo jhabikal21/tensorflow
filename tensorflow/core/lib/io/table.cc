@@ -32,7 +32,7 @@ struct Table::Rep {
   Options options;
   Status status;
   RandomAccessFile* file;
-  // XXX  uint64 cache_id;
+  // XXX uint64 cache_id; id:2644 gh:2645
 
   BlockHandle metaindex_handle;  // Handle to metaindex_block: saved from footer
   Block* index_block;
@@ -73,7 +73,7 @@ Status Table::Open(const Options& options, RandomAccessFile* file, uint64 size,
     rep->file = file;
     rep->metaindex_handle = footer.metaindex_handle();
     rep->index_block = index_block;
-    // XXX    rep->cache_id = (options.block_cache ?
+    // XXX rep->cache_id = (options.block_cache ? id:1722 gh:1723
     // options.block_cache->NewId() : 0);
     *table = new Table(rep);
   } else {

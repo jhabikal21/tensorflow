@@ -411,7 +411,7 @@ output: The list of tensors unpacked from `value`.
 )doc");
 
 // --------------------------------------------------------------------------
-// TODO(josh11b): Remove the >= 2 constraint, once we can rewrite the graph
+// TODO (josh11b): Remove the >= 2 constraint, once we can rewrite the graph id:1971 gh:1972
 // in the N == 1 case to remove the node.
 REGISTER_OP("Concat")
     .Input("concat_dim: int32")
@@ -454,7 +454,7 @@ output: A `Tensor` with the concatenation of values stacked along the
   in `concat_dim` where it has the sum of the sizes.
 )doc");
 
-// TODO(vivek.v.rane@intel.com): Prefix the op names with underscore if the ops
+// TODO (vivek.v.rane@intel.com): Prefix the op names with underscore if the ops id:2443 gh:2444
 // are not to be made user-accessible.
 #ifdef INTEL_MKL
 REGISTER_OP("_MklConcatV2")
@@ -687,7 +687,7 @@ value: Attr `value` is the tensor to return.
 )doc");
 
 // --------------------------------------------------------------------------
-// TODO(mgubin): Update the doc when the freeze_graph script supports converting
+// TODO (mgubin): Update the doc when the freeze_graph script supports converting id:2795 gh:2796
 // into memmapped format.
 REGISTER_OP("ImmutableConst")
     .Attr("dtype: type")
@@ -1162,7 +1162,7 @@ REGISTER_OP("ReverseV2")
       ShapeHandle input = c->input(0);
       ShapeHandle axis;
       TF_RETURN_IF_ERROR(c->WithRank(c->input(1), 1, &axis));
-      // TODO(aselle): if input(0)'s dimension is known we could validate axis
+      // TODO (aselle): if input(0)'s dimension is known we could validate axis id:1732 gh:1733
       if (c->Rank(input) > 8) {
         return errors::InvalidArgument(
             "reverse does not work on tensors with more than 8 dimensions");
@@ -2424,7 +2424,7 @@ REGISTER_OP("Slice")
         TF_RETURN_IF_ERROR(c->WithRank(input, c->Value(ndims), &input));
       }
 
-      // NOTE(mrry): Use MakeShapeFromShapeTensor to handle partially-known
+      // NOTE (mrry): Use MakeShapeFromShapeTensor to handle partially-known id:2967 gh:2968
       // values, even though the `begin` value does not represent a shape.
       ShapeHandle begin_value;
       TF_RETURN_IF_ERROR(c->MakeShapeFromShapeTensor(1, &begin_value));
@@ -2528,7 +2528,7 @@ REGISTER_OP("StridedSlice")
       DimensionHandle sparse_dims_dim = c->Dim(begin_shape, 0);
 
       const Tensor* strides_value = c->input_tensor(3);
-      // TODO(aselle,allenl): If we had a stride_mask it would be possible to do
+      // TODO (aselle,allenl): If we had a stride_mask it would be possible to do id:1974 gh:1975
       // more shape inference here (e.g. for x[3, ::T]).
       if (!c->RankKnown(input) || !c->ValueKnown(sparse_dims_dim) ||
           strides_value == nullptr) {
@@ -2754,7 +2754,7 @@ NOTE this op currently does not support broadcasting and so `value`'s
 shape must be exactly the shape produced by the slice of `ref`.
 
 )doc");
-// TODO(aselle): Fix this documentation once StridedSliceAssign Supports
+// TODO (aselle): Fix this documentation once StridedSliceAssign Supports id:2446 gh:2447
 // broadcasting.
 // --------------------------------------------------------------------------
 
@@ -2792,7 +2792,7 @@ REGISTER_OP("Tile")
     .Attr("Tmultiples: {int32, int64} = DT_INT32")
     .SetShapeFn([](InferenceContext* c) {
       ShapeHandle input = c->input(0);
-      // NOTE(mrry): Represent `multiples` as a `TensorShape` because (i)
+      // NOTE (mrry): Represent `multiples` as a `TensorShape` because (i) id:2798 gh:2800
       // it is a vector of non-negative integers, and (ii) doing so allows
       // us to handle partially-known multiples.
       ShapeHandle multiples;
@@ -2959,7 +2959,7 @@ REGISTER_OP("BroadcastGradientArgs")
     .Output("r1: T")
     .Attr("T: {int32, int64} = DT_INT32")
     .SetShapeFn([](InferenceContext* c) {
-      // TODO(mrry): Implement constant_value for BroadcastGradientArgs?
+      // TODO (mrry): Implement constant_value for BroadcastGradientArgs? id:1734 gh:1735
       ShapeHandle unused;
       TF_RETURN_IF_ERROR(c->WithRank(c->input(0), 1, &unused));
       TF_RETURN_IF_ERROR(c->WithRank(c->input(1), 1, &unused));
@@ -3471,7 +3471,7 @@ REGISTER_OP("ListDiff")
       ShapeHandle unused;
       TF_RETURN_IF_ERROR(c->WithRank(c->input(0), 1, &unused));
       TF_RETURN_IF_ERROR(c->WithRank(c->input(1), 1, &unused));
-      // TODO(mrry): Indicate that the length falls within an interval?
+      // TODO (mrry): Indicate that the length falls within an interval? id:2970 gh:2971
       ShapeHandle out = c->Vector(InferenceContext::kUnknownDim);
       c->set_output(0, out);
       c->set_output(1, out);
@@ -4208,7 +4208,7 @@ REGISTER_OP("SpaceToDepth")
     .Attr("T: type")
     .Attr("block_size: int >= 2")
     .Attr("data_format: {'NHWC', 'NCHW', 'NCHW_VECT_C'} = 'NHWC'")
-    // TODO(pauldonnelly): Implement GPU kernels for NCHW_VECT_C.
+    // TODO (pauldonnelly): Implement GPU kernels for NCHW_VECT_C. id:1976 gh:1977
     .SetShapeFn([](InferenceContext* c) {
       string data_format_str;
       TF_RETURN_IF_ERROR(c->GetAttr("data_format", &data_format_str));
@@ -4351,7 +4351,7 @@ REGISTER_OP("DepthToSpace")
     .Attr("T: type")
     .Attr("block_size: int >= 2")
     .Attr("data_format: {'NHWC', 'NCHW', 'NCHW_VECT_C'} = 'NHWC'")
-    // TODO(pauldonnelly): Implement GPU kernels for NCHW and NCHW_VECT_C.
+    // TODO (pauldonnelly): Implement GPU kernels for NCHW and NCHW_VECT_C. id:2448 gh:2449
     .SetShapeFn([](InferenceContext* c) {
       string data_format_str;
       TF_RETURN_IF_ERROR(c->GetAttr("data_format", &data_format_str));
@@ -4836,7 +4836,7 @@ REGISTER_OP("QuantizeAndDequantize")
 Use QuantizeAndDequantizeV2 instead.
 )doc");
 
-// TODO(suharshs): Deprecate QuantizeAndDequantizeV2.
+// TODO (suharshs): Deprecate QuantizeAndDequantizeV2. id:2801 gh:2802
 REGISTER_OP("QuantizeAndDequantizeV2")
     .Input("input: T")
     .Input("input_min: T")

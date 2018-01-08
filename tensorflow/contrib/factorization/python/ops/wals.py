@@ -518,10 +518,10 @@ class WALSMatrixFactorization(estimator.Estimator):
       ValueError: If config.num_worker_replicas is strictly greater than one.
         The current implementation only supports running on a single worker.
     """
-    # TODO(walidk): Support power-law based weight computation.
-    # TODO(walidk): Add factor lookup by indices, with caching.
-    # TODO(walidk): Support caching during prediction.
-    # TODO(walidk): Provide input pipelines that handle missing rows.
+    # TODO (walidk): Support power-law based weight computation. id:899 gh:900
+    # TODO (walidk): Add factor lookup by indices, with caching. id:601 gh:602
+    # TODO (walidk): Support caching during prediction. id:643 gh:644
+    # TODO (walidk): Provide input pipelines that handle missing rows. id:571 gh:572
 
     params = {
         "num_rows":

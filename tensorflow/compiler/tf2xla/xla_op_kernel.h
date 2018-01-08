@@ -193,7 +193,7 @@ class XlaOpKernelContext {
   // While to compile nested computations.
   XlaCompiler* compiler() const;
 
-  // TODO(phawkins): find a better home for these helpers.
+  // TODO (phawkins): find a better home for these helpers. id:238 gh:239
 
   // Gets an XLA lambda to compute Max. This is cached in the
   // XlaContext since it may be used by multiple Ops. There is a

@@ -43,7 +43,7 @@ class AllgatherTest(test.TestCase):
       local_checked.append(False)
     for i in range(len(all_gathered.indices)):
       all_index = all_gathered.indices[i]
-      # TODO(jthestness): Make this lookup quicker using sorting.
+      # TODO (jthestness): Make this lookup quicker using sorting. id:1277 gh:1278
       loc_index = -1
       for j in range(len(local_gathered.indices)):
         if local_gathered.indices[j] == all_index and not local_checked[j]:
@@ -96,7 +96,7 @@ class AllgatherTest(test.TestCase):
 
     all_gather = mpi.allreduce(to_gather[my_rank], average_allgather)
 
-    # NOTE: This assumes that device IDs are numbered the same as ranks.
+    # NOTE: This assumes that device IDs are numbered the same as ranks. id:965 gh:966
     gpu_options = tf.GPUOptions(visible_device_list=str(my_rank))
     config = tf.ConfigProto(gpu_options=gpu_options)
 

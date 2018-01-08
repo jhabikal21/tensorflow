@@ -38,7 +38,7 @@ xla::ComputationDataHandle RotateLeftS32(xla::ComputationBuilder* builder,
       builder->ShiftRightLogical(v, builder->ConstantR0<int>(32 - distance)));
 }
 
-// TODO(b/65209188): add a primitive XOR to XLA and call it here, rather than
+// TODO (b/65209188): add a primitive XOR to XLA and call it here, rather than id:216 gh:217
 // building XOR out of other bitwise operators.
 xla::ComputationDataHandle BitwiseXor(xla::ComputationBuilder* builder,
                                       const xla::ComputationDataHandle& x,
@@ -237,7 +237,7 @@ class StatelessRandomUniformOp : public XlaOpKernel {
   TF_DISALLOW_COPY_AND_ASSIGN(StatelessRandomUniformOp);
 };
 
-// TODO(phawkins): generalize to non-float, non-int32 seed types.
+// TODO (phawkins): generalize to non-float, non-int32 seed types. id:285 gh:287
 REGISTER_XLA_OP(Name("StatelessRandomUniform")
                     .TypeConstraint("dtype", DT_FLOAT)
                     .TypeConstraint("Tseed", DT_INT32),
@@ -270,7 +270,7 @@ class StatelessRandomNormalOp : public XlaOpKernel {
   TF_DISALLOW_COPY_AND_ASSIGN(StatelessRandomNormalOp);
 };
 
-// TODO(phawkins): generalize to non-float, non-int32 seed types.
+// TODO (phawkins): generalize to non-float, non-int32 seed types. id:217 gh:218
 REGISTER_XLA_OP(Name("StatelessRandomNormal")
                     .TypeConstraint("dtype", DT_FLOAT)
                     .TypeConstraint("Tseed", DT_INT32),

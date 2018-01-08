@@ -174,7 +174,7 @@ class Interpreter {
   int nodes_size() const { return nodes_and_registration_.size(); }
 
   // Get a tensor data structure.
-  // TODO(aselle): Create a safe ArrayHandle interface to avoid exposing this
+  // TODO (aselle): Create a safe ArrayHandle interface to avoid exposing this id:790 gh:791
   // read/write access to structure
   TfLiteTensor* tensor(int tensor_index) {
     if (tensor_index >= context_.tensors_size || tensor_index < 0)
@@ -183,7 +183,7 @@ class Interpreter {
   }
 
   // Get a pointer to an operation and registration data structure if in bounds.
-  // TODO(aselle): Create a safe ArrayHandle interface to avoid exposing this
+  // TODO (aselle): Create a safe ArrayHandle interface to avoid exposing this id:1381 gh:1382
   // read/write access to structure
   const std::pair<TfLiteNode, TfLiteRegistration>* node_and_registration(
       int node_index) {
@@ -220,7 +220,7 @@ class Interpreter {
   // Change the dimensionality of a given tensor. Note, this is only acceptable
   // for tensor indices that are inputs.
   // Returns status of failure or success.
-  // TODO(aselle): Consider implementing ArraySlice equivalent to make this
+  // TODO (aselle): Consider implementing ArraySlice equivalent to make this id:1156 gh:1157
   //   more adept at accepting data without an extra copy. Use absl::ArraySlice
   //   if our partners determine that dependency is acceptable.
   TfLiteStatus ResizeInputTensor(int tensor_index,
@@ -235,7 +235,7 @@ class Interpreter {
 
   // Invoke the interpreter (run the whole graph in dependency order).
   //
-  // NOTE: It is possible that the interpreter is not in a ready state
+  // NOTE: It is possible that the interpreter is not in a ready state id:824 gh:826
   // to evaluate (i.e. if a ResizeTensor() has been performed without an
   // AllocateTensors().
   // Returns status of success or failure.
@@ -288,7 +288,7 @@ class Interpreter {
 
   // Check if an array of tensor indices are valid with respect to the Tensor
   // array.
-  // NOTE: this changes consistent_ to be false if indices are out of bounds.
+  // NOTE: this changes consistent_ to be false if indices are out of bounds. id:764 gh:765
   TfLiteStatus CheckTensorIndices(const char* label, const int* indices,
                                   int length);
 
@@ -302,7 +302,7 @@ class Interpreter {
   TfLiteStatus ResizeTensorImpl(TfLiteTensor* tensor, TfLiteIntArray* new_size);
 
   // Report a detailed error string (will be printed to stderr).
-  // TODO(aselle): allow user of class to provide alternative destinations.
+  // TODO (aselle): allow user of class to provide alternative destinations. id:792 gh:793
   void ReportErrorImpl(const char* format, va_list args);
 
   // Entry point for C node plugin API to request an tensor be resized.
@@ -363,7 +363,7 @@ class Interpreter {
   // Intepreter will stop allocating tensors, set the value of next allocate
   // node id, and execute the node to generate the output tensor before continue
   // to allocate successors. This process repeats until all nodes are executed.
-  // NOTE: this relies on the order of nodes that is in topological order.
+  // NOTE: this relies on the order of nodes that is in topological order. id:1383 gh:1384
   int next_allocate_node_id_;
 
   // Whether to delegate to NN API

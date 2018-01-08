@@ -37,7 +37,7 @@ __all__ = [
 ]
 
 
-# TODO(langmore) Write separate versions of this for real/complex dtype, taking
+# TODO (langmore) Write separate versions of this for real/complex dtype, taking id:533 gh:534
 # advantage of optimized real-fft ops.
 def auto_correlation(
     x,
@@ -132,7 +132,7 @@ def auto_correlation(
     # Get a value for x_len that works in all cases.
     x_len = util.prefer_static_shape(x_rotated)[-1]
 
-    # TODO(langmore) Investigate whether this zero padding helps or hurts.  At
+    # TODO (langmore) Investigate whether this zero padding helps or hurts.  At id:595 gh:596
     # the moment is is necessary so that all FFT implementations work.
     # Zero pad to the next power of 2 greater than 2 * x_len, which equals
     # 2**(ceil(Log_2(2 * x_len))).  Note: Log_2(X) = Log_e(X) / Log_e(2).
@@ -212,7 +212,7 @@ def auto_correlation(
     return util.rotate_transpose(shifted_product_rotated, -shift)
 
 
-# TODO(langmore) To make equivalent to numpy.percentile:
+# TODO (langmore) To make equivalent to numpy.percentile: id:863 gh:864
 #  Make work with a sequence of floats or single float for 'q'.
 #  Make work with "linear", "midpoint" interpolation. (linear should be default)
 def percentile(x,

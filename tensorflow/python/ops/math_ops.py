@@ -324,7 +324,7 @@ def multiply(x, y, name=None):
 multiply.__doc__ = gen_math_ops._mul.__doc__.replace("Mul", "`tf.multiply`")
 
 
-# TODO(aselle): put deprecation in after another round of global code changes
+# TODO (aselle): put deprecation in after another round of global code changes id:3416 gh:3418
 @deprecation.deprecated(
     "2016-12-30",
     "`tf.mul(x, y)` is deprecated, please use `tf.multiply(x, y)` or `x * y`")
@@ -343,7 +343,7 @@ def subtract(x, y, name=None):
 subtract.__doc__ = gen_math_ops._sub.__doc__.replace("`Sub`", "`tf.subtract`")
 
 
-# TODO(aselle): put deprecation in after another round of global code changes
+# TODO (aselle): put deprecation in after another round of global code changes id:2542 gh:2543
 @deprecation.deprecated(
     "2016-12-30",
     "`tf.sub(x, y)` is deprecated, please use `tf.subtract(x, y)` or `x - y`")
@@ -748,7 +748,7 @@ def cast(x, dtype, name=None):
       values_cast = cast(x.values, base_type, name=name)
       return sparse_tensor.SparseTensor(x.indices, values_cast, x.dense_shape)
     else:
-      # TODO(josh11b): If x is not already a Tensor, we could return
+      # TODO (josh11b): If x is not already a Tensor, we could return id:3236 gh:3237
       # ops.convert_to_tensor(x, dtype=dtype, ...)  here, but that
       # allows some conversions that cast() can't do, e.g. casting numbers to
       # strings.
@@ -959,7 +959,7 @@ _TRUEDIV_TABLE = {
 }
 
 
-# NOTE: the support of "sparse (true)div dense" is currently not baked in into
+# NOTE: the support of "sparse (true)div dense" is currently not baked in into id:3550 gh:3551
 # "tf.(true_)div()".  Until such an API decision is made, the supported usage is
 # to explicitly use the "/" operator to invoke either truediv or div.
 def _sparse_dense_truediv(sp_indices, sp_values, sp_shape, y, name=None):
@@ -1080,11 +1080,11 @@ def div(x, y, name=None):
   return _div_python2(x, y, name)
 
 
-# TODO(aselle): This should be removed
+# TODO (aselle): This should be removed id:3183 gh:3184
 mod = gen_math_ops._floor_mod
 
 
-# TODO(aselle): Deprecate this once all internal functionality uses
+# TODO (aselle): Deprecate this once all internal functionality uses id:3419 gh:3420
 # tf.truncatediv
 def floordiv(x, y, name=None):
   """Divides `x / y` elementwise, rounding toward the most negative integer.
@@ -1118,7 +1118,7 @@ def floordiv(x, y, name=None):
 
 realdiv = gen_math_ops._real_div
 truncatediv = gen_math_ops._truncate_div
-# TODO(aselle): Rename this to floordiv when we can.
+# TODO (aselle): Rename this to floordiv when we can. id:2544 gh:2545
 floor_div = gen_math_ops._floor_div
 truncatemod = gen_math_ops._truncate_mod
 floormod = gen_math_ops._floor_mod
@@ -1136,7 +1136,7 @@ def _mul_dispatch(x, y, name=None):
     return sparse_tensor.SparseTensor(y.indices, new_vals, y.dense_shape)
 
 
-# NOTE(aselle): When integer division is added for sparse_dense_cwise,
+# NOTE (aselle): When integer division is added for sparse_dense_cwise, id:3240 gh:3241
 # div, truediv, and floordiv should be delegated appropriately for
 # Python sematnics, analogous to dense cwise tensor operations.
 _OverrideBinaryOperatorHelper(gen_sparse_ops.sparse_dense_cwise_div, "div",
@@ -1158,7 +1158,7 @@ _OverrideBinaryOperatorHelper(pow, "pow")
 
 def logical_xor(x, y, name="LogicalXor"):
   """x ^ y = (x | y) & ~(x & y)."""
-  # TODO(alemi) Make this a cwise op if people end up relying on it.
+  # TODO (alemi) Make this a cwise op if people end up relying on it. id:3551 gh:3552
   return gen_math_ops.logical_and(
       gen_math_ops.logical_or(x, y),
       gen_math_ops.logical_not(gen_math_ops.logical_and(x, y)),
@@ -1251,7 +1251,7 @@ def range(start, limit=None, delta=1, dtype=None, name="range"):
 # Reduction operations
 def _ReductionDims(x, axis, reduction_indices):
   """Returns range(0, rank(x)) if reduction_indices is None."""
-  # TODO(aselle): Remove this after deprecation
+  # TODO (aselle): Remove this after deprecation id:3186 gh:3187
   if reduction_indices is not None:
     if axis is not None:
       raise ValueError("Can't specify both axis' and 'reduction_indices'.")
@@ -1967,7 +1967,7 @@ def matmul(a,
 
     a = ops.convert_to_tensor(a, name="a")
     b = ops.convert_to_tensor(b, name="b")
-    # TODO(apassos) remove _shape_tuple here when it is not needed.
+    # TODO (apassos) remove _shape_tuple here when it is not needed. id:3422 gh:3423
     a_shape = a._shape_tuple()  # pylint: disable=protected-access
     b_shape = b._shape_tuple()  # pylint: disable=protected-access
     if (not a_is_sparse and
@@ -2052,7 +2052,7 @@ def _as_indexed_slices(x, optimize=True):
   Raises:
     TypeError: If 'x' is not a Tensor or an IndexedSlices object.
   """
-  # TODO(touts): op_scope
+  # TODO (touts): op_scope id:2547 gh:2548
   if not isinstance(x, (ops.Tensor, ops.IndexedSlices)):
     raise TypeError("Not a Tensor or IndexedSlices: %s" % type(x))
   if isinstance(x, ops.IndexedSlices):
@@ -2166,7 +2166,7 @@ def accumulate_n(inputs, shape=None, tensor_dtype=None, name=None):
     cannot be inferred.
   """
   if context.in_eager_mode():
-    # TODO(apassos) remove this once the lifetime of eager variables gets
+    # TODO (apassos) remove this once the lifetime of eager variables gets id:3243 gh:3244
     # addressed.
     raise ValueError("accumulate_n not supported in eager mode")
   if not inputs or not isinstance(inputs, (list, tuple)):

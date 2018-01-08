@@ -27,7 +27,7 @@ namespace xla {
 
 namespace {
 
-// TODO(b/69062148) Remove this code when all backends support BatchDot
+// TODO (b/69062148) Remove this code when all backends support BatchDot id:325 gh:326
 // natively.
 Status DecomposeBatchDot(HloInstruction* dot) {
   auto computation = dot->parent();

@@ -378,7 +378,7 @@ void XlaLocalLaunchOp::Compute(OpKernelContext* ctx) {
     gpu::DeviceMemoryBase buffer = output->buffer({output_num});
 
     Var* variable = nullptr;
-    // TODO(b/35625933): tensorflow::Var should contain a PersistentTensor, not
+    // TODO (b/35625933): tensorflow::Var should contain a PersistentTensor, not id:145 gh:146
     // a Tensor.
     OP_REQUIRES_OK(ctx, LookupOrCreateResource<Var>(
                             ctx, HandleFromInput(ctx, write.input_index),

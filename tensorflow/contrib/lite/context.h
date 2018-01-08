@@ -168,7 +168,7 @@ typedef struct {
   // tensor based on `type`.
   TfLitePtrUnion data;
   // A pointer to a structure representing the dimensionality interpretation
-  // that the buffer should have. NOTE: the product of elements of `dims`
+  // that the buffer should have. NOTE: the product of elements of `dims` id:1150 gh:1151
   // and the element datatype size should be equal to `bytes` below.
   TfLiteIntArray* dims;
   // Quantization information.
@@ -214,7 +214,7 @@ typedef struct TfLiteContext {
   void* impl_;
 
   // Request memory pointer be resized. Updates dimensions on the tensor.
-  // NOTE: ResizeTensor takes ownership of newSize.
+  // NOTE: ResizeTensor takes ownership of newSize. id:818 gh:819
   TfLiteStatus (*ResizeTensor)(struct TfLiteContext*, TfLiteTensor* tensor,
                                TfLiteIntArray* new_size);
   // Request that a error be reported with format string msg.
@@ -226,7 +226,7 @@ typedef struct TfLiteContext {
   TfLiteStatus (*AddTensors)(struct TfLiteContext*, int tensors_to_add,
                              int* first_new_tensor_index);
 
-  // TODO(ahentz): we should create a more general mechanism for this sort of
+  // TODO (ahentz): we should create a more general mechanism for this sort of id:759 gh:760
   // library-global objects.
   void* gemm_context;
 } TfLiteContext;
@@ -267,7 +267,7 @@ typedef struct {
   //
   // The returned pointer will be stored with the node in the `user_data` field,
   // accessible within prepare and invoke functions below.
-  // NOTE: if the data is already in the desired format, simply implement this
+  // NOTE: if the data is already in the desired format, simply implement this id:786 gh:787
   // function to return `nullptr` and implement the free function to be a no-op.
   void* (*init)(TfLiteContext* context, const char* buffer, size_t length);
 

@@ -34,7 +34,7 @@ namespace tensorflow {
 //
 // Uses a blocked algorithm if `block_size` is > 1; if block_size == 1 then no
 // blocking is used.
-// TODO(phawkins): equivalent to the BLAS TRSM routine with side=right,
+// TODO (phawkins): equivalent to the BLAS TRSM routine with side=right, id:230 gh:231
 // kind=lower, and transposed_a=true. Implement the other possible combinations
 // of side, kind and transposed_a.
 xla::StatusOr<xla::ComputationDataHandle> TriangularSolve(

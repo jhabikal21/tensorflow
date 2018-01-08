@@ -131,7 +131,7 @@ void SetFinalDataTypeOnInputs(const TocoFlags& toco_flags, Model* model) {
     auto* array = model->arrays[array_name].get();
     // Note that the notion of changing data types only applies to real-numbers
     // arrays (see the documentation for inference_input_type).
-    // TODO(benoitjacob) this is assuming that uint8 arrays are quantized,
+    // TODO (benoitjacob) this is assuming that uint8 arrays are quantized, id:1256 gh:1258
     // i.e. represent real numbers by means of quantization parameters,
     // and not plain integer uint8 input arrays.
     if (!IsRealValued(array->data_type)) {
@@ -206,7 +206,7 @@ void Transform(const TocoFlags& toco_flags, Model* model) {
     // See the doc for --reorder_across_fake_quant: that flag is needed to
     // support some existing models, e.g. WordLens, that have FakeQuant
     // nodes in the wrong places.
-    // TODO(benoitjacob): drop special casing when we can.
+    // TODO (benoitjacob): drop special casing when we can. id:945 gh:946
     if ((quantize_output && toco_flags.reorder_across_fake_quant())) {
       transformations.Add(new DropFakeQuant);
     }

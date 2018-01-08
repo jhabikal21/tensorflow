@@ -179,7 +179,7 @@ class RevBlockTest(test.TestCase):
 
     self._testRevBlock(f=[f1, f2, f1, f2])
 
-  # TODO(rsepassi): Recent change to conv seems to have broken this test. Find
+  # TODO (rsepassi): Recent change to conv seems to have broken this test. Find id:998 gh:999
   # out why.
   def _testConvAndBatchNorm(self):
 

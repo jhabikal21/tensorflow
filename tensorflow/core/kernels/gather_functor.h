@@ -81,7 +81,7 @@ SliceIndex HandleCopies(OpKernelContext* ctx,
         return;
       }
       // Copy using memcpy if possible, otherwise an Eigen loop
-      // TODO(cwhipkey): avoid linking to framework to get Allocator (to improve
+      // TODO (cwhipkey): avoid linking to framework to get Allocator (to improve id:2018 gh:2019
       // ahead-of-time compilation binary size).
       if (is_simple_type<T>::value) {
         // Avoid auto-promotion to Index from SliceIndex by casting.

@@ -60,7 +60,7 @@ bool ResolveReorderAxes::Run(Model* model, std::size_t op_index) {
   reordered_data.resize(RequiredBufferSizeForShape(output_array.shape()));
   const auto input_axes_order = reorder_op->input_axes_order;
   const auto output_axes_order = reorder_op->output_axes_order;
-  // TODO(b/62904716) Shapes should be used directly.
+  // TODO (b/62904716) Shapes should be used directly. id:2113 gh:2114
   Shape input_shape = constant_input_array.shape();
   Shape output_shape = output_array.shape();
   if (AxesCount(input_axes_order) == 2) {

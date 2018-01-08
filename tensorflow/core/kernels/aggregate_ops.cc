@@ -195,7 +195,7 @@ class AddNOp<Device, Variant> : public OpKernel {
     // Step 3: attempt to add using
     //   BinaryOpVariants(ADD_VARIANT_BINARY_OP, ...)
     //   For the output create a default-constructed variant object.
-    // TODO(ebrevdo): Perform summation in a tree-structure.
+    // TODO (ebrevdo): Perform summation in a tree-structure. id:1899 gh:1900
     Tensor out(cpu_allocator(), DT_VARIANT, TensorShape({}));
     Variant* v_out = &(out.scalar<Variant>()());
     OP_REQUIRES_OK(
@@ -233,7 +233,7 @@ TF_CALL_variant(REGISTER_ADDN_GPU);
 #undef REGISTER_ADDN_GPU
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1434 gh:1435
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("AddN")
                             .Device(DEVICE_GPU)
@@ -249,7 +249,7 @@ REGISTER_ADDN(float, SYCL);
 REGISTER_ADDN(double, SYCL);
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2580 gh:2581
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("AddN")
                             .Device(DEVICE_SYCL)

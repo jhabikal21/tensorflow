@@ -46,7 +46,7 @@ from tensorflow.python.ops.gen_functional_ops import _symbolic_gradient
 from tensorflow.python.util import nest
 
 
-# TODO(yuanbyu, mrry): Handle stride to support sliding windows.
+# TODO (yuanbyu, mrry): Handle stride to support sliding windows. id:3531 gh:3532
 def foldl(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
           swap_memory=False, name=None):
   """foldl on the list of tensors unpacked from `elems` on dimension 0.
@@ -90,7 +90,7 @@ def foldl(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
 
   in_graph_mode = context.in_graph_mode()
   with ops.name_scope(name, "foldl", [elems]):
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3142 gh:3143
     # supported in Eager
     if in_graph_mode:
       # Any get_variable calls in fn will cache the first call locally
@@ -98,7 +98,7 @@ def foldl(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
       varscope = vs.get_variable_scope()
       varscope_caching_device_was_none = False
       if varscope.caching_device is None:
-        # TODO(ebrevdo): Change to using colocate_with here and in other
+        # TODO (ebrevdo): Change to using colocate_with here and in other id:3372 gh:3373
         # methods.
         varscope.set_caching_device(lambda op: op.device)
         varscope_caching_device_was_none = True
@@ -127,7 +127,7 @@ def foldl(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
         back_prop=back_prop,
         swap_memory=swap_memory)
 
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:2516 gh:2517
     # supported in Eager
     if in_graph_mode and varscope_caching_device_was_none:
       varscope.set_caching_device(None)
@@ -177,7 +177,7 @@ def foldr(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
 
   in_graph_mode = context.in_graph_mode()
   with ops.name_scope(name, "foldr", [elems]):
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3197 gh:3198
     # supported in Eager
     if in_graph_mode:
       # Any get_variable calls in fn will cache the first call locally and not
@@ -185,7 +185,7 @@ def foldr(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
       varscope = vs.get_variable_scope()
       varscope_caching_device_was_none = False
       if varscope.caching_device is None:
-        # TODO(ebrevdo): Change to using colocate_with here and in other
+        # TODO (ebrevdo): Change to using colocate_with here and in other id:3533 gh:3534
         # methods.
         varscope.set_caching_device(lambda op: op.device)
         varscope_caching_device_was_none = True
@@ -214,7 +214,7 @@ def foldr(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
         back_prop=back_prop,
         swap_memory=swap_memory)
 
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3145 gh:3146
     # supported in Eager
     if in_graph_mode and varscope_caching_device_was_none:
       varscope.set_caching_device(None)
@@ -341,7 +341,7 @@ def map_fn(fn, elems, dtype=None, parallel_iterations=10, back_prop=True,
 
   in_graph_mode = context.in_graph_mode()
   with ops.name_scope(name, "map", elems_flat):
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3375 gh:3376
     # supported in Eager
     if in_graph_mode:
       # Any get_variable calls in fn will cache the first call locally
@@ -349,7 +349,7 @@ def map_fn(fn, elems, dtype=None, parallel_iterations=10, back_prop=True,
       varscope = vs.get_variable_scope()
       varscope_caching_device_was_none = False
       if varscope.caching_device is None:
-        # TODO(ebrevdo): Change to using colocate_with here and in other
+        # TODO (ebrevdo): Change to using colocate_with here and in other id:2518 gh:2519
         # methods.
         varscope.set_caching_device(lambda op: op.device)
         varscope_caching_device_was_none = True
@@ -416,7 +416,7 @@ def map_fn(fn, elems, dtype=None, parallel_iterations=10, back_prop=True,
       r.set_shape(tensor_shape.TensorShape(n_static).concatenate(
           r.get_shape()[1:]))
 
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3200 gh:3201
     # supported in Eager
     if in_graph_mode and varscope_caching_device_was_none:
       varscope.set_caching_device(None)
@@ -533,7 +533,7 @@ def scan(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
 
   in_graph_mode = context.in_graph_mode()
   with ops.name_scope(name, "scan", elems_flat):
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3535 gh:3536
     # supported in Eager
     if in_graph_mode:
       # Any get_variable calls in fn will cache the first call locally
@@ -541,7 +541,7 @@ def scan(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
       varscope = vs.get_variable_scope()
       varscope_caching_device_was_none = False
       if varscope.caching_device is None:
-        # TODO(ebrevdo): Change to using colocate_with here and in other
+        # TODO (ebrevdo): Change to using colocate_with here and in other id:3149 gh:3150
         # methods.
         varscope.set_caching_device(lambda op: op.device)
         varscope_caching_device_was_none = True
@@ -621,7 +621,7 @@ def scan(fn, elems, initializer=None, parallel_iterations=10, back_prop=True,
       r.set_shape(tensor_shape.TensorShape(n_static).concatenate(
           r.get_shape()[1:]))
 
-    # TODO(akshayka): Remove the in_graph_mode check once caching devices are
+    # TODO (akshayka): Remove the in_graph_mode check once caching devices are id:3378 gh:3380
     # supported in Eager
     if in_graph_mode and varscope_caching_device_was_none:
       varscope.set_caching_device(None)

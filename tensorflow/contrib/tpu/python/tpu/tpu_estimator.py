@@ -67,7 +67,7 @@ _BATCH_SIZE_KEY = 'batch_size'
 _CROSS_REPLICA_SUM_OP = 'CrossReplicaSum'
 _RESERVED_PARAMS_KEYS = [_BATCH_SIZE_KEY]
 
-# TODO(b/65703635): Flip the value and remove all dead code.
+# TODO (b/65703635): Flip the value and remove all dead code. id:2317 gh:2318
 _WRAP_INPUT_FN_INTO_WHILE_LOOP = False
 
 
@@ -192,7 +192,7 @@ class _TPUContext(object):
 
   @property
   def num_cores(self):
-    # TODO(xiejw): Adds lazy num_shards initialization.
+    # TODO (xiejw): Adds lazy num_shards initialization. id:1042 gh:1043
     return self._num_shards_or_none
 
   @property
@@ -298,7 +298,7 @@ class _TPUContext(object):
       if _DEFAULT_COORDINATOR_JOB_NAME in job_names:
         job_names.remove(_DEFAULT_COORDINATOR_JOB_NAME)
         return job_names.pop()
-      # TODO(b/67716447): Include more sophisticated heuristics.
+      # TODO (b/67716447): Include more sophisticated heuristics. id:1742 gh:1743
     raise ValueError(
         'Could not infer TPU job name. Please specify a tpu_job_name as part '
         'of your TPUConfig.')
@@ -582,7 +582,7 @@ class TPUInfeedOutfeedSessionHook(session_run_hook.SessionRunHook):
 
     self._infeed_thd_controller.send_next_batch_signal(iterations)
     if self._dequeue_ops is not None:
-      # TODO(xiejw): Refactor the outfeed dequeue into tf.while_loop.
+      # TODO (xiejw): Refactor the outfeed dequeue into tf.while_loop. id:1422 gh:1423
       logging.info(
           'Dequeue next (%d) batch(es) of data from outfeed.', iterations)
       self._outfeed_thd_controller.send_next_batch_signal(iterations)
@@ -1293,7 +1293,7 @@ class _EvalMetrics(object):
           raise RuntimeError(
               'All tensors outfed from TPU should preseve batch size '
               'dimension, but got scalar {}'.format(dequeue_ops[i][0]))
-        # TODO(xiejw): Allow users to specify the axis for batch size dimension.
+        # TODO (xiejw): Allow users to specify the axis for batch size dimension. id:1043 gh:1044
         dequeue_ops[i] = array_ops.concat(dequeue_ops[i], axis=0)
 
       if self._is_dict:
@@ -1613,7 +1613,7 @@ class TPUEstimator(estimator_lib.Estimator):
       with self._ctx.with_mode(mode) as ctx:
         model_fn_wrapper = _ModelFnWrapper(model_fn, config, params, ctx)
 
-        # TODO(jhseu): Move to PREDICT to TPU.
+        # TODO (jhseu): Move to PREDICT to TPU. id:2320 gh:2321
         if ctx.is_running_on_cpu():
           logging.info('Running %s on CPU', mode)
           return model_fn_wrapper.call_without_tpu(features, labels)

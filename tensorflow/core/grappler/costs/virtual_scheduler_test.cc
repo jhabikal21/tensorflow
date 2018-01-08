@@ -1876,7 +1876,7 @@ TEST_F(VirtualSchedulerTest, WhileLoop) {
   // use, the scheduled ops should follow these dependency chains.
   // Note that currently, VirtualScheduler executes while/Merge twice; hence,
   // we're not testing dependency chains related to while/Merge.
-  // TODO(dyoon): after fixing while loop behavior correctly (run nodes in the
+  // TODO (dyoon): after fixing while loop behavior correctly (run nodes in the id:1421 gh:1422
   // order of Enter, Merge, ...loop condition ..., ... loop body ...,
   // NextIteration, Merge, ... loop condition ..., Exit), re-enable dependency
   // chaing test w/ Merge nodes.

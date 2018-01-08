@@ -116,7 +116,7 @@ class TakeDatasetOp : public UnaryDatasetOpKernel {
       Status GetNextInternal(IteratorContext* ctx,
                              std::vector<Tensor>* out_tensors,
                              bool* end_of_sequence) override {
-        mutex_lock l(mu_);  // TODO(mrry): Make locking less conservative.
+        mutex_lock l(mu_);  // TODO (mrry): Make locking less conservative. id:1516 gh:1517
         if (!input_impl_) {
           *end_of_sequence = true;
           return Status::OK();

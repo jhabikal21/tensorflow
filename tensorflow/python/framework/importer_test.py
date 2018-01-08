@@ -356,7 +356,7 @@ class ImportGraphDefTest(test.TestCase):
 
   def testTypeMismatchInGraphDef(self):
     if ops._USE_C_API:
-      # TODO(skyewm): improve error message
+      # TODO (skyewm): improve error message id:3284 gh:3285
       error_msg = ("Input 0 of node import/B was passed int32 from import/A:0 "
                    "incompatible with expected float.")
     else:
@@ -407,7 +407,7 @@ class ImportGraphDefTest(test.TestCase):
 
   def testInvalidSignatureTooManyInputsInGraphDef(self):
     if ops._USE_C_API:
-      # TODO(skyewm): improve error message
+      # TODO (skyewm): improve error message id:2963 gh:2964
       error_msg = "NodeDef expected inputs '' do not match 1 inputs specified"
     else:
       error_msg = r"More inputs specified \('A:0'\) than the op expects"
@@ -422,7 +422,7 @@ class ImportGraphDefTest(test.TestCase):
 
   def testInvalidSignatureNotEnoughInputsInGraphDef(self):
     if ops._USE_C_API:
-      # TODO(skyewm): improve error message
+      # TODO (skyewm): improve error message id:3221 gh:3222
       error_msg = ("NodeDef expected inputs 'int32, float' do not match 1 "
                    "inputs specified")
     else:

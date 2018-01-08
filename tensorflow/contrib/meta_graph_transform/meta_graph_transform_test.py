@@ -546,7 +546,7 @@ class MetaGraphTransformTest(test.TestCase):
                                            meta_graph_def,
                                            removed_op_names)
 
-    # TODO(b/63447631): For now the saver is just copied unchanged
+    # TODO (b/63447631): For now the saver is just copied unchanged id:869 gh:870
     self.assertEqual(base_meta_graph_def.saver_def, meta_graph_def.saver_def)
 
   def test_add_pruned_signature(self):

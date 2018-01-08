@@ -234,7 +234,7 @@ inline int GetFilterTensorOutputChannelsDimIndex(int num_dims,
   }
 }
 
-// TODO(pauldonnelly): Replace these tensor dimension index functions with
+// TODO (pauldonnelly): Replace these tensor dimension index functions with id:2071 gh:2072
 // constant structs to improve performance and reduce code size in Compute()
 // functions.
 

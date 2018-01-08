@@ -95,7 +95,7 @@ Status GetWindowedOutputSize(int64 input_size, int64 filter_size, int64 stride,
 //   When the stride is 1, the expression simplifies to
 //     H' = H-K'+1.
 //
-// TODO(b/67112639): Merge V2 versions and the original versions eventually.
+// TODO (b/67112639): Merge V2 versions and the original versions eventually. id:1310 gh:1311
 Status GetWindowedOutputSizeV2(int64 input_size, int64 filter_size,
                                int64 dilation_rate, int64 stride,
                                Padding padding_type, int64* output_size,

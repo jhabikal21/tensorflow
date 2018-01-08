@@ -72,7 +72,7 @@ bool IsInitializationOp(const Node* node) {
 
 // Sets the timeline_label field of *node_stats, using data from *node.
 // Returns true iff the node is a transfer node.
-// TODO(tucker): merge with the DetailText function in session.cc
+// TODO (tucker): merge with the DetailText function in session.cc id:1567 gh:1568
 // in a common location.
 bool SetTimelineLabel(const Node* node, NodeExecStatsWrapper* stats) {
   bool is_transfer_node = false;
@@ -428,7 +428,7 @@ class ExecutorImpl : public Executor {
   std::vector<const Node*> root_nodes_;
 
   // Mapping from frame name to static information about the frame.
-  // TODO(yuanbyu): We could cache it along with the graph so to avoid
+  // TODO (yuanbyu): We could cache it along with the graph so to avoid id:1067 gh:1068
   // the overhead of constructing it for each executor instance.
   gtl::FlatMap<string, FrameInfo*> frame_info_;
 
@@ -795,7 +795,7 @@ class ExecutorState {
 
  private:
   // Either a tensor pointer (pass-by-reference) or a tensor (pass-by-value).
-  // TODO(yuanbyu): A better way to do "has_value"?
+  // TODO (yuanbyu): A better way to do "has_value"? id:2343 gh:2344
   struct Entry {
     Entry() {}
     Entry(const Entry& other)
@@ -896,7 +896,7 @@ class ExecutorState {
     // input_tensors[k][impl_->nodes[i].input_start + j]. An entry is either
     // a tensor pointer (pass-by-reference) or a tensor (pass-by-value).
     //
-    // NOTE: No need to protect input_tensors[i] by any locks because it
+    // NOTE: No need to protect input_tensors[i] by any locks because it id:1064 gh:1065
     // is resized once. Each element of tensors_ is written once by the
     // source node of an edge and is cleared by the destination of the same
     // edge. The latter node is never run concurrently with the former node.
@@ -1450,7 +1450,7 @@ void ExecutorState::RunAsync(Executor::DoneCallback done) {
 }
 
 // State kept alive for executing an asynchronous node in another
-// thread.  NOTE: We need to make a copy of p.input,
+// thread.  NOTE: We need to make a copy of p.input, id:1780 gh:1781
 // p.input_device_contexts, and p.input_alloc_attrs for asynchronous
 // kernels because OpKernelContext methods like input_type(i) needs
 // the param points to valid input type vector. It's not an issue for
@@ -1540,7 +1540,7 @@ void ExecutorState::Process(TaggedNode tagged_node, int64 scheduled_usec) {
     const int id = node->id();
     const NodeItem& item = *gview.node(id);
 
-    // TODO(misard) Replace with a finer-grain enabling flag once we
+    // TODO (misard) Replace with a finer-grain enabling flag once we id:1619 gh:1620
     // add better optional debugging support.
     if (vlog_ && VLOG_IS_ON(1)) {
       mutex_lock l(input_frame->mu);
@@ -1798,7 +1798,7 @@ Status ExecutorState::ProcessOutputs(const NodeItem& item, OpKernelContext* ctx,
   Status s = ctx->status();
   if (!s.ok()) {
     s = AttachDef(s, item.kernel->def());
-    // TODO(misard) Replace with a finer-grain enabling flag once we
+    // TODO (misard) Replace with a finer-grain enabling flag once we id:1069 gh:1070
     // add better optional debugging support.
     if (vlog_ && VLOG_IS_ON(1)) {
       LOG(WARNING) << this << " Compute status: " << s;
@@ -1888,7 +1888,7 @@ Status ExecutorState::ProcessOutputs(const NodeItem& item, OpKernelContext* ctx,
                                                     out->ref, true, ctx));
           }
         } else {
-          // NOTE that std::move is used here, so val.tensor goes to
+          // NOTE that std::move is used here, so val.tensor goes to id:2345 gh:2347
           // uninitialized state (val.tensor->IsInitialized return false).
           DCHECK(!out->val_field_is_set);
           out->has_value = true;
@@ -2121,7 +2121,7 @@ void ExecutorState::ScheduleReady(const TaggedNodeSeq& ready,
 
 inline void ExecutorState::MaybeMarkCompleted(FrameState* frame, int64 iter,
                                               int64 node_id) {
-  // TODO(misard) Replace with a finer-grain enabling flag once we
+  // TODO (misard) Replace with a finer-grain enabling flag once we id:1066 gh:1067
   // add better optional debugging support.
   if (vlog_ && VLOG_IS_ON(1)) {
     const NodeItem* item = impl_->gview_.node(node_id);
@@ -2337,7 +2337,7 @@ void ExecutorState::DeleteFrame(FrameState* frame, TaggedNodeSeq* ready) {
         const auto dst_pending_id =
             impl_->gview_.node(dst_node->id())->pending_id;
 
-        // TODO(yuanbyu): We don't need this if we require the subgraph
+        // TODO (yuanbyu): We don't need this if we require the subgraph id:1784 gh:1785
         // given to an executor not to contain a sink node.
         if (dst_node->IsSink()) continue;
 
@@ -2419,7 +2419,7 @@ void ExecutorState::FrameState::ActivateNodes(const NodeItem* item,
     const PendingCounts::Handle dst_pending_id = dst_item->pending_id;
     const int src_slot = e.output_slot;
 
-    // TODO(yuanbyu): We don't need this if we require the subgraph
+    // TODO (yuanbyu): We don't need this if we require the subgraph id:1623 gh:1624
     // given to an executor not to contain a sink node.
     if (dst_item->is_sink) continue;
 
@@ -2458,7 +2458,7 @@ void ExecutorState::FrameState::ActivateNodes(const NodeItem* item,
           // This is a dead data input. Note that dst_node is dead if node is
           // a dead enter. We need this to handle properly a while loop on
           // the untaken branch of a conditional.
-          // TODO(yuanbyu): This is a bit hacky, but a good solution for
+          // TODO (yuanbyu): This is a bit hacky, but a good solution for id:1071 gh:1072
           // now.
           iter_state->increment_dead_count(dst_pending_id);
           const int dead_cnt = iter_state->dead_count(dst_pending_id);

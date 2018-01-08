@@ -442,7 +442,7 @@ class Transformer(object):
     """Copy ops without connecting them."""
     for op in info.sgv.ops:
       logging.debug("Copying op: %s", op.name)
-      # TODO(fkp): return a subgraph?
+      # TODO (fkp): return a subgraph? id:610 gh:611
       op_, op_outputs_ = self.transform_op_handler(info, op)
       if op is op_:
         raise ValueError("In-place transformation not allowed.")

@@ -230,7 +230,7 @@ class DenseTest(test.TestCase):
     self.assertEqual(len(vars1), 2)
     self.assertEqual(len(vars2), 4)
 
-  # TODO(alive): get this to  work in eager mode.
+  # TODO (alive): get this to  work in eager mode. id:3111 gh:3112
   def testFunctionalDenseTwiceReuse(self):
     with self.test_session():
       inputs = random_ops.random_uniform((5, 3), seed=1)
@@ -240,7 +240,7 @@ class DenseTest(test.TestCase):
       vars2 = variables.trainable_variables()
       self.assertEqual(vars1, vars2)
 
-  # TODO(alive): get this to  work in eager mode.
+  # TODO (alive): get this to  work in eager mode. id:3331 gh:3332
   def testFunctionalDenseTwiceReuseFromScope(self):
     with self.test_session():
       with variable_scope.variable_scope('scope'):

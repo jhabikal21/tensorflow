@@ -294,7 +294,7 @@ def ais_chain(n_iterations, step_size, n_leapfrog_steps, initial_x,
       w = a[2]
       w += (1. / n_iterations) * (target_log_prob_fn(last_x) -
                                   proposal_log_prob_fn(last_x))
-      # TODO(b/66917083): There's an opportunity for gradient reuse here.
+      # TODO (b/66917083): There's an opportunity for gradient reuse here. id:572 gh:573
       updated_x, acceptance_probs, _, _ = kernel(step_size, n_leapfrog_steps,
                                                  last_x, log_prob_beta,
                                                  event_dims)
@@ -487,7 +487,7 @@ def kernel(step_size, n_leapfrog_steps, x, target_log_prob_fn, event_dims=(),
         < acceptance_probs)
     new_log_prob = -array_ops.where(accepted, log_potential_1, log_potential_0)
 
-    # TODO(b/65738010): This should work, but it doesn't for now.
+    # TODO (b/65738010): This should work, but it doesn't for now. id:485 gh:486
     # reduced_shape = math_ops.reduced_shape(x_shape, event_dims)
     reduced_shape = array_ops.shape(math_ops.reduce_sum(x, event_dims,
                                                         keep_dims=True))
@@ -497,7 +497,7 @@ def kernel(step_size, n_leapfrog_steps, x, target_log_prob_fn, event_dims=(),
     new_x = array_ops.where(accepted, new_x, x)
     new_grad = -array_ops.where(accepted, grad_1, grad_0)
 
-  # TODO(langmore) Gradients of acceptance_probs and new_log_prob with respect
+  # TODO (langmore) Gradients of acceptance_probs and new_log_prob with respect id:545 gh:546
   # to initial_x will propagate NaNs (see testNanFromGradsDontPropagate).  This
   # should be fixed.
   return new_x, acceptance_probs, new_log_prob, new_grad

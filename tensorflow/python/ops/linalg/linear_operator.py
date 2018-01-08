@@ -36,7 +36,7 @@ from tensorflow.python.platform import tf_logging as logging
 __all__ = ["LinearOperator"]
 
 
-# TODO(langmore) Use matrix_solve_ls for singular or non-square matrices.
+# TODO (langmore) Use matrix_solve_ls for singular or non-square matrices. id:3397 gh:3398
 class LinearOperator(object):
   """Base class defining a [batch of] linear operator[s].
 
@@ -471,7 +471,7 @@ class LinearOperator(object):
     else:
       singular_values = linalg_ops.svd(
           self._get_cached_dense_matrix(), compute_uv=False)
-      # TODO(langmore) Add .eig and .cond as methods.
+      # TODO (langmore) Add .eig and .cond as methods. id:2530 gh:2531
       cond = (math_ops.reduce_max(singular_values, axis=-1) /
               math_ops.reduce_min(singular_values, axis=-1))
       return check_ops.assert_less(
@@ -932,7 +932,7 @@ class LinearOperator(object):
       return self._add_to_tensor(x)
 
   def _can_use_cholesky(self):
-    # TODO(langmore) Add complex types when tf.cholesky can use them.
+    # TODO (langmore) Add complex types when tf.cholesky can use them. id:3218 gh:3219
     return (not self.dtype.is_complex and self.is_self_adjoint and
             self.is_positive_definite)
 

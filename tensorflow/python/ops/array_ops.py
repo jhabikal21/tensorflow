@@ -128,7 +128,7 @@ def identity(input, name=None):  # pylint: disable=redefined-builtin
   else:
     input = ops.convert_to_tensor(input)
     in_device = input.device
-    # TODO(ashankar): Does 'identity' need to invoke execution callbacks?
+    # TODO (ashankar): Does 'identity' need to invoke execution callbacks? id:3515 gh:3516
     if context.context().device_name != in_device:
       return input._copy()  # pylint: disable=protected-access
     return input
@@ -184,7 +184,7 @@ def expand_dims(input, axis=None, name=None, dim=None):
   Raises:
     ValueError: if both `dim` and `axis` are specified.
   """
-  # TODO(aselle): Remove argument dim
+  # TODO (aselle): Remove argument dim id:3123 gh:3124
   if dim is not None:
     if axis is not None:
       raise ValueError("can't specify both 'dim' and 'axis'")
@@ -760,7 +760,7 @@ def strided_slice(input_,
         shrink_axis_mask=shrink_axis_mask)
 
   if context.in_graph_mode():
-    # TODO(apassos) In eager mode assignment will be done by overriding
+    # TODO (apassos) In eager mode assignment will be done by overriding id:3348 gh:3349
     # __setitem__ instead.
     op.assign = assign
   return op
@@ -956,7 +956,7 @@ def _autopacking_helper(list_or_tuple, dtype, name):
         if ops.is_dense_tensor_like(elem):
           elems_as_tensors.append(elem)
         else:
-          # NOTE(mrry): This is inefficient, but it enables us to
+          # NOTE (mrry): This is inefficient, but it enables us to id:2500 gh:2501
           # handle the case where the list arguments are other
           # convertible-to-tensor types, such as numpy arrays.
           elems_as_tensors.append(
@@ -1003,7 +1003,7 @@ def _autopacking_conversion_function(v, dtype=None, name=None, as_ref=False):
 
 # pylint: enable=invalid-name
 
-# NOTE: Register this conversion function to run *before* one that
+# NOTE: Register this conversion function to run *before* one that id:3019 gh:3020
 # assumes every element is a value.
 ops.register_tensor_conversion_function((list, tuple),
                                         _autopacking_conversion_function, 99)
@@ -1139,12 +1139,12 @@ def concat(values, axis, name="concat"):
   """
   if not isinstance(values, (list, tuple)):
     values = [values]
-  # TODO(mrry): Change to return values?
+  # TODO (mrry): Change to return values? id:3517 gh:3518
   if len(values) == 1:  # Degenerate case of one tensor.
     # Make a throwaway call to convert_to_tensor to make sure
     # that axis is of the correct type, and make sure that
     # the returned tensor is a scalar.
-    # TODO(keveman): Implement a standalone type and shape checker.
+    # TODO (keveman): Implement a standalone type and shape checker. id:3125 gh:3126
     with ops.name_scope(name) as scope:
       ops.convert_to_tensor(
           axis, name="concat_dim",
@@ -1406,7 +1406,7 @@ def transpose(a, perm=None, name="transpose", conjugate=False):
       rank = gen_array_ops.rank(a)
       perm = (rank - 1) - gen_math_ops._range(0, rank, 1)
       ret = transpose_fn(a, perm, name=name)
-      # NOTE(mrry): Setting the shape explicitly because
+      # NOTE (mrry): Setting the shape explicitly because id:3350 gh:3351
       #   reverse is not handled by the shape function.
       if context.in_graph_mode():
         input_shape = ret.op.inputs[0].get_shape().dims
@@ -1839,7 +1839,7 @@ def pad(tensor, paddings, mode="CONSTANT", name=None, constant_values=0):  # pyl
   # NumPy uses all lower-case modes.
   mode = mode.upper()
   if mode == "CONSTANT":
-    # TODO(rjryan): Once the forward compatibility period (3 weeks) have passed
+    # TODO (rjryan): Once the forward compatibility period (3 weeks) have passed id:2502 gh:2503
     # remove the "Pad" fallback here.
     if constant_values != 0:
       result = gen_array_ops._pad_v2(
@@ -1943,7 +1943,7 @@ def meshgrid(*args, **kwargs):
       output[1] = reshape(output[1], (-1, 1) + (1,) * (ndim - 2))
       shapes[0], shapes[1] = shapes[1], shapes[0]
 
-    # TODO(nolivia): improve performance with a broadcast
+    # TODO (nolivia): improve performance with a broadcast id:3021 gh:3022
     mult_fact = ones(shapes, output_dtype)
     return [x * mult_fact for x in output]
 
@@ -1998,7 +1998,7 @@ def _TileGradShape(op):
   """Shape function for the TileGrad op."""
   multiples_shape = op.inputs[1].get_shape().with_rank(1)
   input_shape = op.inputs[0].get_shape().with_rank(multiples_shape[0])
-  # NOTE(mrry): Represent `multiples` as a `TensorShape` because (i)
+  # NOTE (mrry): Represent `multiples` as a `TensorShape` because (i) id:3519 gh:3520
   # it is a vector of non-negative integers, and (ii) doing so allows
   # us to handle partially-known multiples.
   multiples = tensor_util.constant_value_as_shape(op.inputs[1]).with_rank(
@@ -2601,7 +2601,7 @@ reverse_sequence.__doc__ = deprecation.rewrite_argument_docstring(
 
 
 def gather(params, indices, validate_indices=None, name=None, axis=0):
-  # TODO(rjryan): Remove "Gather" creation in favor of GatherV2 once the forward
+  # TODO (rjryan): Remove "Gather" creation in favor of GatherV2 once the forward id:3127 gh:3128
   # compatibility 3 week period has passed.
   if axis == 0:
     return gen_array_ops.gather(

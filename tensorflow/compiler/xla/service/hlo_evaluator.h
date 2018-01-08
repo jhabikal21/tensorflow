@@ -177,7 +177,7 @@ class HloEvaluator : public DfsHloVisitorWithDefault {
       typed_visitors_;
 
   // Tracks the HLO instruction and its evaluated literal result.
-  // TODO(b/35950897): have better memory management here to free instructions
+  // TODO (b/35950897): have better memory management here to free instructions id:378 gh:379
   // that are no longer a parent for any other subsequent instruction in
   // post-orderring.
   // Must be cleared for each evaluation.

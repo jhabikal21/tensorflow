@@ -1659,7 +1659,7 @@ void ShapeInferenceTest::TestMergeHandles(bool input_not_output) {
   // Only difference is in a mismatched shape. That is ignored,
   // and there are no other changes, so nothing is done.
   //
-  // TODO(cwhipkey): in mismatch cases, change Merge*HandleShapesAndTypes to
+  // TODO (cwhipkey): in mismatch cases, change Merge*HandleShapesAndTypes to id:1955 gh:1956
   // return an error (separate error from 'refined' output)?
   auto t2 = t;
   t2[2].shape = make_shape({4, 3, 4, 1});

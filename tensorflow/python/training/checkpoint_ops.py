@@ -329,7 +329,7 @@ def _load_and_remap_matrix_initializer(ckpt_path,
     TypeError: If `initializer` is specified but not callable.
   """
   if initializer is None:
-    # TODO(b/25671353): Consider using sqrt(6/(fan_in + fan_out)) instead, from
+    # TODO (b/25671353): Consider using sqrt(6/(fan_in + fan_out)) instead, from id:2624 gh:2625
     # Glorot and Bengio, 2010.
     initializer = init_ops.zeros_initializer()
 
@@ -464,7 +464,7 @@ def _load_embedding_initializer(ckpt_path,
     A variable initializer function.
   """
   if initializer is None:
-    # TODO(b/25671353): This should be kept in sync with the stddev used by
+    # TODO (b/25671353): This should be kept in sync with the stddev used by id:3341 gh:3342
     # feature_column.py's _EmbeddingColumn.
     initializer = init_ops.truncated_normal_initializer(
         stddev=1.0 / math.sqrt(embedding_dim))

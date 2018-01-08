@@ -31,7 +31,7 @@ bool IsGoogleCudaEnabled() {
 
 bool CudaSupportsHalfMatMulAndConv() {
 #if GOOGLE_CUDA
-  // NOTE: We check compile-time and not runtime, since the check for
+  // NOTE: We check compile-time and not runtime, since the check for id:3058 gh:3059
   // whether we include the fp16 kernels or not is compile-time.
   return CUDA_VERSION >= 7050;
 #else

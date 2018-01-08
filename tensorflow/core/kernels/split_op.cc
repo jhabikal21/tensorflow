@@ -166,7 +166,7 @@ class SplitOpCPU : public SplitOpBase<CPUDevice, T> {
 
     const auto num_threads =
         context->device()->tensorflow_cpu_worker_threads()->num_threads;
-    // TODO(jewillco): Tune heuristic further.
+    // TODO (jewillco): Tune heuristic further. id:1885 gh:1886
     const auto input_element_count = input_shape.num_elements();
     const bool use_parallelism_between_outputs =
         (num_split >= 4 &&
@@ -360,7 +360,7 @@ class SplitOpSYCL : public SplitOpBase<SYCLDevice, T> {
 
 TF_CALL_ALL_TYPES(REGISTER_SPLIT);
 REGISTER_SPLIT(quint8);
-// TODO(xpan): Merge bfloat16 into TF_CALL_ALL_TYPES
+// TODO (xpan): Merge bfloat16 into TF_CALL_ALL_TYPES id:2326 gh:2327
 REGISTER_SPLIT(bfloat16);
 
 #undef REGISTER_SPLIT

@@ -50,7 +50,7 @@ class BaseLinearOperatorLowRankUpdatetest(object):
 
   @property
   def _dtypes_to_test(self):
-    # TODO(langmore) Test complex types once cholesky works with them.
+    # TODO (langmore) Test complex types once cholesky works with them. id:3294 gh:3295
     # See comment in LinearOperatorLowRankUpdate.__init__.
     return [dtypes.float32, dtypes.float64]
 

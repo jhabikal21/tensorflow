@@ -311,7 +311,7 @@ def matrix_solve_ls(matrix, rhs, l2_regularizer=0.0, fast=True, name=None):
 
   matrix = ops.convert_to_tensor(matrix, name='matrix')
   if matrix.dtype == dtypes.complex128 and l2_regularizer != 0:
-    # TODO(rmlarsen): Investigate and fix accuracy bug.
+    # TODO (rmlarsen): Investigate and fix accuracy bug. id:2534 gh:2535
     raise NotImplementedError('matrix_solve_ls is currently disabled for '
                               'complex128 and l2_regularizer != 0 due to '
                               'poor accuracy.')
@@ -518,7 +518,7 @@ def norm(tensor,
         axis[0] == axis[1]):
       raise ValueError(
           "'axis' must be None, an integer, or a tuple of 2 unique integers")
-    # TODO(rmlarsen): Implement matrix 2-norm using tf.svd().
+    # TODO (rmlarsen): Implement matrix 2-norm using tf.svd(). id:3222 gh:3223
     supported_matrix_norms = ['euclidean', 'fro', 1, np.inf]
     if ord not in supported_matrix_norms:
       raise ValueError("'ord' must be a supported matrix norm in %s, got %s" %
@@ -537,7 +537,7 @@ def norm(tensor,
   with ops.name_scope(name, 'norm', [tensor]):
     tensor = ops.convert_to_tensor(tensor)
     if ord in ['fro', 'euclidean', 2, 2.0]:
-      # TODO(rmlarsen): Move 2-norm to a separate clause once we support it for
+      # TODO (rmlarsen): Move 2-norm to a separate clause once we support it for id:3546 gh:3547
       # matrices.
       result = math_ops.sqrt(
           math_ops.reduce_sum(

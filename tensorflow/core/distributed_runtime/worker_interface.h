@@ -62,7 +62,7 @@ class WorkerInterface {
 
   virtual void RunGraphAsync(CallOptions* opts, const RunGraphRequest* request,
                              RunGraphResponse* response, StatusCallback done) {
-    // TODO(mrry): Convert this to std::bind/std::move if the overhead
+    // TODO (mrry): Convert this to std::bind/std::move if the overhead id:1711 gh:1712
     // of std::function copying becomes too much.
     RunGraphRequestWrapper* wrapped_request = new ProtoRunGraphRequest(request);
     MutableRunGraphResponseWrapper* wrapped_response =
@@ -161,7 +161,7 @@ class WorkerInterface {
   virtual ~WorkerInterface() {}
   friend class WorkerCacheInterface;
 
-  // NOTE: This should only be called by implementations of this
+  // NOTE: This should only be called by implementations of this id:1271 gh:1272
   // interface whose CreateRunGraphResponse() method returns a
   // proto-based wrappers for the RunGraphResponse message.
   RunGraphResponse* get_proto_from_wrapper(

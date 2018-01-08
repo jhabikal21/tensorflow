@@ -38,7 +38,7 @@ class TFProfLoggerTest(test.TestCase):
     return math_ops.matmul(a, b)
 
   # pylint: disable=pointless-string-statement
-  """# TODO(xpan): This this out of core so it doesn't depend on contrib.
+  """# TODO (xpan): This this out of core so it doesn't depend on contrib. id:2620 gh:2621
   def testFillMissingShape(self):
     a, b, y = self._BuildSmallPlaceholderlModel()
     run_options = config_pb2.RunOptions(

@@ -114,7 +114,7 @@ class LayerParametersDict(OrderedDict):
     return key
 
 
-# TODO(b/68034464): add capability for LayerCollection to be "finalized"
+# TODO (b/68034464): add capability for LayerCollection to be "finalized" id:1083 gh:1084
 # and do this when it gets used by FisherEstimator / KfacOptimizer.
 
 
@@ -280,7 +280,7 @@ class LayerCollection(object):
 
   def get_use_count_map(self):
     """Returns a dict of variables to their number of registrations."""
-    # TODO(b/70283403): Reimplement this in the old way, where each
+    # TODO (b/70283403): Reimplement this in the old way, where each id:982 gh:983
     # registration function would be responsible for incrementing the count.
     # Also, this version has a bug: it won't do the right thing for generic
     # registration for parameters that are shared.  i.e. it won't set the use
@@ -562,7 +562,7 @@ class LayerCollection(object):
         approx = self.default_fully_connected_multi_approximation
     has_bias = isinstance(params, (tuple, list))
 
-    # TODO(b/70283649): something along the lines of find_canonical_output
+    # TODO (b/70283649): something along the lines of find_canonical_output id:696 gh:697
     # should be added back in here (and for the other block types, arguably).
 
     if approx not in _FULLY_CONNECTED_MULTI_APPROX_TO_BLOCK_TYPES:

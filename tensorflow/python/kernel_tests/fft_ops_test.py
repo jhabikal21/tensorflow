@@ -177,7 +177,7 @@ class FFTOpsTest(BaseFFTOpsTest):
             np.mod(np.arange(np.power(128, dims)), 10).reshape(
                 (128,) * dims).astype(np.complex64), rank)
 
-  # TODO(yangzihao): Disable before we can figure out a way to
+  # TODO (yangzihao): Disable before we can figure out a way to id:2820 gh:2821
   # properly test memory fail for large batch fft.
   # def testLargeBatchMemoryFail(self):
   #   if test.is_gpu_available(cuda_only=True):

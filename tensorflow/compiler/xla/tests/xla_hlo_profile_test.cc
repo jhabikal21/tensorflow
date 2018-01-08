@@ -135,7 +135,7 @@ void ExecuteAndFetchProfile(string* profile_output, LocalClient* client,
   XLA_VLOG_LINES(4, *profile_output);
 }
 
-// TODO(b/71364943): This test exposes a bug in the parallel CPU backend.
+// TODO (b/71364943): This test exposes a bug in the parallel CPU backend. id:471 gh:472
 XLA_TEST_F(HloProfileTest, DISABLED_ON_CPU_PARALLEL(ProfileSingleComputation)) {
   const int64 m = 256, k = 256, n = 256;
   Shape lhs_shape = ShapeUtil::MakeShape(F32, {m, k});
@@ -187,9 +187,9 @@ XLA_TEST_F(HloProfileTest, DISABLED_ON_CPU_PARALLEL(ProfileSingleComputation)) {
   EXPECT_NE(tanh_profile.cycles_percentage, "100.00%");
 }
 
-// TODO(b/71364943): This test exposes a bug in the parallel CPU backend.
+// TODO (b/71364943): This test exposes a bug in the parallel CPU backend. id:532 gh:533
 //
-// TODO(b/71544591): The GPU backend does not record cycles spent in on Hlo
+// TODO (b/71544591): The GPU backend does not record cycles spent in on Hlo id:473 gh:474
 // instructions "interior" to while nodes.
 XLA_TEST_F(HloProfileTest,
            DISABLED_ON_GPU(DISABLED_ON_CPU_PARALLEL(ProfileWhileComputation))) {

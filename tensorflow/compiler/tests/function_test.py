@@ -105,7 +105,7 @@ class FunctionTest(XLATestCase):
       result = sess.run(call_f)
     self.assertAllClose(result, expected, rtol=1e-3)
 
-  # TODO(b/36139787): Re-enable this test when noinline works again.
+  # TODO (b/36139787): Re-enable this test when noinline works again. id:160 gh:161
   def DISABLED_testFunctionsNoInline(self):
 
     @function.Defun(dtypes.float32, noinline=True)

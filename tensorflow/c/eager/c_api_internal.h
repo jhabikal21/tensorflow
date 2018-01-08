@@ -80,13 +80,13 @@ struct TFE_TensorHandle {
       : t(t), d(d) {}
 
   tensorflow::Tensor t;
-  // TODO(ashankar): d == nullptr iff local CPU
+  // TODO (ashankar): d == nullptr iff local CPU id:77 gh:78
   // This was expedient, but perhaps worth revisiting ('d' should always be a
   // valid pointer?)
   // This can be done if TFE_NewOp() and the TFE_TensorHandle constructors are
   // provided with the appropriate TFE_Context.
   //
-  // TODO(ashankar): Reference count TFE_Context to ensure that 'd' of a
+  // TODO (ashankar): Reference count TFE_Context to ensure that 'd' of a id:33 gh:34
   // TFE_TensorHandle does not outlive the TFE_Context from which it came?
   tensorflow::Device* d;
 };

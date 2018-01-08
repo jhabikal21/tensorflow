@@ -248,7 +248,7 @@ def poisson_regression_head(label_name=None,
       loss_fn=_poisson_loss,
       link_fn=math_ops.exp)
 
-# TODO(zakaria): Consider adding a _RegressionHead for logistic_regression
+# TODO (zakaria): Consider adding a _RegressionHead for logistic_regression id:1191 gh:1192
 
 
 def multi_class_head(n_classes,
@@ -535,7 +535,7 @@ class _SingleHead(Head):
     return {self._head_name: (self._problem_type, predictions)}
 
 
-# TODO(zakaria): use contrib losses.
+# TODO (zakaria): use contrib losses. id:1014 gh:1015
 def _mean_squared_loss(labels, logits, weights=None):
   with ops.name_scope(None, "mean_squared_loss", (logits, labels)) as name:
     logits = ops.convert_to_tensor(logits)
@@ -543,7 +543,7 @@ def _mean_squared_loss(labels, logits, weights=None):
     # To prevent broadcasting inside "-".
     if len(labels.get_shape()) == 1:
       labels = array_ops.expand_dims(labels, dim=(1,))
-    # TODO(zakaria): make sure it does not recreate the broadcast bug.
+    # TODO (zakaria): make sure it does not recreate the broadcast bug. id:770 gh:771
     if len(logits.get_shape()) == 1:
       logits = array_ops.expand_dims(logits, dim=(1,))
     logits.get_shape().assert_is_compatible_with(labels.get_shape())
@@ -559,7 +559,7 @@ def _poisson_loss(labels, logits, weights=None):
     # To prevent broadcasting inside "-".
     if len(labels.get_shape()) == 1:
       labels = array_ops.expand_dims(labels, dim=(1,))
-    # TODO(zakaria): make sure it does not recreate the broadcast bug.
+    # TODO (zakaria): make sure it does not recreate the broadcast bug. id:706 gh:707
     if len(logits.get_shape()) == 1:
       logits = array_ops.expand_dims(logits, dim=(1,))
     logits.get_shape().assert_is_compatible_with(labels.get_shape())
@@ -773,7 +773,7 @@ def _log_loss_with_two_classes(labels, logits, weights=None):
                       (logits, labels)) as name:
     logits = ops.convert_to_tensor(logits)
     labels = math_ops.to_float(labels)
-    # TODO(ptucker): This will break for dynamic shapes.
+    # TODO (ptucker): This will break for dynamic shapes. id:730 gh:731
     # sigmoid_cross_entropy_with_logits requires [batch_size, 1] labels.
     if len(labels.get_shape()) == 1:
       labels = array_ops.expand_dims(labels, dim=(1,))
@@ -903,7 +903,7 @@ class _BinaryLogisticHead(_SingleHead):
 
       metrics = {_summary_key(self.head_name, mkey.LOSS):
                  metrics_lib.mean(eval_loss)}
-      # TODO(b/29366811): This currently results in both an "accuracy" and an
+      # TODO (b/29366811): This currently results in both an "accuracy" and an id:1194 gh:1195
       # "accuracy/threshold_0.500000_mean" metric for binary classification.
       metrics[_summary_key(self.head_name, mkey.ACCURACY)] = (
           metrics_lib.accuracy(labels, classes, weights))
@@ -951,7 +951,7 @@ def _softmax_cross_entropy_loss(labels, logits, weights=None):
 
     # sparse_softmax_cross_entropy_with_logits requires [batch_size] labels.
     is_squeezed_labels = False
-    # TODO(ptucker): This will break for dynamic shapes.
+    # TODO (ptucker): This will break for dynamic shapes. id:1019 gh:1020
     if len(labels.get_shape()) == 2:
       labels = array_ops.squeeze(labels, squeeze_dims=(1,))
       is_squeezed_labels = True
@@ -1130,7 +1130,7 @@ class _MultiClassHead(_SingleHead):
 
       metrics = {_summary_key(self.head_name, mkey.LOSS):
                  metrics_lib.mean(eval_loss)}
-      # TODO(b/29366811): This currently results in both an "accuracy" and an
+      # TODO (b/29366811): This currently results in both an "accuracy" and an id:772 gh:773
       # "accuracy/threshold_0.500000_mean" metric for binary classification.
       metrics[_summary_key(self.head_name, mkey.ACCURACY)] = (
           metrics_lib.accuracy(self._labels(labels), classes, weights))
@@ -1141,7 +1141,7 @@ class _MultiClassHead(_SingleHead):
           metrics[_summary_key(
               self.head_name, mkey.CLASS_PREDICTION_MEAN % class_id)] = (
                   _class_predictions_streaming_mean(classes, weights, class_id))
-          # TODO(ptucker): Add per-class accuracy, precision, recall.
+          # TODO (ptucker): Add per-class accuracy, precision, recall. id:709 gh:710
           metrics[_summary_key(
               self.head_name, mkey.CLASS_LABEL_MEAN % class_id)] = (
                   _class_labels_streaming_mean(
@@ -1250,7 +1250,7 @@ class _BinarySvmHead(_SingleHead):
           loss_fn=self._loss_fn,
           logits_to_predictions_fn=self._logits_to_predictions,
           metrics_fn=self._metrics,
-          # TODO(zakaria): Handle labels for export.
+          # TODO (zakaria): Handle labels for export. id:734 gh:735
           create_output_alternatives_fn=self._create_output_alternatives,
           labels=labels,
           train_op_fn=train_op_fn,
@@ -1288,12 +1288,12 @@ class _BinarySvmHead(_SingleHead):
       metrics = {_summary_key(self.head_name, mkey.LOSS):
                  metrics_lib.mean(eval_loss)}
 
-      # TODO(b/29366811): This currently results in both an "accuracy" and an
+      # TODO (b/29366811): This currently results in both an "accuracy" and an id:1197 gh:1198
       # "accuracy/threshold_0.500000_mean" metric for binary classification.
       classes = predictions[prediction_key.PredictionKey.CLASSES]
       metrics[_summary_key(self.head_name, mkey.ACCURACY)] = (
           metrics_lib.accuracy(labels, classes, weights))
-      # TODO(sibyl-vie3Poto): add more metrics relevant for svms.
+      # TODO (sibyl-vie3Poto): add more metrics relevant for svms. id:1023 gh:1024
 
     return metrics
 
@@ -1301,7 +1301,7 @@ class _BinarySvmHead(_SingleHead):
 class _MultiLabelHead(_SingleHead):
   """`Head` for multi-label classification."""
 
-  # TODO(zakaria): add signature and metric for multilabel.
+  # TODO (zakaria): add signature and metric for multilabel. id:774 gh:775
   def __init__(self,
                n_classes,
                label_name,
@@ -1394,7 +1394,7 @@ class _MultiLabelHead(_SingleHead):
 
       metrics = {_summary_key(self.head_name, mkey.LOSS):
                  metrics_lib.mean(eval_loss)}
-      # TODO(b/29366811): This currently results in both an "accuracy" and an
+      # TODO (b/29366811): This currently results in both an "accuracy" and an id:713 gh:714
       # "accuracy/threshold_0.500000_mean" metric for binary classification.
       metrics[_summary_key(self.head_name, mkey.ACCURACY)] = (
           metrics_lib.accuracy(labels, classes, weights))
@@ -1404,7 +1404,7 @@ class _MultiLabelHead(_SingleHead):
           probabilities, labels, weights, curve="PR")
 
       for class_id in self._metric_class_ids:
-        # TODO(ptucker): Add per-class accuracy, precision, recall.
+        # TODO (ptucker): Add per-class accuracy, precision, recall. id:739 gh:740
         metrics[_summary_key(
             self.head_name, mkey.CLASS_PREDICTION_MEAN % class_id)] = (
                 _predictions_streaming_mean(classes, weights, class_id))
@@ -1777,7 +1777,7 @@ def _weight_tensor(features, weight_column_name):
     return weight_tensor
 
 
-# TODO(zakaria): This function is needed for backward compatibility and should
+# TODO (zakaria): This function is needed for backward compatibility and should id:1201 gh:1202
 #   be removed when we migrate to core.
 def _compute_weighted_loss(loss_unweighted, weight, name="loss"):
   """Returns a tuple of (loss_train, loss_report).
@@ -1968,7 +1968,7 @@ def _predictions_streaming_mean(predictions,
   return metrics_lib.mean(predictions, weights)
 
 
-# TODO(ptucker): Add support for SparseTensor labels.
+# TODO (ptucker): Add support for SparseTensor labels. id:1027 gh:1028
 def _class_id_labels_to_indicator(labels, num_classes):
   if (num_classes is None) or (num_classes < 2):
     raise ValueError("Invalid num_classes %s." % num_classes)
@@ -2109,7 +2109,7 @@ def _classification_output_alternatives(head_name, problem_type,
   return _create_output_alternatives
 
 # Aliases
-# TODO(zakaria): Remove these aliases, See b/34751732
+# TODO (zakaria): Remove these aliases, See b/34751732 id:776 gh:777
 _regression_head = regression_head
 _poisson_regression_head = poisson_regression_head
 _multi_class_head = multi_class_head

@@ -228,7 +228,7 @@ class FIFOQueueTest(test.TestCase):
 
       def enqueue():
         # The enqueue_ops should run after the dequeue op has blocked.
-        # TODO(mrry): Figure out how to do this without sleeping.
+        # TODO (mrry): Figure out how to do this without sleeping. id:3456 gh:3457
         time.sleep(0.1)
         for enqueue_op in enqueue_ops:
           sess.run(enqueue_op)
@@ -690,7 +690,7 @@ class FIFOQueueTest(test.TestCase):
 
       def enqueue():
         # The enqueue_op should run after the dequeue op has blocked.
-        # TODO(mrry): Figure out how to do this without sleeping.
+        # TODO (mrry): Figure out how to do this without sleeping. id:3063 gh:3064
         time.sleep(0.1)
         sess.run(enqueue_op)
 
@@ -717,7 +717,7 @@ class FIFOQueueTest(test.TestCase):
 
       def enqueue():
         # The enqueue_op should run after the dequeue op has blocked.
-        # TODO(mrry): Figure out how to do this without sleeping.
+        # TODO (mrry): Figure out how to do this without sleeping. id:3283 gh:3284
         time.sleep(0.1)
         sess.run(enqueue_op)
 
@@ -797,7 +797,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2354 gh:2355
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -817,7 +817,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2822 gh:2823
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -842,7 +842,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3458 gh:3459
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -867,7 +867,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3065 gh:3066
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -889,7 +889,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3285 gh:3286
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -921,7 +921,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2356 gh:2357
       time.sleep(0.1)
 
       close_thread = self.checkedThread(target=close)
@@ -951,7 +951,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2826 gh:2827
       time.sleep(0.1)
 
       close_op.run()
@@ -979,7 +979,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3460 gh:3461
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -999,7 +999,7 @@ class FIFOQueueTest(test.TestCase):
       dequeue_thread = self.checkedThread(target=dequeue)
       dequeue_thread.start()
       # The close_op should run after the dequeue_thread has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3067 gh:3067
       time.sleep(0.1)
       close_op.run()
       dequeue_thread.join()
@@ -1047,7 +1047,7 @@ class FIFOQueueTest(test.TestCase):
       thread = self.checkedThread(target=blocking_enqueue)
       thread.start()
       # The dequeue ops should run after the blocking_enqueue_op has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3287 gh:3288
       time.sleep(0.1)
       for elem in elems:
         self.assertEqual([elem], dequeued_t.eval())
@@ -1070,7 +1070,7 @@ class FIFOQueueTest(test.TestCase):
       thread = self.checkedThread(target=blocking_enqueue)
       thread.start()
       # The dequeue ops should run after the blocking_enqueue_op has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2360 gh:2361
       time.sleep(0.1)
       for elem in elems:
         self.assertEqual([elem], dequeued_t.eval())
@@ -1100,7 +1100,7 @@ class FIFOQueueTest(test.TestCase):
       enqueue_thread.start()
 
       # The close_op should run after the blocking_enqueue_op has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:2830 gh:2831
       time.sleep(0.1)
 
       def close():
@@ -1135,7 +1135,7 @@ class FIFOQueueTest(test.TestCase):
       enqueue_thread.start()
 
       # The close_op should run after the blocking_enqueue_op has blocked.
-      # TODO(mrry): Figure out how to do this without sleeping.
+      # TODO (mrry): Figure out how to do this without sleeping. id:3462 gh:3463
       time.sleep(0.1)
 
       def close():
@@ -1361,7 +1361,7 @@ class FIFOQueueTest(test.TestCase):
       thread.start()
       # The dequeue should start and then block.
       for enq in enq_list:
-        # TODO(mrry): Figure out how to do this without sleeping.
+        # TODO (mrry): Figure out how to do this without sleeping. id:3069 gh:3070
         time.sleep(0.1)
         self.assertEqual(len(results), 0)
         sess.run(enq)
@@ -1633,7 +1633,7 @@ class FIFOQueueBenchmark(test.Benchmark):
     q_inc = q.enqueue(x + 1)
     return init, q_inc
 
-  # TODO(suharshs): Add benchmarks for:
+  # TODO (suharshs): Add benchmarks for: id:3290 gh:3291
   #   - different capacities of the queue
   #   - various sizes of tensors
   #   - enqueue_many, dequeue_many

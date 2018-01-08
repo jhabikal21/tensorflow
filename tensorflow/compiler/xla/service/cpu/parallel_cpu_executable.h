@@ -84,7 +84,7 @@ class ParallelCpuExecutable : public Executable {
   }
 
   const Status EqualOrFail(const Executable& executable) {
-    // TODO(b/62952745) Implement equality test on CPU parallel executable.
+    // TODO (b/62952745) Implement equality test on CPU parallel executable. id:286 gh:286
     return Unimplemented(
         "Equality test on CPU parallel executable is not implemented.");
   }

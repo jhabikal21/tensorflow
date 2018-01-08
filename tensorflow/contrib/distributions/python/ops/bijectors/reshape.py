@@ -278,7 +278,7 @@ class Reshape(bijector_lib.Bijector):
       return constant_op.constant(0., dtype=x.dtype)
 
   def _forward_event_shape(self, input_shape):
-    # NOTE: this method and the other *_event_shape* methods
+    # NOTE: this method and the other *_event_shape* methods id:591 gh:592
     # compute shape by explicit transformation of a dummy
     # variable. This approach is not generally recommended because it
     # bloats the graph and could in general trigger side effects.

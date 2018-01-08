@@ -92,7 +92,7 @@ void ExecStep::AddMemoryStats(const string& dev,
 
   int accelerator_allocator_cnt = 0;
   for (const auto& mem : step_stat.memory()) {
-    // TODO(xpan): Fix this hack. Currently the allocator name seems quite
+    // TODO (xpan): Fix this hack. Currently the allocator name seems quite id:3025 gh:3026
     // ad-hoc.
     if (mem.allocator_name().find("GPU") == mem.allocator_name().npos) {
       continue;
@@ -114,7 +114,7 @@ void ExecStep::AddMemoryStats(const string& dev,
   for (const auto& output : step_stat.output()) {
     if (output.has_tensor_description() &&
         output.tensor_description().has_allocation_description()) {
-      // TODO(xpan): Maybe allocated_bytes.
+      // TODO (xpan): Maybe allocated_bytes. id:2031 gh:2032
       int64 output_bytes = std::max(output.tensor_description()
                                         .allocation_description()
                                         .allocated_bytes(),
@@ -147,7 +147,7 @@ void ExecStep::AddMemoryStats(const string& dev,
         step_stat.memory_stats().device_persistent_memory_size());
   }
 
-  // TODO(xpan): Make this more accurate:
+  // TODO (xpan): Make this more accurate: id:2566 gh:2567
   // High level: Memory tracking is suspicous and requires large scale
   // clean up.
   // Investigte the memory usage difference between CPU/GPU with OpViewTest.
@@ -193,20 +193,20 @@ void TFGraphNode::AddStepStat(int64 step, const string& device,
                               const NodeExecStats& step_stat) {
   string dev = str_util::Lowercase(device);
 
-  // TODO(xpan): Make this more robust?
+  // TODO (xpan): Make this more robust? id:2860 gh:2861
   // See run_metadata_test.py
   // It can be /job:0/replica:0/xxxx/device:GPU:0, or simply /device:GPU:0.
   // It can has some ad-hoc suffix, such as /stream:xx or /memcpy:xx.
   if (IsCanonicalDevice(dev)) {
     if (!node_.canonical_device().empty()) {
       if (node_.canonical_device() != dev) {
-        // TODO(xpan): Some RunMetadata node appears at multiple devices.
+        // TODO (xpan): Some RunMetadata node appears at multiple devices. id:1806 gh:1807
         // Need to address it.
         return;
       }
     } else {
       node_.set_canonical_device(dev);
-      // TODO(xpan): Support things other than gpu?
+      // TODO (xpan): Support things other than gpu? id:3026 gh:3027
       if (dev.find("sycl") != dev.npos) {
         node_.set_host_device(StringReplace(dev, "device:sycl:\\d+", "cpu:0"));
       } else {

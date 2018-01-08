@@ -654,7 +654,7 @@ string ArithmeticOptimizer::TrySimplifyAndReplaceUses(
     //   Cast(Transpose(image, perm), dst_type)
     // when sizeof(image.type) < sizeof(dst_type).
     //
-    // TODO(jingyue): This optimization can be generalized to a cast followed by
+    // TODO (jingyue): This optimization can be generalized to a cast followed by id:1330 gh:1331
     // a chain of ops that merely reorder elements (e.g. Reshape and
     // DepthToSpace).
     const NodeDef* transpose = node;
@@ -750,13 +750,13 @@ string ArithmeticOptimizer::TrySimplifyAndReplaceUses(
   // when `weights` are constant. `Mul` in the optimized graph can be
   // constant-folded.
   //
-  // TODO(jingyue): Fold scalar multiplies to Conv?DBackpropFilter and
+  // TODO (jingyue): Fold scalar multiplies to Conv?DBackpropFilter and id:2094 gh:2095
   // Conv?DBackpropInput.
   if (node->op() == "Conv2D" || node->op() == "Conv3D") {
     NodeDef* conv = const_cast<NodeDef*>(node);
     const NodeDef* weights = node_map_->GetNode(NodeName(conv->input(1)));
     // Fold the multiply to conv only when the weights are constant, so the
-    // multiply can be constant-folded. TODO(jingyue): When the weights aren't
+    // multiply can be constant-folded. TODO (jingyue): When the weights aren't id:1887 gh:1888
     // constant, this should also help performance a bit and memory usage a lot,
     // since the weights tend to be smaller than the activations.
     if (weights->op() == "Const") {
@@ -767,7 +767,7 @@ string ArithmeticOptimizer::TrySimplifyAndReplaceUses(
           node_map_->GetOutputs(source->name()).size() == 1) {
         const NodeDef* mul = source;
         // `scale` is the scalar multiplier, and `other` is the other operand.
-        // TODO(jingyue): handle the case where `scale` is 0-th operand.
+        // TODO (jingyue): handle the case where `scale` is 0-th operand. id:1425 gh:1426
         const NodeDef* scale = node_map_->GetNode(mul->input(1));
         const NodeDef* other = node_map_->GetNode(mul->input(0));
         if (scale->op() == "Const" && scale->attr().at("dtype").type() ==

@@ -52,8 +52,8 @@ from tensorflow.python.ops import variables as tf_variables
 from tensorflow.python.training import moving_averages
 from tensorflow.python.layers.maxout import maxout
 
-# TODO(b/28426988): Replace legacy_* fns migrated from slim.
-# TODO(b/28426988): Remove legacy_* when all uses have migrated to new API.
+# TODO (b/28426988): Replace legacy_* fns migrated from slim. id:701 gh:702
+# TODO (b/28426988): Remove legacy_* when all uses have migrated to new API. id:1098 gh:1099
 __all__ = ['avg_pool2d',
            'avg_pool3d',
            'batch_norm',
@@ -922,7 +922,7 @@ def bias_add(inputs,
     return utils.collect_named_outputs(outputs_collections, sc.name, outputs)
 
 
-# TODO(jbms): change `rate` parameter to `dilation_rate` for consistency with
+# TODO (jbms): change `rate` parameter to `dilation_rate` for consistency with id:996 gh:997
 # underlying op.
 @add_arg_scope
 def convolution(inputs,
@@ -2606,7 +2606,7 @@ def softmax(logits, scope=None):
   Returns:
     A `Tensor` with same shape and type as logits.
   """
-  # TODO(jrru): Add axis argument which defaults to last dimension.
+  # TODO (jrru): Add axis argument which defaults to last dimension. id:712 gh:713
   with variable_scope.variable_scope(scope, 'softmax', [logits]):
     num_logits = utils.last_dimension(logits.get_shape(), min_rank=2)
     logits_2d = array_ops.reshape(logits, [-1, num_logits])
@@ -2973,7 +2973,7 @@ def legacy_fully_connected(x,
     return _apply_activation(y, activation_fn, output_collections)
 
 
-# TODO(eiderm): Verify and fix autocomplete in colab (also relu6).
+# TODO (eiderm): Verify and fix autocomplete in colab (also relu6). id:654 gh:655
 # Simple aliases which remove the activation_fn parameter.
 elu = functools.partial(fully_connected, activation_fn=nn.elu)
 legacy_relu = functools.partial(legacy_fully_connected, activation_fn=nn.relu)
