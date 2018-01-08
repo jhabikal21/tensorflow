@@ -31,7 +31,7 @@ from tensorflow.python.ops import array_ops
 from tensorflow.python.util import compat
 
 
-# TODO(josh11b): add tests with lists/tuples, Shape.
+# TODO (josh11b): add tests with lists/tuples, Shape. id:2338 gh:2339
 class ConstantTest(test.TestCase):
 
   def _testCpu(self, x):
@@ -162,7 +162,7 @@ class ConstantTest(test.TestCase):
 
     nested = [[b"\0\0\0\0", b"xx\0xx"], [b"\0_\0_\0_\0", b"\0"]]
     val = ops.convert_to_tensor(nested).numpy()
-    # NOTE(mrry): Do not use assertAllEqual, because it converts nested to a
+    # NOTE (mrry): Do not use assertAllEqual, because it converts nested to a id:2799 gh:2798
     #   numpy array, which loses the null terminators.
     self.assertEqual(val.tolist(), nested)
 
@@ -260,7 +260,7 @@ class ConstantTest(test.TestCase):
     with self.assertRaisesRegexp(ValueError, "should return >= 0"):
       constant_op.constant([BadList(), []])
 
-    # TODO(allenl, josh11b): These cases should return exceptions rather than
+    # TODO (allenl, josh11b): These cases should return exceptions rather than id:3443 gh:3444
     # working (currently shape checking only checks the first element of each
     # sequence recursively). Maybe the first one is fine, but the second one
     # silently truncating is rather bad.
@@ -339,7 +339,7 @@ class ZerosTest(test.TestCase):
         dtypes_lib.uint8, dtypes_lib.int16, dtypes_lib.int8,
         dtypes_lib.complex64, dtypes_lib.complex128, dtypes_lib.int64,
         dtypes_lib.bool,
-        # TODO(josh11b): Support string type here.
+        # TODO (josh11b): Support string type here. id:3044 gh:3045
         # dtypes_lib.string
     ]:
       z = array_ops.zeros([2, 3], dtype=dtype)
@@ -360,7 +360,7 @@ class ZerosLikeTest(test.TestCase):
 
   def _compareZeros(self, dtype, use_gpu):
     # Creates a tensor of non-zero values with shape 2 x 3.
-    # NOTE(kearnes): The default numpy dtype associated with tf.string is
+    # NOTE (kearnes): The default numpy dtype associated with tf.string is id:3267 gh:3268
     # np.object (and can't be changed without breaking a lot things), which
     # causes a TypeError in constant_op.constant below. Here we catch the
     # special case of tf.string and set the numpy dtype appropriately.
@@ -386,7 +386,7 @@ class ZerosLikeTest(test.TestCase):
         dtypes_lib.float32, dtypes_lib.float64, dtypes_lib.int32,
         dtypes_lib.uint8, dtypes_lib.int16, dtypes_lib.int8,
         dtypes_lib.complex64, dtypes_lib.complex128, dtypes_lib.int64,
-        # TODO(josh11b): Support string type here.
+        # TODO (josh11b): Support string type here. id:2340 gh:2341
         # dtypes_lib.string
     ]:
       self._compareZeros(dtype, use_gpu=False)
@@ -395,7 +395,7 @@ class ZerosLikeTest(test.TestCase):
     for dtype in [
         dtypes_lib.float32, dtypes_lib.float64, dtypes_lib.int32,
         dtypes_lib.bool, dtypes_lib.int64,
-        # TODO(josh11b): Support string type here.
+        # TODO (josh11b): Support string type here. id:2802 gh:2803
         # dtypes_lib.string
     ]:
       self._compareZeros(dtype, use_gpu=True)

@@ -27,7 +27,7 @@ namespace tensorflow {
 // two minor dimensions equal.
 // The algorithm implements a blocked Cholesky decomposition; `block_size` is
 // the block size to use.
-// TODO(phawkins): check for negative values on the diagonal and return an
+// TODO (phawkins): check for negative values on the diagonal and return an id:223 gh:224
 // error, instead of silently yielding NaNs.
 xla::StatusOr<xla::ComputationDataHandle> Cholesky(
     xla::ComputationBuilder* builder, xla::ComputationDataHandle a,

@@ -42,9 +42,9 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TF_LITE_ENSURE_EQ(context, positions->type, kTfLiteInt32);
   // Check that input and output types match.
   TF_LITE_ENSURE_EQ(context, input->type, output->type);
-  // TODO(mgubin): only 1D positions are currently supported.
+  // TODO (mgubin): only 1D positions are currently supported. id:873 gh:874
   TF_LITE_ENSURE_EQ(context, NumDimensions(positions), 1);
-  // TODO(mgubin): Only default axis == 0 is supported.
+  // TODO (mgubin): Only default axis == 0 is supported. id:1985 gh:1986
   // Check conditions for different types.
   switch (input->type) {
     case kTfLiteFloat32:

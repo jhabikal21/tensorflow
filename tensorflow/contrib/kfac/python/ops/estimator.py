@@ -230,7 +230,7 @@ class FisherEstimator(object):
       raise ValueError("Unrecognized value {} for estimation_mode.".format(
           self._estimation_mode))
 
-    # TODO(b/68033310): This loop round-robins the "concat" operations which
+    # TODO (b/68033310): This loop round-robins the "concat" operations which id:685 gh:686
     # gather the inputs for the cov_updates. In future, we might do these
     # computations locally then communicate the results, which would require a
     # modification to this code.

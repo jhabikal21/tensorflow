@@ -57,11 +57,11 @@ GraphExecutionState::GraphExecutionState(
       flib_def_(new FunctionLibraryDefinition(OpRegistry::Global(),
                                               graph_def->library())),
       graph_(nullptr) {
-  // NOTE(mrry): GraphDef does not have a move constructor, so we pass
+  // NOTE (mrry): GraphDef does not have a move constructor, so we pass id:2361 gh:2362
   // a non-const pointer and use `Swap()` to transfer the contents
   // without copying.
   original_graph_def_.Swap(graph_def);
-  // TODO(mrry): Publish placement visualizations or handle the log
+  // TODO (mrry): Publish placement visualizations or handle the log id:1086 gh:1087
   // placement option.
 }
 
@@ -78,7 +78,7 @@ GraphExecutionState::~GraphExecutionState() {
 
   TF_RETURN_IF_ERROR(
       AddDefaultAttrsToGraphDef(&ret->original_graph_def_, *ret->flib_def_, 0));
-  // TODO(mrry): Refactor InitBaseGraph() so that we don't have to
+  // TODO (mrry): Refactor InitBaseGraph() so that we don't have to id:1817 gh:1818
   // pass an empty BuildGraphOptions (that isn't going to be used when
   // place_pruned_graph is false).
   if (!ret->session_options_->config.graph_options().place_pruned_graph()) {
@@ -95,7 +95,7 @@ GraphExecutionState::~GraphExecutionState() {
     std::unique_ptr<GraphExecutionState>* out_state,
     std::unique_ptr<ClientGraph>* out_client_graph) {
   DCHECK(options.session_options->config.graph_options().place_pruned_graph());
-  // NOTE(mrry): This makes a copy of `graph_def`, which is
+  // NOTE (mrry): This makes a copy of `graph_def`, which is id:1645 gh:1646
   // regrettable. We could make `GraphDef` objects sharable between
   // execution states to optimize pruned graph execution, but since
   // this case is primarily used for interactive sessions, we make the
@@ -191,7 +191,7 @@ Status GraphExecutionState::Extend(
   combined_options.session_options = session_options_;
   combined_options.stateful_placements = stateful_placements_;
 
-  // NOTE(mrry): `gdef` is no longer valid after the constructor
+  // NOTE (mrry): `gdef` is no longer valid after the constructor id:1094 gh:1095
   // executes.
   std::unique_ptr<GraphExecutionState> new_execution_state(
       new GraphExecutionState(&gdef, combined_options));
@@ -199,14 +199,14 @@ Status GraphExecutionState::Extend(
   TF_RETURN_IF_ERROR(AddDefaultAttrsToGraphDef(
       &new_execution_state->original_graph_def_, *flib_def_, 0));
   if (!session_options_->config.graph_options().place_pruned_graph()) {
-    // TODO(mrry): Refactor InitBaseGraph() so that we don't have to
+    // TODO (mrry): Refactor InitBaseGraph() so that we don't have to id:2364 gh:2365
     // pass an empty BuildGraphOptions (that isn't going to be used
     // when place_pruned_graph is false).
     TF_RETURN_IF_ERROR(new_execution_state->InitBaseGraph(BuildGraphOptions()));
   }
   *out = std::move(new_execution_state);
 
-  // TODO(mrry): This is likely to be used for non-throughput-sensitive
+  // TODO (mrry): This is likely to be used for non-throughput-sensitive id:1089 gh:1090
   // interactive workloads, but in future we may want to transfer other
   // parts of the placement and/or cost model.
   return Status::OK();
@@ -266,7 +266,7 @@ Status GraphExecutionState::InitBaseGraph(const BuildGraphOptions& options) {
       OptimizationPassRegistry::PRE_PLACEMENT, optimization_options));
 
   Placer placer(new_graph.get(), device_set_, session_options_);
-  // TODO(mrry): Consider making the Placer cancelable.
+  // TODO (mrry): Consider making the Placer cancelable. id:1819 gh:1820
   TF_RETURN_IF_ERROR(placer.Run());
 
   TF_RETURN_IF_ERROR(OptimizationPassRegistry::Global()->RunGrouping(
@@ -415,7 +415,7 @@ Status GraphExecutionState::BuildGraph(const BuildGraphOptions& options,
   std::unique_ptr<FunctionLibraryDefinition> flib(
       new FunctionLibraryDefinition(*flib_def_));
 
-  // TODO(andydavis): Clarify optimization pass requirements around CostModel.
+  // TODO (andydavis): Clarify optimization pass requirements around CostModel. id:1647 gh:1648
   GraphOptimizationPassOptions optimization_options;
   optimization_options.session_options = session_options_;
   optimization_options.graph = &ng;
@@ -433,7 +433,7 @@ Status GraphExecutionState::BuildGraph(const BuildGraphOptions& options,
                       rewrite_metadata.fetch_types));
   CopyGraph(*ng, &dense_copy->graph);
 
-  // TODO(vrv): We should check invariants of the graph here.
+  // TODO (vrv): We should check invariants of the graph here. id:1096 gh:1097
 
   *out = std::move(dense_copy);
   return Status::OK();

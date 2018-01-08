@@ -106,7 +106,7 @@ std::unique_ptr<HloModule> HloTestBase::CreateNewModule() {
 
 /*static*/ DebugOptions HloTestBase::GetDebugOptionsForTest() {
   auto debug_options = legacy_flags::GetDebugOptionsFromFlags();
-  // TODO(b/38354253): Change tests to use Parameters instead of Constants.
+  // TODO (b/38354253): Change tests to use Parameters instead of Constants. id:439 gh:440
   debug_options.add_xla_disable_hlo_passes("constant_folding");
   return debug_options;
 }

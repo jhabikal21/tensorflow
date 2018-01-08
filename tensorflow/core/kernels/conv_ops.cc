@@ -69,7 +69,7 @@ struct LaunchGeneric {
       // For 1x1 kernel, the 2D convolution is reduced to matrix
       // multiplication.
       //
-      // TODO(vrv): We should be able to call SpatialConvolution
+      // TODO (vrv): We should be able to call SpatialConvolution id:1933 gh:1934
       // and it will produce the same result, but doing so
       // led to NaNs during training.  Using matmul instead for now.
       int conv_width = 1;  // Width for the convolution step.
@@ -122,7 +122,7 @@ struct LaunchConv2DOp<CPUDevice, T> {
                                 "NHWC tensor format for now."));
       return;
     }
-    // TODO(yangzihao): Add the CPU implementation of dilated conv 2D.
+    // TODO (yangzihao): Add the CPU implementation of dilated conv 2D. id:1457 gh:1458
     if (row_dilation > 1 || col_dilation > 1) {
       ctx->SetStatus(
           errors::Unimplemented("Generic conv implementation only supports "
@@ -718,7 +718,7 @@ void LaunchConv2DOp<GPUDevice, T>::operator()(
     ProfileResult best_result;
     ProfileResult best_result_no_scratch;
     for (auto profile_algorithm : algorithms) {
-      // TODO(zhengxq): profile each algorithm multiple times to better
+      // TODO (zhengxq): profile each algorithm multiple times to better id:2618 gh:2619
       // accuracy.
       CudnnScratchAllocator scratch_allocator(ConvolveScratchSize, ctx);
       ProfileResult profile_result;
@@ -743,7 +743,7 @@ void LaunchConv2DOp<GPUDevice, T>::operator()(
         }
       }
     }
-    // TODO(yangzihao): refactor the profile result checking code into a common
+    // TODO (yangzihao): refactor the profile result checking code into a common id:1366 gh:1367
     // utility function.
     OP_REQUIRES(ctx,
                 best_result.is_valid() || best_result_no_scratch.is_valid(),

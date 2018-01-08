@@ -111,14 +111,14 @@ Status ValidateSignatureWithAttrs(const OpDef& sig, AttrSlice attr_values) {
     }
   }
 
-// TODO(josh11b): Enable this code once it works with function gradients.
+// TODO (josh11b): Enable this code once it works with function gradients. id:1924 gh:1925
 // Right now the C++ function gradient code assumes it can pass
 // all the attrs of the function to the gradient, and any attrs that
 // the gradient doesn't care about will be ignored.
 #if 0
   if (attr_values.size() != sig.attr_size()) {
     for (const auto& a : attr_values) {
-      // TODO(josh11b): Possibly should ignore attrs that start with "_" here?
+      // TODO (josh11b): Possibly should ignore attrs that start with "_" here? id:1721 gh:1722
       bool found = false;
       for (const auto& s : sig.attr()) {
         if (a.first == s.name()) {
@@ -458,7 +458,7 @@ string Print(const OpDef::ArgDef& arg) {
   return out;
 }
 
-// TODO(josh11b): Merge this with SummarizeAttrValue().
+// TODO (josh11b): Merge this with SummarizeAttrValue(). id:1312 gh:1313
 string Print(const AttrValue& attr_value) {
   if (attr_value.value_case() == AttrValue::kType) {
     return DataTypeString(attr_value.type());
@@ -486,7 +486,7 @@ string Print(const AttrValue& attr_value) {
   return SummarizeAttrValue(attr_value);
 }
 
-// TODO(josh11b): Merge this with SummarizeNodeDef().
+// TODO (josh11b): Merge this with SummarizeNodeDef(). id:2473 gh:2474
 string Print(const NodeDef& n) {
   string out;
   strings::StrAppend(&out, n.name(), " = ", n.op());

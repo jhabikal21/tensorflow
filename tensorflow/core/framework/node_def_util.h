@@ -128,7 +128,7 @@ class AttrSlice {
   Status Find(StringPiece attr_name, const AttrValue** attr_value) const;
 
   // Helper class to avoid allocations in EqualAttrs.
-  // TODO(irving): Will go away once NodeInfo is used.
+  // TODO (irving): Will go away once NodeInfo is used. id:1938 gh:1939
   struct Scratch {
     string a;
     string b;
@@ -137,7 +137,7 @@ class AttrSlice {
   // Check if all attrs and attr values match.  Does not take defaults into
   // account.
   //
-  // TODO(irving): There is a bug in this routine inherited from its
+  // TODO (irving): There is a bug in this routine inherited from its id:1729 gh:1730
   // OptimizerCSE::EqualAttrs precedecessor.  The same tensor attr can be
   // represented in more than one way as an AttrValue, since TensorProto is
   // not 1-1.  This bug will go away once I replace everything with NodeInfo,
@@ -260,11 +260,11 @@ Status ValidateNodeDef(const NodeDef& node_def, const OpDef& op_def);
 // corresponding input/output index range.  For example,
 // input "foo" corresponds to input indices
 //   [ (*inputs)["foo"].first, (*inputs)["foo"].second ).
-// NOTE(mrry): To reduce allocations when the map is used and save
+// NOTE (mrry): To reduce allocations when the map is used and save id:1317 gh:1318
 // space, the returned `NameRangeMap` objects borrow the input/output
 // argument names from `op_def`. The `op_def` must outlive the
 // returned `NameRangeMap` objects.
-// TODO(irving): Remove the NodeDef version; keep only the Node version.
+// TODO (irving): Remove the NodeDef version; keep only the Node version. id:2484 gh:2485
 typedef gtl::FlatMap<StringPiece, std::pair<int, int>, hash<StringPiece>>
     NameRangeMap;
 Status NameRangesForNode(const NodeDef& node_def, const OpDef& op_def,

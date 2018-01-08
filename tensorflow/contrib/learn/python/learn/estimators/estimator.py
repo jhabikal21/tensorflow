@@ -273,7 +273,7 @@ def _make_metrics_ops(metrics, features, labels, predictions):
       result[name] = metric.create_metric_ops(features, labels, predictions)
       continue
 
-    # TODO(b/31229024): Remove the rest of this loop
+    # TODO (b/31229024): Remove the rest of this loop id:732 gh:733
     logging.warning('Please specify metrics using MetricSpec. Using bare '
                     'functions or (key, fn) tuples is deprecated and support '
                     'for it will be removed on Oct 1, 2016.')
@@ -383,7 +383,7 @@ class BaseEstimator(
 
   # Note that for Google users, this is overridden with
   # learn_runner.EstimatorConfig.
-  # TODO(wicke): Remove this once launcher takes over config functionality
+  # TODO (wicke): Remove this once launcher takes over config functionality id:668 gh:669
   _Config = run_config.RunConfig  # pylint: disable=invalid-name
 
   def __init__(self, model_dir=None, config=None):
@@ -411,7 +411,7 @@ class BaseEstimator(
     # Model directory.
     if (model_dir is not None) and (self._config.model_dir is not None):
       if model_dir != self._config.model_dir:
-        # TODO(b/9965722): remove this suppression after it is no longer
+        # TODO (b/9965722): remove this suppression after it is no longer id:718 gh:719
         #                  necessary.
         # pylint: disable=g-doc-exception
         raise ValueError(
@@ -433,7 +433,7 @@ class BaseEstimator(
     self._device_fn = _get_replica_device_setter(self._config)
 
     # Features and labels TensorSignature objects.
-    # TODO(wicke): Rename these to something more descriptive
+    # TODO (wicke): Rename these to something more descriptive id:1185 gh:1187
     self._features_info = None
     self._labels_info = None
 
@@ -441,7 +441,7 @@ class BaseEstimator(
 
   @property
   def config(self):
-    # TODO(wicke): make RunConfig immutable, and then return it without a copy.
+    # TODO (wicke): make RunConfig immutable, and then return it without a copy. id:1010 gh:1011
     return copy.deepcopy(self._config)
 
   @deprecated_args(
@@ -828,7 +828,7 @@ class BaseEstimator(
                       checkpoint_path=None,
                       hooks=None,
                       log_progress=True):
-    # TODO(wicke): Remove this once Model and associated code are gone.
+    # TODO (wicke): Remove this once Model and associated code are gone. id:735 gh:736
     if (hasattr(self._config, 'execution_mode') and
         self._config.execution_mode not in ('all', 'evaluate', 'eval_evalset')):
       return None, None
@@ -1321,7 +1321,7 @@ class Estimator(BaseEstimator):
       input_alternatives, features = (
           saved_model_export_utils.get_input_alternatives(input_ops))
 
-      # TODO(b/34388557) This is a stopgap, pending recording model provenance.
+      # TODO (b/34388557) This is a stopgap, pending recording model provenance. id:700 gh:701
       # Record which features are expected at serving time.  It is assumed that
       # these are the features that were used in training.
       for feature_key in input_ops.features.keys():
@@ -1366,7 +1366,7 @@ class Estimator(BaseEstimator):
                            'must specify no transforms.')
         untransformed_tags = graph_rewrite_specs[0].tags
 
-        # TODO(soergel): switch to main_op or otherwise update when dust settles
+        # TODO (soergel): switch to main_op or otherwise update when dust settles id:720 gh:721
         builder.add_meta_graph_and_variables(
             session, untransformed_tags,
             signature_def_map=signature_def_map,
@@ -1392,7 +1392,7 @@ class Estimator(BaseEstimator):
     # Write the additional MetaGraphDefs
     for graph_rewrite_spec in graph_rewrite_specs[1:]:
 
-      # TODO(soergel) consider moving most of this to saved_model.builder_impl
+      # TODO (soergel) consider moving most of this to saved_model.builder_impl id:1187 gh:1188
       # as e.g. builder.add_rewritten_meta_graph(rewritten_graph_def, tags)
 
       transformed_meta_graph_def = meta_graph_transform.meta_graph_transform(

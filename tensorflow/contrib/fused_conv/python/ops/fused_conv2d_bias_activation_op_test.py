@@ -886,7 +886,7 @@ if __name__ == "__main__":
     setattr(FusedConv2DBiasActivationTest, "testInceptionFwd_" + str(index),
             GetInceptionFwdTest(input_size_, filter_size_, stride_, padding_))
 
-  # TODO(b/35359731)
+  # TODO (b/35359731) id:912 gh:913
   # Fwd, BckInput, and BackFilter to test that for certain input parameter
   # set, winograd nonfused algorithm will be excluded from conv autotune. If
   # in such case, winograd nonfused algorithm is added as one option of the

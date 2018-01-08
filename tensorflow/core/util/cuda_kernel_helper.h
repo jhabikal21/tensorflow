@@ -725,7 +725,7 @@ __device__ EIGEN_ALWAYS_INLINE T CudaShuffle(unsigned mask, T value,
 // Variant of the (undocumented) version from the CUDA SDK, but using unsigned
 // instead of float for lo and hi (which is incorrect with ftz, for example).
 // A bug has been filed with NVIDIA and will be fixed in the next CUDA release.
-// TODO(csigg): remove when the bug is fixed in the next CUDA release.
+// TODO (csigg): remove when the bug is fixed in the next CUDA release. id:2045 gh:2046
 __device__ EIGEN_ALWAYS_INLINE double CudaShuffle(unsigned mask, double value,
                                                   int srcLane,
                                                   int width = warpSize) {
@@ -747,7 +747,7 @@ __device__ EIGEN_ALWAYS_INLINE T CudaShuffleUp(unsigned mask, T value,
 // Variant of the (undocumented) version from the CUDA SDK, but using unsigned
 // instead of float for lo and hi (which is incorrect with ftz, for example).
 // A bug has been filed with NVIDIA and will be fixed in the next CUDA release.
-// TODO(csigg): remove when the bug is fixed in the next CUDA release.
+// TODO (csigg): remove when the bug is fixed in the next CUDA release. id:2583 gh:2584
 __device__ EIGEN_ALWAYS_INLINE double CudaShuffleUp(unsigned mask, double value,
                                                     int delta,
                                                     int width = warpSize) {
@@ -775,7 +775,7 @@ __device__ EIGEN_ALWAYS_INLINE Eigen::half CudaShuffleDown(
 // Variant of the (undocumented) version from the CUDA SDK, but using unsigned
 // instead of float for lo and hi (which is incorrect with ftz, for example).
 // A bug has been filed with NVIDIA and will be fixed in the next CUDA release.
-// TODO(csigg): remove when the bug is fixed in the next CUDA release.
+// TODO (csigg): remove when the bug is fixed in the next CUDA release. id:2874 gh:2875
 __device__ EIGEN_ALWAYS_INLINE double CudaShuffleDown(unsigned mask,
                                                       double value, int delta,
                                                       int width = warpSize) {
@@ -803,7 +803,7 @@ __device__ EIGEN_ALWAYS_INLINE Eigen::half CudaShuffleXor(
 // Variant of the (undocumented) version from the CUDA SDK, but using unsigned
 // instead of float for lo and hi (which is incorrect with ftz, for example).
 // A bug has been filed with NVIDIA and will be fixed in the next CUDA release.
-// TODO(csigg): remove when the bug is fixed in the next CUDA release.
+// TODO (csigg): remove when the bug is fixed in the next CUDA release. id:1818 gh:1819
 __device__ EIGEN_ALWAYS_INLINE double CudaShuffleXor(unsigned mask,
                                                      double value, int laneMask,
                                                      int width = warpSize) {

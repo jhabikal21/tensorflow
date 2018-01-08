@@ -453,7 +453,7 @@ class MklInputConversionOp : public OpKernel {
                               .Label(mkl_op_registry::kMklOpLabel), \
                           MklInputConversionOp<CPUDevice, T>);
 
-// TODO(nhasabni): We cannot support all number types since MklDnn does
+// TODO (nhasabni): We cannot support all number types since MklDnn does id:2254 gh:2255
 // not support types.
 // TF_CALL_NUMBER_TYPES(REGISTER_CPU);
 TF_CALL_float(REGISTER_CPU);

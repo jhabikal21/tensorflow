@@ -54,7 +54,7 @@ ClientLibraryTestBase::ClientLibraryTestBase(
   // Disabling constant_folding so that tests (usually written using Constants)
   // will exercise the intended code paths, instead of being constant folded.
   //
-  // TODO(b/38354253): Constant folding is currently disabled. Change tests to
+  // TODO (b/38354253): Constant folding is currently disabled. Change tests to id:432 gh:433
   // use Parameters instead of Constants, and re-enable constant folding by
   // default.
   execution_options_.mutable_debug_options()->add_xla_disable_hlo_passes(

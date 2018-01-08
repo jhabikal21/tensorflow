@@ -88,7 +88,7 @@ TEST_F(TFProfTimelineTest, ScopeView) {
   EXPECT_EQ(17545174915963890413ull, Hash64(dump_str));
 }
 
-// TODO(xpan): tfprof_log is too large to include in testdata when adding
+// TODO (xpan): tfprof_log is too large to include in testdata when adding id:2040 gh:2041
 // code traces.
 
 }  // namespace tfprof

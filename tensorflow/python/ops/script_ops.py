@@ -188,7 +188,7 @@ def _internal_py_func(func, inp, Tout, stateful=None, eager=False, name=None):
 
   cleanup = CleanupFunc(token)
 
-  # TODO(zhifengc): Consider adding a Graph method to collect
+  # TODO (zhifengc): Consider adding a Graph method to collect id:3557 gh:3558
   # `cleanup` objects in one of its member.
   if not hasattr(graph, "_cleanup_py_funcs_used_in_graph"):
     graph._cleanup_py_funcs_used_in_graph = []
@@ -300,7 +300,7 @@ def py_func(func, inp, Tout, stateful=True, name=None):
       func=func, inp=inp, Tout=Tout, stateful=stateful, eager=False, name=name)
 
 
-# TODO(akshayka): PyFuncs where the 'eager' attribute is set to True should be
+# TODO (akshayka): PyFuncs where the 'eager' attribute is set to True should be id:3275 gh:3276
 # differentiable, i.e., the gradient of PyFunc should propagate Nones if the
 # eager attribute is not set, and otherwise, it should return the gradient.
 ops.NotDifferentiable("PyFunc")

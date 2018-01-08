@@ -125,7 +125,7 @@ struct ParallelMatMulKernel<Scalar, false> {
   }
 };
 
-// TODO(rmlarsen): Get rid of this when we have upstreamed improvements
+// TODO (rmlarsen): Get rid of this when we have upstreamed improvements id:1342 gh:1343
 // for matrix*vector and vector*matrix to Eigen's general matrix product.
 template <typename Tx, typename Ty, typename Tz>
 static void Multiply(bool adj_x, bool adj_y, Tx x, Ty y, Tz z) {
@@ -173,7 +173,7 @@ struct SequentialMatMulKernel {
       auto x = ConstTensorSliceToEigenMatrix(in_x, i);
       auto y = ConstTensorSliceToEigenMatrix(in_y, i);
       auto z = TensorSliceToEigenMatrix(out, i);
-      // TODO(rmlarsen): Get rid of the special casing here when we have
+      // TODO (rmlarsen): Get rid of the special casing here when we have id:2104 gh:2105
       // upstreamed improvements for matrix*vector and vector*matrix to
       // Eigen's general matrix product.
       if (!adj_x && x.rows() == 1) {
@@ -335,7 +335,7 @@ struct LaunchBatchMatMul<GPUDevice, Scalar> {
     // where A, B and C are assumed to be in column major.
     // We want the output to be in row-major, so we can compute
     // C' = B' x A', where ' stands for transpose (not adjoint).
-    // TODO(yangzihao): Choose the best of the three strategies using autotune.
+    // TODO (yangzihao): Choose the best of the three strategies using autotune. id:1904 gh:1905
     if (batch_size == 1) {
       // This is a regular matrix*matrix or matrix*vector multiply. Avoid the
       // overhead of the scratch allocator and the batch interface.

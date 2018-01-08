@@ -102,7 +102,7 @@ TfLiteStatus Interpreter::CheckTensorIndices(const char* label,
 
 TfLiteStatus Interpreter::BytesRequired(TfLiteType type, const int* dims,
                                         int dims_size, size_t* bytes) {
-  // TODO(aselle): Check for overflow here using overflow.h in TensorFlow
+  // TODO (aselle): Check for overflow here using overflow.h in TensorFlow id:760 gh:761
   // MultiplyWithoutOverflow.
   TF_LITE_ENSURE(&context_, bytes != nullptr);
   size_t count = 1;
@@ -342,7 +342,7 @@ TfLiteStatus Interpreter::AddNodeWithParameters(
   if (node.outputs) TfLiteIntArrayFree(node.outputs);
   if (node.temporaries) TfLiteIntArrayFree(node.temporaries);
 
-  // NOTE, here we are not using move semantics yet, since our internal
+  // NOTE , here we are not using move semantics yet, since our internal id:788 gh:789
   // representation isn't std::vector, but in the future we would like to avoid
   // copies, so we want the interface to take r-value references now.
   node.inputs = convertVectorToTfLiteIntArray(inputs);
@@ -362,7 +362,7 @@ TfLiteStatus Interpreter::AddNodeWithParameters(
 
 TfLiteStatus Interpreter::ResizeInputTensor(int tensor_index,
                                             const std::vector<int>& dims) {
-  // TODO(aselle): All bounds checks can be implemented as one-sided bounds
+  // TODO (aselle): All bounds checks can be implemented as one-sided bounds id:1379 gh:1380
   // checks by casting to unsigned for efficiency. Profile before doing this.
 
   TF_LITE_ENSURE(&context_,
@@ -391,7 +391,7 @@ TfLiteStatus Interpreter::Invoke() {
       TF_LITE_ENSURE_OK(&context_, nnapi_delegate_->Invoke(this));
       return kTfLiteOk;
     } else {
-      // TODO(aselle): In the future, we would like this to be an
+      // TODO (aselle): In the future, we would like this to be an id:1154 gh:1155
       // automatic tflite CPU fallback.
       ReportError(&context_,
                   "NNAPI was requested, but dependent sized tensors "
@@ -546,7 +546,7 @@ TfLiteStatus Interpreter::ResizeTensorImpl(TfLiteTensor* tensor,
 }
 
 void Interpreter::UseNNAPI(bool enable) {
-  // TODO(aselle): This is a workaround for finding if NNAPI exists.
+  // TODO (aselle): This is a workaround for finding if NNAPI exists. id:822 gh:823
   // We also need to make sure getLibraryHandle() is renamed to be NNAPI
   // prefixed.
   if (!NNAPIExists()) enable = false;
@@ -558,7 +558,7 @@ void Interpreter::UseNNAPI(bool enable) {
 }
 
 void Interpreter::SetNumThreads(int num_threads) {
-  // TODO(ahentz): this forces us to link against gemmlowp even when the ops
+  // TODO (ahentz): this forces us to link against gemmlowp even when the ops id:762 gh:763
   // don't use it. We should implement some dynamic mechanism for this sort of
   // library-specific initialization.
   tflite::gemm_support::SetMaxNumThreads(&context_, num_threads);

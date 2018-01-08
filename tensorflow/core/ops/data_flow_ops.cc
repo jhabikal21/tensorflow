@@ -1739,7 +1739,7 @@ REGISTER_OP("TensorArray")
     .SetIsStateful()
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArrayV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:1989 gh:1990
 REGISTER_OP("TensorArrayV2")
     .Input("size: int32")
     .Attr("dtype: type")
@@ -1764,7 +1764,7 @@ REGISTER_OP("TensorArrayGrad")
     .SetIsStateful()
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArrayGradV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:2450 gh:2451
 REGISTER_OP("TensorArrayGradV2")
     .Input("handle: string")
     .Input("flow_in: float")
@@ -1789,7 +1789,7 @@ REGISTER_OP("TensorArrayWrite")
     .Attr("T: type")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArrayWriteV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:2803 gh:2804
 REGISTER_OP("TensorArrayWriteV2")
     .Input("handle: string")
     .Input("index: int32")
@@ -1817,7 +1817,7 @@ REGISTER_OP("TensorArrayRead")
     .Attr("dtype: type")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArrayReadV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:1741 gh:1742
 REGISTER_OP("TensorArrayReadV2")
     .Input("handle: string")
     .Input("index: int32")
@@ -1860,7 +1860,7 @@ REGISTER_OP("TensorArrayGather")
     .Attr("element_shape: shape = { unknown_rank: true }")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArrayGatherV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:2979 gh:2980
 REGISTER_OP("TensorArrayGatherV2")
     .Input("handle: string")
     .Input("indices: int32")
@@ -1887,7 +1887,7 @@ REGISTER_OP("TensorArrayScatter")
     .Attr("T: type")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(19, "Use TensorArrayGradV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:1991 gh:1992
 REGISTER_OP("TensorArrayScatterV2")
     .Input("handle: string")
     .Input("indices: int32")
@@ -1942,7 +1942,7 @@ REGISTER_OP("TensorArraySplit")
     .Attr("T: type")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArraySplitV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:2452 gh:2453
 REGISTER_OP("TensorArraySplitV2")
     .Input("handle: string")
     .Input("value: T")
@@ -1967,7 +1967,7 @@ REGISTER_OP("TensorArraySize")
     .Output("size: int32")
     .SetShapeFn(shape_inference::UnknownShape)
     .Deprecated(16, "Use TensorArraySizeV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:2806 gh:2807
 REGISTER_OP("TensorArraySizeV2")
     .Input("handle: string")
     .Input("flow_in: float")
@@ -1984,7 +1984,7 @@ REGISTER_OP("TensorArrayClose")
     .Input("handle: Ref(string)")
     .SetShapeFn([](InferenceContext* c) { return Status::OK(); })
     .Deprecated(16, "Use TensorArrayCloseV3");
-// TODO(cwhipkey): mark this deprecated in favor of V3.
+// TODO (cwhipkey): mark this deprecated in favor of V3. id:1744 gh:1746
 REGISTER_OP("TensorArrayCloseV2")
     .Input("handle: string")
     .SetShapeFn([](InferenceContext* c) {

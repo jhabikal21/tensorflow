@@ -78,7 +78,7 @@ const ShowNode* TFGraph::ShowInternal(const Options& opts, Timeline* timeline) {
     return root_;
   }
   if (timeline && timeline->step() < 0) {
-    // TODO(xpan): Maybe pick a default step for users.
+    // TODO (xpan): Maybe pick a default step for users. id:1804 gh:1805
     fprintf(stderr,
             "Must specify -step option to generate timeline in graph view.\n");
     return root_;

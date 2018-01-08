@@ -59,7 +59,7 @@ class PeriodicResampleTest(test_util.TensorFlowTestCase):
                                  [[8], [10], [12], [14]],
                                  [[9], [11], [13], [15]]])
 
-    # NOTE: output_tensor != input_tensor.reshape((4, 4, -1))
+    # NOTE: output_tensor != input_tensor.reshape((4, 4, -1)) id:913 gh:914
     with self.test_session():
       variables.global_variables_initializer().run()
       result = periodic_resample(input_tensor, desired_shape).eval()
@@ -90,7 +90,7 @@ class PeriodicResampleTest(test_util.TensorFlowTestCase):
                                   [[49], [53], [57], [61]],
                                   [[51], [55], [59], [63]]]])
 
-    # NOTE: output_tensor != input_tensor.reshape((4, 4, 4, -1))
+    # NOTE: output_tensor != input_tensor.reshape((4, 4, 4, -1)) id:1526 gh:1527
     with self.test_session():
       variables.global_variables_initializer().run()
       result = periodic_resample(input_tensor, desired_shape).eval()

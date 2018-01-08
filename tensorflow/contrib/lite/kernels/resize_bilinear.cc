@@ -45,10 +45,10 @@ TfLiteStatus Prepare(TfLiteContext* context, TfLiteNode* node) {
   TfLiteTensor* input = GetInput(context, node, kInputTensor);
   TfLiteTensor* output = GetOutput(context, node, kOutputTensor);
 
-  // TODO(ahentz): Our current implementations rely on the inputs being 4D.
+  // TODO (ahentz): Our current implementations rely on the inputs being 4D. id:904 gh:905
   TF_LITE_ENSURE_EQ(context, NumDimensions(input), 4);
 
-  // TODO(ahentz): Our current implementations only support float32.
+  // TODO (ahentz): Our current implementations only support float32. id:2080 gh:2081
   TF_LITE_ENSURE_EQ(context, output->type, kTfLiteFloat32);
   TF_LITE_ENSURE_EQ(context, input->type, output->type);
 

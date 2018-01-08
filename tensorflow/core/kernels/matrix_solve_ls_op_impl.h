@@ -144,7 +144,7 @@ class MatrixSolveLsOp : public LinearAlgebraOp<Scalar> {
       // will compute the minimum-norm solution for rank-deficient matrices.
       // This is 6-7 times slower than the fast path.
       //
-      // TODO(rmlarsen): The implementation of
+      // TODO (rmlarsen): The implementation of id:1618 gh:1619
       //   Eigen::CompleteOrthogonalDecomposition is not blocked, so for
       //   matrices that do not fit in cache, it is significantly slower than
       //   the equivalent blocked LAPACK routine xGELSY (e.g. Eigen is ~3x

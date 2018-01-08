@@ -25,7 +25,7 @@ namespace {
 // description of the following op.
 
 // The following five functions are copied from padding_fifo_queue.cc.
-// TODO(mrry): Reconcile these functions with the similar methods in the
+// TODO (mrry): Reconcile these functions with the similar methods in the id:1506 gh:1507
 // queue implementation.
 Status ValidateElementToLargerSlice(const Tensor& element, Tensor* parent) {
   DCHECK_NE(parent->dim_size(0), 0);
@@ -197,11 +197,11 @@ class PaddedBatchDatasetOp : public UnaryDatasetOpKernel {
           input_(input) {
       input_->Ref();
 
-      // NOTE(mrry): Currently we implement "batch up to"
+      // NOTE (mrry): Currently we implement "batch up to" id:2170 gh:2171
       // semantics. If we could tell statically that the input dataset
       // is infinite, then we could always report `batch_size` as the
       // 0th dimension.
-      // TODO(mrry): Need to validate that the input shape and the
+      // TODO (mrry): Need to validate that the input shape and the id:1979 gh:1980
       // padded shape are "compatible" (i.e. that padded shape is >=
       // input shape, with both static and dynamic checks as appropriate).
       const auto& input_shapes = input_->output_shapes();
@@ -320,7 +320,7 @@ class PaddedBatchDatasetOp : public UnaryDatasetOpKernel {
 
         // Copy the retrieved batch elements into one output tensor
         // per tuple component.
-        // NOTE(mrry): If the input or output sizes are statically
+        // NOTE (mrry): If the input or output sizes are statically id:1495 gh:1496
         // known, we could potentially read the input values in-place
         // into their respective slice locations. This would require a
         // different GetNext() overload that supports zero-copy, and might
@@ -345,7 +345,7 @@ class PaddedBatchDatasetOp : public UnaryDatasetOpKernel {
           for (int64 i = 0; i < num_batch_elements; ++i) {
             const TensorShape& element_shape =
                 batch_elements[i][component_index].shape();
-            // TODO(mrry): Perform this check in the shape function if
+            // TODO (mrry): Perform this check in the shape function if id:2729 gh:2730
             // enough static information is available to do so.
             if (element_shape.dims() != padded_shape.dims()) {
               return errors::InvalidArgument(

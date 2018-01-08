@@ -120,7 +120,7 @@ class ReducePrecisionInsertion : public HloPassInterface {
     // instructions after the instructions that pull the F32 arrays out of
     // the tuples.
     //
-    // TODO(b/64093391): Remove the IsScalar check once this won't cause
+    // TODO (b/64093391): Remove the IsScalar check once this won't cause id:406 gh:407
     // failures on the GPU backend if the ReducePrecision instruction ends up
     // inserted between a scalar constant and the init_value argument of a
     // Reduce operation.

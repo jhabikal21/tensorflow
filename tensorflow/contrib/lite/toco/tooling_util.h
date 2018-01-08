@@ -35,7 +35,7 @@ limitations under the License.
 #include "tensorflow/contrib/lite/toco/toco_port.h"
 #include "tensorflow/contrib/lite/toco/types.pb.h"
 
-// TODO(aselle): Replace with using a container specific hash override instead.
+// TODO (aselle): Replace with using a container specific hash override instead. id:1259 gh:1260
 namespace std {
 template <>
 struct hash<toco::OperatorType> {
@@ -103,10 +103,10 @@ bool ParseFromStringEitherTextOrBinary(const std::string& input_file_contents,
   return false;
 }
 
-// TODO(b/36075966): Clean up when dims superseded by array shape.
+// TODO (b/36075966): Clean up when dims superseded by array shape. id:946 gh:947
 void ExtendShape(Shape* shape, int new_shape_size);
 
-// TODO(b/36075966): Clean up when dims superseded by array shape.
+// TODO (b/36075966): Clean up when dims superseded by array shape. id:2123 gh:2124
 void UnextendShape(Shape* shape, int new_shape_size);
 
 // Checks (using CHECK) that all dimensions of 'shape' are at least 1.

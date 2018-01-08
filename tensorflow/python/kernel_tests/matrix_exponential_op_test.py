@@ -46,7 +46,7 @@ def np_expm(x):
 class ExponentialOpTest(test.TestCase):
 
   def _verifyExponential(self, x, np_type):
-    # TODO(pfau): add matrix logarithm and test that it is inverse of expm.
+    # TODO (pfau): add matrix logarithm and test that it is inverse of expm. id:2845 gh:2846
     inp = x.astype(np_type)
     with self.test_session(use_gpu=True):
       # Verify that x^{-1} * x == Identity matrix.

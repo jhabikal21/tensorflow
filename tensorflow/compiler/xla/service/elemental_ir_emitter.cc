@@ -428,7 +428,7 @@ StatusOr<llvm::Value*> ElementalIrEmitter::EmitFloatUnaryOp(
           llvm::Intrinsic::round, {operand_value}, {operand_value->getType()},
           ir_builder_);
     case HloOpcode::kSign: {
-      // TODO(b/32151903): Ensure consistent sign behavior for -0.0
+      // TODO (b/32151903): Ensure consistent sign behavior for -0.0 id:292 gh:293
       auto type = operand_value->getType();
       auto zero = llvm::ConstantFP::get(type, 0.0);
       auto oeq = ir_builder_->CreateFCmpOEQ(operand_value, zero);
@@ -1004,7 +1004,7 @@ StatusOr<llvm::Value*> ElementalIrEmitter::EmitIntegerBinaryOp(
     const HloInstruction* op, llvm::Value* lhs_value, llvm::Value* rhs_value,
     bool is_signed) const {
   switch (op->opcode()) {
-    // TODO(jingyue): add the "nsw" attribute for signed types.
+    // TODO (jingyue): add the "nsw" attribute for signed types. id:344 gh:345
     case HloOpcode::kAdd:
       return ir_builder_->CreateAdd(lhs_value, rhs_value);
     case HloOpcode::kSubtract:
@@ -1639,7 +1639,7 @@ llvm_ir::ElementGenerator ElementalIrEmitter::MakeElementGenerator(
         for (int64 i = 0; i < rank; ++i) {
           llvm::Value* update_dim_size = llvm::ConstantInt::get(
               index[i]->getType(), update_hlo->shape().dimensions(i));
-          // NOTE: Subtraction will be positive due to bounds checking above.
+          // NOTE: Subtraction will be positive due to bounds checking above. id:302 gh:303
           update_index[i] = ir_builder_->CreateURem(
               ir_builder_->CreateSub(index[i], slice_start_index_adjusted[i]),
               update_dim_size);

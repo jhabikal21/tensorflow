@@ -603,7 +603,7 @@ class TensorArrayTest(xla_test.XLATestCase):
       w1 = w0.write(1, [3.0])
       w1.close().run()  # Expected to run without problems
 
-  # TODO(phawkins): implement while loops.
+  # TODO (phawkins): implement while loops. id:259 gh:260
   # def _testWhileLoopWritePackGradients(self, dynamic_size, dtype):
   #   np_dtype = dtype.as_numpy_dtype
   #   with self.test_session() as session, self.test_scope():
@@ -681,7 +681,7 @@ class TensorArrayTest(xla_test.XLATestCase):
   # def testWhileLoopWritePackGradients(self):
   #   self._testWhileLoopWritePackGradients(
   #       dynamic_size=False, dtype=dtypes.float32)
-  #   # TODO(ebrevdo): re-enable when While supports non-float32 gradients.
+  #   # TODO (ebrevdo): re-enable when While supports non-float32 gradients. id:189 gh:190
   #   # self._testWhileLoopWritePackGradients(
   #   #     dynamic_size=False, dtype=tf.int64)
 

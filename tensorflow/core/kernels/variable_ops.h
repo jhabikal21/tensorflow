@@ -36,7 +36,7 @@ class Var : public ResourceBase {
   Var(const Var&) = delete;
   Var& operator=(const Var&) = delete;
 
-  // TODO(ebrevdo): Use LockSet instead of exposing mu.
+  // TODO (ebrevdo): Use LockSet instead of exposing mu. id:2404 gh:2405
   mutex* mu() { return &mu_; }
   Tensor* tensor() { return &tensor_; }
 

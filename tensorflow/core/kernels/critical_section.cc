@@ -232,7 +232,7 @@ REGISTER_KERNEL_BUILDER(Name("ExecuteInCriticalSection").Device(DEVICE_CPU),
 REGISTER_KERNEL_BUILDER(Name("CriticalSectionOp").Device(DEVICE_CPU),
                         ResourceHandleOp<CriticalSection>);
 
-// TODO(ebrevdo): Re-enable once the cross-device function execution works.
+// TODO (ebrevdo): Re-enable once the cross-device function execution works. id:2626 gh:2628
 #if GOOGLE_CUDA
 REGISTER_KERNEL_BUILDER(Name("ExecuteInCriticalSection")
                             .Device(DEVICE_GPU)

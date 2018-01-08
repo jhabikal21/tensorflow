@@ -506,7 +506,7 @@ class MutableDenseHashTable(LookupInterface):
   ```
   """
 
-  # TODO(andreasst): consider extracting common code with MutableHashTable into
+  # TODO (andreasst): consider extracting common code with MutableHashTable into id:864 gh:865
   # a common superclass.
   def __init__(self,
                key_dtype,

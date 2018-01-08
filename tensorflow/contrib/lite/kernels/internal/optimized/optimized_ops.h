@@ -106,7 +106,7 @@ ArrayMap<Scalar> MapAsArrayWithFirstDimAsRows(Scalar* data,
   return ArrayMap<Scalar>(data, rows, cols);
 }
 
-// TODO(b/62193649): this function is only needed as long
+// TODO (b/62193649): this function is only needed as long id:1443 gh:1444
 // as we have the --variable_batch hack.
 template <typename Scalar, int N>
 MatrixMap<Scalar> MapAsMatrixWithGivenNumberOfRows(Scalar* data,
@@ -332,7 +332,7 @@ inline void FullyConnected(const float* input_data, const Dims<4>& input_dims,
                            float output_activation_max, float* output_data,
                            const Dims<4>& output_dims) {
   gemmlowp::ScopedProfilingLabel label("FullyConnected");
-  // TODO(b/62193649): this convoluted shape computation (determining
+  // TODO (b/62193649): this convoluted shape computation (determining id:1177 gh:1178
   // input_rows from the weights_dims, then MapAsMatrixWithGivenNumberOfRows)
   // is because the current --variable_batch hack consists in overwriting the
   // 3rd dimension with the runtime batch size, as we don't keep track for each
@@ -567,7 +567,7 @@ inline void FullyConnected(const uint8* input_data, const Dims<4>& input_dims,
                            const Dims<4>& output_dims,
                            gemmlowp::GemmContext* gemm_context) {
   gemmlowp::ScopedProfilingLabel label("FullyConnected/8bit");
-  // TODO(benoitjacob): This really should be:
+  // TODO (benoitjacob): This really should be: id:883 gh:884
   //     const int batches = ArraySize(output_dims, 1);
   // but the current --variable_batch hack consists in overwriting the 3rd
   // dimension with the runtime batch size, as we don't keep track for each
@@ -784,7 +784,7 @@ inline void Conv(const float* input_data, const Dims<4>& input_dims,
     gemm_input_data = im2col_data;
     gemm_input_dims = &im2col_dims;
   } else {
-    // TODO(aselle): We need to make sure to not send im2col if it is not
+    // TODO (aselle): We need to make sure to not send im2col if it is not id:1993 gh:1994
     // needed.
     TFLITE_DCHECK(!im2col_data);
     gemm_input_data = input_data;
@@ -1530,11 +1530,11 @@ void Add(const int32* input1_data, const Dims<4>& input1_dims,
   }
 }
 
-// TODO(jiawen): We can implement BroadcastAdd on buffers of arbitrary
+// TODO (jiawen): We can implement BroadcastAdd on buffers of arbitrary id:809 gh:810
 // dimensionality if the runtime code does a single loop over one dimension
 // that handles broadcasting as the base case. The code generator would then
 // generate max(D1, D2) nested for loops.
-// TODO(benoitjacob): BroadcastAdd is intentionally duplicated from
+// TODO (benoitjacob): BroadcastAdd is intentionally duplicated from id:1445 gh:1446
 // reference_ops.h. Once an optimized version is implemented and NdArrayDesc<T>
 // is no longer referenced in this file, move NdArrayDesc<T> from types.h to
 // reference_ops.h.
@@ -1764,11 +1764,11 @@ void Mul(const int32* input1_data, const Dims<4>& input1_dims,
   }
 }
 
-// TODO(jiawen): We can implement BroadcastMul on buffers of arbitrary
+// TODO (jiawen): We can implement BroadcastMul on buffers of arbitrary id:1179 gh:1180
 // dimensionality if the runtime code does a single loop over one dimension
 // that handles broadcasting as the base case. The code generator would then
 // generate max(D1, D2) nested for loops.
-// TODO(benoitjacob): BroadcastMul is intentionally duplicated from
+// TODO (benoitjacob): BroadcastMul is intentionally duplicated from id:885 gh:886
 // reference_ops.h. Once an optimized version is implemented and NdArrayDesc<T>
 // is no longer referenced in this file, move NdArrayDesc<T> from types.h to
 // reference_ops.h.
@@ -2041,10 +2041,10 @@ inline void AveragePool(const float* input_data, const Dims<4>& input_dims,
   const int output_width = ArraySize(output_dims, 1);
   const int depth = MatchingArraySize(input_dims, 0, output_dims, 0);
 
-  // TODO(benoitjacob) make this a proper reference impl without Eigen!
+  // TODO (benoitjacob) make this a proper reference impl without Eigen! id:1997 gh:1998
   const auto in_mat = MapAsMatrixWithFirstDimAsRows(input_data, input_dims);
   auto out_mat = MapAsMatrixWithFirstDimAsRows(output_data, output_dims);
-  // TODO(benoitjacob) get rid of the dynamic memory allocation here!
+  // TODO (benoitjacob) get rid of the dynamic memory allocation here! id:811 gh:812
   Eigen::VectorXf out_count(out_mat.cols());
   out_count.setZero();
   // Prefill the output to 0.
@@ -2652,7 +2652,7 @@ inline void Softmax(const uint8* input_data, const Dims<4>& input_dims,
         }
 
         int32 fixed_sum_of_exps = sum_of_exps.raw();
-        // TODO(starka): Use a NEON intrinsic like vclzq_u32 instead.
+        // TODO (starka): Use a NEON intrinsic like vclzq_u32 instead. id:1447 gh:1448
         int headroom_plus_one =
             __builtin_clz(static_cast<uint32>(fixed_sum_of_exps));
         // This is the number of bits to the left of the binary point above 1.0.
@@ -3562,7 +3562,7 @@ template <typename T>
 inline void Slice(const T* input_data, const Dims<4>& input_dims,
                   const std::vector<int>& begin, const std::vector<int>& size,
                   T* output_data, const Dims<4>& output_dims) {
-  // TODO(dkalenichenko): This op only supports 4D tensors.
+  // TODO (dkalenichenko): This op only supports 4D tensors. id:1182 gh:1183
   TFLITE_DCHECK_EQ(begin.size(), 4);
   TFLITE_DCHECK_EQ(size.size(), 4);
   const int start_b = begin[3];

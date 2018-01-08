@@ -352,5 +352,5 @@ def ensure_sequence(obj):
     return (obj,)
 
 
-# TODO(b/69623235): Add a function for finding tensors that share gradients
+# TODO (b/69623235): Add a function for finding tensors that share gradients id:984 gh:985
 # to eliminate redundant fisher factor computations.

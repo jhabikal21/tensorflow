@@ -38,14 +38,14 @@ Status CapturedFunction::Create(
     OpKernelContext* ctx, const NameAttrList& func, int graph_def_version,
     std::vector<Tensor> captured_inputs,
     std::unique_ptr<CapturedFunction>* out_function) {
-  // NOTE(mrry): We need to assign a name to the device, and we choose
+  // NOTE (mrry): We need to assign a name to the device, and we choose id:1477 gh:1478
   // the same name as the calling context's device so that we do not
   // need to rewrite resource handles that are found in `captured_inputs`.
   Device* device =
       new ThreadPoolDevice(SessionOptions(), ctx->device()->attributes().name(),
                            Bytes(256 << 20), DeviceLocality(), cpu_allocator());
 
-// TODO(mrry): Handle arbitrary resource types, which might require a
+// TODO (mrry): Handle arbitrary resource types, which might require a id:2710 gh:2711
 // redesign (or opening up access to `ResourceMgr::DoLookup()` and
 // `ResourceMgr::DoCreate()` to this code).
 #define HANDLE_RESOURCE_TYPE(ResourceType)                                     \
@@ -106,8 +106,8 @@ Status CapturedFunction::Create(
   std::unique_ptr<ProcessFunctionLibraryRuntime> pflr(
       new ProcessFunctionLibraryRuntime(device_mgr.get(), ctx->env(),
                                         graph_def_version, flib_def.get(),
-                                        {} /* TODO(mrry): OptimizerOptions? */,
-                                        nullptr /* TODO(mrry): ClusterFLR */));
+                                        {} /* TODO (mrry): OptimizerOptions? id:1388 gh:1389*/,
+                                        nullptr /* TODO (mrry): ClusterFLR id:2154 gh:2155*/));
 
   FunctionLibraryRuntime* lib = pflr->GetFLR(device->name());
 
@@ -189,7 +189,7 @@ class OwnedArgsCallFrame : public CallFrameBase {
   // Callee methods.
   Status GetArg(int index, Tensor* val) const override {
     if (index < args_.size() && args_[index].IsInitialized()) {
-      // TODO(mrry): Consider making `CallFrameInterface::GetArg` non-const in
+      // TODO (mrry): Consider making `CallFrameInterface::GetArg` non-const in id:1956 gh:1957
       // order to be able to `std::move(args_[index])` into `*val`.
       *val = args_[index];
       return Status::OK();
@@ -248,7 +248,7 @@ class BorrowedArgsCallFrame : public CallFrameBase {
 Status CapturedFunction::Run(FunctionLibraryRuntime::Options f_opts,
                              std::vector<Tensor>&& args,
                              std::vector<Tensor>* rets) {
-  // TODO(mrry): Add cancellation manager support to IteratorContext
+  // TODO (mrry): Add cancellation manager support to IteratorContext id:1479 gh:1480
   // so that we can cancel running map functions. The local
   // cancellation manager here is created so that we can run kernels
   // (such as queue kernels) that depend on the non-nullness of
@@ -277,7 +277,7 @@ Status CapturedFunction::Run(FunctionLibraryRuntime::Options f_opts,
 Status CapturedFunction::RunWithBorrowedArgs(
     FunctionLibraryRuntime::Options f_opts, const std::vector<Tensor>& args,
     std::vector<Tensor>* rets) {
-  // TODO(mrry): Add cancellation manager support to IteratorContext
+  // TODO (mrry): Add cancellation manager support to IteratorContext id:2713 gh:2714
   // so that we can cancel running map functions. The local
   // cancellation manager here is created so that we can run kernels
   // (such as queue kernels) that depend on the non-nullness of
@@ -305,7 +305,7 @@ void CapturedFunction::RunAsync(FunctionLibraryRuntime::Options f_opts,
                                 std::vector<Tensor>&& args,
                                 std::vector<Tensor>* rets,
                                 FunctionLibraryRuntime::DoneCallback done) {
-  // TODO(mrry): Add cancellation manager support to IteratorContext
+  // TODO (mrry): Add cancellation manager support to IteratorContext id:1391 gh:1392
   // so that we can cancel running map functions. The local
   // cancellation manager here is created so that we can run kernels
   // (such as queue kernels) that depend on the non-nullness of

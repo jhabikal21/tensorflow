@@ -80,7 +80,7 @@ TF_CALL_NUMBER_TYPES_NO_INT32(REGISTER_GPU_REF_SWITCH);
 #undef REGISTER_GPU_REF_SWITCH
 
 // Special GPU kernels for int32 and string.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1917 gh:1918
 // registration requires all int32 inputs and outputs to be in host memory.
 #define REGISTER_GPU_HOST_KERNEL(type)                    \
   REGISTER_KERNEL_BUILDER(Name("Switch")                  \
@@ -285,7 +285,7 @@ TF_CALL_NUMBER_TYPES_NO_INT32(REGISTER_SYCL_REF_KERNEL);
 #endif // TENSORFLOW_USE_SYCL
 
 // Special GPU kernels for int32 and string.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1446 gh:1447
 // registration requires all int32 inputs and outputs to be in host memory.
 #define REGISTER_GPU_HOST_KERNEL(type)                    \
   REGISTER_KERNEL_BUILDER(Name("Merge")                   \
@@ -401,7 +401,7 @@ REGISTER_SYCL_HOST_KERNEL(ResourceHandle);
 #endif // TENSORFLOW_USE_SYCL
 
 // Special GPU kernels for int32 and string.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2600 gh:2601
 // registration requires all int32 inputs and outputs to be in host memory.
 #define REGISTER_GPU_HOST_KERNEL(type)                    \
   REGISTER_KERNEL_BUILDER(Name("Enter")                   \
@@ -486,7 +486,7 @@ REGISTER_SYCL_HOST_KERNEL(string);
 #endif // TENSORFLOW_USE_SYCL
 
 // Special GPU kernels for int32 and string.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1354 gh:1355
 // registration requires all int32 inputs and outputs to be in host memory.
 #define REGISTER_GPU_HOST_KERNEL(type)                    \
   REGISTER_KERNEL_BUILDER(Name("Exit")                    \
@@ -534,7 +534,7 @@ REGISTER_GPU_KERNEL(bool);
 #undef REGISTER_GPU_KERNEL
 
 // Special GPU kernels for int32 and string.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2116 gh:2117
 // registration requires all int32 inputs and outputs to be in host memory.
 #define REGISTER_GPU_HOST_KERNEL(type)                    \
   REGISTER_KERNEL_BUILDER(Name("NextIteration")           \

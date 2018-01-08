@@ -328,7 +328,7 @@ void TitlecaseString(string* s, StringPiece delimiters) {
 
 string StringReplace(StringPiece s, StringPiece oldsub, StringPiece newsub,
                      bool replace_all) {
-  // TODO(jlebar): We could avoid having to shift data around in the string if
+  // TODO (jlebar): We could avoid having to shift data around in the string if id:2441 gh:2442
   // we had a StringPiece::find() overload that searched for a StringPiece.
   string res = s.ToString();
   size_t pos = 0;

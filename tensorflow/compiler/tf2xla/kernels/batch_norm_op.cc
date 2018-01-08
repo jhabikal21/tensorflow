@@ -56,7 +56,7 @@ class FusedBatchNormOp : public XlaOpKernel {
     int feature_index =
         GetTensorFeatureDimIndex(input_shape.dims(), data_format_);
 
-    // TODO(b/69928690): support mixed precision in the XLA batch normalization
+    // TODO (b/69928690): support mixed precision in the XLA batch normalization id:263 gh:264
     // operators. As a workaround, cast everything to the statistics type (which
     // may be more precise than the input type).
     input = builder->ConvertElementType(input, scale_type);
@@ -137,7 +137,7 @@ class FusedBatchNormGradOp : public XlaOpKernel {
     xla::PrimitiveType scale_type;
     OP_REQUIRES_OK(ctx, DataTypeToPrimitiveType(scale_dtype, &scale_type));
 
-    // TODO(b/69928690): support mixed precision in the XLA batch normalization
+    // TODO (b/69928690): support mixed precision in the XLA batch normalization id:197 gh:198
     // operators. For now, cast everything to the statistics type (which
     // may be more precise than the input type).
     grad_backprop = b->ConvertElementType(grad_backprop, scale_type);

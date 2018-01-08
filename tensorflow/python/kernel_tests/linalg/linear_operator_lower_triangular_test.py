@@ -34,7 +34,7 @@ class LinearOperatorLowerTriangularTest(
 
   @property
   def _dtypes_to_test(self):
-    # TODO(langmore) Test complex types once supported by
+    # TODO (langmore) Test complex types once supported by id:2367 gh:2368
     # matrix_triangular_solve.
     return [dtypes.float32, dtypes.float64]
 

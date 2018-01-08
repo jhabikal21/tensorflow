@@ -32,7 +32,7 @@ from tensorflow.python.platform import test
 from tensorflow.python.profiler import option_builder
 
 # pylint: disable=g-bad-import-order
-# XXX: this depends on pywrap_tensorflow and must come later
+# XXX: this depends on pywrap_tensorflow and must come later id:3565 gh:3567
 from tensorflow.python.profiler import model_analyzer
 from tensorflow.python.profiler.internal import model_analyzer_testlib as lib
 
@@ -207,7 +207,7 @@ class RunMetadataTest(test.TestCase):
 
   # pylint: disable=pointless-string-statement
   """
-  # TODO(xpan): This test is flaky because RunMetadata returned from TensorFlow
+  # TODO (xpan): This test is flaky because RunMetadata returned from TensorFlow id:3297 gh:3298
   # is random. Still being investigated.
   def testLoopGPU(self):
     if not test.is_gpu_available():

@@ -85,7 +85,7 @@ class DatasetConstructorTest(test.TestCase):
     self._testFromGenerator(generator, elem_sequence, 5)
 
   def testFromGeneratorUsingGeneratorExpression(self):
-    # NOTE(mrry): Generator *expressions* are not repeatable (or in
+    # NOTE (mrry): Generator *expressions* are not repeatable (or in id:2664 gh:2665
     # general reusable), because they eagerly evaluate the `for`
     # expression as `iter(range(1, 100))` and discard the means of
     # reconstructing `range(1, 100)`. Wrapping the generator
@@ -135,7 +135,7 @@ class DatasetConstructorTest(test.TestCase):
       with self.assertRaises(errors.OutOfRangeError):
         sess.run(get_next)
 
-  # TODO(b/67868766): Reenable this when the source of flakiness is discovered.
+  # TODO (b/67868766): Reenable this when the source of flakiness is discovered. id:3057 gh:3058
   def _testFromGeneratorsRunningInParallel(self):
     num_parallel_iterators = 3
 
@@ -146,7 +146,7 @@ class DatasetConstructorTest(test.TestCase):
     next_ticket = [0]  # GUARDED_BY(lock)
 
     def generator():
-      # NOTE(mrry): We yield one element before the barrier, because
+      # NOTE (mrry): We yield one element before the barrier, because id:2816 gh:2818
       # the current implementation of `Dataset.interleave()` must
       # fetch one element from each incoming dataset to start the
       # prefetching.
@@ -253,7 +253,7 @@ class DatasetConstructorTest(test.TestCase):
       sess.run(init_op)
       self.assertAllEqual([1, 2, 3], sess.run(get_next))
       self.assertAllEqual([4, 5, 6], sess.run(get_next))
-      # NOTE(mrry): Type name in message differs between Python 2 (`long`) and
+      # NOTE (mrry): Type name in message differs between Python 2 (`long`) and id:3104 gh:3105
       # 3 (`int`).
       with self.assertRaisesOpError(r"invalid literal for"):
         sess.run(get_next)

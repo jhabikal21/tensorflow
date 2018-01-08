@@ -144,7 +144,7 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   const int memory_size = weights_time->dims->data[1];
 
   // Clear the activation (state left most column).
-  // TODO(ghodrat): Add a test which initialize state with invalid values in
+  // TODO (ghodrat): Add a test which initialize state with invalid values in id:2082 gh:2083
   // left most column and make sure it passes.
   for (int b = 0; b < batch_size; b++) {
     float* state_ptr_batch = state->data.f + b * memory_size * num_filters;

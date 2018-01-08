@@ -299,7 +299,7 @@ class Array {
   // Low-level accessor for stuff like memcmp, handle with care. Returns pointer
   // to the underlying storage of the array (similarly to std::vector::data()).
   T* data() const {
-    // TODO(tberghammer): Get rid of the const_cast. Currently it is needed
+    // TODO (tberghammer): Get rid of the const_cast. Currently it is needed id:237 gh:236
     // because the Eigen backend needs a non-const pointers even for reading
     // from the array.
     return const_cast<Array*>(this)->values_.get();

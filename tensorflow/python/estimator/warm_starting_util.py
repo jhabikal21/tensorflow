@@ -345,7 +345,7 @@ def _warmstart_var_with_vocab(var,
           full_shape=slice_info.full_shape,
           var_offset=slice_info.var_offset)
 
-    # TODO(vihanjain): Support _WarmstartSettings where class vocabularies need
+    # TODO (vihanjain): Support _WarmstartSettings where class vocabularies need id:2940 gh:2941
     # remapping too.
     init = checkpoint_ops._load_and_remap_matrix_initializer(
         ckpt_path=saver.latest_checkpoint(prev_ckpt),

@@ -239,7 +239,7 @@ def _rnn_step(
         # else copy some of it through
         lambda: _copy_some_through(flat_new_output, flat_new_state))
 
-  # TODO(ebrevdo): skipping these conditionals may cause a slowdown,
+  # TODO (ebrevdo): skipping these conditionals may cause a slowdown, id:3437 gh:3438
   # but benefits from removing cond() and its gradient.  We should
   # profile with and without this switch here.
   if skip_conditionals:
@@ -807,7 +807,7 @@ def _dynamic_rnn_loop(cell,
 
     return (time + 1, output_ta_t, new_state)
 
-  # TODO(pbar) `loop_bound` can be reduced to `max_sequence_length` once
+  # TODO (pbar) `loop_bound` can be reduced to `max_sequence_length` once id:2562 gh:2563
   # TensorArray shape inference is working.  When sequence lengths are highly
   # variable, this will reduce the performance overheads of padding to a fixed
   # maximum length.
@@ -1244,7 +1244,7 @@ def static_rnn(cell,
       first_input = first_input[0]
 
     # Temporarily avoid EmbeddingWrapper and seq2seq badness
-    # TODO(lukaszkaiser): remove EmbeddingWrapper
+    # TODO (lukaszkaiser): remove EmbeddingWrapper id:3258 gh:3259
     if first_input.get_shape().ndims != 1:
 
       input_shape = first_input.get_shape().with_rank_at_least(2)

@@ -217,7 +217,7 @@ bool PadInsertion::CanonicalizeBackwardFilterConvolution(
     int64 padding_low = backward_conv->window().dimensions(i).padding_low();
     int64 padding_high = backward_conv->window().dimensions(i).padding_high();
     if (padding_low < 0 || padding_high < 0) {
-      // TODO(b/32744257): The following canonicalization wouldn't remove
+      // TODO (b/32744257): The following canonicalization wouldn't remove id:355 gh:356
       // negative padding in a backward convolution, and would therefore cause
       // cuDNN convolution (which doesn't support negative padding) to fail.
       return false;
@@ -301,7 +301,7 @@ bool PadInsertion::CanonicalizeBackwardInputConvolution(
     int64 padding_low = backward_conv->window().dimensions(i).padding_low();
     int64 padding_high = backward_conv->window().dimensions(i).padding_high();
     if (padding_low < 0 || padding_high < 0) {
-      // TODO(b/32744257): The following canonicalization wouldn't remove
+      // TODO (b/32744257): The following canonicalization wouldn't remove id:374 gh:375
       // negative padding in a backward convolution, and would therefore cause
       // cuDNN convolution (which doesn't support negative padding) to fail.
       return false;

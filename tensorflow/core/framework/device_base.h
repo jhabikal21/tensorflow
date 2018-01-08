@@ -127,7 +127,7 @@ class DeviceBase {
   // supply a DeviceContext for an op in FillContextMap (e.g. when only
   // using a single stream.)
   // "event_mgr" is used to delay deallocation of temporary GPU buffers.
-  // TODO(pbar) Work out how to move this out of DeviceBase.
+  // TODO (pbar) Work out how to move this out of DeviceBase. id:2470 gh:2471
   struct GpuDeviceInfo {
     // Make sure all the defaults are NULL, so we can spot missing assignments.
     perftools::gputools::Stream* stream = nullptr;
@@ -211,7 +211,7 @@ class DeviceBase {
   // Materializes the given TensorProto into 'tensor' stored in Device
   // memory.  Most devices will want to override this.
   //
-  // TODO(vrv): We should be able to put this function into
+  // TODO (vrv): We should be able to put this function into id:1171 gh:1172
   // OpKernelContext and handle the copies from device memory via send
   // and receive nodes, instead of requiring that each device handle
   // the copies here as well as in copy ops.

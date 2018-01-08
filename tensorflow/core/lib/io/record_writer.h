@@ -55,7 +55,7 @@ class RecordWriter {
 
   // Calls Close() and logs if an error occurs.
   //
-  // TODO(jhseu): Require that callers explicitly call Close() and remove the
+  // TODO (jhseu): Require that callers explicitly call Close() and remove the id:2425 gh:2426
   // implicit Close() call in the destructor.
   ~RecordWriter();
 

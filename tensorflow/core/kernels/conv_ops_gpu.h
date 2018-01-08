@@ -138,7 +138,7 @@ class ConvParameters {
     // clang-format on
   }
 
-  // TODO(yangzihao): The purpose of this function is to disable winograd
+  // TODO (yangzihao): The purpose of this function is to disable winograd id:1937 gh:1938
   // nonfused conv algorithm for certain input parameters so as to avoid a bug
   // in cuDNNv5 and cuDNNv6. Remove this once switch to cuDNNv7.
   template <typename T>

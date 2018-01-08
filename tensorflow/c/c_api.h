@@ -322,7 +322,7 @@ TF_CAPI_EXPORT extern void TF_SetConfig(TF_SessionOptions* options,
 // Destroy an options object.
 TF_CAPI_EXPORT extern void TF_DeleteSessionOptions(TF_SessionOptions*);
 
-// TODO(jeff,sanjay):
+// TODO (jeff,sanjay): id:14 gh:15
 // - export functions to set Config fields
 
 // --------------------------------------------------------------------------
@@ -364,7 +364,7 @@ typedef struct TF_Output {
 // operation whose operation type matches the function name.
 typedef struct TF_Function TF_Function;
 
-// Function definition options. TODO(iga): Define and implement
+// Function definition options. TODO (iga): Define and implement id:19 gh:20
 typedef struct TF_FunctionOptions TF_FunctionOptions;
 
 // Sets the shape of the Tensor referenced by `output` in `graph` to
@@ -1249,12 +1249,12 @@ TF_CAPI_EXPORT extern void TF_FunctionGetAttrValueProto(
 // Deleting a function does not remove it from any graphs it was copied to.
 TF_CAPI_EXPORT extern void TF_DeleteFunction(TF_Function* func);
 
-// TODO(josh11b): Register OpDef, available to all operations added
+// TODO (josh11b): Register OpDef, available to all operations added id:16 gh:17
 // to this graph.
 
 // The following two may both benefit from a subgraph-definition API
 // that re-uses most of the graph-definition API.
-// TODO(andydavis): Add functions to a graph.
+// TODO (andydavis): Add functions to a graph. id:17 gh:18
 
 // --------------------------------------------------------------------------
 // API for driving Graph execution.

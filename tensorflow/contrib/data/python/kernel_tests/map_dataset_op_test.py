@@ -196,7 +196,7 @@ class MapDatasetTest(test.TestCase):
                   np.array(37.0) * np.arange(1000))
 
     dataset = self._buildParallelMapDataset(components, 1000, 100, 100)
-    # NOTE(mrry): Also test that the prefetching thread is cancelled correctly.
+    # NOTE (mrry): Also test that the prefetching thread is cancelled correctly. id:577 gh:578
     dataset = dataset.prefetch(100)
     iterator = dataset.make_initializable_iterator()
     init_op = iterator.initializer
@@ -335,7 +335,7 @@ class MapDatasetTest(test.TestCase):
         sess.run(get_next)
 
   def testCaptureHashTable(self):
-    # NOTE(mrry): We must use the V2 variants of `HashTable`
+    # NOTE (mrry): We must use the V2 variants of `HashTable` id:513 gh:514
     # etc. because these produce a `tf.resource`-typed output that is
     # compatible with the in-graph function implementation.
     default_val = -1
@@ -567,7 +567,7 @@ class MapDatasetTest(test.TestCase):
       # We can indirectly observe that varying the buffer size has the
       # intended effect by observing when `ev` is set (on the 6th
       # invocation of `_map_py_func()`).
-      # NOTE(mrry): We do not test with `buffer_size ==
+      # NOTE (mrry): We do not test with `buffer_size == id:530 gh:531
       # set_event_during_invocation`, because we must consume at least
       # one element to start the prefetching.
       for buffer_size in range(1, set_event_during_invocation):

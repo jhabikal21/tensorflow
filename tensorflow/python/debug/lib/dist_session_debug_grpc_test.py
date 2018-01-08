@@ -144,7 +144,7 @@ class DistributedSessionDebugTest(test_util.TensorFlowTestCase):
 
       # Test gated_grpc for an op located on the worker, i.e., on the same
       # host as where MasterSession is.
-      # TODO(cais): gRPC gating of debug ops does not work on partition graphs
+      # TODO (cais): gRPC gating of debug ops does not work on partition graphs id:2895 gh:2896
       # not located on MasterSession hosts (e.g., parameter servers) yet. Make
       # it work.
       debug_utils.watch_graph(

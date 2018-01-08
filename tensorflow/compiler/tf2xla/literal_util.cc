@@ -30,7 +30,7 @@ Status HostTensorToLiteral(const Tensor& host_tensor, xla::Literal* literal) {
   literal->Reserve(host_tensor.NumElements());
 
   // memcpy over the payload ...
-  // TODO(phawkins): handle string types.
+  // TODO (phawkins): handle string types. id:227 gh:228
   size_t total_bytes = host_tensor.TotalBytes();
   if (total_bytes > 0) {
     void* dst_ptr = literal->MutableInternalData();

@@ -150,7 +150,7 @@ void JNICALL OBJECT_TRACKER_METHOD(initNative)(JNIEnv* env, jobject thiz,
   TrackerConfig* const tracker_config = new TrackerConfig(image_size);
   tracker_config->always_track = always_track;
 
-  // XXX detector
+  // XXX detector id:2937 gh:2938
   ObjectTracker* const tracker = new ObjectTracker(tracker_config, NULL);
   set_object_tracker(env, thiz, tracker);
   LOGI("Initialized!");

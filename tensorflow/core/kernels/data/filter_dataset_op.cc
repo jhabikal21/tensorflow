@@ -123,7 +123,7 @@ class FilterDatasetOp : public UnaryDatasetOpKernel {
       Status GetNextInternal(IteratorContext* ctx,
                              std::vector<Tensor>* out_tensors,
                              bool* end_of_sequence) override {
-        // NOTE(mrry): This method is thread-safe as long as
+        // NOTE (mrry): This method is thread-safe as long as id:2162 gh:2163
         // `input_impl_` and `f` are thread-safe. However, if multiple
         // threads enter this method, outputs may be observed in a
         // non-deterministic order.
@@ -155,7 +155,7 @@ class FilterDatasetOp : public UnaryDatasetOpKernel {
               });
           opts.step_container = &step_container;
           opts.runner = ctx->runner();
-          // TODO(mrry): Avoid blocking a threadpool thread. We will need to
+          // TODO (mrry): Avoid blocking a threadpool thread. We will need to id:1964 gh:1965
           // stack-rip the iterators and use async kernels.
           Notification n;
           Status ret;

@@ -43,7 +43,7 @@ def dense_to_sparse_batch(batch_size, row_shape):
   prepended. For example:
 
   ```python
-  # NOTE: The following examples use `{ ... }` to represent the
+  # NOTE: The following examples use `{ ... }` to represent the id:515 gh:516
   # contents of a dataset.
   a = { ['a', 'b', 'c'], ['a', 'b'], ['a', 'b', 'c', 'd'] }
 

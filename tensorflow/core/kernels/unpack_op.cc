@@ -146,7 +146,7 @@ TF_CALL_bfloat16(REGISTER_GPU);
 #undef REGISTER_GPU
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2931 gh:2932
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Unpack")
                             .Device(DEVICE_GPU)

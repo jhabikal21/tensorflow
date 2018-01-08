@@ -43,10 +43,10 @@ struct OpTapeEntry {
   std::vector<TapeTensor> output_tensor_info;
   std::vector<int64> input_tensor_id;
 
-  // TODO(apassos) consider narrowing down this interface.
+  // TODO (apassos) consider narrowing down this interface. id:44 gh:45
   BackwardFunction* backward_function;
 
-  // Should be called before deleting the backward function. TODO(apassos) use
+  // Should be called before deleting the backward function. TODO (apassos) use id:42 gh:43
   // unique_ptrs to ensure this happens.
   std::function<void()> backward_function_deleter;
 };
@@ -76,7 +76,7 @@ using OpTape = std::unordered_map<int64, OpTapeEntry<BackwardFunction>>;
 // (also known as adjoint function) to compute, given downstream gradients,
 // upstream gradients.
 //
-// TODO(apassos) provide concrete template instantiations for TFE_TensorHandle
+// TODO (apassos) provide concrete template instantiations for TFE_TensorHandle id:64 gh:65
 // specialization, which is blocked by quite a few things needing to loop back
 // into python now.
 template <typename Gradient, typename BackwardFunction>
@@ -384,7 +384,7 @@ Status InitialGradients(
     const int64 id = target_tensor_ids[i];
     if (tensor_usage_counts.find(id) != tensor_usage_counts.end()) {
       if (!output_gradients.empty() && output_gradients[i] != nullptr) {
-        // TODO(apassos) figure out how to print debugging information here.
+        // TODO (apassos) figure out how to print debugging information here. id:43 gh:44
         return errors::InvalidArgument(
             "A gradient was provided for a tensor which is used as part of the "
             "computation.");
@@ -464,7 +464,7 @@ Status GradientTape<Gradient, BackwardFunction>::ComputeGradient(
     return s;
   }
   std::unordered_map<int64, int64> gradients_size;
-  // TODO(apassos) multiple threads could be dequeuing from op_stack at the same
+  // TODO (apassos) multiple threads could be dequeuing from op_stack at the same id:86 gh:87
   // time, for better CPU backprop performance.
   VLOG(1) << "Initial stack:";
   if (VLOG_IS_ON(1)) {

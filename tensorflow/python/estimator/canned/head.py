@@ -540,7 +540,7 @@ class _MultiClassHeadWithSoftmaxCrossEntropyLoss(_Head):
       keys = metric_keys.MetricKeys
       metric_ops = {
           # Estimator already adds a metric for loss.
-          # TODO(xiejw): Any other metrics?
+          # TODO (xiejw): Any other metrics? id:2265 gh:2266
           _summary_key(self._name, keys.LOSS_MEAN):
               metrics_lib.mean(
                   # Both values and weights here are reduced, scalar Tensors.
@@ -1125,7 +1125,7 @@ def _assert_range(labels, n_classes, message=None):
       return array_ops.identity(labels)
 
 
-# TODO(b/69000400): Delete this method.
+# TODO (b/69000400): Delete this method. id:2732 gh:2733
 def _weights(features, weight_column):
   """Fetches weights from features."""
   with ops.name_scope(None, 'weights', values=features.values()):

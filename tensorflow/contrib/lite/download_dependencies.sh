@@ -36,7 +36,7 @@ FLATBUFFERS_URL="https://github.com/google/flatbuffers/archive/master.zip"
 MODELS_URL="https://storage.googleapis.com/download.tensorflow.org/models/tflite/mobilenet_v1_1.0_224_ios_lite_float_2017_11_08.zip"
 QUANTIZED_MODELS_URL="https://storage.googleapis.com/download.tensorflow.org/models/tflite/mobilenet_v1_224_android_quant_2017_11_08.zip"
 
-# TODO(petewarden): Some new code in Eigen triggers a clang bug with iOS arm64,
+# TODO (petewarden): Some new code in Eigen triggers a clang bug with iOS arm64, id:1152 gh:1153
 #                   so work around it by patching the source.
 replace_by_sed() {
   local regex="${1}"

@@ -71,7 +71,7 @@ class GrpcWorkerService : public AsyncServiceInterface {
       }
     }
     if (did_shutdown) {
-      // NOTE(mrry): This enqueues a special event (with a null tag)
+      // NOTE (mrry): This enqueues a special event (with a null tag) id:1889 gh:1890
       // that causes the completion queue to be shut down on the
       // polling thread.
       shutdown_alarm_ =
@@ -105,7 +105,7 @@ class GrpcWorkerService : public AsyncServiceInterface {
 
   // This method blocks forever handling requests from the completion queue.
   void HandleRPCsLoop() override {
-    // TODO(mrry): This may require performance engineering. We can
+    // TODO (mrry): This may require performance engineering. We can id:1703 gh:1704
     // add more threads to service the completion queue, and add more
     // of various request types if they are short and frequent.
     // Currently we allow unbounded numbers of pending calls for each
@@ -119,7 +119,7 @@ class GrpcWorkerService : public AsyncServiceInterface {
     ENQUEUE_REQUEST(RegisterGraph, false);
     ENQUEUE_REQUEST(DeregisterGraph, false);
 
-    // TODO(mrry): Determine a better policy for enqueuing the appropriate
+    // TODO (mrry): Determine a better policy for enqueuing the appropriate id:1258 gh:1259
     // number of each request type.
     for (int i = 0; i < 1000; ++i) {
       EnqueueRecvTensorRequestRaw();
@@ -143,7 +143,7 @@ class GrpcWorkerService : public AsyncServiceInterface {
       if (callback_tag) {
         callback_tag->OnCompleted(this, ok);
       } else {
-        // NOTE(mrry): A null `callback_tag` indicates that this is
+        // NOTE (mrry): A null `callback_tag` indicates that this is id:2451 gh:2452
         // the shutdown alarm.
         cq_->Shutdown();
       }

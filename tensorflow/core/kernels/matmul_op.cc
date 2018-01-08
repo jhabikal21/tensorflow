@@ -300,7 +300,7 @@ struct LaunchMatMul<GPUDevice, T, true /* USE_CUBLAS */> {
         GetCublasAutotuneComputationType(dtype, &computation_type);
     if (use_autotune && compute_type_supported && !algorithms->empty()) {
       ProfileResult best_result;
-      // TODO(yangzihao): Unify this code with conv autotuning.
+      // TODO (yangzihao): Unify this code with conv autotuning. id:2785 gh:2786
       if (!AutoTuneMatmul::GetInstance()->Find(matmul_parameters,
                                                &algorithm_config)) {
         ProfileResult profile_result;
@@ -405,7 +405,7 @@ struct LaunchMatMul<GPUDevice, T, true /* USE_CUBLAS */> {
         // Here we are multiplying in the natural order, so we have to flip
         // the transposition flag to compensate for the tensor being stored
         // row-major.
-        // TODO(yangzihao): Add Gemv as an autotuning option too.
+        // TODO (yangzihao): Add Gemv as an autotuning option too. id:1616 gh:1617
         LaunchBlasGemv<T>::Compute(ctx, stream, !transpose_a,
                                    transpose_a ? m : k, transpose_a ? k : m,
                                    a_ptr, b_ptr, &c_ptr, nullptr);

@@ -35,7 +35,7 @@ namespace functor {
 template <typename T>
 __global__ void CompareAndBitpackKernel(const int size, const T* threshold,
                                         const T* input, uint8* output) {
-  // TODO(ebrevdo): Erich said: to get a better memory access pattern
+  // TODO (ebrevdo): Erich said: to get a better memory access pattern id:2593 gh:2594
   // you could have 8 threads load this data and do a comparison, then
   // use the ballot instruction to combine the values from each thread
   // in the warp in one instruction (so each thread will have the
@@ -59,12 +59,12 @@ __global__ void CompareAndBitpackKernel<bool>(const int size,
                                               const bool* threshold,
                                               const bool* input,
                                               uint8* output) {
-  // TODO(ebrevdo): Erich said: I think you could again have multiple
+  // TODO (ebrevdo): Erich said: I think you could again have multiple id:1348 gh:1349
   // threads work on one block and use the ballot instruction to the
   // bit packing in one instruction.
   CUDA_1D_KERNEL_LOOP(i, size) {
     const int64 block = ldg(reinterpret_cast<const int64*>(input + 8 * i));
-    // NOTE(ebrevdo): This assumes memory is little-endian.
+    // NOTE (ebrevdo): This assumes memory is little-endian. id:2110 gh:2111
     output[i] =
         ((((block & (1LL << (7 * 8))) >> (7 * 8 - 0))) |
          (((block & (1LL << (6 * 8))) >> (6 * 8 - 1))) |

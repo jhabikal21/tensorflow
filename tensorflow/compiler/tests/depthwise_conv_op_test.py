@@ -199,7 +199,7 @@ class DepthwiseConv2DTest(XLATestCase):
       print("Testing DepthwiseConv2D,", index, "th config:", input_size, "*",
             filter_size, "stride:", stride, "padding:", padding)
       for data_type in self.float_types:
-        # TODO(phawkins): the reference implementation only supports float32.
+        # TODO (phawkins): the reference implementation only supports float32. id:171 gh:172
         if data_type == np.float32:
           self._VerifyValues(
               input_size, filter_size, stride, padding, data_type)
@@ -210,7 +210,7 @@ class DepthwiseConv2DTest(XLATestCase):
       print("Testing DepthwiseConv2DFormat,", index, "th config:", input_size,
             "*", filter_size, "stride:", stride, "padding:", padding)
       for data_type in self.float_types:
-        # TODO(phawkins): the reference implementation only supports float32.
+        # TODO (phawkins): the reference implementation only supports float32. id:127 gh:128
         if data_type == np.float32:
           self._VerifyValues(
               input_size,

@@ -608,7 +608,7 @@ TEST_F(MathGradTest, Cos) {
   test::ExpectClose(ans, dx);
 }
 
-// TODO(zhifengc)
+// TODO (zhifengc) id:2005 gh:2006
 // TEST_F(MathGradSComplexTest, Real) {}
 // TEST_F(MathGradSComplexTest, Imag) {}
 // TEST_F(MathGradSComplexTest, Angle) {}
@@ -760,7 +760,7 @@ TEST_F(MathGradTest, Pow) {
   }
 }
 
-// TODO{lukeiwanski}: Implement Complex Pow for SYCL
+// TODO {lukeiwanski}: Implement Complex Pow for SYCL id:2468 gh:2469
 #ifndef TENSORFLOW_USE_SYCL
 TEST_F(MathGradTest, ComplexPow) {
   auto x = test::AsTensor<complex64>({0.f, 2.f, -2.f}, TensorShape({3}));
@@ -942,7 +942,7 @@ TEST_F(MathGradTest, MatMul_11) {
   test::ExpectClose(dy, MatMul(dz, true, x, true));
 }
 
-// TODO{lukeiwanski}: Implement BatchMatMul for SYCL
+// TODO {lukeiwanski}: Implement BatchMatMul for SYCL id:2827 gh:2828
 #ifndef TENSORFLOW_USE_SYCL
 TEST_F(MathGradTest, BatchMatMul_00) {
   auto x = test::AsTensor<float>({1.f, 2.f, 3.f, 4.f, 5.f, 6.f},

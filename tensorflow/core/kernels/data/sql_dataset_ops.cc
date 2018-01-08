@@ -62,7 +62,7 @@ class SqlDatasetOp : public DatasetOpKernel {
     string query;
     OP_REQUIRES_OK(ctx, ParseScalarArgument<string>(ctx, "query", &query));
 
-    // TODO(b/64276826) Change this check when we add support for other
+    // TODO (b/64276826) Change this check when we add support for other id:1513 gh:1514
     // databases.
     OP_REQUIRES(ctx, driver_name == "sqlite",
                 errors::InvalidArgument(tensorflow::strings::Printf(

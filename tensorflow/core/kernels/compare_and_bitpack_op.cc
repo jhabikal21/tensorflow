@@ -110,7 +110,7 @@ struct ComputeShard<T,
       typename TTypes<bool>::ConstMatrix input,
       typename TTypes<uint8>::Matrix output, bool /*thresh*/, int64 start,
       int64 limit) {
-    // NOTE(ebrevdo): This assumes memory is little-endian.
+    // NOTE (ebrevdo): This assumes memory is little-endian. id:1441 gh:1442
     for (int64 i = start; i < limit; ++i) {
       uint8* out = output.data() + i;
       const int64 block = *reinterpret_cast<const int64*>(input.data() + 8 * i);

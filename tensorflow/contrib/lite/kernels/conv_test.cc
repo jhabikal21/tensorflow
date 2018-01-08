@@ -27,7 +27,7 @@ using ::testing::ElementsAreArray;
 
 class BaseConvolutionOpModel : public SingleOpModel {
  public:
-  // TODO(ahentz): Also test different activation types, bias, padding types,
+  // TODO (ahentz): Also test different activation types, bias, padding types, id:1166 gh:1167
   // stride values.
   BaseConvolutionOpModel(
       const TensorData& input, const TensorData& filter,

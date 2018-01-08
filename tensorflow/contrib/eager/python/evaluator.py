@@ -348,7 +348,7 @@ class SparseSoftmaxEvaluator(Evaluator):
   def __init__(self, model, loss_key="loss", label_key="label",
                predicted_class_key="predicted_class", weights_key="weights"):
     super(SparseSoftmaxEvaluator, self).__init__(model)
-    # TODO(josh11b): Expand this to include everything from the standard
+    # TODO (josh11b): Expand this to include everything from the standard id:543 gh:544
     # SparseSoftmax Head.
     self.avg_loss = self.track_metric(metrics.Mean("Avg Loss"))
     self.accuracy = self.track_metric(metrics.Accuracy())

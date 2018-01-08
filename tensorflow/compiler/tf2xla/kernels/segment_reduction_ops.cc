@@ -43,7 +43,7 @@ xla::ComputationDataHandle XlaComputeScatterAddDynamicSlice(
   TensorShape out_shape(flat_shape);
   out_shape.set_dim(0, num_segments);
 
-  // TODO(b/37575001) The tensor in which we construct the output during
+  // TODO (b/37575001) The tensor in which we construct the output during id:211 gh:212
   // the loop must have rank >= 3 as a workaround for lowering issues.
   int64 extra_dims = 0;
   if (out_shape.dims() < 3) {

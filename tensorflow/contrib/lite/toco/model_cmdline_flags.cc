@@ -389,7 +389,7 @@ ParsedModelFlags* GlobalParsedModelFlags() {
 }
 
 void ParseModelFlagsOrDie(int* argc, char* argv[]) {
-  // TODO(aselle): in the future allow Google version to use
+  // TODO (aselle): in the future allow Google version to use id:856 gh:857
   // flags, and only use this mechanism for open source
   auto* flags = UncheckedGlobalParsedModelFlags(false);
   string msg;

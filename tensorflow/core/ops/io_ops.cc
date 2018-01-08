@@ -78,7 +78,7 @@ REGISTER_OP("SaveV2")
         TF_RETURN_IF_ERROR(
             c->WithValue(c->Dim(s, 0), c->num_inputs() - 3, &unused_dim));
       }
-      // TODO(mrry): Attempt to parse the shapes_and_slices values and use
+      // TODO (mrry): Attempt to parse the shapes_and_slices values and use id:2818 gh:2819
       // them to constrain the shape of the remaining inputs.
       return Status::OK();
     })
@@ -253,7 +253,7 @@ REGISTER_OP("SaveSlices")
         TF_RETURN_IF_ERROR(
             c->WithValue(c->Dim(s, 0), c->num_inputs() - 3, &unused_dim));
       }
-      // TODO(mrry): Attempt to parse the shapes_and_slices values and use
+      // TODO (mrry): Attempt to parse the shapes_and_slices values and use id:1754 gh:1755
       // them to constrain the shape of the remaining inputs.
       return Status::OK();
     })
@@ -454,7 +454,7 @@ shared_name: If non-empty, this reader is named in the given bucket
              with this shared_name. Otherwise, the node name is used instead.
 )doc");
 
-// TODO(cwhipkey): mark this deprecated in favor of V2.
+// TODO (cwhipkey): mark this deprecated in favor of V2. id:2994 gh:2995
 REGISTER_OP("TextLineReader")
     .Output("reader_handle: Ref(string)")
     .Attr("skip_header_lines: int = 0")
@@ -491,7 +491,7 @@ shared_name: If non-empty, this reader is named in the given bucket
              with this shared_name. Otherwise, the node name is used instead.
 )doc");
 
-// TODO(cwhipkey): mark this deprecated in favor of V2.
+// TODO (cwhipkey): mark this deprecated in favor of V2. id:2001 gh:2002
 REGISTER_OP("FixedLengthRecordReader")
     .Output("reader_handle: Ref(string)")
     .Attr("header_bytes: int = 0")
@@ -545,7 +545,7 @@ encoding: The type of encoding for the file. Currently ZLIB and GZIP
         are supported. Defaults to none.
 )doc");
 
-// TODO(cwhipkey): mark this deprecated in favor of V2.
+// TODO (cwhipkey): mark this deprecated in favor of V2. id:2462 gh:2463
 REGISTER_OP("TFRecordReader")
     .Output("reader_handle: Ref(string)")
     .Attr("container: string = ''")
@@ -595,7 +595,7 @@ shared_name: If non-empty, this reader is named in the given bucket
              with this shared_name. Otherwise, the node name is used instead.
 )doc");
 
-// TODO(cwhipkey): mark this deprecated in favor of V2.
+// TODO (cwhipkey): mark this deprecated in favor of V2. id:2821 gh:2822
 REGISTER_OP("IdentityReader")
     .Output("reader_handle: Ref(string)")
     .Attr("container: string = ''")

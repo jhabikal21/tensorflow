@@ -50,7 +50,7 @@ class WorkerFreeListCache : public WorkerCacheInterface {
   }
 
   void ReleaseWorker(const string& target, WorkerInterface* worker) override {
-    // TODO(jeff,sanjay): Should decrement ref-count when we implement eviction.
+    // TODO (jeff,sanjay): Should decrement ref-count when we implement eviction. id:2459 gh:2460
   }
 
   bool GetDeviceLocalityNonBlocking(const string& device,
@@ -77,10 +77,10 @@ class WorkerFreeListCache : public WorkerCacheInterface {
   // Information kept per created WorkerInterface.
   struct WorkerState {
     WorkerInterface* worker;
-    // TODO(jeff,sanjay): Add reference count if we support eviction.
+    // TODO (jeff,sanjay): Add reference count if we support eviction. id:1162 gh:1163
   };
 
-  // TODO(jeff,sanjay): Eviction when the map becomes too big.
+  // TODO (jeff,sanjay): Eviction when the map becomes too big. id:1908 gh:1909
   mutex mu_;
   std::unordered_map<string, WorkerState> workers_ GUARDED_BY(mu_);
 };

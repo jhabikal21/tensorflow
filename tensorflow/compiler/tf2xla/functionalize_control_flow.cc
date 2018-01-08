@@ -247,7 +247,7 @@ Status BuildLoopBody(const Graph& graph, Frame* frame,
     if (dtype == DT_RESOURCE) {
       // The convention of the XLA bridge is that resource variable arguments
       // are only inputs to the loop body and have no corresponding output.
-      // TODO(b/37741920): change the convention so that DT_RESOURCE variables
+      // TODO (b/37741920): change the convention so that DT_RESOURCE variables id:193 gh:194
       // are both inputs and outputs, and then remove this case.
       TF_RET_CHECK(arg.is_loop_invariant);
       node_map[arg.enter->id()] = arg_node;

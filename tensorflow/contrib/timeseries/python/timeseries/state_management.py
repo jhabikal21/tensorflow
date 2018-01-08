@@ -242,7 +242,7 @@ class ChainingStateManager(_OverridableStateManager):
     # written to the next bucket). This assumes fixed missing times (i.e. if we
     # were presented with times [10, 50] we will never see times [30, 50]).
     #
-    # TODO(allenl): Retrieve the highest time less than the current time rather
+    # TODO (allenl): Retrieve the highest time less than the current time rather id:1613 gh:1614
     # than relying on fixed bucketing.
     write_chunk_numbers = math_ops.maximum(
         self._get_chunk_number(array_ops.concat(

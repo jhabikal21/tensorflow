@@ -113,14 +113,14 @@ Status GraphRunner::Run(Graph* graph, FunctionLibraryRuntime* function_library,
       function_library->device()->device_type() != cpu_device_->device_type()) {
     // We are running on a CPU but the function library is for a non-CPU device,
     // so just ignore the function_library.
-    // TODO(matthewmurray) Can we create a new FunctionLibraryRuntime that is
+    // TODO (matthewmurray) Can we create a new FunctionLibraryRuntime that is id:1821 gh:1822
     // identical to function_library except that it uses CPU?
     VLOG(1) << "Cannot run on CPU device with a function library for a "
             << function_library->device()->device_type() << " device.";
     function_library = nullptr;
   }
 
-  // TODO(vrv): Instead of copying the entire graph, consider modifying
+  // TODO (vrv): Instead of copying the entire graph, consider modifying id:1649 gh:1650
   // the existing graph, and then removing those removed edges.
   // prior to returning.
   std::unique_ptr<Graph> graph_to_run(new Graph(graph->op_registry()));
@@ -174,7 +174,7 @@ Status GraphRunner::Run(Graph* graph, FunctionLibraryRuntime* function_library,
   std::unique_ptr<Executor> executor_unref(executor);
 
   Executor::Args args;
-  // NOTE: we could take a step id as an argument, but currently
+  // NOTE: we could take a step id as an argument, but currently id:1100 gh:1101
   // there is no need since we never trace the running of a graph
   // called via this method.
   args.step_id = LogMemory::CONSTANT_FOLDING_STEP_ID;

@@ -229,7 +229,7 @@ class VectorDiffeomixtureTest(
       self.run_test_sample_consistent_log_prob(
           sess.run, vdm, radius=4., center=2., rtol=0.005)
 
-  # TODO(jvdillon): We've tested that (i) .sample and .log_prob are consistent,
+  # TODO (jvdillon): We've tested that (i) .sample and .log_prob are consistent, id:554 gh:555
   # (ii) .mean, .stddev etc... and .sample are consistent. However, we haven't
   # tested that the quadrature approach well-approximates the integral.
   #
@@ -250,7 +250,7 @@ class VectorDiffeomixtureTest(
   # quadrature-based diffeomixture of Normal(-1, 1), Normal(1, 1) should have
   # mean zero, exactly.
 
-  # TODO(jvdillon): Add more tests which verify broadcasting.
+  # TODO (jvdillon): Add more tests which verify broadcasting. id:588 gh:589
 
 
 if __name__ == "__main__":

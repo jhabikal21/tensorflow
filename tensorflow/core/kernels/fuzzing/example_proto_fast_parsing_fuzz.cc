@@ -20,7 +20,7 @@ namespace tensorflow {
 namespace fuzzing {
 
 // Fuzz inputs to the example proto decoder.
-// TODO(dga):  Make this more comprehensive.
+// TODO (dga):  Make this more comprehensive. id:1582 gh:1583
 // Right now, it's just a quick PoC to show how to attach the
 // plumbing, but it needs some real protos to chew on as a
 // corpus, and the sparse/dense parts should be made more rich
@@ -49,11 +49,11 @@ class FuzzExampleProtoFastParsing : public FuzzSession {
   }
 
   void FuzzImpl(const uint8_t* data, size_t size) final {
-    // TODO(dga):  Test the batch case also.
+    // TODO (dga):  Test the batch case also. id:2207 gh:2208
     Tensor input_tensor(tensorflow::DT_STRING, TensorShape({}));
     input_tensor.scalar<string>()() =
         string(reinterpret_cast<const char*>(data), size);
-    // TODO(b/32704451): Don't just ignore the ::tensorflow::Status object!
+    // TODO (b/32704451): Don't just ignore the ::tensorflow::Status object! id:2012 gh:2013
     RunOneInput(input_tensor).IgnoreError();
   }
 };

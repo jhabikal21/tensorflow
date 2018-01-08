@@ -1,6 +1,6 @@
-#cython: boundscheck=False
-#cython: wraparound=False
-#cython: infer_types=True
+#cython: boundscheck=False id:3241 gh:3242
+#cython: wraparound=False id:2952 gh:2953
+#cython: infer_types=True id:3206 gh:3207
 import numpy as np
 cimport numpy as np
 

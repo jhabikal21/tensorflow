@@ -109,9 +109,9 @@ xla::StatusOr<xla::ComputationDataHandle> TriangularSolve(
                                                    prepend_batch_dims({m, k})),
                          "b");
 
-      // TODO(phawkins): it might make sense to use a while loop here, rather
+      // TODO (phawkins): it might make sense to use a while loop here, rather id:228 gh:229
       // than unrolling.
-      // TODO(phawkins): the left-looking variant of the algorithm might be more
+      // TODO (phawkins): the left-looking variant of the algorithm might be more id:225 gh:226
       // efficient at block size 1.
       TF_RETURN_IF_ERROR(TriangularSolve(sub.get(), a_param, b_param,
                                          /*block_size=*/1)

@@ -57,7 +57,7 @@ def clip_covariance(
     A new covariance matrix with the requested constraints enforced. If the
     input was positive definite, the output will be too.
   """
-  # TODO(allenl): Smarter scaling here so that correlations are preserved when
+  # TODO (allenl): Smarter scaling here so that correlations are preserved when id:1017 gh:1018
   # fiddling with diagonal elements.
   diagonal = array_ops.matrix_diag_part(covariance_matrix)
   maximum = math_ops.reduce_max(diagonal, axis=-1, keep_dims=True)
@@ -238,7 +238,7 @@ def batch_matrix_pow(matrices, powers):
       ident_tiled, math_ops.matmul(final_argument, final_accumulator))
 
 
-# TODO(allenl): would be useful if this was built into batch_matmul
+# TODO (allenl): would be useful if this was built into batch_matmul id:1605 gh:1606
 def batch_times_matrix(batch, matrix, adj_x=False, adj_y=False):
   """Multiply a batch of matrices by a single matrix.
 
@@ -313,7 +313,7 @@ def make_toeplitz_matrix(inputs, name=None):
   return array_ops.identity(output, name=name)
 
 
-# TODO(allenl): Investigate alternative parameterizations.
+# TODO (allenl): Investigate alternative parameterizations. id:1406 gh:1407
 def sign_magnitude_positive_definite(
     raw, off_diagonal_scale=0., overall_scale=0.):
   """Constructs a positive definite matrix from an unconstrained input matrix.
@@ -651,7 +651,7 @@ InputStatistics = collections.namedtuple(
     ])
 
 
-# TODO(allenl): It would be nice to do something with full series statistics
+# TODO (allenl): It would be nice to do something with full series statistics id:1022 gh:1023
 # when the user provides that.
 class InputStatisticsFromMiniBatch(object):
   """Generate statistics from mini-batch input."""
@@ -849,7 +849,7 @@ class InputStatisticsFromMiniBatch(object):
           example_count_float / (example_count_float - 1.) *
           (auxiliary_variables.overall_feature_sum_of_squares /
            example_count_float - new_feature_mean**2))
-      # TODO(b/35675805): Remove this cast
+      # TODO (b/35675805): Remove this cast id:2215 gh:2216
       min_time_batch = math_ops.cast(math_ops.argmin(times[:, 0]), dtypes.int32)
       def series_start_updates():
         # If this is the lowest-time chunk that we have seen so far, update

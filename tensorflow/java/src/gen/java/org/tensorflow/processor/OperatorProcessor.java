@@ -108,7 +108,7 @@ public final class OperatorProcessor extends AbstractProcessor {
       return true;
     }
 
-    // TODO:(kbsriram) validate operator classes and generate Op API.
+    // TODO: (kbsriram) validate operator classes and generate Op API. id:2797 gh:2799
     writeApi();
     hasRun = true;
     return true;
@@ -122,7 +122,7 @@ public final class OperatorProcessor extends AbstractProcessor {
   private void writeApi() {
     // Generate an empty class for now and get the build working correctly. This will be changed to
     // generate the actual API once we've done with build-related changes.
-    // TODO:(kbsriram)
+    // TODO: (kbsriram) id:3092 gh:3093
     try (PrintWriter writer =
         new PrintWriter(filer.createSourceFile(String.format("%s.Ops", OP_PACKAGE)).openWriter())) {
       writer.println(String.format("package %s;", OP_PACKAGE));

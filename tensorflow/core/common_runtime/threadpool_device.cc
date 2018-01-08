@@ -51,7 +51,7 @@ void ThreadPoolDevice::Compute(OpKernel* op_kernel, OpKernelContext* context) {
   port::Tracing::TraceMe trace_me(op_kernel->name(), op_kernel->type_string(),
                                   op_kernel->IsExpensive());
   if (port::Tracing::IsActive()) {
-    // TODO(pbar) We really need a useful identifier of the graph node.
+    // TODO (pbar) We really need a useful identifier of the graph node. id:1836 gh:1837
     const uint64 id = Hash64(op_kernel->name());
     port::Tracing::ScopedActivity region(port::Tracing::EventCategory::kCompute,
                                          id);

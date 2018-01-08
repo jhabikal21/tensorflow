@@ -72,7 +72,7 @@ class CpuExecutable : public Executable {
   }
 
   const Status EqualOrFail(const Executable& executable) {
-    // TODO(b/62952745) Implement equality test on CPU executable.
+    // TODO (b/62952745) Implement equality test on CPU executable. id:311 gh:312
     return Unimplemented("Equality test on CPU executable is not implemented.");
   }
 

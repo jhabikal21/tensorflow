@@ -25,7 +25,7 @@ from tensorflow.python.training import server_lib
 
 
 class UnionClusterResolverTest(test.TestCase):
-  # TODO(frankchn): Transform to parameterized test after it is included in the
+  # TODO (frankchn): Transform to parameterized test after it is included in the id:555 gh:556
   # TF open source codebase.
 
   def _verifyClusterSpecEquality(self, cluster_spec, expected_proto):

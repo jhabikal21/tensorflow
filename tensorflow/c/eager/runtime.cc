@@ -49,7 +49,7 @@ Status AttrTypeMapForOp(const char* op_name, const AttrTypeMap** out) {
   Status s = OpRegistry::Global()->LookUp(op_name, &op_reg_data);
   if (!s.ok()) return s;
   std::unique_ptr<AttrTypeMap> m(new AttrTypeMap);
-  // TODO(agarwal): Avoid having to create this "registry" at runtime,
+  // TODO (agarwal): Avoid having to create this "registry" at runtime, id:35 gh:36
   // perhaps can be done at op registration time?
   for (const auto& attr : op_reg_data->op_def.attr()) {
     string type = attr.type();
@@ -175,7 +175,7 @@ void CombineUnordered(const tensorflow::Fprint128& a,
 
 inline tensorflow::Fprint128 CacheKeyHelper(const StringPiece& s,
                                             const tensorflow::Fprint128& b) {
-  // TODO(agarwal): avoid ToString().
+  // TODO (agarwal): avoid ToString(). id:57 gh:58
   tensorflow::Fprint128 a = tensorflow::Fingerprint128(s.ToString());
   return FingerprintCat128(a, b);
 }
@@ -204,7 +204,7 @@ tensorflow::Fprint128 AttrBuilder::CacheKey(const string& device) const {
     if (node_def_finalized_) return f;
   }
   for (const auto& p : string_attrs_) {
-    // TODO(agarwal): avoid ToString().
+    // TODO (agarwal): avoid ToString(). id:36 gh:37
     CombineUnordered(CacheKeyHelper(p.first, tensorflow::Fingerprint128(
                                                  p.second.ToString())),
                      &f);
@@ -288,7 +288,7 @@ Status KernelAndDevice::Run(std::vector<Tensor>* input_tensors,
   if (stats != nullptr) {
     params.track_allocations = true;
   }
-  // TODO(apassos): use a thread pool.
+  // TODO (apassos): use a thread pool. id:81 gh:82
   std::function<void(std::function<void()>)> runner =
       [](std::function<void()> f) { f(); };
   params.runner = &runner;

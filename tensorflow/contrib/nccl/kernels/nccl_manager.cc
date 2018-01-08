@@ -511,7 +511,7 @@ void NcclManager::LoopKernelLaunches(NcclStream* nccl_stream) {
             "Error invoking NCCL: ", ncclGetErrorString(nccl_result)));
       }
 
-      // TODO(cwhipkey): use RefCounted after figuring out how to use in a
+      // TODO (cwhipkey): use RefCounted after figuring out how to use in a id:910 gh:911
       // custom op library.
       // See tensorflow/core/lib/core/refcount.h for details on this locking.
       if (collective->remaining_participants.load(std::memory_order_acquire) ==

@@ -48,7 +48,7 @@ namespace xla {
 namespace {
 
 // Potential optimizations:
-// . TODO(b/35244891): Avoid N^2 behavior by keeping a priority queue
+// . TODO (b/35244891): Avoid N^2 behavior by keeping a priority queue id:392 gh:393
 //   of candidates.
 // . Cache IsRematerializable in Item?  Only correct if control
 //   predecessors and successors don't change.
@@ -560,7 +560,7 @@ Status MemoryUsageTracker::BeginInstruction(Item* item) {
     memory_usage_ += AllocatedSize(buffer_id);
   }
 
-  // TODO(b/37686934): Elementwise instructions can share the buffer of a (dead)
+  // TODO (b/37686934): Elementwise instructions can share the buffer of a (dead) id:387 gh:388
   // operand. Account for this potential reuse here.
 
   VLOG(3) << "  memory usage = " << memory_usage_;
@@ -617,7 +617,7 @@ int64 MemoryUsageTracker::MemoryReducedIfRematerialized(Item* item) const {
     return 0;
   }
 
-  // TODO(b/37687140): Rematerialization can increase peak memory consumption at
+  // TODO (b/37687140): Rematerialization can increase peak memory consumption at id:437 gh:438
   // an earlier point in the program if rematerialization extends the live range
   // of the operand of the instruction being rematerialized across the live
   // range of the value of instruction being rematerialized. Don't rematerialize
@@ -631,7 +631,7 @@ int64 MemoryUsageTracker::MemoryReducedIfRematerialized(Item* item) const {
   for (BufferId buffer_id : item->buffers_defined) {
     // Avoid rematerializing instructions with indirect uses as it is difficult
     // to reason about liveness after rematerializing the instruction.
-    // TODO(b/37714814): Consider rematerialzing instructions with indirect
+    // TODO (b/37714814): Consider rematerialzing instructions with indirect id:385 gh:386
     // uses.
     if (buffers_.at(buffer_id).has_indirect_uses) {
       return 0;
@@ -849,7 +849,7 @@ Item* PickRematerializationCandidate(const MemoryUsageTracker& memory_tracker,
   Item* best_item = nullptr;
   int64 best_cost = 0;
 
-  // TODO(b/35244891): This is currently quadratic in the number of HLO
+  // TODO (b/35244891): This is currently quadratic in the number of HLO id:386 gh:387
   // instructions.
   for (auto* item = instruction_list.first(); item != nullptr;
        item = instruction_list.next(item)) {

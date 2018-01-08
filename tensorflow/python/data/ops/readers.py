@@ -25,7 +25,7 @@ from tensorflow.python.framework import tensor_shape
 from tensorflow.python.ops import gen_dataset_ops
 
 
-# TODO(b/64974358): Increase default buffer size to 256 MB.
+# TODO (b/64974358): Increase default buffer size to 256 MB. id:3110 gh:3111
 _DEFAULT_READER_BUFFER_SIZE_BYTES = 256 * 1024  # 256 KB
 
 

@@ -30,7 +30,7 @@ limitations under the License.
 namespace xla {
 namespace gpu {
 
-// TODO(b/30467474) Once GPU infeed implementation settles, consider
+// TODO (b/30467474) Once GPU infeed implementation settles, consider id:345 gh:346
 // folding back the cpu and gpu infeed implementations into a generic
 // one if possible.
 //
@@ -104,7 +104,7 @@ class InfeedManager {
       perftools::gputools::StreamExecutor* executor);
 
  private:
-  // TODO(b/30467474): Revisit if this mutex becomes a point of
+  // TODO (b/30467474): Revisit if this mutex becomes a point of id:363 gh:364
   // contention.
   tensorflow::mutex mu_;
 

@@ -37,7 +37,7 @@ PY_TEST_QUERY_EXPRESSION = 'deps(\
   - attr(tags, "manual|no_pip", //tensorflow/...))), 1)'
 
 # Hard-coded blacklist of files if not included in pip package
-# TODO(amitpatankar): Clean up blacklist.
+# TODO (amitpatankar): Clean up blacklist. id:3442 gh:3443
 BLACKLIST = [
     "//tensorflow/python:extra_py_tests_deps",
     "//tensorflow/cc/saved_model:saved_model_half_plus_two",

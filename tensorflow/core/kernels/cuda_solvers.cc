@@ -315,10 +315,10 @@ Status CudaSolver::forward_input_or_allocate_scoped_tensor(
 // to immutable arguments, while the actual headers have them as expected.
 // Check the actual declarations in the cusolver_api.h header file.
 //
-// NOTE: The cuSolver functions called below appear not to be threadsafe.
+// NOTE: The cuSolver functions called below appear not to be threadsafe. id:1371 gh:1372
 // so we put a global lock around the calls. Since these functions only put a
 // kernel on the shared stream, it is not a big performance hit.
-// TODO(rmlarsen): Investigate if the locking is still needed in Cuda 9.
+// TODO (rmlarsen): Investigate if the locking is still needed in Cuda 9. id:2136 gh:2137
 //=============================================================================
 
 template <typename Scalar, typename SolverFnT>

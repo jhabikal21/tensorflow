@@ -33,7 +33,7 @@ limitations under the License.
 #include "tensorflow/core/platform/windows/error.h"
 #include "tensorflow/core/platform/windows/windows_file_system.h"
 
-// TODO(mrry): Prevent this Windows.h #define from leaking out of our headers.
+// TODO (mrry): Prevent this Windows.h #define from leaking out of our headers. id:1800 gh:1801
 #undef DeleteFile
 
 namespace tensorflow {
@@ -481,7 +481,7 @@ Status WindowsFileSystem::RenameFile(const string& src, const string& target) {
 
 Status WindowsFileSystem::GetMatchingPaths(const string& pattern,
                                            std::vector<string>* results) {
-  // NOTE(mrry): The existing implementation of FileSystem::GetMatchingPaths()
+  // NOTE (mrry): The existing implementation of FileSystem::GetMatchingPaths() id:3020 gh:3021
   // does not handle Windows paths containing backslashes correctly. Since
   // Windows APIs will accept forward and backslashes equivalently, we
   // convert the pattern to use forward slashes exclusively. Note that this

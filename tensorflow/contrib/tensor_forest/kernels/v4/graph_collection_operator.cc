@@ -42,7 +42,7 @@ bool GraphRunnerSplitCollectionOperator::BestSplit(int32 node_id,
   auto* slot = stats_.at(node_id).get();
   *depth = slot->depth();
   for (int i = 0; i < slot->num_splits(); ++i) {
-    // TODO(gilberth): Support uselessness.
+    // TODO (gilberth): Support uselessness. id:959 gh:960
     auto& runner = runners_[UniqueId(node_id, i)];
     const float split_score = runner->SplitScore();
     if (split_score < min_score) {

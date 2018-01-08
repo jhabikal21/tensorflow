@@ -132,7 +132,7 @@ class KfacOptimizer(gradient_descent.GradientDescentOptimizer):
     self._norm_constraint = norm_constraint
 
     # this is a bit of a hack
-    # TODO(duckworthd): Handle this in a better way (e.g. pass it in?)
+    # TODO (duckworthd): Handle this in a better way (e.g. pass it in?) id:691 gh:692
     self._batch_size = array_ops.shape(layer_collection.losses[0].inputs)[0]
     self._losses = layer_collection.losses
 
@@ -450,7 +450,7 @@ class KfacOptimizer(gradient_descent.GradientDescentOptimizer):
     def _update_velocity(vec, var):
       velocity = self._zeros_slot(var, "velocity", self._name)
       with ops.colocate_with(velocity):
-        # NOTE(mattjj): read/modify/write race condition not suitable for async.
+        # NOTE (mattjj): read/modify/write race condition not suitable for async. id:1085 gh:1086
 
         # Compute the new velocity for this variable.
         new_velocity = decay * velocity + vec_coeff * vec

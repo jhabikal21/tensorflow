@@ -71,7 +71,7 @@ class DefaultCostModel : public ParallelCostModel {
     if (flops_to_bytes_ratio <= 1.0) {
       // Limit max parallelism for I/O bound instructions by assuming a
       // sub-linear scaling function (fit based on empirical benchmark results).
-      // TODO(29630486) Develop system bandwidth model.
+      // TODO (29630486) Develop system bandwidth model. id:337 gh:338
       max_parallelism =
           std::ceil(std::sqrt(tensorflow::port::NumSchedulableCPUs()));
       // Use shape size instruction cost and L2 cache size min per-thread cost.
@@ -81,7 +81,7 @@ class DefaultCostModel : public ParallelCostModel {
       // Use max parallelism for compute bound instructions.
       max_parallelism = max_parallelism_;
       // Calculate the instruction cost in cycles.
-      // TODO(29630486) Improve on this linear cost model.
+      // TODO (29630486) Improve on this linear cost model. id:298 gh:299
       // Consider making 'min_cost_per_thread' be a function of the target
       // bandwidth limit for instructions with low arithmetic complexity.
       instruction_cost =
@@ -129,7 +129,7 @@ int64 ParallelTaskAssignment::GetTargetParallelTaskCount(
   // *) Internal threading (library calls to kConv, kDot, kFft, kCustomCall).
   // *) Emit custom loops (kSelectAndScatter, FusionKind::kTransposeDot).
   // *) Tuple-shaped.
-  // TODO(b/27458679) Parallelize instructions which are skipped here.
+  // TODO (b/27458679) Parallelize instructions which are skipped here. id:326 gh:327
   if (instruction->opcode() == HloOpcode::kParameter ||
       instruction->opcode() == HloOpcode::kConstant ||
       instruction->opcode() == HloOpcode::kCall ||
@@ -158,7 +158,7 @@ StatusOr<bool> ParallelTaskAssigner::Run(HloModule* module) {
   ComputeTargetParallelTasks(module, &hlo_to_parallel_tasks);
 
   // Assign parallel tasks to target specific instructions in 'module'.
-  // TODO(b/27458679) Support inter-op parallelism.
+  // TODO (b/27458679) Support inter-op parallelism. id:323 gh:324
   bool changed = AssignParallelTasks(module, hlo_to_parallel_tasks);
 
   XLA_VLOG_LINES(2, "ParallelTaskAssigner EXIT");
@@ -181,7 +181,7 @@ bool ParallelTaskAssigner::AssignParallelTasksHelper(
                                             computation->instructions().end());
   for (auto* instruction : instructions) {
     // Assign parallel tasks to sub-computations for While and Call HLOs.
-    // TODO(b/27458679) Evaluate alternative intra-op parallelsim placement,
+    // TODO (b/27458679) Evaluate alternative intra-op parallelsim placement, id:289 gh:290
     // and support other callable computations like reduce.
     if (instruction->opcode() == HloOpcode::kWhile) {
       changed |= AssignParallelTasksHelper(module, instruction->while_body(),

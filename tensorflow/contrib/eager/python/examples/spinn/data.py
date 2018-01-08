@@ -266,7 +266,7 @@ class SnliData(object):
         if (sentence_len_limit > 0 and
             (len(premise_words) > sentence_len_limit or
              len(hypothesis_words) > sentence_len_limit)):
-          # TODO(cais): Maybe truncate; do not discard.
+          # TODO (cais): Maybe truncate; do not discard. id:870 gh:871
           continue
 
         premise_ids = [

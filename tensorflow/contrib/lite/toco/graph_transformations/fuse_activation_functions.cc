@@ -68,7 +68,7 @@ bool FuseActivationFunctions::Run(Model* model, std::size_t op_index) {
     return false;
   }
 
-  // TODO(dkalenichenko): Great many ops don't support activation function
+  // TODO (dkalenichenko): Great many ops don't support activation function id:1484 gh:1485
   // fusing. Switch to the whilelist approach instead.
   if (op->type == OperatorType::kConcatenation ||
       op->type == OperatorType::kSlice ||

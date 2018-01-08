@@ -134,8 +134,8 @@ class MultiPlatformManager {
     return *platforms_mutex;
   }
 
-  // TODO(b/22689637): Clean up these two maps; make sure they coexist nicely.
-  // TODO(b/22689637): Move this (whatever the final/"official" map is) to
+  // TODO (b/22689637): Clean up these two maps; make sure they coexist nicely. id:3396 gh:3397
+  // TODO (b/22689637): Move this (whatever the final/"official" map is) to id:3588 gh:3589
   // plugin_regstry.h, along with the associated functionality.
   // Platform-name-to-object mapping. These platforms are registered via module
   // initializers, and linkage determines which platforms are available to a

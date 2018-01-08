@@ -183,7 +183,7 @@ class Dataset(dataset_ops.Dataset):
     For example:
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:531 gh:532
     # contents of a dataset.
     a = { 1, 2, 3 }
     b = { 4, 5, 6 }
@@ -218,7 +218,7 @@ class Dataset(dataset_ops.Dataset):
     """Creates a `Dataset` by concatenating given dataset with this dataset.
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:853 gh:854
     # contents of a dataset.
     a = { 1, 2, 3 }
     b = { 4, 5, 6, 7 }
@@ -559,11 +559,11 @@ class Dataset(dataset_ops.Dataset):
     For example:
 
     ```python
-    # NOTE: The following examples use `{ ... }` to represent the
+    # NOTE: The following examples use `{ ... }` to represent the id:544 gh:545
     # contents of a dataset.
     a = { 1, 2, 3, 4, 5 }
 
-    # NOTE: New lines indicate "block" boundaries.
+    # NOTE: New lines indicate "block" boundaries. id:582 gh:583
     a.interleave(lambda x: Dataset.from_tensors(x).repeat(6),
                  cycle_length=2, block_length=4) == {
         1, 1, 1, 1,

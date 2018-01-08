@@ -83,7 +83,7 @@ class Node {
   // * def().device() is the "user's requested device" and may not match
   //   the actual assigned device, see assigned_device_name() below;
   // * def().attr() is authoritative.
-  // TODO(irving): Replace with NodeInfo.
+  // TODO (irving): Replace with NodeInfo. id:1351 gh:1352
   const NodeDef& def() const;
   const OpDef& op_def() const;
 
@@ -106,9 +106,9 @@ class Node {
 
   // This gives the device the runtime has assigned this node to.  If
   // you want the device the user requested, use def().device() instead.
-  // TODO(josh11b): Validate that the assigned_device, if not empty:
+  // TODO (josh11b): Validate that the assigned_device, if not empty: id:2521 gh:2522
   // fully specifies a device, and satisfies def().device().
-  // TODO(josh11b): Move assigned_device_name outside of Node into a
+  // TODO (josh11b): Move assigned_device_name outside of Node into a id:1234 gh:1235
   // NodeId->DeviceName map.
   const string& assigned_device_name() const;
   void set_assigned_device_name(const string& device_name);
@@ -246,7 +246,7 @@ class Node {
   EdgeSet in_edges_;
   EdgeSet out_edges_;
 
-  // NOTE(skyewm): inheriting from core::RefCounted may have a slight
+  // NOTE (skyewm): inheriting from core::RefCounted may have a slight id:1977 gh:1978
   // performance benefit over using shared_ptr, at the cost of manual ref
   // counting
   std::shared_ptr<NodeProperties> props_;
@@ -441,7 +441,7 @@ class Graph {
   // edge is added and the function returns nullptr. Otherwise the edge is
   // unconditionally created and returned. The NodeDef is not updated if
   // `allow_duplicates` is true.
-  // TODO(skyewm): // TODO(skyewm): allow_duplicates is needed only by
+  // TODO (skyewm): // TODO(skyewm): allow_duplicates is needed only by id:1788 gh:1789
   // graph_partition.cc. Figure out if we can do away with it.
   const Edge* AddControlEdge(Node* source, Node* dest,
                              bool allow_duplicates = false);
@@ -576,7 +576,7 @@ class Graph {
                          std::vector<OutputTensor> body_outputs,
                          WhileContext** result);
 
-  // TODO(josh11b): uint64 hash() const;
+  // TODO (josh11b): uint64 hash() const; id:1353 gh:1354
 
  private:
   // If cost_node is non-null, then cost accounting (in CostModel)
@@ -655,7 +655,7 @@ class Graph {
   TF_DISALLOW_COPY_AND_ASSIGN(Graph);
 };
 
-// TODO(josh11b): We may want to support keeping an index on various
+// TODO (josh11b): We may want to support keeping an index on various id:2523 gh:2524
 // node/edge attributes in a graph, particularly node names.
 
 // Helper routines

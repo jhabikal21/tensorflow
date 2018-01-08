@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// TODO: Enable GPU support for angle op after resolving
+// TODO: Enable GPU support for angle op after resolving id:2140 gh:2141
 // build failures on GPU (See #10643 for context).
 #if 0 && GOOGLE_CUDA
 

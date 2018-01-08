@@ -86,14 +86,14 @@ def mock_head(testcase, expected_generator_inputs, expected_real_data,
     def _or_none(x):
       return None if is_predict else x
     testcase.assertEqual(expected_generator_inputs, gan_model.generator_inputs)
-    # TODO(joelshor): Add check on `generated_data`.
+    # TODO (joelshor): Add check on `generated_data`. id:587 gh:588
     testcase.assertItemsEqual(
         generator_var_names,
         set([x.name for x in gan_model.generator_variables]))
     testcase.assertEqual(generator_scope_name, gan_model.generator_scope.name)
     testcase.assertEqual(_or_none(expected_real_data), gan_model.real_data)
-    # TODO(joelshor): Add check on `discriminator_real_outputs`.
-    # TODO(joelshor): Add check on `discriminator_gen_outputs`.
+    # TODO (joelshor): Add check on `discriminator_real_outputs`. id:660 gh:661
+    # TODO (joelshor): Add check on `discriminator_gen_outputs`. id:941 gh:942
     if is_predict:
       testcase.assertIsNone(gan_model.discriminator_scope)
     else:
@@ -175,7 +175,7 @@ class GANModelFnTest(test.TestCase):
     self._test_logits_helper(model_fn_lib.ModeKeys.TRAIN)
 
 
-# TODO(joelshor): Add pandas test.
+# TODO (joelshor): Add pandas test. id:625 gh:626
 class GANEstimatorIntegrationTest(test.TestCase):
 
   def setUp(self):

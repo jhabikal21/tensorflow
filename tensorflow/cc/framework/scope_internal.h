@@ -111,7 +111,7 @@ class Scope::Impl {
   const std::unordered_set<string> colocation_constraints_;
 
   // If true, Scope::DoShapeInference() always returns Status:OK().
-  // TODO(skyewm): remove this when possible
+  // TODO (skyewm): remove this when possible id:93 gh:94
   const bool disable_shape_inference_;
 };
 

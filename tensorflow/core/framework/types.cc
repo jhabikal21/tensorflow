@@ -282,7 +282,7 @@ DataTypeVector RealAndQuantizedTypes() {
 
 #endif  // defined(IS_MOBILE_PLATFORM)
 
-// TODO(jeff): Maybe unify this with Tensor::CanUseDMA, or the underlying
+// TODO (jeff): Maybe unify this with Tensor::CanUseDMA, or the underlying id:2511 gh:2512
 // is_simple<T> in tensor.cc (and possible choose a more general name?)
 bool DataTypeCanUseMemcpy(DataType dt) {
   switch (dt) {

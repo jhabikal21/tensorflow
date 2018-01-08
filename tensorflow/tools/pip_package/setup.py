@@ -142,7 +142,7 @@ class InstallHeaders(Command):
     # Copy eigen code into tensorflow/include.
     # A symlink would do, but the wheel file that gets created ignores
     # symlink within the directory hierarchy.
-    # NOTE(keveman): Figure out how to customize bdist_wheel package so
+    # NOTE (keveman): Figure out how to customize bdist_wheel package so id:3603 gh:3604
     # we can do the symlink.
     if 'external/eigen_archive/' in install_dir:
       extra_dir = install_dir.replace('external/eigen_archive', '')

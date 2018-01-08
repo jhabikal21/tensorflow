@@ -21,7 +21,7 @@ limitations under the License.
 
 namespace toco {
 
-// TODO(ahentz): These are just stopgaps for now, untils we move all
+// TODO (ahentz): These are just stopgaps for now, untils we move all id:2117 gh:2118
 // the code over to tflite.
 using tflite::Dims;
 using tflite::FusedActivationFunctionType;

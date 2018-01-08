@@ -394,7 +394,7 @@ bool CostModel::IsPersistentTensor(const Node* node, int64 alloc_id) const {
 
 Microseconds CostModel::CopyTimeEstimate(Bytes b, double network_latency_millis,
                                          double estimated_gbps) {
-  // TODO(jeff,sanjay): estimate cost based on bandwidth along the
+  // TODO (jeff,sanjay): estimate cost based on bandwidth along the id:1779 gh:1780
   // communication path and the type of transport we are using between
   // devices.
   //
@@ -408,7 +408,7 @@ Microseconds CostModel::CopyTimeEstimate(Bytes b, double network_latency_millis,
 }
 
 Microseconds CostModel::ComputationTimeEstimate(int64 math_ops) {
-  // TODO(jeff,sanjay): Eventually we should pass in the type of device
+  // TODO (jeff,sanjay): Eventually we should pass in the type of device id:1347 gh:1348
   // (GPU vs. CPU) and use that to affect the estimate.
 
   // We estimate the microseconds using that value.  We divide
@@ -446,7 +446,7 @@ static void AssignSizes(const Graph& g, CostModel* cost_model) {
     }
     Node* src = e->src();
 
-    // TODO(josh11b): Get an estimate from the Op
+    // TODO (josh11b): Get an estimate from the Op id:2517 gh:2518
     Bytes size(1);
     cost_model->RecordSize(src, e->src_output(), size);
   }
@@ -557,7 +557,7 @@ void CostModel::AddToCostGraphDef(const Graph* graph,
     cnode->set_compute_cost(MaxExecutionTime(n).value());
 
     // For now we treat all send nodes as final.
-    // TODO(yuanbyu): Send nodes for fetches shouldn't be treated as final.
+    // TODO (yuanbyu): Send nodes for fetches shouldn't be treated as final. id:1228 gh:1229
     cnode->set_is_final(n->IsSend());
   }
 }

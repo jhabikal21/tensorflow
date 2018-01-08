@@ -25,7 +25,7 @@ namespace {
 // and the wrapper's copy constructor and destructor take care of managing the
 // reference count.
 //
-// NOTE(mrry): This is not a feature-complete implementation of the DT_VARIANT
+// NOTE (mrry): This is not a feature-complete implementation of the DT_VARIANT id:2715 gh:2716
 // specification. In particular, we cannot currently serialize an arbitrary
 // `DatasetBase` object, so the `Encode()` and `Decode()` methods are not
 // implemented.
@@ -80,7 +80,7 @@ Status GraphDefBuilderWrapper::AddDataset(
   const string& op_type_name = dataset->op_name();
   std::unique_ptr<const GraphDefBuilder::Options> opts(
       new GraphDefBuilder::Options(b_->opts()));
-  // TODO(srbs|mrry): Not all datasets have output_types and output_shapes
+  // TODO (srbs|mrry): Not all datasets have output_types and output_shapes id:1396 gh:1397
   // attributes defined. It will be nice to have a consistent pattern.
   bool has_output_types_attr = HasAttr(op_type_name, "output_types");
   bool has_output_shapes_attr = HasAttr(op_type_name, "output_shapes");

@@ -19,7 +19,7 @@ limitations under the License.
 
 #include <limits>
 #include <vector>
-// TODO(b/31496047): Fix non-standard include order.
+// TODO (b/31496047): Fix non-standard include order. id:2391 gh:2392
 #include <numeric>  // clang-format off
 
 #include "third_party/eigen3/unsupported/Eigen/CXX11/Tensor"
@@ -750,7 +750,7 @@ REGISTER_GPU(bfloat16);
 #undef REGISTER_GPU
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2611 gh:2612
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(
     Name("TensorArrayGather")
@@ -972,7 +972,7 @@ REGISTER_GPU(bfloat16);
 #undef REGISTER_GPU
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1699 gh:1700
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("TensorArrayConcat")
                             .Device(DEVICE_GPU)
@@ -1406,7 +1406,7 @@ REGISTER_KERNEL_BUILDER(Name("TensorArraySizeV3")
 
 // Delete the TensorArray from its resource container.  This enables
 // the user to close and release the resource in the middle of a step/run.
-// TODO(ebrevdo): decide whether closing the grad op should happen
+// TODO (ebrevdo): decide whether closing the grad op should happen id:2922 gh:2923
 // here or on the python side.
 class TensorArrayCloseOp : public OpKernel {
  public:

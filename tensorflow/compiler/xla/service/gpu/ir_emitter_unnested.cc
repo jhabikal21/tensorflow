@@ -220,7 +220,7 @@ llvm::Function* IrEmitterUnnested::BuildKernelPrototype(
   }
   kernel->addAttribute(temp_buffer_arg_no + 1, llvm::Attribute::NoAlias);
 
-  // TODO(b/65380986): Investigate if adding fast math flags for generated
+  // TODO (b/65380986): Investigate if adding fast math flags for generated id:403 gh:404
   // kernels makes sense.
 
   // Add the declaration of this kernel to llvm.nvvm.annotations so that NVPTX
@@ -586,7 +586,7 @@ bool AreShapesForTranspose021(const Shape& a, const Shape& b) {
 //
 // Returns (number of tiles = number of thread blocks needed).
 //
-// TODO(b/33320379): Here each block transposes 1 tile. It may be more efficient
+// TODO (b/33320379): Here each block transposes 1 tile. It may be more efficient id:356 gh:357
 //                   to launch fewer blocks so each transposes many tiles, and
 //                   in any case, the number of blocks we can launch is limited.
 //
@@ -1461,7 +1461,7 @@ Status IrEmitterUnnested::HandleSelectAndScatter(
         MakeUnique<SequentialThunk>(std::move(thunks), select_and_scatter));
   }
 
-  // TODO(b/31410564): Implement dilation rate for select-and-scatter.
+  // TODO (b/31410564): Implement dilation rate for select-and-scatter. id:352 gh:353
   if (window_util::HasDilation(window)) {
     return Unimplemented(
         "Dilation for select-and-scatter not implemented on GPU. "

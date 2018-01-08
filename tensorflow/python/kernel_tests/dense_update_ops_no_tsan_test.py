@@ -29,7 +29,7 @@ from tensorflow.python.platform import test
 
 class AssignOpTest(test.TestCase):
 
-  # NOTE(mrry): We exclude thess tests from the TSAN TAP target, because they
+  # NOTE (mrry): We exclude thess tests from the TSAN TAP target, because they id:3278 gh:3279
   #   contain benign and deliberate data races when multiple threads update
   #   the same parameters without a lock.
   def testParallelUpdateWithoutLocking(self):
@@ -87,7 +87,7 @@ class AssignOpTest(test.TestCase):
       self.assertTrue((vals > 0).all())
       self.assertTrue((vals <= 20).all())
 
-  # NOTE(skyewm): We exclude these tests from the TSAN TAP target, because they
+  # NOTE (skyewm): We exclude these tests from the TSAN TAP target, because they id:2350 gh:2351
   # contain non-benign but known data races between the variable assignment and
   # returning the output tensors. This issue will be resolved with the new
   # resource variables.

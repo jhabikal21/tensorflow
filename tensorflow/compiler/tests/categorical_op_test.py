@@ -30,7 +30,7 @@ from tensorflow.python.ops import random_ops
 from tensorflow.python.platform import googletest
 
 
-# TODO(srvasude): Merge this with
+# TODO (srvasude): Merge this with id:137 gh:138
 # third_party/tensorflow/python/kernel_tests/random/multinomial_op_test.py.
 class CategoricalTest(XLATestCase):
   """Test cases for random-number generating operators."""

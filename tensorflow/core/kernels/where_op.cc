@@ -149,7 +149,7 @@ class WhereCPUOp : public OpKernel {
     Tensor* output = nullptr;
     OP_REQUIRES_OK(context, context->allocate_output(0, output_shape, &output));
 
-    // TODO(ebrevdo): Replace single-threaded copy with a
+    // TODO (ebrevdo): Replace single-threaded copy with a id:1708 gh:1709
     // multithreaded block copy by getting block counts above instead
     // of a global NumTrue, then having each block filled in in
     // separate threads below.
@@ -307,7 +307,7 @@ class WhereGPUOp : public AsyncOpKernel {
 
       Tindex num_true = *num_true_host.data();
 
-      // TODO(ebrevdo): Properly copy back found_true value to CPU for
+      // TODO (ebrevdo): Properly copy back found_true value to CPU for id:2935 gh:2936
       // validation checking.  Currently Where<GPUDevice>::Compute()
       // does not perform this copy back to CPU.
       Tindex found_true = -1;
@@ -343,7 +343,7 @@ class WhereGPUOp : public AsyncOpKernel {
       }
 #undef HANDLE_DIM
 
-      // TODO(ebrevdo): Fix the copy back to host.
+      // TODO (ebrevdo): Fix the copy back to host. id:1909 gh:1910
 
       // OP_REQUIRES_ASYNC(
       //     context, found_true == num_true,

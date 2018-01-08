@@ -271,7 +271,7 @@ void Executor::Schedule(HloInstruction* instruction, int64* partition_buffers,
     // Push the completed HLO instruction on the queue, the main
     // thread will pop it off and potentially launch more work which
     // uses the result.
-    // TODO(b/27458679) Consider alternative task scheduling and synchronization
+    // TODO (b/27458679) Consider alternative task scheduling and synchronization id:336 gh:337
     // schemes. For example, we could avoid the overhead associate with the
     // condvar here if the thread just dequed the next instruction to execute
     // on completion.
@@ -312,7 +312,7 @@ const void** Executor::GetOperandBuffers(HloInstruction* instruction) {
   // worker via the lambda passed to enqueue_function.  In order for the
   // lambda to take ownership, we would need to use generalized lambda
   // capture which is a feature new to C++14.
-  // TODO(b/27458679) Avoid dynamic allocations in Executor.
+  // TODO (b/27458679) Avoid dynamic allocations in Executor. id:294 gh:295
   auto operand_buffers = new const void*[instruction->operand_count()];
   std::transform(instruction->operands().begin(), instruction->operands().end(),
                  operand_buffers, [this](HloInstruction* operand) {
@@ -428,7 +428,7 @@ Status ParallelCpuExecutable::ExecuteComputeFunctions(
     }
   }
 
-  // TODO(b/27458679) Manage scheduling based on in-flight concurrency limits.
+  // TODO (b/27458679) Manage scheduling based on in-flight concurrency limits. id:324 gh:325
   // For example, if we expect a library conv/matmul call to run at max
   // concurrency, we should not dispatch runnable instructions until the
   // library call is finished (to avoid expensive cache invalidation).
@@ -517,7 +517,7 @@ StatusOr<std::unique_ptr<ShapedBuffer>>
 ParallelCpuExecutable::ExecuteAsyncOnStream(
     const ServiceExecutableRunOptions* run_options,
     tensorflow::gtl::ArraySlice<const ShapedBuffer*> arguments) {
-  // TODO(b/30671675): Implement asynchronous execution mode.
+  // TODO (b/30671675): Implement asynchronous execution mode. id:321 gh:322
   return Unimplemented(
       "Asynchronous execution on stream is not yet supported on CPU.");
 }

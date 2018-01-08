@@ -86,7 +86,7 @@ TEST(BasicFlatBufferModel, TestEmptyModelsAndNullDestination) {
 }
 
 // Make sure currently unsupported # of subgraphs are checked
-// TODO(aselle): Replace this test when multiple subgraphs are supported.
+// TODO (aselle): Replace this test when multiple subgraphs are supported. id:1464 gh:1465
 TEST(BasicFlatBufferModel, TestZeroAndMultipleSubgraphs) {
   auto m1 = FlatBufferModel::BuildFromFile(
       "tensorflow/contrib/lite/testdata/0_subgraphs.bin");
@@ -277,7 +277,7 @@ TEST(BasicFlatBufferModel, TestBuildFromModel) {
   ASSERT_NE(interpreter, nullptr);
 }
 
-// TODO(aselle): Add tests for serialization of builtin op data types.
+// TODO (aselle): Add tests for serialization of builtin op data types. id:1210 gh:1211
 // These tests will occur with the evaluation tests of individual operators,
 // not here.
 

@@ -121,7 +121,7 @@ class Compiler {
   // communicating data between the modules, and returns a corresponding
   // sequence of executable objects.
   //
-  // TODO(b/68666782): Remove this method after adding support for multiple
+  // TODO (b/68666782): Remove this method after adding support for multiple id:269 gh:270
   // modules to RunHloPasses and RunBackends.
   virtual StatusOr<std::vector<std::unique_ptr<Executable>>> Compile(
       std::vector<std::unique_ptr<HloModule>> modules,

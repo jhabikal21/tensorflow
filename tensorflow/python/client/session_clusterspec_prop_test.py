@@ -44,7 +44,7 @@ from tensorflow.python.training import server_lib
 
 ops._USE_C_API = True
 
-# NOTE(mrry): Dummy shape registration for ops used in the tests, since they
+# NOTE (mrry): Dummy shape registration for ops used in the tests, since they id:2660 gh:2661
 # don't have C++ op registrations on which to attach C++ shape fns.
 ops.RegisterShape('ConstructionFails')(common_shapes.unknown_shape)
 

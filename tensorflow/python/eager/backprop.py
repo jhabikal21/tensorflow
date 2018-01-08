@@ -116,9 +116,9 @@ _gradient_functions_lock = threading.Lock()
 _tracing = False
 
 
-# TODO(apassos) replace this with a mechanism which can happen at the op
+# TODO (apassos) replace this with a mechanism which can happen at the op id:3180 gh:3181
 # gradient function registration site, to be less error-prone
-# TODO(apassos) add ops other than those in nn_grad and math_grad
+# TODO (apassos) add ops other than those in nn_grad and math_grad id:2906 gh:2907
 _ops_which_dont_need_outputs = set([
     "Identity",
     "MatMul",
@@ -220,7 +220,7 @@ _ops_which_dont_need_inputs = set([
 ])
 
 
-# TODO(agarwal): use an automatic mechanism for handling None arguments to
+# TODO (agarwal): use an automatic mechanism for handling None arguments to id:3140 gh:3141
 # gradient functions.
 # Some gradient functions can accept None arguments for gradients. The following
 # maps the operation name to the indices at which the corresponding gradient
@@ -262,7 +262,7 @@ def _record_gradient(op_name, inputs, attrs, results, name):
   if op_name in _ops_which_dont_need_outputs:
     op_outputs = None
   else:
-    # TODO(apassos) this line creates a weak circular reference where the
+    # TODO (apassos) this line creates a weak circular reference where the id:2244 gh:2245
     # backprop function keeps an output alive which in turn keeps the tape entry
     # alive which keeps the backprop function alive. Figure out how to break
     # this up without breaking second derivatives of ops like Exp whose
@@ -339,7 +339,7 @@ def implicit_val_and_grad(f):
   Raises:
     ValueError: if `f` returns None.
   """
-  # TODO(cais): Remove calls to tf.constant() once the gradients functions
+  # TODO (cais): Remove calls to tf.constant() once the gradients functions id:2708 gh:2709
   # accept lists and np.ndarrays.
 
   def grad_fn(*args):
@@ -410,7 +410,7 @@ def implicit_grad(f):
   Returns:
     A function which, when called, returns a list of (gradient, variable) pairs.
   """
-  # TODO(cais): Remove calls to tf.constant() once the gradients functions
+  # TODO (cais): Remove calls to tf.constant() once the gradients functions id:3182 gh:3183
   # accept lists and np.ndarrays.
 
   def grad_fn(*args, **kwds):
@@ -706,7 +706,7 @@ def _aggregate_grads(gradients):
                 for g in gradients])
     indexed_slices_list = []
     for grad in gradients:
-      # TODO(xpan): Support nested IndexedSlices and core IndexedSlices
+      # TODO (xpan): Support nested IndexedSlices and core IndexedSlices id:2908 gh:2909
       if isinstance(grad, ops.Tensor):
         indexed_slices = ops.IndexedSlices(
             grad,

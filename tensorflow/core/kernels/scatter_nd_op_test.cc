@@ -47,7 +47,7 @@ class ScatterNdUpdateOpTest : public OpsTestBase {
   }
 };
 
-// TODO(simister): Re-enable this once binary size is under control.
+// TODO (simister): Re-enable this once binary size is under control. id:2881 gh:2882
 // TEST_F(ScatterNdUpdateOpTest, Simple_StringType) {
 //   MakeOp(DT_STRING_REF, DT_INT32);
 //   AddInputFromArray<string>(TensorShape({1}), {"Brain"});

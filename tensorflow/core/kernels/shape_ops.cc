@@ -88,7 +88,7 @@ TF_CALL_variant(REGISTER_GPU_KERNEL);
 #undef REGISTER_GPU_KERNEL
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2424 gh:2425
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Shape")
                             .Device(DEVICE_GPU)
@@ -139,7 +139,7 @@ TF_CALL_bool(REGISTER_GPU_KERNEL);
 #undef REGISTER_GPU_KERNEL
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1677 gh:1678
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("ShapeN")
                             .Device(DEVICE_GPU)
@@ -233,7 +233,7 @@ TF_CALL_variant(REGISTER_GPU_KERNEL);
 #undef REGISTER_GPU_KERNEL
 
 // A special GPU kernel for int32 and bool.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2896 gh:2897
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Rank")
                             .Device(DEVICE_GPU)
@@ -283,7 +283,7 @@ TF_CALL_variant(REGISTER_GPU_KERNEL);
 #undef REGISTER_GPU_KERNEL
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:1822 gh:1823
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Size")
                             .Device(DEVICE_GPU)
@@ -433,7 +433,7 @@ TF_CALL_bool(REGISTER_GPU_KERNEL);
 #undef REGISTER_GPU_KERNEL
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2309 gh:2310
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Squeeze")
                             .Device(DEVICE_GPU)

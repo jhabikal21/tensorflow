@@ -52,7 +52,7 @@ Status AttrTypeByName(const AttrTypeMap* m, const string& attr_name,
 // checks (like number of inputs matching the OpDef - we only care about
 // attributes here).
 //
-// TODO(ashankar): Take a closer look at checks in NodeDefBuilder and see which
+// TODO (ashankar): Take a closer look at checks in NodeDefBuilder and see which id:39 gh:40
 // ones make sense to replicate.
 
 // This is a helper class for creating a NodeDef. Additionally, this class
@@ -116,7 +116,7 @@ class AttrBuilder {
       SetAttrValue(value, &attr_value);
       m->insert(AttrValueMap::value_type(attr_name.ToString(), attr_value));
     } else {
-      // TODO(ashankar): Do what is done in
+      // TODO (ashankar): Do what is done in id:38 gh:39
       // NodeDefBuilder::CheckInconsistency(attr_name, *found, attr_value);
       SetAttrValue(std::forward<T>(value), &attr_value);
       (*m)[attr_name.ToString()] = attr_value;
@@ -159,7 +159,7 @@ class KernelAndDevice {
   // The provided FunctionLibraryRuntime MUST outlive all calls to
   // Run() on the returned KernelAndDevice.
   //
-  // TODO(ashankar): Figure out thread-safety concerns around
+  // TODO (ashankar): Figure out thread-safety concerns around id:61 gh:62
   // FunctionLibraryRuntime (in particular, how the underlying
   // FunctionLibraryDefinition might be mutated by another thread as new
   // functions are registered with it).  Conservatively, thread-safe usage of
@@ -167,14 +167,14 @@ class KernelAndDevice {
   // c_api.cc).
   static Status Init(const NodeDef& ndef, FunctionLibraryRuntime* flib,
                      KernelAndDevice* out);
-  // TODO(ashankar): Remove this
+  // TODO (ashankar): Remove this id:40 gh:41
   static Status InitOp(Device* device, const NodeDef& ndef,
                        KernelAndDevice* out);
 
   KernelAndDevice(tensorflow::Rendezvous* rendez)
       : device_(nullptr), flib_(nullptr), rendez_(rendez) {}
 
-  // TODO(ashankar): Handle list-valued inputs.
+  // TODO (ashankar): Handle list-valued inputs. id:83 gh:84
   Status Run(std::vector<Tensor>* inputs, std::vector<Tensor>* outputs,
              NodeExecStats* stats);
 

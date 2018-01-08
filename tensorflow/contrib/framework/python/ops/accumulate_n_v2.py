@@ -95,7 +95,7 @@ def accumulate_n_v2(inputs, shape=None, tensor_dtype=None, name=None):
   elif context.in_eager_mode():
     # TemporaryVariable not currently supported in eager mode; fall back
     # onto AddN for now.
-    # TODO(frreiss) remove this once the lifetime of eager variables gets
+    # TODO (frreiss) remove this once the lifetime of eager variables gets id:575 gh:576
     # addressed
     return math_ops.add_n(inputs, name=name)
   else:

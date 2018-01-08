@@ -362,7 +362,7 @@ bool CUDAExecutor::Launch(Stream *stream, const ThreadDim &thread_dims,
     mutex_lock lock(launched_kernels_mu_);
     if (!launched_kernels_.count(cufunc)) {
       VlogOccupancyInfo(kernel, thread_dims, block_dims);
-      // TODO(rspringer): Remove elements from launched_kernels_...if we ever
+      // TODO (rspringer): Remove elements from launched_kernels_...if we ever id:3384 gh:3384
       // expose a kernel/module deallocation method.
       launched_kernels_.insert(cufunc);
     }
@@ -724,7 +724,7 @@ rng::RngSupport *CUDAExecutor::CreateRng() {
   return status.ValueOrDie()(this);
 }
 
-// TODO(rspringer): Remove in b/18544742.
+// TODO (rspringer): Remove in b/18544742. id:3584 gh:3585
 bool CUDAExecutor::SupportsDnn() const {
   return true;
 }
@@ -1039,7 +1039,7 @@ static const UnqueryableDeviceParams kAllUnqueryableDeviceParams[] = {
         256,        // register_alloc_granularity
         256,        // shared_memory_alloc_granularity
     },
-    // TODO(jlebar): Confirm the alloc granularity values for sm_70.  These are
+    // TODO (jlebar): Confirm the alloc granularity values for sm_70.  These are id:3337 gh:3339
     // not published in the spreadsheet linked above.  Currently we guess that
     // they're the same as sm_60.
     {
@@ -1131,7 +1131,7 @@ DeviceDescription *CUDAExecutor::PopulateDeviceDescription() const {
   builder.set_platform_version(
       port::StrCat("Compute Capability ", cc_major_, ".", cc_minor_));
 
-  // TODO(leary) should be a way to query this from the driver, but this is
+  // TODO (leary) should be a way to query this from the driver, but this is id:3501 gh:3502
   // unlikely to change for us any time soon.
   builder.set_device_address_bits(64);
 

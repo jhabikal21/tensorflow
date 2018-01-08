@@ -72,7 +72,7 @@ FileCopyAllocation::FileCopyAllocation(const char* filename,
     error_reporter_->Report("Could not open '%s'.", filename);
     return;
   }
-  // TODO(ahentz): Why did you think using fseek here was better for finding
+  // TODO (ahentz): Why did you think using fseek here was better for finding id:782 gh:785
   // the size?
   struct stat sb;
   if (fstat(fileno(file.get()), &sb) != 0) {

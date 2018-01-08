@@ -156,7 +156,7 @@ static void ExtractExtraProperties(
       AttrValue attr;
       attr.set_s(input_node->op());
       (*op_info->mutable_attr())[new_key] = attr;
-      // TODO(yuefengz): Only parent node's op name is copied. Copy inputs
+      // TODO (yuefengz): Only parent node's op name is copied. Copy inputs id:1280 gh:1281
       // and attributes when necessary.
     }
   }
@@ -391,7 +391,7 @@ string GetDeviceClassForNonChannelDevice(const string& device_name) {
 }
 
 string GetDeviceClass(const string& device_name) {
-  // TODO(dyoon): channel device name follows the convention we currently have
+  // TODO (dyoon): channel device name follows the convention we currently have id:2072 gh:2073
   // in VirtualScheduler. This should be revised with VirtualScheduler as well
   // as VirtualPlacer in the future.
   if (device_name.find("Channel") != string::npos) {
@@ -412,7 +412,7 @@ string GetDeviceClass(const string& device_name) {
 
 string GetStatsStringFromRunMetadata(const RunMetadata& run_metadata,
                                      bool verbosity) {
-  // TODO(dyoon): print out other stats as needed.
+  // TODO (dyoon): print out other stats as needed. id:1878 gh:1879
   std::ostringstream output;
 
   // Tensor size histogram:
@@ -425,7 +425,7 @@ string GetStatsStringFromRunMetadata(const RunMetadata& run_metadata,
     auto& hist = device_to_hist_map[device_name];
     for (const auto& node_stat : dev_stat.node_stats()) {
       for (const auto& node_output : node_stat.output()) {
-        // TODO(dyoon): Calculate tensor size from tensor_description's dtype
+        // TODO (dyoon): Calculate tensor size from tensor_description's dtype id:1419 gh:1420
         // and shape, instead of using optional allocation_description.
         const auto size = node_output.tensor_description()
                               .allocation_description()

@@ -70,7 +70,7 @@ IndVarSimplify is slow due to SCEV. If loops are emitted in canonical form,
 this pass is not necessary.
 Disabling these as a starting point.
 */
-// TODO(b/64227304) Creating a custom pass pipeline will replace this.
+// TODO (b/64227304) Creating a custom pass pipeline will replace this. id:312 gh:313
 
 namespace {
 class FilteredFunctionPassManager : public llvm::legacy::FunctionPassManager {
@@ -125,7 +125,7 @@ operator()(llvm::Module& module) const {
   if (optimize_for_size_) {
     // Optimizing for size turns on -O2 level optimizations.
     //
-    // TODO(b/64153864): Although the code generator supports size_level = 2 to
+    // TODO (b/64153864): Although the code generator supports size_level = 2 to id:309 gh:310
     // turn on more aggressive code size optimizations than size_level = 1, we
     // pass size_level = 1 because in many cases a size_level of 2 does
     // worse. Investigate why.

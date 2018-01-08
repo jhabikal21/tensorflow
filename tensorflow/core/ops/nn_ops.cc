@@ -607,7 +607,7 @@ dilations: 1-D tensor of length 4.  The dilation factor for each dimension of
   dimensions must be 1.
 )doc");
 
-// TODO(jeff): Instead of 'use_cudnn_for_gpu', maybe we should have a
+// TODO (jeff): Instead of 'use_cudnn_for_gpu', maybe we should have a id:2471 gh:2472
 // more general string attribute ('kernel_impl'?) that can be used to
 // select among several possible implementations.
 REGISTER_OP("Conv2DBackpropFilter")

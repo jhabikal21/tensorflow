@@ -160,7 +160,7 @@ class Estimator(object):
     # Model directory.
     if (model_dir is not None) and (self._config.model_dir is not None):
       if model_dir != self._config.model_dir:
-        # TODO(alanyee): remove this suppression after it is no longer needed
+        # TODO (alanyee): remove this suppression after it is no longer needed id:2734 gh:2735
         # pylint: disable=g-doc-exception
         raise ValueError(
             "model_dir are set both in constructor and RunConfig, but with "
@@ -216,7 +216,7 @@ class Estimator(object):
 
     return public_model_fn
 
-  # TODO(ispir): support a list of names
+  # TODO (ispir): support a list of names id:3216 gh:3217
   def get_variable_value(self, name):
     """Returns value of the variable given by name.
 
@@ -546,14 +546,14 @@ class Estimator(object):
       export_dir = get_timestamped_export_dir(export_dir_base)
       temp_export_dir = get_temp_export_dir(export_dir)
 
-      # TODO(soergel): Consider whether MonitoredSession makes sense here
+      # TODO (soergel): Consider whether MonitoredSession makes sense here id:2934 gh:2935
       with tf_session.Session(config=self._session_config) as session:
 
         saver_for_restore = estimator_spec.scaffold.saver or saver.Saver(
             sharded=True)
         saver_for_restore.restore(session, checkpoint_path)
 
-        # TODO(b/36111876): replace legacy_init_op with main_op mechanism
+        # TODO (b/36111876): replace legacy_init_op with main_op mechanism id:3181 gh:3182
         # pylint: disable=protected-access
         local_init_op = (
             estimator_spec.scaffold.local_init_op or

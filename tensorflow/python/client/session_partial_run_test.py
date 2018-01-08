@@ -34,7 +34,7 @@ from tensorflow.python.platform import googletest
 from tensorflow.python.training import server_lib
 
 
-# NOTE(mrry): Dummy shape registration for ops used in the tests, since they
+# NOTE (mrry): Dummy shape registration for ops used in the tests, since they id:3052 gh:3053
 # don't have C++ op registrations on which to attach C++ shape fns.
 ops.RegisterShape('ConstructionFails')(common_shapes.unknown_shape)
 

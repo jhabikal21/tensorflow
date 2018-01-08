@@ -449,7 +449,7 @@ inline void FullyConnected(const float* input_data, const Dims<4>& input_dims,
                            float output_activation_min,
                            float output_activation_max, float* output_data,
                            const Dims<4>& output_dims) {
-  // TODO(benoitjacob): This really should be:
+  // TODO (benoitjacob): This really should be: id:890 gh:891
   //     const int batches = ArraySize(output_dims, 1);
   // but the current --variable_batch hack consists in overwriting the 3rd
   // dimension with the runtime batch size, as we don't keep track for each
@@ -501,7 +501,7 @@ inline void FullyConnected(const uint8* input_data, const Dims<4>& input_dims,
                            gemmlowp::GemmContext* gemm_context) {
   (void)gemm_context;  // only used in optimized code.
   TFLITE_DCHECK_LE(output_activation_min, output_activation_max);
-  // TODO(benoitjacob): This really should be:
+  // TODO (benoitjacob): This really should be: id:2064 gh:2065
   //     const int batches = ArraySize(output_dims, 1);
   // but the current --variable_batch hack consists in overwriting the 3rd
   // dimension with the runtime batch size, as we don't keep track for each
@@ -885,7 +885,7 @@ inline void Add(int left_shift, const uint8* input1_data,
   }
 }
 
-// TODO(jiawen): We can implement BroadcastAdd on buffers of arbitrary
+// TODO (jiawen): We can implement BroadcastAdd on buffers of arbitrary id:813 gh:814
 // dimensionality if the runtime code does a single loop over one dimension
 // that handles broadcasting as the base case. The code generator would then
 // generate max(D1, D2) nested for loops.
@@ -1049,7 +1049,7 @@ void Mul(const float* input1_data, const Dims<4>& input1_dims,
       output_activation_max, output_data, output_dims);
 }
 
-// TODO(jiawen): We can implement BroadcastMul on buffers of arbitrary
+// TODO (jiawen): We can implement BroadcastMul on buffers of arbitrary id:1449 gh:1450
 // dimensionality if the runtime code does a single loop over one dimension
 // that handles broadcasting as the base case. The code generator would then
 // generate max(D1, D2) nested for loops.
@@ -1306,7 +1306,7 @@ void TensorFlowSplit(const Scalar* input_data, const Dims<4>& input_dims,
   }
 }
 
-// TODO(benoitjacob) make this a proper reference impl without Eigen!
+// TODO (benoitjacob) make this a proper reference impl without Eigen! id:1184 gh:1185
 template <typename Scalar>
 using MatrixMap = typename std::conditional<
     std::is_const<Scalar>::value,
@@ -2308,7 +2308,7 @@ template <typename T>
 inline void Slice(const T* input_data, const Dims<4>& input_dims,
                   const std::vector<int>& begin, const std::vector<int>& size,
                   T* output_data, const Dims<4>& output_dims) {
-  // TODO(dkalenichenko): This op only supports 4D tensors.
+  // TODO (dkalenichenko): This op only supports 4D tensors. id:895 gh:896
   TFLITE_DCHECK_EQ(begin.size(), 4);
   TFLITE_DCHECK_EQ(size.size(), 4);
   const int start_b = begin[3];

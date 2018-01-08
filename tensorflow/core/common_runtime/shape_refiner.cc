@@ -120,12 +120,12 @@ Status InferShapesForFunctionSubNode(const Node* node, ShapeRefiner* refiner,
 
 }  // namespace
 
-// TODO(cwhipkey): When an inference context inside function has
+// TODO (cwhipkey): When an inference context inside function has id:1108 gh:1109
 // requested_input_tensor(i) or requested_input_tensor_as_partial_shape(i)
 // set when input(i) is an _Arg op, then this request should propagate to
 // context, and vice versa.
 //
-// NOTE: Recursive user-defined functions are not supported.
+// NOTE: Recursive user-defined functions are not supported. id:2386 gh:2387
 // Maybe we won't support recursive functions at all in TF, because of
 // other maintainability issues.
 Status ShapeRefiner::InferShapesForFunction(
@@ -294,11 +294,11 @@ Status ShapeRefiner::SetShape(const Node* node, int output_port,
   TF_RETURN_IF_ERROR(c->Merge(existing_shape, shape, &shape));
   c->set_output(output_port, shape);
 
-  // TODO(vrv): Do we need to propagate the new shape through all
+  // TODO (vrv): Do we need to propagate the new shape through all id:1105 gh:1106
   // consumers that change their outputs?  At the moment, python
   // does not do this, but this seems like a nice feature.
 
-  // TODO(vrv): We might need to keep track of the fact that the
+  // TODO (vrv): We might need to keep track of the fact that the id:1832 gh:1833
   // existing shape is invalidated, in case we need to propagate
   // this information to remote workers.
   return Status::OK();
@@ -445,7 +445,7 @@ Status ShapeRefiner::EvaluateConstantTensorForEdge(const Node* node,
       strings::StrCat(input_edge->src()->name(), ":", input_edge->src_output());
   std::vector<Tensor> outputs;
 
-  // NOTE; we should pass in a function library runtime if we want
+  // NOTE ; we should pass in a function library runtime if we want id:1661 gh:1662
   // to support constant-expression evaluation on functions.
   Status s = graph_runner_.Run(&subgraph, nullptr /* function_library */,
                                const_inputs, {output_tensor_name}, &outputs);
@@ -571,7 +571,7 @@ Status ShapeRefiner::ExtractConstantSubgraph(
   // Add the target node's inputs to seed the recursion.
   std::deque<const Edge*> edges_to_visit;
   for (const Edge* e : target_node->in_edges()) {
-    // TODO(vrv): What do we do about control edges?  Based on our
+    // TODO (vrv): What do we do about control edges?  Based on our id:1110 gh:1111
     // definition of a constant graph, we should be free to ignore
     // control edges since the order in which a constant graph is
     // executed should be the same regardless of when nodes run: we
@@ -747,7 +747,7 @@ Status ShapeRefiner::ConstantPartialShape(InferenceContext* target_context,
                                               i, &sub_result));
       if (!target_context->RankKnown(sub_result)) {
         // Failed to evaluate. Treat the output as completely unknown.
-        // TODO(cwhipkey): we could rely on all inputs being the same rank, so
+        // TODO (cwhipkey): we could rely on all inputs being the same rank, so id:2390 gh:2391
         // figure that rank out and append the right number of unknown dims.
         *result = target_context->UnknownShape();
         return Status::OK();
@@ -814,7 +814,7 @@ Status ShapeRefiner::RunShapeFn(const Node* node,
     // function again using those known tensors.
     rerun_shape_fn = false;
 
-    // NOTE: It is possible to batch the extraction and
+    // NOTE: It is possible to batch the extraction and id:1107 gh:1108
     // materialization of inputs, instead of materializing one input
     // at a time like we do below.  If input-at-a-time computation
     // becomes a bottleneck, we could separate ExtractConstantSubgraph

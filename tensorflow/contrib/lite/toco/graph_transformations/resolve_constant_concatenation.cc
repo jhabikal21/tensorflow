@@ -116,7 +116,7 @@ void SetMinMaxForConcatenedArray(const std::vector<Array*>& input_arrays,
 
   for (Array* input_array : input_arrays) {
     // If any of the input arrays minmax is not set,  return.
-    // TODO(ghodrat): shall we add the logic to compute the minmax?
+    // TODO (ghodrat): shall we add the logic to compute the minmax? id:852 gh:853
     if (!input_array->minmax) return;
     const MinMax& input_minmax = input_array->GetMinMax();
     concat_min = std::min(concat_min, input_minmax.min);

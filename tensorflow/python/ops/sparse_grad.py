@@ -26,7 +26,7 @@ from tensorflow.python.ops import math_ops
 from tensorflow.python.ops import sparse_ops
 
 
-# TODO(b/31222613): This op may be differentiable, and there may be
+# TODO (b/31222613): This op may be differentiable, and there may be id:3441 gh:3442
 # latent bugs here.
 ops.NotDifferentiable("SparseAddGrad")
 ops.NotDifferentiable("SparseConcat")
@@ -84,7 +84,7 @@ def _SparseAddGrad(op, *grads):
   a_indices = op.inputs[0]
   b_indices = op.inputs[3]
   sum_indices = op.outputs[0]
-  # NOTE: we do not need to take `thresh` into account, since it simply affects
+  # NOTE: we do not need to take `thresh` into account, since it simply affects id:2565 gh:2566
   # the non-zero elements of the sum, and we will peek into `sum_indices` in the
   # gradient op.
 
@@ -160,9 +160,9 @@ def _SparseTensorDenseMatMulGrad(op, grad):
   rows = a_indices[:, 0]
   cols = a_indices[:, 1]
 
-  # TODO(zongheng, ebrevdo): add conjugates in the right places when complex
+  # TODO (zongheng, ebrevdo): add conjugates in the right places when complex id:3260 gh:3261
   # values are allowed.
-  # TODO(zongheng): these gather calls could potentially duplicate rows/cols in
+  # TODO (zongheng): these gather calls could potentially duplicate rows/cols in id:3558 gh:3559
   # memory.  If there is a need, we should look into implementing this more
   # intelligently to avoid duplicating data.
   parts_a = array_ops.gather(grad, rows if not adj_a else cols)

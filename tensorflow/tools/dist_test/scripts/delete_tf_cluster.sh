@@ -68,7 +68,7 @@ for ITEM in ${ITEMS_TO_DELETE}; do
     "${KUBECTL_BIN}" delete --all ${ITEM}
 
     # Wait until all are deleted
-    # TODO(cais): Add time out
+    # TODO (cais): Add time out id:3596 gh:3597
     COUNTER=0
     while true; do
       sleep 1

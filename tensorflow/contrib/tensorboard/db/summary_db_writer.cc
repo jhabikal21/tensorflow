@@ -42,8 +42,8 @@ const int64 kAbsent = 0LL;
 const int64 kReserved = 0x7fffffffffffffffLL;
 
 double GetWallTime(Env* env) {
-  // TODO(@jart): Follow precise definitions for time laid out in schema.
-  // TODO(@jart): Use monotonic clock from gRPC codebase.
+  // TODO (@jart): Follow precise definitions for time laid out in schema. id:1009 gh:1010
+  // TODO (@jart): Use monotonic clock from gRPC codebase. id:2191 gh:2192
   return static_cast<double>(env->NowMicros()) / 1.0e6;
 }
 
@@ -64,9 +64,9 @@ Status BindProto(SqliteStatement* stmt, int parameter,
 }
 
 Status BindTensor(SqliteStatement* stmt, int parameter, const Tensor& t) {
-  // TODO(@jart): Make portable between little and big endian systems.
-  // TODO(@jart): Use TensorChunks with minimal copying for big tensors.
-  // TODO(@jart): Add field to indicate encoding.
+  // TODO (@jart): Make portable between little and big endian systems. id:967 gh:968
+  // TODO (@jart): Use TensorChunks with minimal copying for big tensors. id:1591 gh:1592
+  // TODO (@jart): Add field to indicate encoding. id:1395 gh:1396
   TensorProto p;
   t.AsProtoTensorContent(&p);
   return BindProto(stmt, parameter, p);
@@ -540,7 +540,7 @@ class SummaryDbWriter : public SummaryWriterInterface {
   Status WriteScalar(int64 global_step, Tensor t, const string& tag) override {
     Tensor t2;
     TF_RETURN_IF_ERROR(CoerceScalar(t, &t2));
-    // TODO(jart): Generate scalars plugin metadata on this value.
+    // TODO (jart): Generate scalars plugin metadata on this value. id:1011 gh:1012
     return WriteTensor(global_step, std::move(t2), tag, "");
   }
 
@@ -568,7 +568,7 @@ class SummaryDbWriter : public SummaryWriterInterface {
         return run_writer_.InsertGraph(std::move(graph), e->wall_time());
       }
       default:
-        // TODO(@jart): Handle other stuff.
+        // TODO (@jart): Handle other stuff. id:2198 gh:2199
         return Status::OK();
     }
   }
@@ -609,7 +609,7 @@ class SummaryDbWriter : public SummaryWriterInterface {
         return run_writer_.InsertTensor(tag_id, e->step(), e->wall_time(), t);
       }
       default:
-        // TODO(@jart): Handle the rest.
+        // TODO (@jart): Handle the rest. id:970 gh:971
         return Status::OK();
     }
   }

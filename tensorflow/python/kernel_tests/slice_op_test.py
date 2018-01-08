@@ -277,7 +277,7 @@ class SliceTest(test.TestCase):
     self._testGradientVariableSize()
 
   def testNotIterable(self):
-    # NOTE(mrry): If we register __getitem__ as an overloaded
+    # NOTE (mrry): If we register __getitem__ as an overloaded id:2995 gh:2996
     # operator, Python will valiantly attempt to iterate over the
     # Tensor from 0 to infinity.  This test ensures that this
     # unintended behavior is prevented.
@@ -288,7 +288,7 @@ class SliceTest(test.TestCase):
         pass
 
   def testComputedShape(self):
-    # NOTE(mrry): We cannot currently handle partially-known values,
+    # NOTE (mrry): We cannot currently handle partially-known values, id:3496 gh:3497
     # because `tf.slice()` uses -1 to specify a wildcard size, and
     # this can't be handled using the
     # `tensor_util.constant_value_as_shape()` trick.

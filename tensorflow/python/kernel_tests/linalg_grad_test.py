@@ -97,7 +97,7 @@ def _GetMatrixBinaryFunctorGradientTest(functor_,
                                         **kwargs_):
 
   def Test(self):
-    # TODO(rmlarsen): Debug illegal address bug on CUDA and re-enable
+    # TODO (rmlarsen): Debug illegal address bug on CUDA and re-enable id:2840 gh:2841
     # GPU test for matrix_solve.
     use_gpu = False if functor_ == linalg_ops.matrix_solve else True
 

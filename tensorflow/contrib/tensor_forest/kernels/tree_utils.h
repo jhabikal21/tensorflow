@@ -35,7 +35,7 @@ namespace tensorforest {
 // entry of a two dimensional tensor; this is that function's type.
 using GetFeatureFnType = std::function<float(int32, int32)>;
 
-// TODO(gilberth): Put these in protos so they can be shared by C++ and python.
+// TODO (gilberth): Put these in protos so they can be shared by C++ and python. id:1003 gh:1004
 // Indexes in the tree representation's 2nd dimension for children and features.
 const int32 CHILDREN_INDEX = 0;
 const int32 FEATURE_INDEX = 1;
@@ -216,7 +216,7 @@ template <typename T1>
 int32 GetNumSparseFeatures(const T1& indices, int32 input_index,
                            int64* sparse_input_start) {
   // Binary search for input_index.
-  // TODO(gilberth): Consider using std::lower_bound, std::upper_bound
+  // TODO (gilberth): Consider using std::lower_bound, std::upper_bound id:2183 gh:2184
   // for a simpler but possibly slower solution, or searching for
   // input_start and input_end simultaneously.
   const int64 num_total = indices.dimension(0);

@@ -165,7 +165,7 @@ def _list_profile_filter(
       If <= 0, has no effect.
     max_lineno: Upper bound for 1-based line number, exclusive.
       If <= 0, has no effect.
-    # TODO(cais): Maybe filter by function name.
+    # TODO (cais): Maybe filter by function name. id:3124 gh:3125
 
   Returns:
     True iff profile_datum should be included.
@@ -262,7 +262,7 @@ class ProfileAnalyzer(object):
         type=str,
         default="",
         help="filter op type by regex.")
-    # TODO(annarev): allow file filtering at non-stack top position.
+    # TODO (annarev): allow file filtering at non-stack top position. id:2229 gh:2230
     ap.add_argument(
         "-f",
         "--file_path_filter",

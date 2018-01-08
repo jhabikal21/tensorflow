@@ -304,7 +304,7 @@ class SavedModelBuilder(object):
     # motivation for the clear_extraneous_savers option, but it turns out that
     # there are edge cases where that option breaks the graph.  Until that is
     # resolved, we just leave the option set to False for now.
-    # TODO(soergel): Reinstate clear_extraneous_savers=True when possible.
+    # TODO (soergel): Reinstate clear_extraneous_savers=True when possible. id:3338 gh:3338
     meta_graph_def = saver.export_meta_graph(
         clear_devices=clear_devices, strip_default_attrs=strip_default_attrs)
 
@@ -400,7 +400,7 @@ class SavedModelBuilder(object):
     # motivation for the clear_extraneous_savers option, but it turns out that
     # there are edge cases where that option breaks the graph.  Until that is
     # resolved, we just leave the option set to False for now.
-    # TODO(soergel): Reinstate clear_extraneous_savers=True when possible.
+    # TODO (soergel): Reinstate clear_extraneous_savers=True when possible. id:3567 gh:3568
     meta_graph_def = saver.export_meta_graph(
         clear_devices=clear_devices, strip_default_attrs=strip_default_attrs)
 

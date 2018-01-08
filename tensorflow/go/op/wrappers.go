@@ -4822,7 +4822,7 @@ func ResourceStridedSliceAssignShrinkAxisMask(value int64) ResourceStridedSliceA
 // `ref` that are selected by the slice parameters. The slice parameters
 // `begin, `end`, `strides`, etc. work exactly as in `StridedSlice`.
 //
-// NOTE this op currently does not support broadcasting and so `value`'s
+// NOTE this op currently does not support broadcasting and so `value`'s id:1872 gh:1873
 // shape must be exactly the shape produced by the slice of `ref`.
 //
 // Returns the created operation.
@@ -15223,7 +15223,7 @@ func AudioSummary(scope *Scope, tag tf.Output, tensor tf.Output, sample_rate flo
 
 // Reverses specific dimensions of a tensor.
 //
-// NOTE `tf.reverse` has now changed behavior in preparation for 1.0.
+// NOTE `tf.reverse` has now changed behavior in preparation for 1.0. id:3088 gh:3089
 // `tf.reverse_v2` is currently an alias that will be deprecated before TF 1.0.
 //
 // Given a `tensor`, and a `int32` tensor `axis` representing the set of

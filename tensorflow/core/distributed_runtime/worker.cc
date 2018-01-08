@@ -150,7 +150,7 @@ void Worker::DoRunGraph(CallOptions* opts, RunGraphRequestWrapper* request,
       request->exec_opts().record_timeline() ||
       request->exec_opts().record_costs()) {
     collector = new StepStatsCollector(response->mutable_step_stats());
-    // TODO(mrry,pbar): GPU tracing for distributed steps.
+    // TODO (mrry,pbar): GPU tracing for distributed steps. id:1707 gh:1708
   }
   CancellationManager* cm = new CancellationManager;
   opts->SetCancelCallback([this, cm, step_id]() {
@@ -201,7 +201,7 @@ void Worker::DoRunGraph(CallOptions* opts, RunGraphRequestWrapper* request,
       });
 }
 
-// TODO(suharshs): Add stats collection support to partial run.
+// TODO (suharshs): Add stats collection support to partial run. id:1264 gh:1265
 void Worker::DoPartialRunGraph(CallOptions* opts,
                                RunGraphRequestWrapper* request,
                                MutableRunGraphResponseWrapper* response,

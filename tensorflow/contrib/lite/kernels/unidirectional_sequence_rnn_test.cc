@@ -192,7 +192,7 @@ class UnidirectionalRNNOpModel : public SingleOpModel {
   int input_size_;
 };
 
-// TODO(mirkov): add another test which directly compares to TF once TOCO
+// TODO (mirkov): add another test which directly compares to TF once TOCO id:825 gh:827
 // supports the conversion from dynamic_rnn with BasicRNNCell.
 TEST(FullyConnectedOpTest, BlackBoxTest) {
   UnidirectionalRNNOpModel rnn(2, 16, 16, 8);

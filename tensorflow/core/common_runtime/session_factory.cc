@@ -85,13 +85,13 @@ Status SessionFactory::GetFactory(const SessionOptions& options,
     *out_factory = candidate_factories[0].second;
     return Status::OK();
   } else if (candidate_factories.size() > 1) {
-    // NOTE(mrry): This implementation assumes that the domains (in
+    // NOTE (mrry): This implementation assumes that the domains (in id:1830 gh:1831
     // terms of acceptable SessionOptions) of the registered
     // SessionFactory implementations do not overlap. This is fine for
     // now, but we may need an additional way of distinguishing
     // different runtimes (such as an additional session option) if
     // the number of sessions grows.
-    // TODO(mrry): Consider providing a system-default fallback option
+    // TODO (mrry): Consider providing a system-default fallback option id:1658 gh:1659
     // in this case.
     std::vector<string> factory_types;
     factory_types.reserve(candidate_factories.size());

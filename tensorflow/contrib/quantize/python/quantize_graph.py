@@ -50,7 +50,7 @@ def _create_graph(input_graph,
     ValueError: If elements contains an element that isn't a tf.Tensor or
         tf.Operation.
   """
-  # TODO(suharshs): Describe the process in more detail in the doc string.
+  # TODO (suharshs): Describe the process in more detail in the doc string. id:1291 gh:1292
   g = copy_graph.CopyGraph(input_graph)
   with g.as_default():
     with ops.device(device_name_or_function):

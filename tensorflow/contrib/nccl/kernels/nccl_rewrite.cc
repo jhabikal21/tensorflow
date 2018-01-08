@@ -76,7 +76,7 @@ Status ReplaceReduce(Graph* graph, Node* node) {
     // Send nodes don't have any outputs and therefore have no data dependencies
     // to the outputs of the graph. We add a control dependency to the receive
     // node so that those 'dangling' nodes are run.
-    // TODO(b/67027412): Avoid these cross-device control edges.
+    // TODO (b/67027412): Avoid these cross-device control edges. id:1515 gh:1515
     for (const auto& out_node : out_nodes) {
       graph->AddControlEdge(send_node, out_node.node);
     }

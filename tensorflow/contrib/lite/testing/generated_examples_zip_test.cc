@@ -44,7 +44,7 @@ tensorflow::Env* env = tensorflow::Env::Default();
 // List of tests that are expected to fail when
 //   --test_arg=--ignore_known_bugs=false
 // Key is a substring of the test name and value is a bug number.
-// TODO(ahentz): make sure we clean this list up frequently.
+// TODO (ahentz): make sure we clean this list up frequently. id:926 gh:927
 std::map<string, string> kBrokenTests = {
     // Add doesn't support broadcasting.
     {R"(addd.*input_shape_1=\[1,3,4,3\],input_shape_2=\[3\])", "68500195"},
@@ -247,7 +247,7 @@ INSTANTIATE_TESTS(avg_pool)
 INSTANTIATE_TESTS(space_to_batch_nd)
 INSTANTIATE_TESTS(batch_to_space_nd)
 INSTANTIATE_TESTS(concat)
-// TODO(b/71642435) re-enable this test
+// TODO (b/71642435) re-enable this test id:2103 gh:2104
 // INSTANTIATE_TESTS(constant)
 INSTANTIATE_TESTS(control_dep)
 INSTANTIATE_TESTS(conv)

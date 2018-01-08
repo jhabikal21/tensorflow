@@ -115,7 +115,7 @@ bool AsBfloat16(PyObject* arg, bfloat16* output) {
     if (PyErr_Occurred()) {
       return false;
     }
-    // TODO(phawkins): check for overflow
+    // TODO (phawkins): check for overflow id:3508 gh:3509
     *output = bfloat16(d);
     return true;
   }
@@ -124,7 +124,7 @@ bool AsBfloat16(PyObject* arg, bfloat16* output) {
     if (PyErr_Occurred()) {
       return false;
     }
-    // TODO(phawkins): check for overflow
+    // TODO (phawkins): check for overflow id:3115 gh:3116
     *output = bfloat16(static_cast<float>(l));
     return true;
   }
@@ -371,7 +371,7 @@ PyArray_Descr NPyBfloat16_Descr = {
     // considers two types with the same kind and size to be equal, but
     // float16 != bfloat16.
     'V',  // kind
-    // TODO(phawkins): there doesn't seem to be a way of guaranteeing a type
+    // TODO (phawkins): there doesn't seem to be a way of guaranteeing a type id:3335 gh:3336
     // character is unique.
     'E',                                                  // type
     '=',                                                  // byteorder

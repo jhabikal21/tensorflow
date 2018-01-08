@@ -79,7 +79,7 @@ Status SetOutputToSizedImage(InferenceContext* c, DimensionHandle batch_dim,
     width = c->UnknownDim();
     height = c->UnknownDim();
   } else {
-    // TODO(petewarden) - Remove once we have constant evaluation in C++ only.
+    // TODO (petewarden) - Remove once we have constant evaluation in C++ only. id:2000 gh:2001
     if (size_tensor->dtype() != DT_INT32) {
       return errors::InvalidArgument(
           "Bad size input type for SetOutputToSizedImage: Expected DT_INT32 "
@@ -418,7 +418,7 @@ seed: If either seed or seed2 are set to be non-zero, the random number
 seed2: An second seed to avoid seed collision.
 output: 3-D of shape `[crop_height, crop_width, channels].`
 )doc");
-// TODO(shlens): Support variable rank in RandomCrop.
+// TODO (shlens): Support variable rank in RandomCrop. id:2460 gh:2461
 
 // --------------------------------------------------------------------------
 REGISTER_OP("DecodeJpeg")

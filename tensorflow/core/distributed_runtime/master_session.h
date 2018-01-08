@@ -113,7 +113,7 @@ class MasterSession : public core::RefCounted {
   std::unique_ptr<std::vector<std::unique_ptr<Device>>> remote_devs_;
 
   // The optional session-specific worker cluster.
-  // TODO(saeta): Convert to std::optional when available.
+  // TODO (saeta): Convert to std::optional when available. id:1133 gh:1134
   const std::unique_ptr<WorkerCacheInterface> worker_cache_;
   // Retrieves either worker_cache_ or the env_->worker_cache as appropriate.
   WorkerCacheInterface* get_worker_cache() const;
@@ -201,7 +201,7 @@ class MasterSession : public core::RefCounted {
   // workers.
   Status CreateWorkerSessions(const WorkerCacheFactoryOptions& server_def);
 
-  // TODO(b/36574172): Always use Create/DeleteWorkerSession.
+  // TODO (b/36574172): Always use Create/DeleteWorkerSession. id:1865 gh:1866
   bool should_delete_worker_sessions_ = false;
   Status DeleteWorkerSessions();
 

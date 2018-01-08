@@ -128,7 +128,7 @@ void HostConstantOp::Compute(OpKernelContext* ctx) {
 
 #if GOOGLE_CUDA
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2597 gh:2598
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Const")
                             .Device(DEVICE_GPU)
@@ -195,7 +195,7 @@ class FillOp : public OpKernel {
 
 #define REGISTER_CPU_KERNEL(TYPE) REGISTER_KERNEL(CPU, TYPE)
 TF_CALL_ALL_TYPES(REGISTER_CPU_KERNEL);
-// TODO(b/28917570): Add a test for this. Currently python 3 is not happy about
+// TODO (b/28917570): Add a test for this. Currently python 3 is not happy about id:1352 gh:1353
 // the conversion from uint8 to quint8.
 REGISTER_KERNEL(CPU, quint8);
 REGISTER_KERNEL(CPU, quint16);
@@ -235,7 +235,7 @@ REGISTER_KERNEL(GPU, bool);
 // Currently we do not support filling strings and complex64 on GPU
 
 // A special GPU kernel for int32.
-// TODO(b/25387198): Also enable int32 in device memory. This kernel
+// TODO (b/25387198): Also enable int32 in device memory. This kernel id:2114 gh:2115
 // registration requires all int32 inputs and outputs to be in host memory.
 REGISTER_KERNEL_BUILDER(Name("Fill")
                             .Device(DEVICE_GPU)

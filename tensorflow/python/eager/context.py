@@ -48,7 +48,7 @@ DEVICE_PLACEMENT_WARN = pywrap_tensorflow.TFE_DEVICE_PLACEMENT_WARN
 DEVICE_PLACEMENT_SILENT = pywrap_tensorflow.TFE_DEVICE_PLACEMENT_SILENT
 
 
-# TODO(agarwal): better name ?
+# TODO (agarwal): better name ? id:3185 gh:3186
 class _EagerContext(threading.local):
   """Thread local eager context."""
 
@@ -98,8 +98,8 @@ class ContextStack(threading.local):
 context_stack = ContextStack()
 
 
-# TODO(agarwal): rename to EagerContext / EagerRuntime ?
-# TODO(agarwal): consider keeping the corresponding Graph here.
+# TODO (agarwal): rename to EagerContext / EagerRuntime ? id:2911 gh:2912
+# TODO (agarwal): consider keeping the corresponding Graph here. id:3147 gh:3148
 class Context(object):
   """Environment in which eager operations execute."""
 
@@ -386,7 +386,7 @@ class Context(object):
       `outputs` is the `list` of output `Tensor`(s) from the op.
        Return value(s) from the callback are ignored.
     """
-    # TODO(cais): (b/64674139) Allow access to function-internal operations.
+    # TODO (cais): (b/64674139) Allow access to function-internal operations. id:2249 gh:2250
     self._post_execution_callbacks.append(callback)
 
   def clear_post_execution_callbacks(self):
@@ -416,7 +416,7 @@ def context():
   return _context
 
 
-# TODO(agarwal): remove this.
+# TODO (agarwal): remove this. id:2716 gh:2717
 def get_default_context():
   """Same as context."""
   if _context is None:
@@ -459,7 +459,7 @@ def eager_mode():
   return context()._mode(EAGER_MODE)  # pylint: disable=protected-access
 
 
-# TODO(agarwal): get rid of this and use ops.name_scope instead.
+# TODO (agarwal): get rid of this and use ops.name_scope instead. id:3187 gh:3188
 @contextlib.contextmanager
 def namescope(name):
   """ContextManager for creating hierarchical name scopes."""

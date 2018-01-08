@@ -75,7 +75,7 @@ bool ShouldStepInRecursion(const TfLiteSkipGramParams* params,
       return true;
     }
     // If next word enumeration are within the range of max_skip_size.
-    // NOTE: equivalent to
+    // NOTE: equivalent to id:823 gh:824
     //   next_word_idx = stack[stack_idx] + 1
     //   next_word_idx - stack[stack_idx-1] <= max_skip_size + 1
     if (stack[stack_idx] - stack[stack_idx - 1] <= params->max_skip_size) {

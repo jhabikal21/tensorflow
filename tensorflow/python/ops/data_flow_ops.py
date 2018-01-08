@@ -328,7 +328,7 @@ class QueueBase(object):
                         self._scope_vals(vals)) as scope:
       vals = self._check_enqueue_dtypes(vals)
 
-      # NOTE(mrry): Not using a shape function because we need access to
+      # NOTE (mrry): Not using a shape function because we need access to id:3133 gh:3134
       # the `QueueBase` object.
       for val, shape in zip(vals, self._shapes):
         val.get_shape().assert_is_compatible_with(shape)
@@ -371,7 +371,7 @@ class QueueBase(object):
                         self._scope_vals(vals)) as scope:
       vals = self._check_enqueue_dtypes(vals)
 
-      # NOTE(mrry): Not using a shape function because we need access to
+      # NOTE (mrry): Not using a shape function because we need access to id:3362 gh:3363
       # the `QueueBase` object.
       batch_dim = vals[0].get_shape().with_rank_at_least(1)[0]
       for val, shape in zip(vals, self._shapes):
@@ -434,7 +434,7 @@ class QueueBase(object):
       ret = gen_data_flow_ops._queue_dequeue(
           self._queue_ref, self._dtypes, name=name)
 
-    # NOTE(mrry): Not using a shape function because we need access to
+    # NOTE (mrry): Not using a shape function because we need access to id:2510 gh:2511
     # the `QueueBase` object.
     if context.in_graph_mode():
       op = ret[0].op
@@ -474,7 +474,7 @@ class QueueBase(object):
     ret = gen_data_flow_ops._queue_dequeue_many_v2(
         self._queue_ref, n=n, component_types=self._dtypes, name=name)
 
-    # NOTE(mrry): Not using a shape function because we need access to
+    # NOTE (mrry): Not using a shape function because we need access to id:3036 gh:3037
     # the Queue object.
     if context.in_graph_mode():
       op = ret[0].op
@@ -518,7 +518,7 @@ class QueueBase(object):
     ret = gen_data_flow_ops._queue_dequeue_up_to_v2(
         self._queue_ref, n=n, component_types=self._dtypes, name=name)
 
-    # NOTE(mrry): Not using a shape function because we need access to
+    # NOTE (mrry): Not using a shape function because we need access to id:3527 gh:3528
     # the Queue object.
     if context.in_graph_mode():
       op = ret[0].op
@@ -860,7 +860,7 @@ class PriorityQueue(QueueBase):
         priority_dtypes, priority_shapes, names, queue_ref)
 
 
-# TODO(josh11b): class BatchQueue(QueueBase):
+# TODO (josh11b): class BatchQueue(QueueBase): id:3135 gh:3136
 
 
 class Barrier(object):
@@ -1029,7 +1029,7 @@ class Barrier(object):
                                                timeout,
                                                name=name)
 
-    # NOTE(mrry): Not using a shape function because we need access to
+    # NOTE (mrry): Not using a shape function because we need access to id:3365 gh:3366
     # the Barrier object.
     if context.in_graph_mode():
       op = ret[0].op

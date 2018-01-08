@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-// TODO(opensource): Use a more generic sounding preprocessor name than
+// TODO (opensource): Use a more generic sounding preprocessor name than id:1080 gh:1081
 // GOOGLE_CUDA
 #if GOOGLE_CUDA
 
@@ -334,10 +334,10 @@ Status BaseGPUDevice::Init(const SessionOptions& options) {
     TF_RETURN_IF_ERROR(
         ReadInt64FromEnvVar("TF_GPU_THREAD_COUNT", 2, &gpu_thread_count));
     if (gpu_thread_mode == "gpu_private") {
-      // TODO(zhengxq): since these threads only serve a single GPU device,
+      // TODO (zhengxq): since these threads only serve a single GPU device, id:2355 gh:2356
       //   we should set the device context once for each thread, and avoid
       //   setting them for each kernel.
-      // TODO(zhengxq): pin the thread to the same socket of the target GPU.
+      // TODO (zhengxq): pin the thread to the same socket of the target GPU. id:1077 gh:1078
       thread_pool_.reset(new thread::ThreadPool(
           options.env, strings::StrCat("gpu_private_", tf_gpu_id_.value()),
           static_cast<int32>(gpu_thread_count)));
@@ -402,12 +402,12 @@ Status BaseGPUDevice::FillContextMap(const Graph* graph,
 void BaseGPUDevice::Compute(OpKernel* op_kernel, OpKernelContext* context) {
   // ScopedActivity is cheap when tracing is not active, but we
   // can avoid computing the Hash64.
-  // TODO(pbar) This would no longer be needed if Ops have a unique id.
+  // TODO (pbar) This would no longer be needed if Ops have a unique id. id:1807 gh:1808
   const uint64 id = port::Tracing::IsActive() ? Hash64(op_kernel->name()) : 0;
   port::Tracing::ScopedActivity region(port::Tracing::EventCategory::kCompute,
                                        id);
 
-  // NOTE(tucker): We need to discriminate between Eigen GPU
+  // NOTE (tucker): We need to discriminate between Eigen GPU id:1638 gh:1637
   // operations and all others.  If an operation is Eigen
   // implemented (or otherwise tries to launch a cuda kernel
   // directly), we need to establish a stacked-scoped environment

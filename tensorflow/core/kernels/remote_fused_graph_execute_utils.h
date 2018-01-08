@@ -34,10 +34,10 @@ namespace tensorflow {
 // functions for IRemoteFusedGraphExecutor.
 class RemoteFusedGraphExecuteUtils {
  public:
-  // TODO(satok): Use "_output_data_types" to share a spec with other ops
+  // TODO (satok): Use "_output_data_types" to share a spec with other ops id:2399 gh:2400
   static constexpr const char* const ATTR_OUTPUT_DATA_TYPES =
       "_default_remote_graph_output_data_types";
-  // TODO(satok): Use "_output_shapes" to share a spec with other ops
+  // TODO (satok): Use "_output_shapes" to share a spec with other ops id:1631 gh:1632
   static constexpr const char* const ATTR_OUTPUT_SHAPES =
       "_default_remote_output_shapes";
   static constexpr const char* const

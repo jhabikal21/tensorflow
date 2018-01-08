@@ -207,7 +207,7 @@ class Conv2DFastBackpropFilterOp : public OpKernel {
                 errors::InvalidArgument(
                     "Current implementation does not yet support "
                     "dilations in the batch and depth dimensions."));
-    // TODO(yangzihao): Add a CPU implementation for dilated convolution.
+    // TODO (yangzihao): Add a CPU implementation for dilated convolution. id:2602 gh:2603
     OP_REQUIRES(context, (dilations_[1] == 1 && dilations_[2] == 1),
                 errors::InvalidArgument(
                     "Current Eigen and libxsmm implementations do not "
@@ -320,7 +320,7 @@ class Conv2DCustomBackpropFilterOp : public OpKernel {
                 errors::InvalidArgument(
                     "Current implementation does not yet support "
                     "dilations in the batch and depth dimensions."));
-    // TODO(yangzihao): Add a CPU implementation for dilated convolution.
+    // TODO (yangzihao): Add a CPU implementation for dilated convolution. id:1356 gh:1357
     OP_REQUIRES(context, (dilations_[1] == 1 && dilations_[2] == 1),
                 errors::InvalidArgument(
                     "Current libxsmm and customized CPU implementations do "
@@ -399,7 +399,7 @@ class Conv2DCustomBackpropFilterOp : public OpKernel {
     // size ('target_working_set_size') by the matmul size of an individual
     // image ('work_unit_size').
 
-    // TODO(andydavis)
+    // TODO (andydavis) id:2118 gh:2119
     // *) Get L3 cache size from device at runtime (30MB is from ivybridge).
     // *) Consider reducing 'target_working_set_size' if L3 is shared by
     //    other concurrently running tensorflow ops.
@@ -653,7 +653,7 @@ void LaunchConv2DBackpropFilterOp<Eigen::GpuDevice, T>::operator()(
                           input.shape(), filter_shape, out_backprop.shape(),
                           dilations, strides, padding, data_format, &dims));
 
-  // TODO(yangzihao): The padding computations should be done in
+  // TODO (yangzihao): The padding computations should be done in id:1922 gh:1923
   // GetWindowedOutputSize() functions.
   const int padding_rows =
       (padding == VALID)
@@ -672,7 +672,7 @@ void LaunchConv2DBackpropFilterOp<Eigen::GpuDevice, T>::operator()(
                                      dims.spatial_dims[1].dilation +
                                  1 - dims.spatial_dims[1].input_size);
 
-  // TODO(zhengxq): cuDNN only supports equal padding on both sides, so only
+  // TODO (zhengxq): cuDNN only supports equal padding on both sides, so only id:1450 gh:1451
   // calling it when that is true. Remove this check when (if?) cuDNN starts
   // supporting different padding.
   bool rows_odd = (padding_rows % 2 != 0);
@@ -810,7 +810,7 @@ void LaunchConv2DBackpropFilterOp<Eigen::GpuDevice, T>::operator()(
       .set_zero_padding_height(padding_rows / 2)
       .set_zero_padding_width(padding_cols / 2);
 
-  // NOTE(zhengxq):
+  // NOTE (zhengxq): id:2605 gh:2606
   // cuDNN only supports the following layouts :
   // Input  : B x D x R x C
   // Filter : OD x ID x R x C
@@ -914,7 +914,7 @@ void LaunchConv2DBackpropFilterOp<Eigen::GpuDevice, T>::operator()(
     ProfileResult best_result;
     ProfileResult best_result_no_scratch;
     for (auto profile_algorithm : algorithms) {
-      // TODO(zhengxq): profile each algorithm multiple times to better
+      // TODO (zhengxq): profile each algorithm multiple times to better id:1358 gh:1359
       // accuracy.
       CudnnScratchAllocator scratch_allocator(ConvolveBackwardFilterScratchSize,
                                               ctx);

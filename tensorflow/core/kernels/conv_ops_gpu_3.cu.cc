@@ -77,7 +77,7 @@ struct maybe_conj<double2, conjugate> {
 
 }  // namespace
 
-// TODO(mjanusz): Move this to a shared util file.
+// TODO (mjanusz): Move this to a shared util file. id:1461 gh:1462
 // A simple array that contains data that can be passed between CPU and GPU.
 template <typename T, int IndexCount, T DefaultValue>
 struct Array {

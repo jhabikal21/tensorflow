@@ -326,7 +326,7 @@ Status VirtualScheduler::Init() {
   std::vector<const NodeDef*> nodes =
       ComputeTransitiveFanin(graph, fetch_nodes);
 
-  // TODO(dyoon): this is a bit inefficient as name_to_node is already built in
+  // TODO (dyoon): this is a bit inefficient as name_to_node is already built in id:2079 gh:2080
   // ComputeTransitiveFanin().
   // Once ComputeTransitiveFanin is complete, only the nodes that can be reached
   // from the fetch nodes are scheduled. So the scheduled nodes should be
@@ -337,7 +337,7 @@ Status VirtualScheduler::Init() {
     name_to_node[node->name()] = node;
   }
 
-  // TODO(dyoon): Instead of identifying _Send node here manually, add _Send
+  // TODO (dyoon): Instead of identifying _Send node here manually, add _Send id:1881 gh:1882
   // to _Recv as control dependency when creating GrapplerItem.
   std::unordered_map<string, const NodeDef*> name_to_send;
   for (const auto& node : graph.node()) {

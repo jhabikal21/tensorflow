@@ -356,17 +356,17 @@ Status HloCostAnalysis::HandleReshape(const HloInstruction*) {
 }
 
 Status HloCostAnalysis::HandleBatchNormTraining(const HloInstruction*) {
-  // TODO(b/62294698): Implement cost analysis for batch-norm-training.
+  // TODO (b/62294698): Implement cost analysis for batch-norm-training. id:366 gh:368
   return Status::OK();
 }
 
 Status HloCostAnalysis::HandleBatchNormInference(const HloInstruction*) {
-  // TODO(b/62294698): Implement cost analysis for batch-norm-inference.
+  // TODO (b/62294698): Implement cost analysis for batch-norm-inference. id:420 gh:421
   return Status::OK();
 }
 
 Status HloCostAnalysis::HandleBatchNormGrad(const HloInstruction*) {
-  // TODO(b/62294698): Implement cost analysis for batch-norm-grad.
+  // TODO (b/62294698): Implement cost analysis for batch-norm-grad. id:367 gh:367
   return Status::OK();
 }
 
@@ -411,7 +411,7 @@ Status HloCostAnalysis::HandleCrossReplicaSum(const HloInstruction* crs) {
   // We assume 2 replicas, so that each output element is the sum of two input
   // elements.
   //
-  // TODO(b/33004697): Compute correct cost here, taking the actual number of
+  // TODO (b/33004697): Compute correct cost here, taking the actual number of id:368 gh:369
   // replicas into account.
   double flops = 0.0;
   ShapeUtil::ForEachSubshape(
@@ -425,7 +425,7 @@ Status HloCostAnalysis::HandleCrossReplicaSum(const HloInstruction* crs) {
 }
 
 Status HloCostAnalysis::HandleRng(const HloInstruction* random) {
-  // TODO(b/26346211): Implement better estimates for the RNG cost, since the
+  // TODO (b/26346211): Implement better estimates for the RNG cost, since the id:384 gh:385
   // cost changes with the implementation and the distribution. For now, assume
   // the cost of each RNG is same as a transcendental operation.
   current_properties_[kTranscendentalsKey] =
@@ -485,7 +485,7 @@ Status HloCostAnalysis::HandleWhile(const HloInstruction* xla_while) {
   // something that we can statically analyze, we cannot precisely compute the
   // cost of a while node. For now compute the cost of a single iteration.
   //
-  // TODO(b/26346211): Improve the cost analysis for while nodes.
+  // TODO (b/26346211): Improve the cost analysis for while nodes. id:370 gh:371
   TF_ASSIGN_OR_RETURN(const Properties body_properties,
                       ProcessSubcomputation(xla_while->while_body()));
 

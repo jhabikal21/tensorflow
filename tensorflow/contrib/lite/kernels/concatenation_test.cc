@@ -26,7 +26,7 @@ using ::testing::ElementsAreArray;
 
 class BaseConcatenationOpModel : public SingleOpModel {
  public:
-  // TODO(ahentz): Also test different activation types, axis, input
+  // TODO (ahentz): Also test different activation types, axis, input id:1164 gh:1165
   // dimensions.
   BaseConcatenationOpModel(const TensorData& input_template, int axis,
                            int num_inputs) {

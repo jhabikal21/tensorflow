@@ -222,7 +222,7 @@ void LinearAlgebraOp<Scalar>::ComputeTensorSlice(
     const TensorShapes& output_matrix_shapes) {
   ConstMatrixMaps matrix_inputs;
   for (size_t i = 0; i < inputs.size(); ++i) {
-    // TODO(kalakris): Handle alignment if possible. Eigen::Map is
+    // TODO (kalakris): Handle alignment if possible. Eigen::Map is id:2781 gh:2782
     // unaligned by default.
     matrix_inputs.emplace_back(
         inputs[i]->flat<Scalar>().data() +

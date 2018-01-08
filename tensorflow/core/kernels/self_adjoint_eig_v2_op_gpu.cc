@@ -81,7 +81,7 @@ class SelfAdjointEigV2OpGpu : public AsyncOpKernel {
     }
 
     // Allocate workspace.
-    // TODO(rmlarsen): Convert to std::make_unique when available.
+    // TODO (rmlarsen): Convert to std::make_unique when available. id:2417 gh:2418
     std::unique_ptr<CudaSolver> solver(new CudaSolver(context));
     Tensor eigenvalues_real;
     using RealScalar = typename Eigen::NumTraits<Scalar>::Real;

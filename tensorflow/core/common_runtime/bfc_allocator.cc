@@ -153,7 +153,7 @@ bool BFCAllocator::Extend(size_t rounded_bytes) {
 
   region_manager_.set_handle(c->ptr, h);
 
-  // TODO(vrv): Try to merge this new region with an existing region,
+  // TODO (vrv): Try to merge this new region with an existing region, id:1051 gh:1052
   // if the address space is contiguous, to avoid fragmentation
   // across regions.
 
@@ -209,7 +209,7 @@ void* BFCAllocator::AllocateRaw(size_t unused_alignment, size_t num_bytes,
     void* result = AllocateRawInternal(unused_alignment, num_bytes, false);
     if (result == nullptr) {
       // The counter incrementing is not thread-safe. But we don't really care.
-      // TODO(zhengxq): we should implement a LOG_FIRST_N and LOG_EVERY_N for
+      // TODO (zhengxq): we should implement a LOG_FIRST_N and LOG_EVERY_N for id:1755 gh:1756
       // more general usage.
       static int log_counter = 0;
       if (log_counter < 10) {

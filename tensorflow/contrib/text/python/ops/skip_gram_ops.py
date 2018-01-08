@@ -188,7 +188,7 @@ def skip_gram_sample(input_tensor,
         seed=seed1,
         seed2=seed2)
 
-    # TODO(weiho): If the need arises, add support for sparse input_tensor that
+    # TODO (weiho): If the need arises, add support for sparse input_tensor that id:1399 gh:1400
     # figures out sentence boundaries, then calls
     # skip_gram_generate_candidates() on each sentence.
 

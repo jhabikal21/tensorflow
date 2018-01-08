@@ -78,7 +78,7 @@ class DType(object):
       TypeError: If `type_enum` is not a value `types_pb2.DataType`.
 
     """
-    # TODO(mrry): Make the necessary changes (using __new__) to ensure
+    # TODO (mrry): Make the necessary changes (using __new__) to ensure id:3238 gh:3239
     # that calling this returns one of the interned values.
     type_enum = int(type_enum)
     if (type_enum not in types_pb2.DataType.values()
@@ -488,7 +488,7 @@ _STRING_TO_TF["double_ref"] = float64_ref
 #
 # These are magic strings that are used in the swig wrapper to identify
 # quantized types.
-# TODO(mrry,keveman): Investigate Numpy type registration to replace this
+# TODO (mrry,keveman): Investigate Numpy type registration to replace this id:2950 gh:2951
 # hard-coding of names.
 _np_qint8 = np.dtype([("qint8", np.int8, 1)])
 _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
@@ -536,7 +536,7 @@ _TF_TO_NP = {
     types_pb2.DT_UINT64: np.uint64,
     types_pb2.DT_INT16: np.int16,
     types_pb2.DT_INT8: np.int8,
-    # NOTE(touts): For strings we use np.object as it supports variable length
+    # NOTE (touts): For strings we use np.object as it supports variable length id:3204 gh:3205
     # strings.
     types_pb2.DT_STRING: np.object,
     types_pb2.DT_COMPLEX64: np.complex64,

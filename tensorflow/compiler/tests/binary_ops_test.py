@@ -498,7 +498,7 @@ class BinaryOpsTest(XLATestCase):
           expected=np.array(
               [(2 + 4j) / (1 + 2j), (4 - 8j) / (1 + 2j)], dtype=dtype))
 
-      # TODO(b/68205550): math_ops.squared_difference shouldn't be supported.
+      # TODO (b/68205550): math_ops.squared_difference shouldn't be supported. id:124 gh:125
 
       self._testBinary(
           nn_ops.bias_add,
@@ -764,7 +764,7 @@ class BinaryOpsTest(XLATestCase):
   def testMatMul(self):
     self._testMatMul(math_ops.matmul)
 
-  # TODO(phawkins): failing on GPU, no registered kernel.
+  # TODO (phawkins): failing on GPU, no registered kernel. id:158 gh:159
   def DISABLED_testSparseMatMul(self):
     # Binary wrappers for sparse_matmul with different hints
     def SparseMatmulWrapperTF(a, b):

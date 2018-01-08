@@ -14,7 +14,7 @@
 # ==============================================================================
 """Implementations of different data feeders to provide data for TF trainer."""
 
-# TODO(ipolosukhin): Replace this module with feed-dict queue runners & queues.
+# TODO (ipolosukhin): Replace this module with feed-dict queue runners & queues. id:733 gh:734
 
 from __future__ import absolute_import
 from __future__ import division
@@ -812,7 +812,7 @@ class DaskDataFeeder(object):
 
     # pylint: disable=invalid-name,super-init-not-called
     import dask.dataframe as dd  # pylint: disable=g-import-not-at-top
-    # TODO(terrytangyuan): check x and y dtypes in dask_io like pandas
+    # TODO (terrytangyuan): check x and y dtypes in dask_io like pandas id:758 gh:759
     self._x = x
     self._y = y
     # save column names
@@ -824,7 +824,7 @@ class DaskDataFeeder(object):
       self._y_columns = len(self._x_columns) + 1
       self._y = self._y.rename(columns={y.columns[0]: self._y_columns})
 
-    # TODO(terrytangyuan): deal with unsupervised cases
+    # TODO (terrytangyuan): deal with unsupervised cases id:1290 gh:1291
     # combine into a data frame
     self.df = dd.multi.concat([self._x, self._y], axis=1)
     self.n_classes = n_classes
@@ -832,7 +832,7 @@ class DaskDataFeeder(object):
     x_count = x.count().compute()[0]
     x_shape = (x_count, len(self._x.columns))
     y_shape = (x_count, len(self._y.columns))
-    # TODO(terrytangyuan): Add support for shuffle and epochs.
+    # TODO (terrytangyuan): Add support for shuffle and epochs. id:1123 gh:1124
     self._shuffle = shuffle
     self.epochs = epochs
     self.input_shape, self.output_shape, self._batch_size = _get_in_out_shape(
@@ -867,7 +867,7 @@ class DaskDataFeeder(object):
 
     def _feed_dict_fn():
       """Samples data and provides it to placeholders."""
-      # TODO(ipolosukhin): option for with/without replacement (dev version of
+      # TODO (ipolosukhin): option for with/without replacement (dev version of id:794 gh:795
       # dask)
       sample = self.df.random_split(
           [self.sample_fraction, 1 - self.sample_fraction],

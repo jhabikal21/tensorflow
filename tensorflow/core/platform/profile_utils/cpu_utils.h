@@ -87,8 +87,8 @@ class CpuUtils {
     // Returning dummy clock when can't access to the counter
     return DUMMY_CYCLE_CLOCK;
 #else
-    // TODO(satok): Support generic way to emulate clock count.
-    // TODO(satok): Support other architectures if wanted.
+    // TODO (satok): Support generic way to emulate clock count. id:2552 gh:2553
+    // TODO (satok): Support other architectures if wanted. id:2852 gh:2853
     // Returning dummy clock when can't access to the counter
     return DUMMY_CYCLE_CLOCK;
 #endif

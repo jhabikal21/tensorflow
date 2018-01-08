@@ -118,7 +118,7 @@ constexpr char kReadRequestTimeout[] = "GCS_READ_REQUEST_TIMEOUT_SECS";
 // upload requests.
 constexpr char kWriteRequestTimeout[] = "GCS_WRITE_REQUEST_TIMEOUT_SECS";
 
-// TODO: DO NOT use a hardcoded path
+// TODO: DO NOT use a hardcoded path id:2474 gh:2475
 Status GetTmpFilename(string* filename) {
   if (!filename) {
     return errors::Internal("'filename' cannot be nullptr.");
@@ -324,7 +324,7 @@ class GcsWritableFile : public WritableFile {
         file_cache_erase_(std::move(file_cache_erase)),
         sync_needed_(true),
         initial_retry_delay_usec_(initial_retry_delay_usec) {
-    // TODO: to make it safer, outfile_ should be constructed from an FD
+    // TODO: to make it safer, outfile_ should be constructed from an FD id:2837 gh:2838
     if (GetTmpFilename(&tmp_content_filename_).ok()) {
       outfile_.open(tmp_content_filename_,
                     std::ofstream::binary | std::ofstream::app);
@@ -1295,7 +1295,7 @@ Status GcsFileSystem::RenameObject(const string& src, const string& target) {
     // If GCS didn't complete rewrite in one call, this means that a large file
     // is being copied to a bucket with a different storage class or location,
     // which requires multiple rewrite calls.
-    // TODO(surkov): implement multi-step rewrites.
+    // TODO (surkov): implement multi-step rewrites. id:1774 gh:1775
     return errors::Unimplemented(
         "Couldn't rename ", src, " to ", target,
         ": moving large files between buckets with different "

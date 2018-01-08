@@ -231,7 +231,7 @@ class UnaryOpsTest(XLATestCase):
           np.array([[1, 2]], dtype=dtype),
           expected=np.array([[0.540297, -0.41614]], dtype=dtype))
 
-      # TODO(b/34703906): improve log1p implementation and make tolerance
+      # TODO (b/34703906): improve log1p implementation and make tolerance id:190 gh:191
       # tighter.
       self._assertOpOutputMatchesExpected(
           math_ops.log1p,
@@ -421,7 +421,7 @@ class UnaryOpsTest(XLATestCase):
           np.array([[5j, 3 - 2j]], dtype=dtype),
           expected=np.cos(np.array([[5j, 3 - 2j]], dtype=dtype)))
 
-      # TODO(b/34703906): improve log1p implementation and make tolerance
+      # TODO (b/34703906): improve log1p implementation and make tolerance id:192 gh:193
       # tighter.
       self._assertOpOutputMatchesExpected(
           math_ops.log1p,
@@ -529,7 +529,7 @@ class UnaryOpsTest(XLATestCase):
           np.array([[4, 3], [2, 1]], dtype=dtype),
           expected=np.array([[1, 1], [1, 1]], dtype=dtype))
 
-  # TODO(phawkins): these tests fail unless fastmath optimizations
+  # TODO (phawkins): these tests fail unless fastmath optimizations id:191 gh:192
   # are disabled. Use more robust IsInf/IsNaN detection and enable these
   # tests.
   @unittest.skip("test case fails in fast-math mode")

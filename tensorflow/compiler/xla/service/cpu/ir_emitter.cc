@@ -476,7 +476,7 @@ Status IrEmitter::HandleOutfeed(HloInstruction* outfeed) {
 }
 
 Status IrEmitter::HandleSort(HloInstruction* sort) {
-  // TODO(b/26783907): Implement sort on CPU.
+  // TODO (b/26783907): Implement sort on CPU. id:333 gh:334
   return Unimplemented("Sort is not supported on CPU (b/26783907).");
 }
 
@@ -517,7 +517,7 @@ Status IrEmitter::HandleReduceWindow(HloInstruction* reduce_window) {
       /*instruction=*/*reduce_window, /*operands=*/{operand},
       /*supported_types=*/{F32, BF16}));
 
-  // TODO(b/31410564): Implement dilation for reduce-window.
+  // TODO (b/31410564): Implement dilation for reduce-window. id:284 gh:285
   if (window_util::HasDilation(window)) {
     return Unimplemented(
         "Dilation for reduce-window not implemented on CPU. See b/31410564.");
@@ -620,7 +620,7 @@ Status IrEmitter::HandleSelectAndScatter(HloInstruction* select_and_scatter) {
   CHECK_EQ(rank, ShapeUtil::Rank(source->shape()));
   CHECK_EQ(rank, window.dimensions_size());
 
-  // TODO(b/31410564): Implement dilation for select-and-scatter.
+  // TODO (b/31410564): Implement dilation for select-and-scatter. id:318 gh:319
   if (window_util::HasDilation(window)) {
     return Unimplemented(
         "Dilation for select-and-scatter not implemented on CPU. "
@@ -1193,7 +1193,7 @@ Status IrEmitter::HandleCrossReplicaSum(HloInstruction* crs) {
     return EmitMemcpy(*crs->operand(0), *crs);
   }
 
-  // TODO(b/33011107): Support cross replica sum on CPU.
+  // TODO (b/33011107): Support cross replica sum on CPU. id:315 gh:316
   return Unimplemented(
       "Cross replica sum is not implemented on CPU. See b/33011107.");
 }
@@ -1419,7 +1419,7 @@ Status IrEmitter::HandleBatchNormTraining(HloInstruction* batch_norm_training) {
 }
 
 Status IrEmitter::HandleBatchNormGrad(HloInstruction* batch_norm_grad) {
-  // TODO(b/62843645) Implement BatchNormGrad on CPU backend.
+  // TODO (b/62843645) Implement BatchNormGrad on CPU backend. id:278 gh:279
   return Unimplemented(
       "BatchNormGrad is not implemented on CPU. See b/62843645.");
 }
@@ -1483,7 +1483,7 @@ IrEmitter::ReductionGenerator IrEmitter::MatchReductionGenerator(
 
   const Shape& root_shape = root_instruction->shape();
   if (ShapeUtil::ElementIsComplex(root_shape)) {
-    // TODO(b/65408531): Complex add could by done via bitcast to <float x [2N]>
+    // TODO (b/65408531): Complex add could by done via bitcast to <float x [2N]> id:334 gh:335
     // Complex multiply would be more challenging. We could perhaps use a
     // strided load to get all reals in a vector, all imags in a vector, or use
     // CreateShuffleVector on a bitcast to float x [2N].
@@ -1762,7 +1762,7 @@ StatusOr<bool> IrEmitter::EmitVectorizedReduce(
       MinimumAlignmentForPrimitiveType(reduce->shape().element_type()));
 
   if (is_reduction_over_minor_dimension) {
-    // TODO(sanjoy): Implement vectorized reduction over the minor dimension.
+    // TODO (sanjoy): Implement vectorized reduction over the minor dimension. id:288 gh:289
     *failure_reason = "reduction over minor dimension not implemented";
     return false;
   }
@@ -1851,7 +1851,7 @@ StatusOr<bool> IrEmitter::EmitVectorizedReduce(
   // may need to peel out an "epilogue" iteration to get the remaining elements
   // in the following case:
   if (innermost_dimension_size % vectorization_factor) {
-    // TODO(b/63775531): Consider using a scalar loop here to save on code size.
+    // TODO (b/63775531): Consider using a scalar loop here to save on code size. id:320 gh:321
     array_index[innermost_dimension] =
         ir_builder_.getInt64(innermost_dimension_size -
                              (innermost_dimension_size % vectorization_factor));
@@ -1957,12 +1957,12 @@ Status IrEmitter::HandleReduce(HloInstruction* reduce) {
 }
 
 Status IrEmitter::HandleSend(HloInstruction* send) {
-  // TODO(b/33942983): Support Send/Recv on CPU.
+  // TODO (b/33942983): Support Send/Recv on CPU. id:317 gh:318
   return Unimplemented("Send is not implemented on CPU. See b/33942983.");
 }
 
 Status IrEmitter::HandleSendDone(HloInstruction* send_done) {
-  // TODO(b/33942983): Support Send/Recv on CPU.
+  // TODO (b/33942983): Support Send/Recv on CPU. id:281 gh:282
   return Unimplemented("Send-done is not implemented on CPU. See b/33942983.");
 }
 
@@ -2127,12 +2127,12 @@ Status IrEmitter::HandleDynamicUpdateSlice(
 }
 
 Status IrEmitter::HandleRecv(HloInstruction* recv) {
-  // TODO(b/33942983): Support Send/Recv on CPU.
+  // TODO (b/33942983): Support Send/Recv on CPU. id:335 gh:336
   return Unimplemented("Recv is not implemented on CPU. See b/33942983.");
 }
 
 Status IrEmitter::HandleRecvDone(HloInstruction* recv_done) {
-  // TODO(b/33942983): Support Send/Recv on CPU.
+  // TODO (b/33942983): Support Send/Recv on CPU. id:290 gh:291
   return Unimplemented("Recv-done is not implemented on CPU. See b/33942983.");
 }
 
@@ -3052,7 +3052,7 @@ Status IrEmitter::EmitMemcpy(const HloInstruction& source,
   llvm::Value* source_value = GetEmittedValueFor(&source);
   llvm::Value* destination_value = GetEmittedValueFor(&destination);
   int64 source_size = ByteSizeOf(source.shape());
-  // TODO(b/63762267): Be more aggressive about specifying alignment.
+  // TODO (b/63762267): Be more aggressive about specifying alignment. id:322 gh:323
   ir_builder_.CreateMemCpy(destination_value, source_value, source_size, 1);
   return Status::OK();
 }

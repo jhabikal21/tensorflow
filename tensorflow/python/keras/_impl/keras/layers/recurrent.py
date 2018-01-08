@@ -723,7 +723,7 @@ class RNN(Layer):
               'State ' + str(index) + ' is incompatible with layer ' +
               self.name + ': expected shape=' + str(
                   (batch_size, dim)) + ', found shape=' + str(value.shape))
-        # TODO(fchollet): consider batch calls to `set_value`.
+        # TODO (fchollet): consider batch calls to `set_value`. id:3037 gh:3038
         K.set_value(state, value)
 
   def get_config(self):

@@ -430,7 +430,7 @@ class FunctionalOpsTest(test.TestCase):
       self.assertAllEqual([0], map_return.get_shape().dims)
       self.assertAllEqual([0], self.evaluate(map_return).shape)
 
-  # TODO(akshayka): this test fails in eager: the iterable is of length 0 so
+  # TODO (akshayka): this test fails in eager: the iterable is of length 0 so id:2363 gh:2364
   # so the body of the while loop never executes
   def testMapEmptyTensor(self):
     with self.test_session():
@@ -451,7 +451,7 @@ class FunctionalOpsTest(test.TestCase):
       y = functional_ops.scan(fn, x, initializer=initializer)
       self.assertAllEqual(y.get_shape(), self.evaluate(y).shape)
 
-  # TODO(akshayka): this test fails in eager: the iterable is of length 0 so
+  # TODO (akshayka): this test fails in eager: the iterable is of length 0 so id:2833 gh:2834
   # so the body of the while loop never executes
   def testScanEmptyTensor(self):
     with self.test_session():

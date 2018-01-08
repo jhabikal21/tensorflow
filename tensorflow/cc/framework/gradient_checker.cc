@@ -25,11 +25,11 @@ limitations under the License.
 namespace tensorflow {
 namespace {
 
-// TODO(andydavis) Support returning relative error (as opposed to max error)
+// TODO (andydavis) Support returning relative error (as opposed to max error) id:63 gh:64
 // between theoretical and numerical jacobians:
 //   fabs(jac_t - jac_n) / max(fabs(jac_t), fabs(jac_n))
 
-// TODO(andydavis) Vectorize and/or multi-thread Jacobian computations if
+// TODO (andydavis) Vectorize and/or multi-thread Jacobian computations if id:62 gh:63
 // performance becomes an issue.
 
 // BaseUnitsForType provides a list of typed unit values for each basis in the
@@ -112,7 +112,7 @@ Status ComputeTheoreticalJacobianTranspose(
   OutputList dys;
   dys.reserve(y_shapes.size());
   for (const auto& y_shape : y_shapes) {
-    // TODO(suharshs): This currently assumes that all y's are the same type.
+    // TODO (suharshs): This currently assumes that all y's are the same type. id:78 gh:79
     dys.push_back(
         ops::Cast(scope, ops::Const(scope, 1.0, y_shape), ys[0].type()));
   }

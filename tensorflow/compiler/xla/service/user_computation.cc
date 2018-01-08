@@ -1700,7 +1700,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
     }
 
     case OpRequest::kCrossReplicaSumRequest: {
-      // TODO(b/33009255): Implmement constant folding for cross replica sum.
+      // TODO (b/33009255): Implmement constant folding for cross replica sum. id:417 gh:418
       *is_functional = false;
       break;
     }
@@ -1721,7 +1721,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
         PureFunctionalVisitor(session_computation, handle, num_parameters,
                               visited, is_functional);
       }
-      // TODO(b/32495713): We aren't checking the to_apply computation itself,
+      // TODO (b/32495713): We aren't checking the to_apply computation itself, id:419 gh:420
       // so we conservatively say that computations containing the Call op
       // cannot be constant.  We cannot set is_functional=false in other similar
       // cases since we're already relying on IsConstant to return true.
@@ -1759,7 +1759,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
         PureFunctionalVisitor(session_computation, handle, num_parameters,
                               visited, is_functional);
       }
-      // TODO(b/32495713): We aren't checking the to_apply computation itself.
+      // TODO (b/32495713): We aren't checking the to_apply computation itself. id:453 gh:454
       break;
     }
 
@@ -1769,7 +1769,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
                             num_parameters, visited, is_functional);
       PureFunctionalVisitor(session_computation, reduce_request.init_value(),
                             num_parameters, visited, is_functional);
-      // TODO(b/32495713): We aren't checking the to_apply computation itself.
+      // TODO (b/32495713): We aren't checking the to_apply computation itself. id:418 gh:419
       break;
     }
 
@@ -1782,7 +1782,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
       PureFunctionalVisitor(session_computation,
                             reduce_window_request.init_value(), num_parameters,
                             visited, is_functional);
-      // TODO(b/32495713): We aren't checking the to_apply computation itself.
+      // TODO (b/32495713): We aren't checking the to_apply computation itself. id:421 gh:422
       break;
     }
 
@@ -1798,7 +1798,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
       PureFunctionalVisitor(session_computation,
                             select_and_scatter_request.init_value(),
                             num_parameters, visited, is_functional);
-      // TODO(b/32495713): We aren't checking the select and scatter
+      // TODO (b/32495713): We aren't checking the select and scatter id:422 gh:423
       // computations themselves.
       break;
     }
@@ -1865,7 +1865,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
       const WhileRequest& while_request = request.request().while_request();
       PureFunctionalVisitor(session_computation, while_request.init(),
                             num_parameters, visited, is_functional);
-      // TODO(b/32495713): We aren't checking the condition and body
+      // TODO (b/32495713): We aren't checking the condition and body id:423 gh:424
       // computations themselves.
       *is_functional = false;
       break;
@@ -1883,7 +1883,7 @@ void PureFunctionalVisitor(const SessionComputation& session_computation,
       PureFunctionalVisitor(session_computation,
                             conditional_request.false_operand(), num_parameters,
                             visited, is_functional);
-      // TODO(b/32495713): We aren't checking the true and false computations
+      // TODO (b/32495713): We aren't checking the true and false computations id:454 gh:455
       // themselves.
       break;
     }

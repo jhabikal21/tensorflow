@@ -36,7 +36,7 @@ std::unique_ptr<GlobalData> MakeFakeDataViaDeviceOrDie(const Shape& shape,
   ComputationBuilder b(
       client,
       tensorflow::strings::StrCat("make_fake_", ShapeUtil::HumanString(shape)));
-  // TODO(b/26811613): Replace this when RNG is supported on all backends.
+  // TODO (b/26811613): Replace this when RNG is supported on all backends. id:241 gh:242
   b.Broadcast(b.ConstantLiteral(Literal::One(shape.element_type())),
               AsInt64Slice(shape.dimensions()));
   Computation computation = b.Build().ConsumeValueOrDie();

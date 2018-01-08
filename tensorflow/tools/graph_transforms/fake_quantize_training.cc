@@ -29,16 +29,16 @@ namespace graph_transforms {
 // Quantization range information is collected in FakeQuantizeWithMinMaxVars
 // ops.
 //
-// TODO(suharshs): Provide instructions on converting the resulting graph for
+// TODO (suharshs): Provide instructions on converting the resulting graph for id:3601 gh:3602
 // inference.
-// TODO(suharshs): Implement this using the GTT rather than calling the old
+// TODO (suharshs): Implement this using the GTT rather than calling the old id:3390 gh:3391
 // prototype function.
 Status FakeQuantizeTraining(const GraphDef& input_graph_def,
                             const TransformFuncContext& context,
                             GraphDef* output_graph_def) {
-  // TODO(suharshs): Make num_bits a parameter.
+  // TODO (suharshs): Make num_bits a parameter. id:3536 gh:3537
   const int32 num_bits = 8;
-  // TODO(suharshs): Make quantization op a parameter?
+  // TODO (suharshs): Make quantization op a parameter? id:2709 gh:2710
   const string quant_op_type = "FakeQuantWithMinMaxVars";
 
   return DoQuantizeTrainingOnGraphDef(input_graph_def, num_bits, quant_op_type,

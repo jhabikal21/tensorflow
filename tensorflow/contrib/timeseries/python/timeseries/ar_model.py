@@ -112,7 +112,7 @@ class ARModel(model.TimeSeriesModel):
             array_ops.zeros(
                 [self.input_window_size, self.num_features], dtype=self.dtype))
 
-  # TODO(allenl,agarwal): Support sampling for AR.
+  # TODO (allenl,agarwal): Support sampling for AR. id:1016 gh:1017
   def random_model_parameters(self, seed=None):
     pass
 
@@ -155,7 +155,7 @@ class ARModel(model.TimeSeriesModel):
   def _create_hidden_stack(self, activation, activation_size):
     activations = []
     for layer_number, layer_size in enumerate(self.hidden_layer_sizes):
-      # TODO(agarwal): Migrate to fully_connected in tf slim
+      # TODO (agarwal): Migrate to fully_connected in tf slim id:2205 gh:2206
       activation = model_utils.fully_connected(
           activation, activation_size, layer_size,
           name="layer_{}".format(layer_number))
@@ -228,7 +228,7 @@ class ARModel(model.TimeSeriesModel):
         math_ops.reduce_prod(array_ops.shape(targets)), loss_op.dtype)
     return loss_op
 
-  # TODO(allenl, agarwal): Consider better ways of warm-starting predictions.
+  # TODO (allenl, agarwal): Consider better ways of warm-starting predictions. id:1008 gh:1009
   def predict(self, features):
     """Computes predictions multiple steps into the future.
 
@@ -368,7 +368,7 @@ class ARModel(model.TimeSeriesModel):
 
   def _process_window(self, features, mode):
     """Compute model outputs on a single window of data."""
-    # TODO(agarwal): Use exogenous features
+    # TODO (agarwal): Use exogenous features id:1600 gh:1601
     times = math_ops.cast(features[TrainEvalFeatures.TIMES], dtypes.int64)
     values = math_ops.cast(features[TrainEvalFeatures.VALUES], dtype=self.dtype)
     original_values = values

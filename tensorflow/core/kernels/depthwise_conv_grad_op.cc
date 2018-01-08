@@ -663,7 +663,7 @@ static void ComputeBackpropFilter(const DepthwiseArgs& args,
   const bool fast_path = base_output_index <= output_last_vector_index;
 
   if (fast_path) {
-    // TODO(andydavis) Process multiple inputs in 'input_buffer' so we can
+    // TODO (andydavis) Process multiple inputs in 'input_buffer' so we can id:1560 gh:1561
     // amortize the cost of 'output_buffer' load store in the loop below.
     for (int i = 0; i < output_vectorized_size; i += kPacketSize) {
       // Load vector register from 'out_backprop'.

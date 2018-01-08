@@ -133,7 +133,7 @@ double AddStep(int64 step, const string* graph, const string* run_meta,
   tf_stat->AddGraph(std::move(graph_ptr));
 
   CHECK(run_meta && !run_meta->empty());
-  // TODO(xpan): Better error handling.
+  // TODO (xpan): Better error handling. id:2856 gh:2857
   std::unique_ptr<RunMetadata> run_meta_ptr(new RunMetadata());
   run_meta_ptr->ParseFromString(*run_meta);
   tf_stat->AddRunMeta(step, std::move(run_meta_ptr));
@@ -181,7 +181,7 @@ string PrintModelAnalysis(const string* graph, const string* run_meta,
     op_log_ptr->ParseFromString(*op_log);
   }
 
-  // TODO(xpan): Maybe need to init the checkpoint reader?
+  // TODO (xpan): Maybe need to init the checkpoint reader? id:1802 gh:1803
   std::unique_ptr<checkpoint::CheckpointReader> ckpt_reader;
 
   TFStats tf_stats(std::move(graph_ptr), std::move(run_meta_ptr),

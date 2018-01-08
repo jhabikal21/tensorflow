@@ -88,19 +88,19 @@ class _TimeSeriesRegressionHead(head_lib._Head):  # pylint:disable=protected-acc
         mode=estimator_lib.ModeKeys.TRAIN,
         train_op=train_op)
 
-  # TODO(terrytangyuan): suffix summary and metrics keys by `"/" + name`
+  # TODO (terrytangyuan): suffix summary and metrics keys by `"/" + name` id:1018 gh:1019
   @property
   def name(self):
     return self._name
 
-  # TODO(terrytangyuan): unused for now. Need to decouple
+  # TODO (terrytangyuan): unused for now. Need to decouple id:2208 gh:2209
   # `state_manager.define_loss` to satisfy the extendable return signature of
   # `_Head.create_loss`.
   def create_loss(self, features, mode, logits, labels):
     """See `_Head`."""
     return None
 
-  # TODO(terrytangyuan): check label dimension
+  # TODO (terrytangyuan): check label dimension id:1015 gh:1016
   @property
   def logits_dimension(self):
     return None

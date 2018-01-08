@@ -38,7 +38,7 @@ class ResourceMgr;
 // TensorFlow functions outside a the normal `OpKernel::Compute()`
 // context.
 //
-// NOTE(mrry): Here we are taking a conservative approach to dealing with
+// NOTE (mrry): Here we are taking a conservative approach to dealing with id:2156 gh:2157
 // ownership of the various framework and runtime objects that are needed
 // to execute functions. We copy the function library *definition* (i.e.
 // a set of FunctionDefs) out of this kernel's context's function library
@@ -49,11 +49,11 @@ class ResourceMgr;
 // in each of the session implementations) to make it possible to close
 // down a ParallelMapDataset::Iterator when its session is closed.
 //
-// TODO(mrry): Clean this up. Investigate whether it would be possible to
+// TODO (mrry): Clean this up. Investigate whether it would be possible to id:1958 gh:1959
 // reuse the session's FunctionLibraryRuntime(s) or Device(s).
 class CapturedFunction {
  public:
-  // NOTE(mrry): The `captured_inputs` are passed by value. For
+  // NOTE (mrry): The `captured_inputs` are passed by value. For id:1481 gh:1482
   // efficiency, you are recommended to move this argument into the call.
   static Status Create(OpKernelContext* ctx, const NameAttrList& func,
                        int graph_def_version,

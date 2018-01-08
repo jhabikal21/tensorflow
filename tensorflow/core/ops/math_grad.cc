@@ -374,7 +374,7 @@ REGISTER_OP_GRADIENT("Conj", ConjGrad);
 
 // Cwise binary ops
 //
-// TODO(zhifengc): This can be arrange as a function in the standard
+// TODO (zhifengc): This can be arrange as a function in the standard id:2823 gh:2824
 // library.
 Status GradForBinaryCwise(FunctionDef* g, std::vector<FDH::Node> body) {
   // clang-format off
@@ -575,8 +575,8 @@ REGISTER_OP_GRADIENT("Select", SelectGrad);
 
 // Reduction ops
 //
-// TODO(zhifengc): This helper is pretty ugly. Do something better.
-// TODO(zhifengc): This can be arrange as a function in the standard library.
+// TODO (zhifengc): This helper is pretty ugly. Do something better. id:1761 gh:1762
+// TODO (zhifengc): This can be arrange as a function in the standard library. id:3000 gh:3001
 Status GradForReductionOp(FunctionDef* g, std::vector<FDH::Node> body) {
   // Shape manipulation nodes.
 

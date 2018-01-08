@@ -271,7 +271,7 @@ class StateSpaceModel(model.SequentialTimeSeriesModel):
       The computed power sum, with shape [..., state dimension, state
       dimension].
     """
-    # TODO(allenl): This general case should use cumsum if transition_to_powers
+    # TODO (allenl): This general case should use cumsum if transition_to_powers id:1615 gh:1616
     # can be computed in constant time (important for correlated ensembles,
     # where transition_power_noise_accumulator special cases cannot be
     # aggregated from member models).
@@ -749,7 +749,7 @@ class StateSpaceModel(model.SequentialTimeSeriesModel):
           dtype=self.dtype,
           trainable=self._configuration.trainable_start_state)
 
-  # TODO(allenl): It would be nice if the generation were done with TensorFlow
+  # TODO (allenl): It would be nice if the generation were done with TensorFlow id:1414 gh:1415
   # ops, and if the model parameters were somehow set instead of being passed
   # around in a dictionary. Maybe unconditional generation should be through a
   # special set of initializers?
@@ -970,7 +970,7 @@ class StateSpaceModel(model.SequentialTimeSeriesModel):
 
   def get_start_state(self):
     """Defines and returns a non-batched prior state and covariance."""
-    # TODO(allenl,vitalyk): Add an option for non-Gaussian priors once extended
+    # TODO (allenl,vitalyk): Add an option for non-Gaussian priors once extended id:1028 gh:1029
     # Kalman filtering is implemented (ideally any Distribution object).
     if self._input_statistics is not None:
       start_time = self._input_statistics.start_time
@@ -1136,11 +1136,11 @@ class StateSpaceIndependentEnsemble(StateSpaceEnsemble):
         name="ensemble_state_transition_noise")
 
 
-# TODO(allenl): It would be nice to have replicated feature models which are
+# TODO (allenl): It would be nice to have replicated feature models which are id:2230 gh:2231
 # identical batched together to reduce the graph size.
-# TODO(allenl): Support for sharing M independent models across N features, with
+# TODO (allenl): Support for sharing M independent models across N features, with id:1033 gh:1034
 # N > M.
-# TODO(allenl): Stack component prior covariances while allowing cross-model
+# TODO (allenl): Stack component prior covariances while allowing cross-model id:1735 gh:1736
 # correlations to be learned (currently a full covariance prior is learned, but
 # custom component model covariances are not used).
 class StateSpaceCorrelatedFeaturesEnsemble(StateSpaceEnsemble):

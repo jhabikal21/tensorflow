@@ -110,7 +110,7 @@ Status CpuCastOp::Prepare() {
     work_ = GetCpuCastFromBfloat(dst_dtype_);
   }
 
-  // TODO(sesse): If CPU casting to or from Eigen::half ever becomes a
+  // TODO (sesse): If CPU casting to or from Eigen::half ever becomes a id:1906 gh:1907
   // bottleneck, we could probably implement specialized support for
   // vectorized versions (not the least based on F16C for Haswell
   // or newer).

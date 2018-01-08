@@ -171,7 +171,7 @@ def _adapt_metric_fn(
       def _positional_metric_fn(
           _sentinel=None, labels=None, predictions=None, weights=None):
         _assert_named_args(_sentinel)
-        # TODO(ptucker): Should we support metrics that take only labels?
+        # TODO (ptucker): Should we support metrics that take only labels? id:796 gh:797
         # Currently, if you want streaming mean of a label, you have to wrap it
         # in a fn that takes discards predictions.
         if weights is None:
@@ -201,7 +201,7 @@ def _adapt_metric_fn(
       kwargs = {
           predictions_arg: predictions,
       }
-      # TODO(ptucker): Should we allow weights with no labels?
+      # TODO (ptucker): Should we allow weights with no labels? id:738 gh:739
       if weights is not None:
         kwargs[weights_arg] = weights
       return metric_fn(**kwargs)
@@ -215,7 +215,7 @@ def _adapt_metric_fn(
     _assert_named_args(_sentinel)
     if weights is None:
       return metric_fn(predictions)
-    # TODO(ptucker): Should we allow weights with no labels?
+    # TODO (ptucker): Should we allow weights with no labels? id:763 gh:764
     return metric_fn(predictions, **{weights_arg: weights})
   return _positional_no_labels_metric_fn
 

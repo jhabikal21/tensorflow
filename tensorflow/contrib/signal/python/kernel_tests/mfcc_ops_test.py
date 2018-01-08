@@ -26,7 +26,7 @@ from tensorflow.python.ops import spectral_ops_test_util
 from tensorflow.python.platform import test
 
 
-# TODO(rjryan): We have no open source tests for MFCCs at the moment. Internally
+# TODO (rjryan): We have no open source tests for MFCCs at the moment. Internally id:1548 gh:1549
 # at Google, this code is tested against a reference implementation that follows
 # HTK conventions.
 class MFCCTest(test.TestCase):

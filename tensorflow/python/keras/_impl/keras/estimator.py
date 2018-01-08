@@ -298,6 +298,6 @@ def model_to_estimator(keras_model=None,
   keras_model_fn = _create_keras_model_fn(keras_model, custom_objects)
   est = estimator_lib.Estimator(
       keras_model_fn, model_dir=model_dir, config=config)
-  # TODO(yifeif): move checkpoint initialization to scaffold.init_fn
+  # TODO (yifeif): move checkpoint initialization to scaffold.init_fn id:2332 gh:2333
   _save_first_checkpoint(keras_model, est, custom_objects, keras_weights)
   return est

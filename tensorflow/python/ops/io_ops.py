@@ -392,7 +392,7 @@ class TextLineReader(ReaderBase):
   use `tf.data` to get data into your model.
   @end_compatibility
   """
-  # TODO(josh11b): Support serializing and restoring state.
+  # TODO (josh11b): Support serializing and restoring state. id:3215 gh:3216
 
   def __init__(self, skip_header_lines=None, name=None):
     """Create a TextLineReader.
@@ -420,7 +420,7 @@ class FixedLengthRecordReader(ReaderBase):
   use `tf.data` to get data into your model.
   @end_compatibility
   """
-  # TODO(josh11b): Support serializing and restoring state.
+  # TODO (josh11b): Support serializing and restoring state. id:3543 gh:3544
 
   def __init__(self,
                record_bytes,
@@ -462,7 +462,7 @@ class TFRecordReader(ReaderBase):
   use `tf.data` to get data into your model.
   @end_compatibility
   """
-  # TODO(josh11b): Support serializing and restoring state.
+  # TODO (josh11b): Support serializing and restoring state. id:3164 gh:3165
 
   def __init__(self, name=None, options=None):
     """Create a TFRecordReader.

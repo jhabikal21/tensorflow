@@ -83,7 +83,7 @@ class TimeSeriesModel(object):
     self._stats_means = None
     self._stats_sigmas = None
 
-  # TODO(allenl): Move more of the generic machinery for generating and
+  # TODO (allenl): Move more of the generic machinery for generating and id:1607 gh:1608
   # predicting into TimeSeriesModel, and possibly share it between generate()
   # and predict()
   def generate(self, number_of_series, series_length,
@@ -195,7 +195,7 @@ class TimeSeriesModel(object):
         batch_size=array_ops.shape(features[TrainEvalFeatures.TIMES])[0])
     return self.get_batch_loss(features=features, mode=mode, state=start_state)
 
-  # TODO(vitalyk,allenl): Better documentation surrounding options for chunking,
+  # TODO (vitalyk,allenl): Better documentation surrounding options for chunking, id:1408 gh:1409
   # references to papers, etc.
   @abc.abstractmethod
   def get_start_state(self):
@@ -314,7 +314,7 @@ class TimeSeriesModel(object):
     return exogenous_regressors
 
 
-# TODO(allenl): Add a superclass of SequentialTimeSeriesModel which fuses
+# TODO (allenl): Add a superclass of SequentialTimeSeriesModel which fuses id:1024 gh:1025
 # filtering/prediction/exogenous into one step, and move looping constructs to
 # that class.
 class SequentialTimeSeriesModel(TimeSeriesModel):
@@ -472,7 +472,7 @@ class SequentialTimeSeriesModel(TimeSeriesModel):
     """
     pass
 
-  # TODO(allenl): Move regularization to a separate object (optional and
+  # TODO (allenl): Move regularization to a separate object (optional and id:2220 gh:2221
   # configurable)
   def _loss_additions(self, times, values, mode):
     """Additions to per-observation normalized loss, e.g. regularization.

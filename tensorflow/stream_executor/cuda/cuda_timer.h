@@ -61,7 +61,7 @@ class CUDATimer : public internal::TimerInterface {
   float GetElapsedMilliseconds() const;
 
   // See perftools::gputools::Timer::Microseconds().
-  // TODO(leary) make this into an error code interface...
+  // TODO (leary) make this into an error code interface... id:3585 gh:3586
   uint64 Microseconds() const override {
     return GetElapsedMilliseconds() * 1e3;
   }

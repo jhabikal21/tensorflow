@@ -206,7 +206,7 @@ def _get_default_private_map():
 
 # Exclude members of some libraries.
 def _get_default_do_not_descend_map():
-  # TODO(wicke): Shrink this list once the modules get sealed.
+  # TODO (wicke): Shrink this list once the modules get sealed. id:3379 gh:3378
   return {
       'tf': ['cli', 'lib', 'wrappers'],
       'tf.contrib': [

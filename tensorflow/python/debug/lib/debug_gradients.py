@@ -72,7 +72,7 @@ class GradientsDebugger(object):
   differentiation algorithm, i.e., @{tf.gradients} and optimizer classes that
   use it.
   """
-  # TODO(cais): Add examples code in the doc string?
+  # TODO (cais): Add examples code in the doc string? id:2892 gh:2893
 
   def __init__(self, y_tensor=None):
     """Constructor of GradientsDebugger.
@@ -152,8 +152,8 @@ class GradientsDebugger(object):
       ValueError: If an op with name that duplicates the gradient-debugging op
         already exists in the graph (highly unlikely).
     """
-    # TODO(cais): Allow overriding gradient.
-    # TODO(cais): Implement value_stack.
+    # TODO (cais): Allow overriding gradient. id:3130 gh:3131
+    # TODO (cais): Implement value_stack. id:2236 gh:2238
     grad_debug_op_name = _tensor_to_grad_debug_op_name(input_tensor, self._uuid)
     # pylint: disable=protected-access
     debug_grad_identity = gen_array_ops._debug_gradient_identity(
@@ -362,7 +362,7 @@ def clear_gradient_debuggers():
 @ops.RegisterGradient("DebugGradientIdentity")
 def _identify_gradient_grad(op, dy):
   """Gradient function for the DebugIdentity op."""
-  # TODO(cais): Allow overriding gradient.
+  # TODO (cais): Allow overriding gradient. id:2696 gh:2697
   grad_debugger_uuid, orig_tensor_name = _parse_grad_debug_op_name(op.name)
   grad_debugger = _gradient_debuggers[grad_debugger_uuid]
   grad_debugger.register_gradient_tensor(orig_tensor_name, dy)
@@ -395,7 +395,7 @@ def gradient_values_from_dump(grad_debugger, x_tensor, dump):
       does not match the `tf.Graph` object of the `dump`.
     TypeError: If `x_tensor` is not a `tf.Tensor`, `tf.Variable` or `str`.
   """
-  # TODO(cais): Use this method in LocalCLIDebugWrapperSession to present the
+  # TODO (cais): Use this method in LocalCLIDebugWrapperSession to present the id:3170 gh:3171
   # gradient tensors to the TFDBG CLI.
 
   # If possible, verify that the Python graph of the dump and that of this

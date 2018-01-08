@@ -73,7 +73,7 @@ class DirectSession : public Session {
                            const std::vector<string>& target_nodes,
                            std::vector<Tensor>* outputs) override;
 
-  // NOTE: Experimental and subject to change.
+  // NOTE: Experimental and subject to change. id:1773 gh:1774
   ::tensorflow::Status Run(const ::tensorflow::RunOptions& run_options,
                            const NamedTensorList& inputs,
                            const std::vector<string>& output_names,
@@ -81,7 +81,7 @@ class DirectSession : public Session {
                            std::vector<Tensor>* outputs,
                            RunMetadata* run_metadata) override;
 
-  // NOTE: PRunSetup and PRun are added to support partial execution. This
+  // NOTE: PRunSetup and PRun are added to support partial execution. This id:1562 gh:1563
   // feature is experimental and subject to change.
   ::tensorflow::Status PRunSetup(const std::vector<string>& input_names,
                                  const std::vector<string>& output_names,
@@ -128,7 +128,7 @@ class DirectSession : public Session {
   // 'flib_def' is the function library used by graphs in 'items'.
   // 'proc_flr' is the collection of FunctionLibraryRuntime objects, one per
   // device.
-  // TODO(phawkins): currently partitions always share the same function
+  // TODO (phawkins): currently partitions always share the same function id:1065 gh:1066
   // library. Consider giving each partition its own function library to enable
   // per-partition rewrites.
   struct ExecutorsAndKeys {

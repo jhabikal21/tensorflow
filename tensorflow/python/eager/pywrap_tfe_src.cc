@@ -539,7 +539,7 @@ static PyTypeObject TFE_Py_Tape_Type = {
 };
 
 // xcode 7 doesn't define thread_local, so for compatibility we implement our
-// own. TODO(apassos) remove once we can deprecate xcode 7.
+// own. TODO (apassos) remove once we can deprecate xcode 7. id:2263 gh:2264
 #ifndef __APPLE__
 std::vector<TFE_Py_Tape*>* GetTapeStack() {
   thread_local std::vector<TFE_Py_Tape*> tape_stack;
@@ -633,7 +633,7 @@ PyObject* TFE_Py_TapeStackShouldRecord(PyObject* tensors) {
     return nullptr;
   }
   int len = PySequence_Fast_GET_SIZE(seq);
-  // TODO(apassos) consider not building a list and changing the API to check
+  // TODO (apassos) consider not building a list and changing the API to check id:2730 gh:2731
   // each tensor individually.
   std::vector<tensorflow::int64> tensor_ids;
   tensor_ids.reserve(len);

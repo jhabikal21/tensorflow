@@ -278,7 +278,7 @@ Status SymbolicGradientBuilder::Initialize() {
     input_nodes_.insert({inputs_[i], i});
   }
 
-  // TODO(andydavis) Consider a more efficient data structure for `pending_` to
+  // TODO (andydavis) Consider a more efficient data structure for `pending_` to id:92 gh:93
   // handle computing gradients over small subgraphs from a very large graph.
   pending_.resize(scope_.graph()->num_node_ids(), 0);
   {
@@ -363,7 +363,7 @@ Status SymbolicGradientBuilder::SumGradients(const Output& src, Output* grad) {
     *grad = grads_to_keep[0];
   } else {
     // Otherwise, adds backprop-ed gradients.
-    // TODO(andydavis) Use a better accumulator here.
+    // TODO (andydavis) Use a better accumulator here. id:106 gh:107
     *grad = ops::AddN(scope_, grads_to_keep);
   }
 
@@ -389,10 +389,10 @@ Status SymbolicGradientBuilder::CallGradFunction(
 
 Status SymbolicGradientBuilder::ProcessWhileLoop(Node* exit_node,
                                                  const Output& summed_grads) {
-  // TODO(skyewm): detect second-order gradient and return bad status
-  // TODO(skyewm): handle (or at least detect) nested while loops
+  // TODO (skyewm): detect second-order gradient and return bad status id:66 gh:67
+  // TODO (skyewm): handle (or at least detect) nested while loops id:65 gh:66
 
-  // TODO(skyewm): handle NoGradient in while loop
+  // TODO (skyewm): handle NoGradient in while loop id:82 gh:83
   if (summed_grads == NoGradient()) {
     return errors::Unimplemented(
         "Missing gradient into while loop not yet implemented");
@@ -409,7 +409,7 @@ Status SymbolicGradientBuilder::ProcessWhileLoop(Node* exit_node,
 
   // Wait until we have all exit nodes' backprops collected before processing
   // the while loop.
-  // TODO(skyewm): what if not all the exit nodes are reachable?
+  // TODO (skyewm): what if not all the exit nodes are reachable? id:97 gh:98
   if (backprops.size() < while_ctx->exit_nodes().size()) return Status::OK();
 
   // We've seen all the exit nodes for this loop and have collected all the
@@ -504,20 +504,20 @@ Status SymbolicGradientBuilder::AddGradients() {
       // The outputs of 'n' returned a mixture of valid gradients and
       // 'NoGradient'. Therefore, we need to add 'ZerosLike' nodes for each
       // 'NoGradient' output before we call the gradient function for 'n'.
-      // TODO(andydavis) If static shapes are known, replace 'ZerosLike' with
+      // TODO (andydavis) If static shapes are known, replace 'ZerosLike' with id:110 gh:111
       // zero-filled Constant node of appropriate shape.
       for (const int dy_index : no_grad_dy_indices) {
         dy[dy_index] = ops::ZerosLike(scope_, Output(n, dy_index));
       }
     }
 
-    // TODO(andydavis) Add option to encapsulate grad function in
+    // TODO (andydavis) Add option to encapsulate grad function in id:69 gh:70
     // SymbolicGradientOp (as opposed to inlining into the graph).
     std::vector<Output> dx;
     TF_RETURN_IF_ERROR(CallGradFunction(Operation(n), dy, &dx));
 
     // Backprop along the in edges.
-    // TODO(andydavis) Find cleaner way to map each grad output returned by
+    // TODO (andydavis) Find cleaner way to map each grad output returned by id:68 gh:69
     // gradient function to the src node/output to which it should be
     // backproped. Maybe grad functions can return a vector of Output pairs to
     // make this association explicit.

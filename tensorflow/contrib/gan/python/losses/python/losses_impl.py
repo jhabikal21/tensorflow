@@ -832,7 +832,7 @@ def _validate_args(losses_list, weight_factor, gradient_ratio):
         '`weight_factor` and `gradient_ratio` cannot both be specified.')
 
 
-# TODO(joelshor): Add ability to pass in gradients, to avoid recomputing.
+# TODO (joelshor): Add ability to pass in gradients, to avoid recomputing. id:949 gh:950
 def combine_adversarial_loss(main_loss,
                              adversarial_loss,
                              weight_factor=None,

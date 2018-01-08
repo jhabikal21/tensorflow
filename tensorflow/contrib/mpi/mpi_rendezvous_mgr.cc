@@ -158,7 +158,7 @@ void MPIRendezvousMgr::AddRequest(RecvTensorRequest request,
       const Status& status, const Rendezvous::Args& send_args,
       const Rendezvous::Args& recv_args, const Tensor& val, bool is_dead,
       MPISendTensorCall* mpi_send_call) {
-    // TODO(jbedorf) this should be a loop over max size
+    // TODO (jbedorf) this should be a loop over max size id:1507 gh:1508
     CHECK(mpi_send_call->mRes_.ByteSize() < INT_MAX)
         << "Buffer too large for single transfer";
     MPI_CHECK(MPI_Alloc_mem(mpi_send_call->mRes_.ByteSize(), MPI_INFO_NULL,
@@ -181,7 +181,7 @@ void MPIRendezvousMgr::AddRequest(RecvTensorRequest request,
       // here to get the data on the host.
       // if(src_dev->tensorflow_gpu_device_info()) //memcpy to send_buffer2_
 
-      // TODO(jbedorf)  this should be a loop over max size
+      // TODO (jbedorf)  this should be a loop over max size id:1273 gh:1274
       MPI_CHECK(MPI_Isend(temp, tensor_size, MPI_CHAR, mpi_dst, TAG_SENDTENSOR2,
                           MPI_COMM_WORLD, &mpi_send_call->msg2_));
       mpi_send_call->done2_ = 0;

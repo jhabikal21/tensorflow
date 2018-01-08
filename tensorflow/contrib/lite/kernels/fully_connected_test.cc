@@ -118,7 +118,7 @@ static float fully_connected_golden_output[] = {
 
 class BaseFullyConnectedOpModel : public SingleOpModel {
  public:
-  // TODO(ahentz): test different activation types too.
+  // TODO (ahentz): test different activation types too. id:1983 gh:1984
   BaseFullyConnectedOpModel(int units, int batches, const TensorData& input,
                             const TensorData& output = {TensorType_FLOAT32})
       : batches_(batches), units_(units) {
@@ -208,7 +208,7 @@ class QuantizedFullyConnectedOpModel : public BaseFullyConnectedOpModel {
   }
 };
 
-// TODO(ahentz): add more small tests like this one, focused on making sure the
+// TODO (ahentz): add more small tests like this one, focused on making sure the id:801 gh:802
 // calculations are correct.
 TEST(FullyConnectedOpTest, SimpleTest) {
   FloatFullyConnectedOpModel m(3, 2, {TensorType_FLOAT32, {2, 10}});
@@ -312,7 +312,7 @@ TEST(FullyConnectedOpTest, SimpleTest4dInputQuantized) {
   EXPECT_THAT(m.GetOutput(), ElementsAre(151, 152, 153, 185, 186, 187));
 }
 
-// TODO(ahentz): Reconsider this test. Having arbitrary weights makes it hard
+// TODO (ahentz): Reconsider this test. Having arbitrary weights makes it hard id:1433 gh:1434
 // to debug errors and doesn't necessarily test all the important details.
 TEST(FullyConnectedOpTest, BlackBoxTest) {
   FloatFullyConnectedOpModel m(16, 2, {TensorType_FLOAT32, {2, 8}});
@@ -347,7 +347,7 @@ TEST(FullyConnectedOpTest, BlackBoxTest) {
                                   sizeof(float) /
                                   (m.input_size() * m.num_batches());
   for (int i = 0; i < input_sequence_size; i++) {
-    // TODO(ahentz): This is what the original test was doing: two equal
+    // TODO (ahentz): This is what the original test was doing: two equal id:1170 gh:1171
     // batches per invocation. We could instead use two different batches.
     float* batch_start = fully_connected_input + i * m.input_size();
     float* batch_end = batch_start + m.input_size();

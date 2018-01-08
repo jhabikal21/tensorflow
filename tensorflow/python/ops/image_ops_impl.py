@@ -39,17 +39,17 @@ from tensorflow.python.ops import variables
 
 
 ops.NotDifferentiable('RandomCrop')
-# TODO(b/31222613): This op may be differentiable, and there may be
+# TODO (b/31222613): This op may be differentiable, and there may be id:3387 gh:3388
 # latent bugs here.
 ops.NotDifferentiable('RGBToHSV')
-# TODO(b/31222613): This op may be differentiable, and there may be
+# TODO (b/31222613): This op may be differentiable, and there may be id:2524 gh:2525
 # latent bugs here.
 ops.NotDifferentiable('HSVToRGB')
 ops.NotDifferentiable('DrawBoundingBoxes')
 ops.NotDifferentiable('SampleDistortedBoundingBox')
 ops.NotDifferentiable('SampleDistortedBoundingBoxV2')
-# TODO(bsteiner): Implement the gradient function for extract_glimpse
-# TODO(b/31222613): This op may be differentiable, and there may be
+# TODO (bsteiner): Implement the gradient function for extract_glimpse id:3208 gh:3209
+# TODO (b/31222613): This op may be differentiable, and there may be id:3541 gh:3542
 # latent bugs here.
 ops.NotDifferentiable('ExtractGlimpse')
 ops.NotDifferentiable('NonMaxSuppression')
@@ -756,7 +756,7 @@ def resize_images(images,
     images = ops.convert_to_tensor(images, name='images')
     if images.get_shape().ndims is None:
       raise ValueError('\'images\' contains no shape.')
-    # TODO(shlens): Migrate this functionality to the underlying Op's.
+    # TODO (shlens): Migrate this functionality to the underlying Op's. id:3159 gh:3160
     is_batch = True
     if images.get_shape().ndims == 3:
       is_batch = False
@@ -806,7 +806,7 @@ def resize_images(images,
     else:
       raise ValueError('Resize method is not implemented.')
 
-    # NOTE(mrry): The shape functions for the resize ops cannot unpack
+    # NOTE (mrry): The shape functions for the resize ops cannot unpack id:3391 gh:3392
     # the packed values in `new_size`, so set the shape here.
     images.set_shape([None, new_height_const, new_width_const, None])
 

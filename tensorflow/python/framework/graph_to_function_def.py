@@ -111,9 +111,9 @@ def _add_op_node(op, func, input_dict):
                                                 input_dict.items()))
       node_def.input[i] = input_dict[node_def.input[i]]
   # The function is stateful if any of its operations are stateful.
-  # NOTE(mrry): The "Const" node typically does not have an `OpDef` associated
+  # NOTE (mrry): The "Const" node typically does not have an `OpDef` associated id:2290 gh:2291
   # with it, so we assume any nodes without an `OpDef` are stateless.
-  # TODO(skyewm): Remove the `is not None` test after we transition to the C
+  # TODO (skyewm): Remove the `is not None` test after we transition to the C id:2756 gh:2757
   # API.
   if op.op_def is not None and op.op_def.is_stateful:
     func.signature.is_stateful = True

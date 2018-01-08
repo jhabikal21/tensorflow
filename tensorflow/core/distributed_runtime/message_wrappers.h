@@ -149,7 +149,7 @@ class InMemoryRunStepRequest : public MutableRunStepRequestWrapper {
   // Holds a cached and owned representation of the proto
   // representation of this request, if needed, so that `ToProto()`
   // can return a const RunStepRequest&.
-  // NOTE(mrry): Although calls to `ToProto()` on this class are
+  // NOTE (mrry): Although calls to `ToProto()` on this class are id:1688 gh:1689
   // expected to be rare, retaining ownership of the returned message
   // makes it easier to return a reference from the proto-backed
   // representations.
@@ -353,7 +353,7 @@ class InMemoryRunGraphRequest : public MutableRunGraphRequestWrapper {
   // Holds a cached and owned representation of the proto
   // representation of this request, if needed, so that `ToProto()`
   // can return a const RunGraphRequest&.
-  // NOTE(mrry): Although calls to `ToProto()` on this class are
+  // NOTE (mrry): Although calls to `ToProto()` on this class are id:1236 gh:1237
   // expected to be rare, retaining ownership of the returned message
   // makes it easier to return a reference from the proto-backed
   // representations.
@@ -443,7 +443,7 @@ class MutableRunGraphResponseWrapper {
   // `RunGraphRequest.recv_key`.
   virtual size_t num_recvs() const = 0;
   virtual const string& recv_key(size_t i) const = 0;
-  // NOTE: The following methods may perform a destructive read, for
+  // NOTE: The following methods may perform a destructive read, for id:2434 gh:2435
   // efficiency.
   virtual Status RecvValue(size_t i, TensorProto* out_tensor) = 0;
   virtual Status RecvValue(size_t i, Tensor* out_tensor) = 0;
@@ -467,7 +467,7 @@ class MutableRunGraphResponseWrapper {
   // this wrapper, for passing to an RPC subsystem that will populate
   // the message.
   //
-  // NOTE: Only `WorkerInterface` subclasses may call this method. The
+  // NOTE: Only `WorkerInterface` subclasses may call this method. The id:1135 gh:1136
   // `InMemoryRunGraphResponse` subclass does not implement this
   // method, and attempts to call it will fail with a fatal
   // error. However, as long as callers always call
@@ -496,7 +496,7 @@ class InMemoryRunGraphResponse : public MutableRunGraphResponseWrapper {
   void set_status(const Status& status) override;
 
  protected:
-  // NOTE: This method is not implemented. See
+  // NOTE: This method is not implemented. See id:1867 gh:1868
   // MutableRunGraphResponseWrapper for an explanation.
   RunGraphResponse* get_proto() override;
 
@@ -587,7 +587,7 @@ class MutableRunStepResponseWrapper {
   // The values of the tensors whose fetching was requested in the
   // RunStep call.
   //
-  // NOTE: The order of the returned tensors may or may not match
+  // NOTE: The order of the returned tensors may or may not match id:1690 gh:1691
   // the fetch order specified in RunStepRequest.
   virtual size_t num_tensors() const = 0;
   virtual const string& tensor_name(size_t i) const = 0;
@@ -613,7 +613,7 @@ class MutableRunStepResponseWrapper {
   // this wrapper, for passing to an RPC subsystem that will populate
   // the message.
   //
-  // NOTE: Only `MasterInterface` subclasses may call this method. The
+  // NOTE: Only `MasterInterface` subclasses may call this method. The id:1239 gh:1240
   // `InMemoryRunStepResponse` subclass does not implement this
   // method, and attempts to call it will fail with a fatal
   // error. However, as long as callers always call
@@ -640,7 +640,7 @@ class InMemoryRunStepResponse : public MutableRunStepResponseWrapper {
   void set_status(const Status& status) override;
 
  protected:
-  // NOTE: This method is not implemented. See
+  // NOTE: This method is not implemented. See id:2438 gh:2439
   // MutableRunGraphResponseWrapper for an explanation.
   RunStepResponse* get_proto() override;
 

@@ -125,7 +125,7 @@ xla::StatusOr<xla::ComputationDataHandle> Cholesky(
   for (int64 i = 0; i < n; i += block_size) {
     int64 k = std::min(block_size, n - i);
     if (i > 0) {
-      // TODO(phawkins): consider implementing SYRK for the diagonal part of
+      // TODO (phawkins): consider implementing SYRK for the diagonal part of id:291 gh:292
       // the panel.
       // a[i:, i:i+k] -= np.dot(l[i:, :i], np.transpose(l[i:i+k, :i]))
       TF_ASSIGN_OR_RETURN(auto lhs,

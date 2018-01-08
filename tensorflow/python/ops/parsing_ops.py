@@ -206,7 +206,7 @@ def _features_to_raw_params(features, types):
   dense_defaults = collections.OrderedDict()
   dense_shapes = []
   if features:
-    # NOTE: We iterate over sorted keys to keep things deterministic.
+    # NOTE: We iterate over sorted keys to keep things deterministic. id:3434 gh:3435
     for key in sorted(features.keys()):
       feature = features[key]
       if isinstance(feature, VarLenFeature):
@@ -1199,7 +1199,7 @@ def decode_csv(records, record_defaults, field_delim=",",
     A list of `Tensor` objects. Has the same type as `record_defaults`.
     Each tensor will have the same shape as records.
   """
-  # TODO(martinwicke), remove the wrapper when new Python API generator is done.
+  # TODO (martinwicke), remove the wrapper when new Python API generator is done. id:2560 gh:2561
   return gen_parsing_ops._decode_csv(
       records=records, record_defaults=record_defaults,
       field_delim=field_delim, use_quote_delim=use_quote_delim,
@@ -1207,7 +1207,7 @@ def decode_csv(records, record_defaults, field_delim=",",
   # pylint: enable=protected-access
 
 
-# TODO(b/70890287): Combine the implementation of this op and
+# TODO (b/70890287): Combine the implementation of this op and id:3256 gh:3257
 # `parse_single_example()` after 1/10/2018.
 def parse_single_example_v2(serialized, features, name=None):
   # pylint: disable=line-too-long

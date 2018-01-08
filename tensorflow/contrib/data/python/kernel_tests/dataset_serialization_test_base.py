@@ -40,7 +40,7 @@ class DatasetSerializationTestBase(test.TestCase):
   def tearDown(self):
     self._delete_ckpt()
 
-  # TODO(b/70988345): Support native `tf.SparseTensor` objects and get rid of
+  # TODO (b/70988345): Support native `tf.SparseTensor` objects and get rid of id:528 gh:529
   # `sparse_tensors` argument.
   def run_core_tests(self, ds_fn1, ds_fn2, num_outputs, sparse_tensors=False):
     """Runs the core tests.

@@ -114,14 +114,14 @@ Status IrEmitter::HandleGetTupleElement(HloInstruction* get_tuple_element) {
       *get_tuple_element,
       llvm_ir::EmitGetTupleElement(
           get_tuple_element->shape(), get_tuple_element->tuple_index(),
-          // TODO(b/26344050): tighten the alignment here
+          // TODO (b/26344050): tighten the alignment here id:347 gh:348
           // based on the real element type.
           /*alignment=*/1, GetBasePointer(*operand), &ir_builder_, module_));
   return Status::OK();
 }
 
 Status IrEmitter::HandleSort(HloInstruction*) {
-  // TODO(b/26783907): Implement sort on GPU.
+  // TODO (b/26783907): Implement sort on GPU. id:402 gh:403
   return Unimplemented("sort");
 }
 
@@ -400,7 +400,7 @@ Status IrEmitter::EmitAtomicOperationForNestedComputation(
     const HloComputation& computation, llvm::Value* output_address,
     llvm::Value* source_address) {
   if (computation.num_parameters() != 2) {
-    // TODO(b/30258929): We only accept binary computations so far.
+    // TODO (b/30258929): We only accept binary computations so far. id:350 gh:351
     return Unimplemented(
         "We only support atomic functions with exactly two parameters, but "
         "computation %s has %lld.",
@@ -600,7 +600,7 @@ Status IrEmitter::HandleConvolution(HloInstruction* convolution) {
     // Emit no code for an empty output.
     return Status::OK();
   }
-  // TODO(b/31409998): Support convolution with dilation.
+  // TODO (b/31409998): Support convolution with dilation. id:349 gh:350
   return Unimplemented(
       "Hit a case for convolution that is not implemented on GPU.");
 }
@@ -614,7 +614,7 @@ Status IrEmitter::HandleFft(HloInstruction* fft) {
 }
 
 Status IrEmitter::HandleCrossReplicaSum(HloInstruction* crs) {
-  // TODO(b/33011107): Support cross replica sum on GPU.
+  // TODO (b/33011107): Support cross replica sum on GPU. id:369 gh:370
   return Unimplemented(
       "Cross replica sum not implemented on GPU. See b/33011107.");
 }

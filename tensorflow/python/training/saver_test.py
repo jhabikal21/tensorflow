@@ -142,7 +142,7 @@ class SaverTest(test.TestCase):
       if context.in_graph_mode():
         init_all_op = [variables.global_variables_initializer(), v2_init]
         self.evaluate(init_all_op)
-        # TODO(xpan): Why _mutable_hash_table_v2 doesn't create empty
+        # TODO (xpan): Why _mutable_hash_table_v2 doesn't create empty id:3314 gh:3315
         # table as it claims in eager mode?
         self.assertEqual(b"k1000", self.evaluate(v2_2.keys()))
         self.assertEqual(3000.0, self.evaluate(v2_2.values()))
@@ -720,7 +720,7 @@ class SaverTest(test.TestCase):
 
   def testSaveToURI(self):
     # ParseURI functions don't work on Windows yet.
-    # TODO(jhseu): Remove this check when it works.
+    # TODO (jhseu): Remove this check when it works. id:3478 gh:3479
     if os.name == "nt":
       self.skipTest("Local URI support doesn't work on Windows")
     save_path = "file://" + os.path.join(self.get_temp_dir(), "uri")
@@ -905,7 +905,7 @@ class SaveRestoreShardedTest(test.TestCase):
 
         if slices:
           assert not partitioner
-          # TODO(apassos): make create_partitioned_variables take use_resource
+          # TODO (apassos): make create_partitioned_variables take use_resource id:2642 gh:2643
           # option to make this test passable without creating a named
           # variable_scope.
           vs = partitioned_variables.create_partitioned_variables(
@@ -2645,7 +2645,7 @@ class ScopedGraphTest(test.TestCase):
       self.assertEqual(2.0, var_dict2["variable2:0"].eval())
 
 
-# TODO(b/64763924): Remove after Jan 1st 2018.
+# TODO (b/64763924): Remove after Jan 1st 2018. id:3360 gh:3361
 class LenientNamesTest(test.TestCase):
 
   def setUp(self):

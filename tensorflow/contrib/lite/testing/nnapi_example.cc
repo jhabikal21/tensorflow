@@ -12,7 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
-// NOTE: this is an example driver that converts a tflite model to TensorFlow.
+// NOTE: this is an example driver that converts a tflite model to TensorFlow. id:844 gh:845
 // This is an example that will be integrated more tightly into tflite in
 // the future.
 //
@@ -28,7 +28,7 @@ limitations under the License.
 #include "tensorflow/contrib/lite/nnapi/NeuralNetworksShim.h"
 #include "tensorflow/contrib/lite/testing/parse_testdata.h"
 
-// TODO(aselle): FATAL leaves resources hanging.
+// TODO (aselle): FATAL leaves resources hanging. id:1478 gh:1479
 void FATAL(const char* format, ...) {
   va_list args;
   va_start(args, format);
@@ -45,7 +45,7 @@ void FATAL(const char* format, ...) {
 
 void Interpret(const char* filename, const char* examples_filename,
                bool use_nnapi) {
-  // TODO(aselle): Resize of input image should go here
+  // TODO (aselle): Resize of input image should go here id:1232 gh:1233
   // ...
   // For now I am allocating all tensors. This means I am fixed size.
   // So I am not using the variable size ability yet.

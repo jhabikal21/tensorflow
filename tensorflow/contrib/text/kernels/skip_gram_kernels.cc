@@ -132,7 +132,7 @@ REGISTER_KERNEL(string);
 REGISTER_KERNEL(int64);
 REGISTER_KERNEL(int32);
 REGISTER_KERNEL(int16);
-// TODO(weiho): Add other types if the need arises.
+// TODO (weiho): Add other types if the need arises. id:1598 gh:1599
 
 #undef REGISTER_KERNEL
 

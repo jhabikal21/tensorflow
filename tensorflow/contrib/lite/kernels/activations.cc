@@ -268,7 +268,7 @@ void Softmax2DFloat(TfLiteTensor* input, TfLiteTensor* output,
 
 void Softmax2DQuantized(TfLiteTensor* input, TfLiteTensor* output,
                         TfLiteSoftmaxParams* params, OpData* data) {
-  // TODO(ahentz): this is arguably a dirty trick. Since the implementation
+  // TODO (ahentz): this is arguably a dirty trick. Since the implementation id:766 gh:767
   // always traverses the last dimension of a 4D tensor, we will pretend our 2D
   // tensor is 4D in a special way. We will convert a (X, Y) shape into a (X,
   // 1, 1, Y) shape.
@@ -304,7 +304,7 @@ TfLiteStatus SoftmaxEval(TfLiteContext* context, TfLiteNode* node) {
   TfLiteTensor* input = GetInput(context, node, 0);
   TfLiteTensor* output = GetOutput(context, node, 0);
 
-  // TODO(ahentz): consider an implementation that works for many (all?)
+  // TODO (ahentz): consider an implementation that works for many (all?) id:793 gh:794
   // dimensions.
   switch (input->type) {
     case kTfLiteFloat32: {

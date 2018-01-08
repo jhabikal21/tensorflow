@@ -34,7 +34,7 @@ string GetAllActivationModeAttrString() { return "activation_mode: {'Relu'}"; }
 
 // --------------------------------------------------------------------------
 
-// TODO(pauldonnelly): Add support for double inputs and scales to this Op,
+// TODO (pauldonnelly): Add support for double inputs and scales to this Op, id:655 gh:656
 // (currently Attr does not support double).
 
 REGISTER_OP("FusedConv2DBiasActivation")

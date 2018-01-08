@@ -210,10 +210,10 @@ if __name__ == "__main__":
                        _GetQrOpTest(dtype, shape, full_matrices,
                                     use_static_shape))
 
-  # TODO(pfau): Get working with complex types.
-  # TODO(pfau): Get working with full_matrices when rows != cols
-  # TODO(pfau): Get working when rows < cols
-  # TODO(pfau): Get working with shapeholders (dynamic shapes)
+  # TODO (pfau): Get working with complex types. id:3307 gh:3308
+  # TODO (pfau): Get working with full_matrices when rows != cols id:2384 gh:2386
+  # TODO (pfau): Get working when rows < cols id:2977 gh:2978
+  # TODO (pfau): Get working with shapeholders (dynamic shapes) id:3481 gh:3482
   for full_matrices in False, True:
     for dtype in np.float32, np.float64:
       for rows in 1, 2, 5, 10:

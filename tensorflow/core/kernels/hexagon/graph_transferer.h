@@ -37,20 +37,20 @@ namespace tensorflow {
 // GraphTransferer transfers graph definitions into SoC memory.
 // This functionality is effective if SoC is capable to run
 // the graph on that chip.
-// TODO(satok): support transferring subgraphs to be able to split graphs
+// TODO (satok): support transferring subgraphs to be able to split graphs id:2032 gh:2033
 // to avoid unsupported ops in SoC.
 class GraphTransferer {
  public:
-  // TODO(satok): Remove. Use proto definition instead.
+  // TODO (satok): Remove. Use proto definition instead. id:1540 gh:1541
   static constexpr int MAX_SUPPORTED_RANK = 4;
-  // TODO(satok): Remove. Use proto definition instead.
+  // TODO (satok): Remove. Use proto definition instead. id:2773 gh:2774
   static constexpr int SHAPE_ARRAY_SIZE = MAX_SUPPORTED_RANK;
   using TensorShapeMap = RemoteFusedGraphExecuteUtils::TensorShapeMap;
 
   GraphTransferer() = default;
 
   // Load graph structure into GraphTransferer
-  // TODO(satok): Pass a pair of TensorShape and DataType instead of
+  // TODO (satok): Pass a pair of TensorShape and DataType instead of id:1602 gh:1603
   // Tensor as input_node_info_list.
   Status LoadGraphFromProto(
       const IRemoteFusedGraphOpsDefinitions& ops_definitions,
@@ -60,7 +60,7 @@ class GraphTransferer {
       const bool shape_inference_for_unknown_shape);
 
   // Load graph structure into GraphTransferer from protobuf file
-  // TODO(satok): Pass a pair of TensorShape and DataType instead of
+  // TODO (satok): Pass a pair of TensorShape and DataType instead of id:2233 gh:2234
   // Tensor as input_node_info_list.
   Status LoadGraphFromProtoFile(
       const IRemoteFusedGraphOpsDefinitions& ops_definitions,
@@ -134,7 +134,7 @@ class GraphTransferer {
   bool IsPadNode(const Node& node);
 
   // Return true if the node is a reshape op which just flattens input
-  // TODO(satok): Remove this method once generic reshape op is implemented in
+  // TODO (satok): Remove this method once generic reshape op is implemented in id:2035 gh:2036
   // SOC
   bool IsNodeFlattenReshape(const Node& node,
                             const ShapeRefiner& shape_refiner);

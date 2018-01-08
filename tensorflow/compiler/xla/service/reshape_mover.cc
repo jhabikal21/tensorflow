@@ -56,7 +56,7 @@ bool IsReshapeOrTranspose(const HloInstruction* instruction) {
 // Returns true iff `instruction` can change its shape simply by adjusting
 // metadata.
 bool CanTriviallyChangeShape(const HloInstruction* instruction) {
-  // NOTE: Technically a sequence of reshape(reshape(constant)) is also
+  // NOTE: Technically a sequence of reshape(reshape(constant)) is also id:408 gh:409
   // trivially reshapable, so we might be tempted to simply recurse if
   // IsReshapeOrTranspose(instruction)==true.
   //
@@ -171,7 +171,7 @@ bool AllOperandsHaveEasyShapeChanges(
       continue;
     }
 
-    // TODO(someone): Look into supporting general ops for the operands as
+    // TODO (someone): Look into supporting general ops for the operands as id:451 gh:452
     // well.
     VLOG(5) << "Operand is neither equalivant to the first Reshape operand"
                "nor can trivially change shape: "

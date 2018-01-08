@@ -46,11 +46,11 @@ class AccumulateNV2RemovePass : public GraphOptimizationPass {
  public:
 
   Status Run(const GraphOptimizationPassOptions& options) override {
-    // TODO(freiss.oss@gmail.com): Substantial shared code with
+    // TODO (freiss.oss@gmail.com): Substantial shared code with id:1052 gh:1053
     // ParallelConcatRemovePass::Run(). Consider refactoring if someone makes
     // a third similar rewrite.
     if (options.graph == nullptr) {
-      // TODO(apassos) returning OK feels weird here as we can't do anything
+      // TODO (apassos) returning OK feels weird here as we can't do anything id:2328 gh:2329
       // without a graph, but some tests require this.
       return Status::OK();
     }

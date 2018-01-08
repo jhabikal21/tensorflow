@@ -73,7 +73,7 @@ void XlaTransferManager::CopyCPUTensorToDevice(const Tensor* cpu_tensor,
 
     Status status;
     stream_->ThenMemcpy(&dev_dst_ptr, src_ptr, total_bytes);
-    // TODO(hpucha): Make this asynchronous.
+    // TODO (hpucha): Make this asynchronous. id:148 gh:149
     Status block_status = stream_->BlockHostUntilDone();
     if (!block_status.ok()) {
       status = xla::InternalError(
@@ -109,7 +109,7 @@ void XlaTransferManager::CopyDeviceTensorToCPU(const Tensor* device_tensor,
 
     Status status;
     stream_->ThenMemcpy(dst_ptr, dev_src_ptr, total_bytes);
-    // TODO(hpucha): Make this asynchronous.
+    // TODO (hpucha): Make this asynchronous. id:167 gh:168
     Status block_status = stream_->BlockHostUntilDone();
     if (!block_status.ok()) {
       status = xla::InternalError(

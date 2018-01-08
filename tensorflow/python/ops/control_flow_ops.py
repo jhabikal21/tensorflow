@@ -391,7 +391,7 @@ def _SwitchRefOrTensor(data, pred, name="Switch"):
     TypeError: if data is not a Tensor or IndexedSlices
   """
   data = ops.convert_to_tensor_or_indexed_slices(data, name="data")
-  # NOTE(vrv): ops.colocate_with(data, ignore_existing=True) below
+  # NOTE (vrv): ops.colocate_with(data, ignore_existing=True) below id:3024 gh:3025
   # addresses the following scenario.
   #
   # Assume you execute Optimizer.apply_gradients() in a branch of a cond().
@@ -591,7 +591,7 @@ def _EnforceShapeInvariant(merge_var, next_var):
     m_shape = merge_var.get_shape()
     n_shape = next_var.get_shape()
     if not _ShapeLessThanOrEqual(n_shape, m_shape):
-      # TODO(skyewm): get original loop input that caused the shape error and
+      # TODO (skyewm): get original loop input that caused the shape error and id:3521 gh:3522
       # report its name instead of the merge node's.
       raise ValueError(
           "The shape for %s is not an invariant for the loop. It enters "
@@ -653,7 +653,7 @@ def _AddNextAndBackEdge(m, v, enforce_shape_invariant=True):
       # Make sure the shapes of loop outputs are correct. We do this before
       # calling _update_input, which will raise a less-helpful error message if
       # the types don't match.
-      # TODO(skyewm): call this for other cases below (needs testing)
+      # TODO (skyewm): call this for other cases below (needs testing) id:3129 gh:3130
       _EnforceShapeInvariant(m, v)
     m.op._update_input(1, v)   # pylint: disable=protected-access
   elif isinstance(m, ops.IndexedSlices):
@@ -1039,7 +1039,7 @@ class GradLoopState(object):
         elif constant_op.is_constant(cur_value):
           # If the value to be forwarded is a constant, clone the constant in
           # the gradient loop rather than using a stack.
-          # TODO(phawkins): consider hoisting the constant out of the loop
+          # TODO (phawkins): consider hoisting the constant out of the loop id:3356 gh:3357
           # instead.
           real_value = constant_op.constant(
               tensor_util.constant_value(cur_value), dtype=cur_value.dtype)
@@ -1860,7 +1860,7 @@ def cond(pred, true_fn=None, false_fn=None, strict=False, name=None,
   # We needed to make true_fn/false_fn keyword arguments for
   # backwards-compatibility. This check exists so that we can convert back to
   # having them be positional arguments.
-  # TODO(josh11b): Make `true_fn` and `false_fn` positional arguments after
+  # TODO (josh11b): Make `true_fn` and `false_fn` positional arguments after id:2506 gh:2508
   # `fn1` and `fn2` are deleted.
   if fn1 is not None:
     if true_fn is not None:
@@ -1975,7 +1975,7 @@ def _resource_safe_shape(t):
   return array_ops.shape_internal(t, optimize=False)
 
 
-# TODO(yuanbyu): Consider having a unified notion of context for
+# TODO (yuanbyu): Consider having a unified notion of context for id:3029 gh:3030
 # not only conditionals and loops but also control dependency and
 # subgraphs.
 class WhileContext(ControlFlowContext):
@@ -2674,7 +2674,7 @@ class WhileContext(ControlFlowContext):
       summary_ref[:] = pre_summaries
       with ops.control_dependencies(new_summaries):
         def map_fn(x):
-          # TODO(apassos) figure out how to trigger with tensor arrays as well
+          # TODO (apassos) figure out how to trigger with tensor arrays as well id:3523 gh:3524
           if isinstance(x, tensor_array_ops.TensorArray):
             return x
           return array_ops.identity(x)
@@ -2910,10 +2910,10 @@ def while_loop(cond, body, loop_vars, shape_invariants=None,
       # context), which will result in the maximum_iterations tensor being an
       # illegal input (see control_flow_util.CheckInputFromValidContext).
       #
-      # NOTE(skyewm): we could technically allow tensors from CondContexts, but
+      # NOTE (skyewm): we could technically allow tensors from CondContexts, but id:3131 gh:3132
       # that will be error-prone and hard to reason about for users.
       #
-      # TODO(skyewm): make this work (it's tricky).
+      # TODO (skyewm): make this work (it's tricky). id:3359 gh:3360
       if (context.in_graph_mode() and
           (util.IsInWhileLoop(maximum_iterations.op) or
            util.IsInCond(maximum_iterations.op))):
@@ -3052,7 +3052,7 @@ def _GroupControlDeps(dev, deps, name=None):
         return no_op(name=name)
 
 
-# TODO(touts): Accept "inputs" as a list.
+# TODO (touts): Accept "inputs" as a list. id:2508 gh:2509
 def group(*inputs, **kwargs):
   """Create an op that groups multiple operations.
 

@@ -57,7 +57,7 @@ void PrintAllCCOps(const std::string& dot_h, const std::string& dot_cc,
 
 int main(int argc, char* argv[]) {
   tensorflow::port::InitMain(argv[0], &argc, &argv);
-  // TODO(annarev): Update this file to no longer take op_gen_overrides.pbtxt
+  // TODO (annarev): Update this file to no longer take op_gen_overrides.pbtxt id:76 gh:77
   // as an argument.
   if (argc != 6) {
     for (int i = 1; i < argc; ++i) {

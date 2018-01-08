@@ -545,7 +545,7 @@ class MklConv2DOp : public OpKernel {
       Tensor* output_tensor = nullptr;
       if (output_tf_shape.num_elements() == 0 ||
           output_dims_tf_order[0] == 0) {
-        // TODO(jbobba): Verify correctness here
+        // TODO (jbobba): Verify correctness here id:2147 gh:2148
         //               Need semantics for Null MKL tensor
         MklDnnShape output_mkl_shape;
         output_mkl_shape.SetMklTensor(false);

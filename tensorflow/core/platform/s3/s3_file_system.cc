@@ -57,7 +57,7 @@ Aws::Client::ClientConfiguration& GetDefaultClientConfig() {
     if (region) {
       cfg.region = Aws::String(region);
     } else {
-      // TODO (yongtang): `S3_REGION` should be deprecated after 2.0.
+      // TODO (yongtang): `S3_REGION` should be deprecated after 2.0. id:1798 gh:1799
       const char* region = getenv("S3_REGION");
       if (region) {
         cfg.region = Aws::String(region);

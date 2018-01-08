@@ -131,7 +131,7 @@ class SpaceToDepthOp : public OpKernel {
       }
     }
 
-    // NOTE: Assumes data_format_ == FORMAT_NHWC here, since we have rejected
+    // NOTE: Assumes data_format_ == FORMAT_NHWC here, since we have rejected id:2429 gh:2430
     // (CPU && data_format_ != FORMAT_NHWC) in the constructor.
 
     if (!is_int8x4) {

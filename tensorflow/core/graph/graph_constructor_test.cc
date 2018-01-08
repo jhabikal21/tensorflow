@@ -35,9 +35,9 @@ limitations under the License.
 #include "tensorflow/core/public/session.h"
 #include "tensorflow/core/public/version.h"
 
-// TODO(josh11b): Test InitCostModel().
-// TODO(josh11b): Test setting the "device" field of a NodeDef.
-// TODO(josh11b): Test that feeding won't prune targets.
+// TODO (josh11b): Test InitCostModel(). id:1801 gh:1802
+// TODO (josh11b): Test setting the "device" field of a NodeDef. id:1359 gh:1360
+// TODO (josh11b): Test that feeding won't prune targets. id:2529 gh:2530
 
 namespace tensorflow {
 namespace {
@@ -3134,7 +3134,7 @@ TEST_F(GraphConstructorTest, ImportGraphDef_ValidateColationConstraints) {
       "s:'loc:@missing' } } } }",
       &def));
   ImportGraphDefOptions options;
-  // TODO(yaozhang): Extend ExpectError to check error type and use ExpectError
+  // TODO (yaozhang): Extend ExpectError to check error type and use ExpectError id:1246 gh:1247
   // and ExpectOK to replace the code below.
   Status s = ImportGraphDef(options, def, &graph_, nullptr);
   EXPECT_TRUE(errors::IsInvalidArgument(s)) << s;

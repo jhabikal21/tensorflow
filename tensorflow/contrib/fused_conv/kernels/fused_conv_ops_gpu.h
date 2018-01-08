@@ -21,7 +21,7 @@ limitations under the License.
 #include "tensorflow/core/kernels/conv_ops_gpu.h"
 #include "tensorflow/core/util/activation_mode.h"
 
-// TODO(pauldonnelly): Merge this file into core/kernels/conv_ops_gpu.h.
+// TODO (pauldonnelly): Merge this file into core/kernels/conv_ops_gpu.h. id:583 gh:584
 
 namespace tensorflow {
 

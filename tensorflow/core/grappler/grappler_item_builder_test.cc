@@ -54,7 +54,7 @@ void SampleSumSymbolicGradientGraphdef(
   auto g0 = SymbolicGradient(scope, std::initializer_list<Input>{x, y, z},
                              {DT_FLOAT, DT_INT32}, fn);
 
-  // TODO(bsteiner): we should rewrite the feed/fetch nodes to reflect the
+  // TODO (bsteiner): we should rewrite the feed/fetch nodes to reflect the id:2564 gh:2565
   // inlining that's done in the item builder
   // fetches->mutable_node_list()->add_value(g0[0].name());
   fetches->mutable_node_list()->add_value("SymbolicGradient/dx");

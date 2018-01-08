@@ -600,7 +600,7 @@ class FullyConnectedKFACBasicFB(KroneckerProductFB):
       damping: 0-D Tensor or float. 'damping' * identity is approximately added
         to this FisherBlock's Fisher approximation.
     """
-    # TODO(b/68033310): Validate which of,
+    # TODO (b/68033310): Validate which of, id:1076 gh:1077
     #   (1) summing on a single device (as below), or
     #   (2) on each device in isolation and aggregating
     # is faster.
@@ -683,7 +683,7 @@ class ConvKFCBasicFB(KroneckerProductFB):
     super(ConvKFCBasicFB, self).__init__(layer_collection)
 
   def instantiate_factors(self, grads_list, damping):
-    # TODO(b/68033310): Validate which of,
+    # TODO (b/68033310): Validate which of, id:976 gh:977
     #   (1) summing on a single device (as below), or
     #   (2) on each device in isolation and aggregating
     # is faster.
@@ -792,7 +792,7 @@ class FullyConnectedMultiIndepFB(KroneckerProductFB):
 
   @property
   def num_registered_minibatches(self):
-    # TODO(b/69411207): Add support for registering additional minibatches.
+    # TODO (b/69411207): Add support for registering additional minibatches. id:692 gh:693
     return 1
 
   def instantiate_factors(self, grads_list, damping):
@@ -874,7 +874,7 @@ class FullyConnectedSeriesFB(FisherBlock):
 
   @property
   def num_registered_minibatches(self):
-    # TODO(b/69411207): Add support for registering additional minibatches.
+    # TODO (b/69411207): Add support for registering additional minibatches. id:632 gh:633
     return 1
 
   def instantiate_factors(self, grads_list, damping):

@@ -83,7 +83,7 @@ class MatrixSolveOp : public LinearAlgebraOp<Scalar> {
     }
     Eigen::PartialPivLU<Matrix> lu_decomposition(matrix.rows());
     if (adjoint_) {
-      // TODO(rmlarsen): For Eigen 3.2, this creates a temporary copy.
+      // TODO (rmlarsen): For Eigen 3.2, this creates a temporary copy. id:2247 gh:2248
       // Make sure to backport: https://bitbucket.org/eigen/eigen/commits/
       // bd2219a74c96dfe3f6bc2c23588749e36d2d8173
       lu_decomposition.compute(matrix.adjoint());
@@ -101,7 +101,7 @@ class MatrixSolveOp : public LinearAlgebraOp<Scalar> {
     OP_REQUIRES(context, min_abs_pivot > RealScalar(0),
                 errors::InvalidArgument(kErrMsg));
 
-    // TODO(rmlarsen): Add check based on condition number estimation.
+    // TODO (rmlarsen): Add check based on condition number estimation. id:2055 gh:2056
     // The necessary changes to Eigen are in
     // https://bitbucket.org/eigen/eigen/pull-requests/174/
     // add-matrix-condition-number-estimation/diff
@@ -167,7 +167,7 @@ class MatrixSolveOpGpu : public AsyncOpKernel {
       return;
     }
 
-    // TODO(rmlarsen): Convert to std::make_unique when available.
+    // TODO (rmlarsen): Convert to std::make_unique when available. id:1555 gh:1556
     std::unique_ptr<CudaSolver> solver(new CudaSolver(context));
 
     // Make a copy of the input for the factorization step, or, if adjoint_ is
@@ -279,7 +279,7 @@ class MatrixSolveOpGpu : public AsyncOpKernel {
         /* on_host */ true);
     auto transposed_rhs_reshaped =
         transposed_rhs.template flat_inner_dims<Scalar, 3>();
-    // TODO(rmlarsen): Enable the following branch when I figure
+    // TODO (rmlarsen): Enable the following branch when I figure id:2789 gh:2790
     // out why it causes a segfault.
     if (false && n / batch_size <= 128) {
       dev_info.push_back(
@@ -326,7 +326,7 @@ class MatrixSolveOpGpu : public AsyncOpKernel {
 
     // Callback for checking info after kernels finish. Also capture the
     // temporary Tensors/ScratchSpace so they don't get deallocated before the
-    // kernels run. TODO(rmlarsen): Use move capture once C++14 becomes
+    // kernels run. TODO (rmlarsen): Use move capture once C++14 becomes id:1620 gh:1621
     // available.
     auto info_checker = [context, done, dev_info](
                             const Status& status,

@@ -267,7 +267,7 @@ __global__ void ColumnReduceMax16ColumnsKernel(
     sum = in[row * num_cols + col];
 
   // 1D array necessary due to bug in CUDA 9 compiler.
-  // TODO(nluehr) revert to 2D array when compiler is ready.
+  // TODO (nluehr) revert to 2D array when compiler is ready. id:1660 gh:1661
   __shared__ value_type partial_sums[32 * 33];
 
   row += rows_per_warp * gridDim.y * blockDim.y;
@@ -316,7 +316,7 @@ __global__ void ColumnReduceKernel(
     sum = in[row * num_cols + col];
 
   // 1D array necessary due to bug in CUDA 9 compiler.
-  // TODO(nluehr) revert to 2D array when compiler is ready.
+  // TODO (nluehr) revert to 2D array when compiler is ready. id:2279 gh:2280
   __shared__ value_type partial_sums[32 * 33];
 
   row += gridDim.y * blockDim.y;
@@ -466,7 +466,7 @@ void LaunchScalarReduction(OpKernelContext* ctx, OUT_T out, IN_T in,
     // at making this a multiple of the number of
     // multiprocessors have lead to lower perf
     // in general
-    // TODO(eriche) investigate this more
+    // TODO (eriche) investigate this more id:2385 gh:2385
 
     Tensor temp_storage;
     OP_REQUIRES_OK(
@@ -480,7 +480,7 @@ void LaunchScalarReduction(OpKernelContext* ctx, OUT_T out, IN_T in,
             in, (T*)temp_storage.flat<int8_t>().data(), in_size, op, init);
 
     // take care that we only reduce blocks that had some valid elements in them
-    // TODO(eriche): CUB currently has a bug in HeadSegmentedReduce that
+    // TODO (eriche): CUB currently has a bug in HeadSegmentedReduce that id:1612 gh:1613
     // requires it to be used with a full warp.  Can reduce 32 -> num_blocks
     // when this is fixed.
     CleanupSegments<<<1, 32, 0, cu_stream>>>(
@@ -656,7 +656,7 @@ void Launch3DYReduction(OpKernelContext* ctx, OUT_T out, IN_T in, int extent_x,
   int num_blocks =
       (extent_x * extent_z + threads_per_block - 1) / threads_per_block;
 
-  // TODO(eriche): this won't be very good in the case of small x
+  // TODO (eriche): this won't be very good in the case of small x id:2861 gh:2862
   //                small z and large y.
   ColumnReduceSimpleKernel<<<num_blocks, threads_per_block, 0, cu_stream>>>(
       in, out, extent_x, extent_y, extent_z, op);

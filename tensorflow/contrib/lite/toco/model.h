@@ -123,7 +123,7 @@ enum class OperatorType {
 // Helper to deal with TensorFlow arrays using a different ordering of
 // dimensions
 // ("axes") than our own.
-// TODO(benoitjacob): Ultimately, we shouldn't have any "ordering" of axes,
+// TODO (benoitjacob): Ultimately, we shouldn't have any "ordering" of axes, id:2115 gh:2116
 // we should have associative arrays mapping symbolic axes identifiers (like
 // "output_depth") to dimensions. We would then not need this anymore.
 enum class AxesOrder {

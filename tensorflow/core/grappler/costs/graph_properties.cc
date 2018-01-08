@@ -887,7 +887,7 @@ Status GraphProperties::UpdateResource(
     if (!ctx) {
       continue;
     }
-    // TODO(bsteiner): handle EnqueueMany as well.
+    // TODO (bsteiner): handle EnqueueMany as well. id:2068 gh:2069
     if (node->type_string().find("Enqueue") != std::string::npos &&
         node->type_string().find("EnqueueMany") == std::string::npos) {
       std::vector<ShapeAndType> shapes_and_types;

@@ -774,7 +774,7 @@ class ResourceVariable(variables.Variable):
   __array_priority__ = 100
 
   def assign_sub(self, delta, use_locking=None, name=None):
-    # TODO(apassos): this here and below is not atomic. Consider making it
+    # TODO (apassos): this here and below is not atomic. Consider making it id:3270 gh:3271
     # atomic if there's a way to do so without a performance cost for those who
     # don't need it.
     with ops.control_dependencies([

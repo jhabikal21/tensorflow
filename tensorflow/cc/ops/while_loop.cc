@@ -95,7 +95,7 @@ Status CreateCond(const Scope& scope, const CondGraphBuilderFn& cond,
   // in the while loop frame (since they will indirectly depend on an Enter node
   // defining the frame) and that they are executed once per loop iteration.
   //
-  // TODO(skyewm): the control dep will be added to all nodes in the cond graph.
+  // TODO (skyewm): the control dep will be added to all nodes in the cond graph. id:108 gh:109
   // This is at best unnecessary, and at worst may prevent different parts of
   // different loop iterations from executing in parallel.
   Scope cond_scope =
@@ -110,7 +110,7 @@ Status CreateCond(const Scope& scope, const CondGraphBuilderFn& cond,
         "BuildWhileLoop: 'cond' argument must return a boolean output, got ",
         DataTypeString(raw_cond_out.type()));
   }
-  // TODO(skyewm): check that raw_cond_out is scalar
+  // TODO (skyewm): check that raw_cond_out is scalar id:125 gh:126
 
   *output = LoopCond(scope, raw_cond_out).output;
   return Status::OK();
@@ -138,7 +138,7 @@ Status CreateBody(const Scope& scope, const BodyGraphBuilderFn& body,
   for (const Output& output : *outputs) {
     TF_RETURN_IF_ERROR(
         scope.graph()->IsValidOutputTensor(output.node(), output.index()));
-    // TODO(skyewm): check output types/shapes
+    // TODO (skyewm): check output types/shapes id:153 gh:154
   }
   return Status::OK();
 }
@@ -168,7 +168,7 @@ Status CreateBody(const Scope& scope, const BodyGraphBuilderFn& body,
 //
 // If there are multiple loop variables, each of the control flow ops is
 // duplicated for each loop variable.
-// TODO(skyewm): link to public version of design doc
+// TODO (skyewm): link to public version of design doc id:90 gh:91
 Status BuildWhileLoop(const Scope& scope, const std::vector<Output>& inputs,
                       const CondGraphBuilderFn& cond,
                       const BodyGraphBuilderFn& body, const string& frame_name,

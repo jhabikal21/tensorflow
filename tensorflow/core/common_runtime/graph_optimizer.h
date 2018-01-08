@@ -41,7 +41,7 @@ class GraphOptimizer {
   // vector of partial shapes of its outputs is stable, i.e., no optimization
   // pass may replace a node with a different node of the same name that has a
   // different number of outputs, or outputs with different known shapes.
-  // TODO(b/65453533) introduce a unique way to name nodes in a graph.
+  // TODO (b/65453533) introduce a unique way to name nodes in a graph. id:1093 gh:1094
   void Optimize(
       FunctionLibraryRuntime* runtime, Env* env, Device* device,
       std::unique_ptr<Graph>* graph,

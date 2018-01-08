@@ -356,7 +356,7 @@ class CudnnRNNTestBasic(TensorFlowTestCase):
       sess.run(outputs)
 
 
-# TODO(jamesqin): Transform to parameterized test after it is included in the
+# TODO (jamesqin): Transform to parameterized test after it is included in the id:525 gh:526
 # TF open source codebase.
 class CudnnRNNTestSaveRestore(TensorFlowTestCase):
 
@@ -592,7 +592,7 @@ class CudnnRNNTestSaveRestore(TensorFlowTestCase):
     self._TestSaveRestoreHelper(CUDNN_RNN_RELU)
 
 
-# TODO(jamesqin): Transform to parameterized test after it is included in the
+# TODO (jamesqin): Transform to parameterized test after it is included in the id:845 gh:846
 # TF open source codebase.
 class CudnnRNNTestCompatibleRNNCells(TensorFlowTestCase):
 

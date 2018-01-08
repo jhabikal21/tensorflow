@@ -36,7 +36,7 @@ using mkldnn::batch_normalization_forward;
 using mkldnn::batch_normalization_backward;
 #endif
 
-// TODO(inteltf) Address comments from PR 8968.
+// TODO (inteltf) Address comments from PR 8968. id:1626 gh:1627
 
 namespace tensorflow {
 using CPUDevice = Eigen::ThreadPoolDevice;

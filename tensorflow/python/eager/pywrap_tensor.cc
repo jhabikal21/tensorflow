@@ -165,7 +165,7 @@ extern "C" {
 
 static const int kMaxEagerTensorParentSize = 32;
 
-// TODO(agarwal): store context handle in EagerTensor.
+// TODO (agarwal): store context handle in EagerTensor. id:2728 gh:2729
 typedef struct EagerTensor {
   PyObject_HEAD;
   // Note that we leave kMaxEagerTensorParentSize bytes here for use by the
@@ -253,7 +253,7 @@ int EagerTensor_init(EagerTensor* self, PyObject* args, PyObject* kwds) {
     handle = tensorflow::make_safe(NumpyToTensorHandle(value));
   } else {
     tensorflow::Tensor t;
-    // TODO(josh11b): Have PySeqToTensor set python errors instead of
+    // TODO (josh11b): Have PySeqToTensor set python errors instead of id:3207 gh:3208
     // returning Status.
     auto cppstatus = tensorflow::PySeqToTensor(value, dtype, &t);
     if (!cppstatus.ok()) {
@@ -310,7 +310,7 @@ int EagerTensor_init(EagerTensor* self, PyObject* args, PyObject* kwds) {
   // The approximation is not exact there are GPU kernels which do not require
   // host memory for int32 tensors. This will lead to a discrepancy between
   // eager and graph execution.
-  // TODO(ashankar): Fix this.
+  // TODO (ashankar): Fix this. id:2927 gh:2928
   if (handle_dtype != TF_INT32) {
     // Note that this is a shallow copy and will share the underlying buffer
     // if copying to the same device.
@@ -507,7 +507,7 @@ PyType_Spec EagerTensor_Type_spec = {"EagerTensor", sizeof(EagerTensor), 0,
                                      Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HEAPTYPE,
                                      EagerTensor_Type_slots};
 #else
-// TODO(agarwal): support active_trace.
+// TODO (agarwal): support active_trace. id:3172 gh:3173
 static PyTypeObject _EagerTensorType = {
     // clang-format off
     PyVarObject_HEAD_INIT(nullptr, 0)

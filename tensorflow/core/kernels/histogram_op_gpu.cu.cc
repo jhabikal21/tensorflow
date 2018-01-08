@@ -34,7 +34,7 @@ typedef Eigen::GpuDevice GPUDevice;
 
 namespace functor {
 
-// TODO(yongtang) int64 of atomicAdd is not supported yet.
+// TODO (yongtang) int64 of atomicAdd is not supported yet. id:1609 gh:1610
 template <typename T, typename Tout>
 struct HistogramFixedWidthFunctor<GPUDevice, T, Tout> {
   static Status Compute(OpKernelContext* context,

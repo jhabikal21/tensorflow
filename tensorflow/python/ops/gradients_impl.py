@@ -83,7 +83,7 @@ def _IndexedSlicesToTensor(value, dtype=None, name=None, as_ref=False):
     raise ValueError(
         "Tensor conversion requested for IndexedSlices without dense_shape: %s"
         % str(value))
-  # TODO(mrry): Consider adding static shape information to
+  # TODO (mrry): Consider adding static shape information to id:3203 gh:3204
   # IndexedSlices, to avoid using numpy here.
   dense_shape_value = tensor_util.constant_value(value.dense_shape)
   if dense_shape_value is not None:
@@ -582,7 +582,7 @@ def gradients(ys,
         if loop_state:
           loop_state.EnterGradWhileContext(op, before=False)
         if (grad_fn or is_func_call) and has_out_grads:
-          # NOTE: If _AggregatedGrads didn't compute a value for the i'th
+          # NOTE: If _AggregatedGrads didn't compute a value for the i'th id:3537 gh:3538
           # output, it means that the cost does not depend on output[i],
           # therefore dC/doutput[i] is 0.
           for i, out_grad in enumerate(out_grads):
@@ -592,7 +592,7 @@ def gradients(ys,
               # Only trainable outputs or outputs for a function call that
               # will use SymbolicGradient get a zero gradient. Gradient
               # functions should ignore the gradient for other outputs.
-              # TODO(apassos) gradients of resource handles might be an
+              # TODO (apassos) gradients of resource handles might be an id:3152 gh:3153
               # issue here because of zeros.
               if loop_state:
                 out_grads[i] = loop_state.ZerosLike(op, i)
@@ -784,7 +784,7 @@ def _MultiDeviceAddN(tensor_list):
 
   # For each device, add the tensors on that device first.
   # Then gather the partial sums from multiple devices.
-  # TODO(sjhwang): Create hierarchical aggregation tree as pbar's suggestion.
+  # TODO (sjhwang): Create hierarchical aggregation tree as pbar's suggestion. id:3383 gh:3385
   # E.g., aggregate per GPU, then per task, and so on.
   summands = []
 
@@ -888,7 +888,7 @@ def _AggregatedGrads(grads, op, loop_state, aggregation_method=None):
           # reduce performance, but it can improve memory because the
           # gradients can be released earlier.
           #
-          # TODO(vrv): Consider replacing this with a version of
+          # TODO (vrv): Consider replacing this with a version of id:2522 gh:2523
           # tf.AddN() that eagerly frees its inputs as soon as they are
           # ready, so the order of this tree does not become a problem.
           used = "tree"
@@ -918,7 +918,7 @@ def _AggregatedGrads(grads, op, loop_state, aggregation_method=None):
   return out_grads
 
 
-# TODO(vrv): Make this available when we want to make it public.
+# TODO (vrv): Make this available when we want to make it public. id:3205 gh:3206
 def _hessian_vector_product(ys, xs, v):
   """Multiply the Hessian of `ys` wrt `xs` by `v`.
 

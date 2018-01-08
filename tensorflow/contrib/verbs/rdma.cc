@@ -904,7 +904,7 @@ void RdmaBuffer::FreeBuffer() {
   if ((buffer_ != nullptr) && buffer_on_host_) {
     free(buffer_);
   }
-  // TODO
+  // TODO id:1752 gh:1753
   // release buffer if it is on device.
   // We don't support RDMABuffer on device at this moment.
 }

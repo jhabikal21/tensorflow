@@ -40,7 +40,7 @@ template <int NDIM, typename TIndex>
 __global__ void PropagateWhereIndicesKernel(
     const TIndex output_rows, const typename Eigen::array<TIndex, NDIM> strides,
     int64* output) {
-  // TODO(ebrevdo): Use a multi-dimensional loop, increasing the
+  // TODO (ebrevdo): Use a multi-dimensional loop, increasing the id:2408 gh:2409
   // dimensions of individual indices manually, instead of relying on
   // a scalar loop variable and using integer division.
   CUDA_1D_KERNEL_LOOP(i, output_rows) {
@@ -142,7 +142,7 @@ struct NumTrue<GPUDevice, T, TIndex> {
     const T* input_data = input.data();
     TIndex* num_true_data = num_true.data();
 
-    // TODO(ebrevdo): sum doesn't work; perhaps need a different
+    // TODO (ebrevdo): sum doesn't work; perhaps need a different id:2627 gh:2627
     // iterator?
     auto reducer = CubDeviceReduceCount<T, TIndex>();
     auto first_success = reducer(/*temp_storage*/ nullptr, temp_storage_bytes,
@@ -314,7 +314,7 @@ struct Where<GPUDevice, NDIM, T, TIndex> {
           cudaGetErrorString(second_success));
     }
 
-    // TODO(ebrevdo): Find a way to synchronously copy back data from
+    // TODO (ebrevdo): Find a way to synchronously copy back data from id:1710 gh:1711
     // found_true_device to *found_true_host.
 
     const Eigen::array<TIndex, NDIM> strides =

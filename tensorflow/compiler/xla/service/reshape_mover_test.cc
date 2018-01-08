@@ -475,7 +475,7 @@ TEST_F(ReshapeMoverTest, ScalarReshapeNotMovedAcrossSelect) {
 // To eliminate the unsoundness, we outlaw reshape sinking when one of the
 // operands is implicitly broadcast in the elementwise consumer.
 //
-// TODO(b/37799338) However, it would be possible in this case to do a more
+// TODO (b/37799338) However, it would be possible in this case to do a more id:409 gh:410
 // in-depth analysis to get reshape movement to occur:
 //
 // 1. Note that the broadcast dimension (logical dimension 1) in the operands

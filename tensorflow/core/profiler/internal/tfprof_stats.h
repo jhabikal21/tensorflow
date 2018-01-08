@@ -77,7 +77,7 @@ class TFStats {
   //
   // Organize the TensorFlow model as different types of views, and generate
   // outputs for profiling.
-  // TODO(xpan): Should it return reference here?
+  // TODO (xpan): Should it return reference here? id:2573 gh:2574
   const GraphNodeProto& ShowGraphNode(const string& cmd,
                                       const Options& opts) const;
   const MultiGraphNodeProto& ShowMultiGraphNode(const string& cmd,
@@ -107,7 +107,7 @@ class TFStats {
   std::unique_ptr<TFCode> code_view_;
   std::unique_ptr<TFOp> op_view_;
   std::unique_ptr<checkpoint::CheckpointReader> ckpt_reader_;
-  // TODO(xpan): Store TFGraphNode instead of TFGraphNode* to avoid large
+  // TODO (xpan): Store TFGraphNode instead of TFGraphNode* to avoid large id:2864 gh:2865
   // number of dynamic alloc.
   // Maps from graph node name to TFGraphNode.
   std::map<string, std::unique_ptr<TFGraphNode>> nodes_map_;

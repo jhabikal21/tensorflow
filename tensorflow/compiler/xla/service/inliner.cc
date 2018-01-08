@@ -66,7 +66,7 @@ StatusOr<bool> InlinerVisitor::Run(HloComputation* computation) {
 Status InlinerVisitor::HandleMap(HloInstruction* map) {
   HloComputation* function = map->to_apply();
   HloInstruction& root = *function->root_instruction();
-  // TODO(b/29249531): Add DCE pass to remove unused HloComputations.
+  // TODO (b/29249531): Add DCE pass to remove unused HloComputations. id:397 gh:398
   // Only inlining functions that are simply a single operation until a better
   // profitability model for inlining is defined.
   if (hlo_query::AllOperandsAreParameters(root)) {

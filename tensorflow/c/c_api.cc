@@ -383,7 +383,7 @@ void TF_Reset_Helper(const TF_SessionOptions* opt, const char** containers,
 // cycle, nodes in the cycle will never be visited, and the visited count will
 // be less than the total node count.
 Status ValidateNoCycles(const Graph& g) {
-  // TODO(nolivia): check this on a subset of the graph instead of all of it.
+  // TODO (nolivia): check this on a subset of the graph instead of all of it. id:5 gh:6
   // A node is ready when all of its inputs have been visited.
   std::vector<const Node*> ready;
   std::vector<int> pending_count(g.num_node_ids(), 0);
@@ -755,7 +755,7 @@ static void TF_Run_Helper(
       if (!status->status.ok()) return;
     }
   } else {
-    // NOTE(zongheng): PRun does not support RunOptions yet.
+    // NOTE (zongheng): PRun does not support RunOptions yet. id:6 gh:7
     result = session->PRun(handle, input_pairs, output_tensor_names, &outputs);
   }
   if (!result.ok()) {
@@ -2083,12 +2083,12 @@ namespace {
 #ifndef __ANDROID__
 
 // Creates a placeholder representing an input to the cond or body graph.
-// TODO(skyewm): remove these from final graph
+// TODO (skyewm): remove these from final graph id:7 gh:8
 bool CreateInput(const TF_Output& parent_input, TF_Graph* g, const char* name,
                  TF_Output* input, TF_Status* status) {
   TF_OperationDescription* desc = TF_NewOperation(g, "Placeholder", name);
   TF_SetAttrType(desc, "dtype", TF_OperationOutputType(parent_input));
-  // TODO(skyewm): set placeholder shape
+  // TODO (skyewm): set placeholder shape id:31 gh:32
   TF_Operation* oper = TF_FinishOperation(desc, status);
   if (!status->status.ok()) return false;
   *input = {oper, 0};
@@ -2221,7 +2221,7 @@ TF_WhileParams TF_NewWhile(TF_Graph* g, TF_Output* inputs, int ninputs,
   const char* name = nullptr;
 
   for (int i = 0; i < ninputs; ++i) {
-    // TODO(skyewm): prefix names with underscore (requires some plumbing)
+    // TODO (skyewm): prefix names with underscore (requires some plumbing) id:11 gh:12
     if (!CreateInput(inputs[i], cond_graph, StrCat("cond_input", i).c_str(),
                      &cond_inputs[i], status)) {
       break;
@@ -2246,7 +2246,7 @@ TF_WhileParams TF_NewWhile(TF_Graph* g, TF_Output* inputs, int ninputs,
 #ifndef __ANDROID__
 namespace {
 
-// TODO(skyewm): make nodes in while loop unfetchable like in Python version
+// TODO (skyewm): make nodes in while loop unfetchable like in Python version id:9 gh:10
 void TF_FinishWhileHelper(const TF_WhileParams* params, TF_Status* status,
                           TF_Output* outputs) {
   if (!ValidateInputWhileParams(*params, status)) return;
@@ -2301,7 +2301,7 @@ void TF_FinishWhileHelper(const TF_WhileParams* params, TF_Status* status,
       body_fn, params->name, &loop_outputs);
 
   // Update name_map with newly-created ops.
-  // TODO(skyewm): right now BuildWhileLoop() may alter the graph if it returns
+  // TODO (skyewm): right now BuildWhileLoop() may alter the graph if it returns id:8 gh:9
   // a bad status. Once we fix this, we may want to return early instead of
   // executing the following code.
   for (int i = first_new_node_id; i < parent->graph.num_node_ids(); ++i) {
@@ -2411,7 +2411,7 @@ TF_Session* TF_LoadSessionFromSavedModel(
     const TF_SessionOptions* session_options, const TF_Buffer* run_options,
     const char* export_dir, const char* const* tags, int tags_len,
     TF_Graph* graph, TF_Buffer* meta_graph_def, TF_Status* status) {
-// TODO(ashankar): Remove the __ANDROID__ guard. This will require ensuring that
+// TODO (ashankar): Remove the __ANDROID__ guard. This will require ensuring that id:34 gh:35
 // the tensorflow/cc/saved_model:loader build target is Android friendly.
 #ifdef __ANDROID__
   status->status = tensorflow::errors::Unimplemented(
@@ -2448,7 +2448,7 @@ TF_Session* TF_LoadSessionFromSavedModel(
   // extends using GraphDefs. The Graph instance is different, but equivalent
   // to the one used to create the session.
   //
-  // TODO(jhseu): When Session is modified to take Graphs instead of
+  // TODO (jhseu): When Session is modified to take Graphs instead of id:10 gh:11
   // GraphDefs, return the Graph generated in LoadSavedModel().
   TF_ImportGraphDefOptions* import_opts = TF_NewImportGraphDefOptions();
   TF_ImportGraphDefResults results;
@@ -2488,7 +2488,7 @@ void TF_DeleteSession(TF_Session* s, TF_Status* status) {
   delete s;
 }
 
-// TODO(josh11b,mrry): Change Session to be able to use a Graph*
+// TODO (josh11b,mrry): Change Session to be able to use a Graph* id:15 gh:16
 // directly, instead of requiring us to serialize to a GraphDef and
 // call Session::Extend().
 static bool ExtendSessionGraphHelper(TF_Session* session, TF_Status* status) {
@@ -2546,7 +2546,7 @@ void TF_SessionRun(TF_Session* session, const TF_Buffer* run_options,
                    TF_Tensor** output_values, int noutputs,
                    const TF_Operation* const* target_opers, int ntargets,
                    TF_Buffer* run_metadata, TF_Status* status) {
-  // TODO(josh11b,mrry): Change Session to be able to use a Graph*
+  // TODO (josh11b,mrry): Change Session to be able to use a Graph* id:13 gh:14
   // directly, instead of requiring us to serialize to a GraphDef and
   // call Session::Extend().
   if (!ExtendSessionGraphHelper(session, status)) {
@@ -2617,7 +2617,7 @@ void TF_SessionPRunSetup(TF_Session* session, const TF_Output* inputs,
 
 void TF_DeletePRunHandle(const char* handle) {
   delete[] handle;
-  // TODO(suharshs): Free up any resources held by the partial run state.
+  // TODO (suharshs): Free up any resources held by the partial run state. id:12 gh:13
 }
 
 void TF_SessionPRun(TF_Session* session, const char* handle,
@@ -2626,7 +2626,7 @@ void TF_SessionPRun(TF_Session* session, const char* handle,
                     TF_Tensor** output_values, int noutputs,
                     const TF_Operation* const* target_opers, int ntargets,
                     TF_Status* status) {
-  // TODO(josh11b,mrry): Change Session to be able to use a Graph*
+  // TODO (josh11b,mrry): Change Session to be able to use a Graph* id:37 gh:38
   // directly, instead of requiring us to serialize to a GraphDef and
   // call Session::Extend().
   if (!ExtendSessionGraphHelper(session, status)) {

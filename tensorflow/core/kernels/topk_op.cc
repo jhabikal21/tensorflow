@@ -149,7 +149,7 @@ struct TopKFunctor<CPUDevice, T> {
         const auto comp = [input_data](const int32 a, const int32 b) {
           return input_data[b] < input_data[a];
         };
-        // TODO(ebrevdo): For large k < num_cols, instead of using
+        // TODO (ebrevdo): For large k < num_cols, instead of using id:2398 gh:2399
         // TopN, it may be faster to create a temporary vector of
         // values 0..num_cols - 1 and then use std::partial_sort_copy
         // of this into indices. Choosing the appropriate minimum k or

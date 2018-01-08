@@ -59,7 +59,7 @@ Status OpGenerator::Run(const OpList& ops, const string& lib_name,
   }
 
   LOG(INFO) << "Generating Java wrappers for '" << lib_name << "' operations";
-  // TODO(karllessard) generate wrappers from list of ops
+  // TODO (karllessard) generate wrappers from list of ops id:3039 gh:3040
 
   return Status::OK();
 }

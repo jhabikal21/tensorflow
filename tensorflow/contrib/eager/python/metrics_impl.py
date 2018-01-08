@@ -194,7 +194,7 @@ class Metric(object):
     """
     raise NotImplementedError("Metrics must define a call() member function")
 
-  def result(self):  # TODO(josh11b): Add an optional summary_writer parameter.
+  def result(self):  # TODO (josh11b): Add an optional summary_writer parameter. id:576 gh:577
     """Computes and returns a final value for the metric."""
     raise NotImplementedError("Metrics must define a result() member function")
 
@@ -264,7 +264,7 @@ class Metric(object):
 
 class Mean(Metric):
   """Computes the (weighted) mean of the given values."""
-  # TODO(josh11b): Maybe have a dtype argument that defaults to tf.float64?
+  # TODO (josh11b): Maybe have a dtype argument that defaults to tf.float64? id:611 gh:612
   # Or defaults to type of the input if it is tf.float32, else tf.float64?
 
   def __init__(self, name=None, dtype=dtypes.float64):

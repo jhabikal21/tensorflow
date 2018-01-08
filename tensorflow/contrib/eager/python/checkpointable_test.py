@@ -70,7 +70,7 @@ class CheckpointableAdam(adam.AdamOptimizer, checkpointable.Checkpointable):
     checkpointable.Checkpointable.__init__(self)
     adam.AdamOptimizer.__init__(self, *args, **kwargs)
 
-  # NOTE: Copied from AdamOptimizer with modifications to use add_variable
+  # NOTE: Copied from AdamOptimizer with modifications to use add_variable id:867 gh:868
   # for non-slot variables. These contortions are necessary to maintain
   # checkpoint compatibility with variable.name based saving.
   def _create_slots(self, var_list):
@@ -107,7 +107,7 @@ class CheckpointableAdam(adam.AdamOptimizer, checkpointable.Checkpointable):
       self._zeros_slot(v, "m", self._name)
       self._zeros_slot(v, "v", self._name)
 
-  # TODO(allenl): Override slot variable creation (_get_or_make_slot,
+  # TODO (allenl): Override slot variable creation (_get_or_make_slot, id:570 gh:571
   # _get_or_make_slot_with_initializer, _zeros_slot) to allow deferred
   # loading. Likely no need to run this through add_variable, since gathering
   # slot variables is special cased anyway.

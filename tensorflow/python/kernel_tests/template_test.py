@@ -571,7 +571,7 @@ class TemplateTest(test.TestCase):
     self.assertEqual(1, len(ta.variables))
     self.assertEqual(1, len(tb.variables))
 
-  # TODO(apassos) handle local variables in Eager
+  # TODO (apassos) handle local variables in Eager id:3327 gh:3328
   def test_local_variables(self):
     # Make sure trainable_variables are created.
     with variable_scope.variable_scope("foo3"):

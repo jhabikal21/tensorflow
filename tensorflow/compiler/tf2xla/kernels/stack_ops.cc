@@ -58,7 +58,7 @@ Status GetStackShape(xla::ComputationBuilder* builder, XlaResource* resource,
 // uninitialized Stacks, checks that the tensor has a type compatible with
 // 'dtype' and shape compatible with 'elem_shape'.
 //
-// TODO(phawkins): consider changing the API of the stack operators to
+// TODO (phawkins): consider changing the API of the stack operators to id:213 gh:214
 // allow an optional element shape at stack construction time.
 Status MaybeInitializeStack(xla::ComputationBuilder* builder,
                             XlaResource* resource, DataType dtype,
@@ -162,7 +162,7 @@ class StackPushOp : public XlaOpKernel {
     slice_shape.InsertDim(0, 1LL);
     auto update = b->Reshape(value, slice_shape.dim_sizes());
 
-    // TODO(phawkins): We don't check the index is in bounds --- there is no
+    // TODO (phawkins): We don't check the index is in bounds --- there is no id:215 gh:216
     // error mechanism in XLA.
     OP_REQUIRES_OK(
         ctx,
@@ -218,7 +218,7 @@ class StackPopOp : public XlaOpKernel {
     auto slice_shape = stack_shape.dim_sizes();
     slice_shape[0] = 1LL;
 
-    // TODO(phawkins): We don't check the index is in bounds --- there is no
+    // TODO (phawkins): We don't check the index is in bounds --- there is no id:214 gh:215
     // error mechanism in XLA.
     xla::ComputationDataHandle read =
         b->DynamicSlice(ta, start_indices, slice_shape);

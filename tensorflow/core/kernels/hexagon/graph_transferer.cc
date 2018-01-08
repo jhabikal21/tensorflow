@@ -230,7 +230,7 @@ Status GraphTransferer::LoadGraphFromProtoFile(
 }
 
 void GraphTransferer::SortParams(const std::vector<string>& output_node_names) {
-  // TODO(satok): optimize complexity
+  // TODO (satok): optimize complexity id:1590 gh:1591
   std::unordered_map<int, GraphTransferInfo::NodeInputInfo*> input_map;
   for (GraphTransferInfo::NodeInputInfo& input :
        *graph_transfer_info_.mutable_node_input_info()) {
@@ -436,7 +436,7 @@ Status GraphTransferer::RegisterNode(
     RegisterFlattenNode(ops_definitions, shape_refiner, node);
   } else if (ops_definitions.GetOpIdFor(node.type_string(), {}) !=
              IRemoteFusedGraphOpsDefinitions::INVALID_OP_ID) {
-    // TODO(satok): Set correct data type if it's given.
+    // TODO (satok): Set correct data type if it's given. id:2217 gh:2218
     RegisterGenericNode(ops_definitions, shape_refiner, node);
   } else {
     return errors::InvalidArgument(node.type_string() +
@@ -453,7 +453,7 @@ void GraphTransferer::RegisterConstantNode(const ShapeRefiner& shape_refiner,
   const int id = node_name_to_id_cache_map_[node.name()];
   const int output_node_size = node.num_outputs();
   CHECK_EQ(output_node_size, 1);
-  // TODO(satok): support multiple outputs?
+  // TODO (satok): support multiple outputs? id:2023 gh:2024
   const int output_index = 0;
   const DataType dt = node.output_type(output_index);
   const size_t max_bytes_per_data = DataTypeSize(dt);
@@ -477,7 +477,7 @@ void GraphTransferer::RegisterConstantNode(const ShapeRefiner& shape_refiner,
       *graph_transfer_info_.add_const_node_info();
   const_node_info.set_name(node.name());
   const_node_info.set_node_id(id);
-  // TODO(satok): Make this generic. Never assume rank is 4.
+  // TODO (satok): Make this generic. Never assume rank is 4. id:1534 gh:1535
   CHECK_EQ(4, SHAPE_ARRAY_SIZE);
   const_node_info.add_shape(shape_array[0]);
   const_node_info.add_shape(shape_array[1]);
@@ -496,7 +496,7 @@ void GraphTransferer::RegisterConstantNode(const ShapeRefiner& shape_refiner,
 
 int GraphTransferer::RegisterConstantShape(const std::vector<int>& shape) {
   VLOG(1) << "Cache constant shape.";
-  // TODO(satok): Handle non-4dim strides
+  // TODO (satok): Handle non-4dim strides id:2765 gh:2766
   CHECK_EQ(shape.size(), 4);
   const string shape_name = CONST_SHAPE_PREFIX + ToString(shape.at(0)) + 'x' +
                             ToString(shape.at(1)) + 'x' +
@@ -509,7 +509,7 @@ int GraphTransferer::RegisterConstantShape(const std::vector<int>& shape) {
         *graph_transfer_info_.add_const_node_info();
     const_node_info.set_name(shape_name);
     const_node_info.set_node_id(id);
-    // TODO(satok): Make this generic. Never assume rank is 5.
+    // TODO (satok): Make this generic. Never assume rank is 5. id:1593 gh:1594
     const_node_info.add_shape(static_cast<int64>(shape[0]));
     const_node_info.add_shape(static_cast<int64>(shape[1]));
     const_node_info.add_shape(static_cast<int64>(shape[2]));
@@ -562,7 +562,7 @@ int GraphTransferer::RegisterConstScalar(const DataType dt, const int val,
         *graph_transfer_info_.add_const_node_info();
     const_node_info.set_name(val_name);
     const_node_info.set_node_id(id);
-    // TODO(satok): Do not assume rank is 4 here.
+    // TODO (satok): Do not assume rank is 4 here. id:2219 gh:2220
     const_node_info.add_shape(static_cast<int64>(1));
     const_node_info.add_shape(static_cast<int64>(1));
     const_node_info.add_shape(static_cast<int64>(1));
@@ -640,7 +640,7 @@ void GraphTransferer::RegisterNodeWithPaddingAndStrides(
   const int id = node_name_to_id_cache_map_[node.name()];
   shape_inference::InferenceContext* context = shape_refiner.GetContext(&node);
   CHECK(node.attrs().Find(PADDING_ATTR_NAME));
-  // TODO(satok): Use context->GetAttr(...) instead?
+  // TODO (satok): Use context->GetAttr(...) instead? id:2025 gh:2026
   Padding padding;
   TF_CHECK_OK(context->GetAttr(PADDING_ATTR_NAME, &padding));
   CHECK(node.attrs().Find(STRIDES_ATTR_NAME));
@@ -654,7 +654,7 @@ void GraphTransferer::RegisterNodeWithPaddingAndStrides(
     const int ksize_id = RegisterConstantShape(kernel_sizes);
     extra_inputs.insert(extra_inputs.begin(), ksize_id);
   }
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:1536 gh:1537
   const int op_type_id = ops_definitions.GetOpIdFor(node.type_string(), {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount())
       << "Op " << node.type_string() << " not found in map(id = " << op_type_id
@@ -683,7 +683,7 @@ void GraphTransferer::RegisterNodeWithRank(
   const int const_val_id =
       RegisterConstScalar(DT_INT32, shapes.at(0).dims(), id, node.num_inputs());
   std::vector<int> extra_inputs{const_val_id};
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:2767 gh:2768
   const int op_type_id = ops_definitions.GetOpIdFor(node.type_string(), {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount())
       << "Op " << node.type_string() << " not found in map(id = " << op_type_id
@@ -709,7 +709,7 @@ void GraphTransferer::RegisterPadNode(
   CHECK_EQ(node_name_to_id_cache_map_.count(node.name()), 1);
   const int id = node_name_to_id_cache_map_[node.name()];
 
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:1595 gh:1596
   const int op_type_id = ops_definitions.GetOpIdFor(node.type_string(), {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount());
 
@@ -744,7 +744,7 @@ void GraphTransferer::RegisterPadNode(
     TF_CHECK_OK(MakeTensorFromProto(*proto, &const_tensor));
     CHECK_EQ(DT_INT32, const_tensor.dtype());
     // reshape tensor input to be rank 4.
-    // TODO(satok): Never assume rank is 4.
+    // TODO (satok): Never assume rank is 4. id:2222 gh:2223
     Tensor new_const_tensor(const_tensor.dtype(), TensorShape{4, 2});
     for (int i = 0; i < PAD_HEIGHT; ++i) {
       for (int j = 0; j < PAD_WIDTH; ++j) {
@@ -782,7 +782,7 @@ void GraphTransferer::RegisterInputNode(
   VLOG(1) << "Register input node: " << node.name() << ", " << op_type;
   CHECK_EQ(node_name_to_id_cache_map_.count(node.name()), 1);
   const int id = node_name_to_id_cache_map_[node.name()];
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:2028 gh:2029
   const int op_type_id = ops_definitions.GetOpIdFor("INPUT", {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount())
       << "Op" << node.name() << ", " << op_type << " is not supported,"
@@ -799,9 +799,9 @@ void GraphTransferer::RegisterFlattenNode(
   VLOG(1) << "Register flatten node: " << node.name();
   CHECK_EQ(node_name_to_id_cache_map_.count(node.name()), 1);
   const int id = node_name_to_id_cache_map_[node.name()];
-  // TODO(satok): Remove dependency to specific type
+  // TODO (satok): Remove dependency to specific type id:1538 gh:1539
   const string op_type = "FLATTEN";
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:2769 gh:2770
   const int op_type_id = ops_definitions.GetOpIdFor(op_type, {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount());
 
@@ -817,7 +817,7 @@ void GraphTransferer::RegisterGenericNode(
   VLOG(1) << "Register generic node: " << node.name();
   CHECK_EQ(node_name_to_id_cache_map_.count(node.name()), 1);
   const int id = node_name_to_id_cache_map_[node.name()];
-  // TODO(satok): Set correct data type if it's given.
+  // TODO (satok): Set correct data type if it's given. id:1597 gh:1598
   const int op_type_id = ops_definitions.GetOpIdFor(node.type_string(), {});
   CHECK(op_type_id >= 0 && op_type_id < ops_definitions.GetTotalOpsCount());
 
@@ -827,8 +827,8 @@ void GraphTransferer::RegisterGenericNode(
       true /* append_input */, true /* append_output */);
 }
 
-// TODO(satok): Remove this function.
-// TODO(satok): Remove only_register_const_node.
+// TODO (satok): Remove this function. id:2225 gh:2226
+// TODO (satok): Remove only_register_const_node. id:2030 gh:2031
 Status GraphTransferer::RegisterNodeIfAllInputsAreCached(
     const IRemoteFusedGraphOpsDefinitions& ops_definitions,
     const ShapeRefiner& shape_refiner, const Node& node,
@@ -981,7 +981,7 @@ GraphTransferer::BuildShapeArray(
            context->Value(context->Dim(shape_handle, 2)),
            context->Value(context->Dim(shape_handle, 3))}};
     default:
-      // TODO(satok): Support more ranks?
+      // TODO (satok): Support more ranks? id:1539 gh:1540
       LOG(FATAL);
       return std::array<int64, SHAPE_ARRAY_SIZE>();
   }
@@ -1005,7 +1005,7 @@ GraphTransferer::ToTensorShapeArray(const TensorShape& shape) {
           {shape.dim_size(0), shape.dim_size(1), shape.dim_size(2),
            shape.dim_size(3)}};
     default:
-      // TODO(satok): Support more ranks?
+      // TODO (satok): Support more ranks? id:2771 gh:2772
       LOG(FATAL);
       return std::array<int64, SHAPE_ARRAY_SIZE>();
   }
@@ -1116,7 +1116,7 @@ void GraphTransferer::DumpNodeTransferParams() const {
   LOG(INFO) << "*** Const Nodes ***";
   for (const GraphTransferInfo::ConstNodeInfo& params :
        graph_transfer_info_.const_node_info()) {
-    // TODO(satok): Stop assuming shape size is 4.
+    // TODO (satok): Stop assuming shape size is 4. id:1599 gh:1600
     CHECK_EQ(params.shape_size(), 4);
     LOG(INFO) << "[ " << params.node_id() << " \"" << params.name()
               << "\" (Const)";
@@ -1170,7 +1170,7 @@ void GraphTransferer::DumpVerificationStringOfNodeTransferParams() const {
   for (const GraphTransferInfo::ConstNodeInfo& params :
        graph_transfer_info_.const_node_info()) {
     std::stringstream sstream;
-    // TODO(satok): Stop assuming shape size is 4.
+    // TODO (satok): Stop assuming shape size is 4. id:2228 gh:2229
     CHECK_EQ(params.shape_size(), 4);
     sstream << "---(CONST) [" << std::hex << params.node_id() << std::dec << ","
             << params.shape(0) << "," << params.shape(1) << ","

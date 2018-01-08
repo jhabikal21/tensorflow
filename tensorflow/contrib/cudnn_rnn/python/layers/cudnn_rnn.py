@@ -105,7 +105,7 @@ class _CudnnRNN(base_layer.Layer):
   with tf.Graph().as_default():
     single_cell = lambda: tf.contrib.cudnn_rnn.CudnnCompatibleLSTM(num_units)
 
-    # NOTE: Even if there's only one layer, the cell needs to be wrapped in
+    # NOTE: Even if there's only one layer, the cell needs to be wrapped in id:510 gh:511
     # MultiRNNCell.
     cell = tf.nn.rnn_cell.MultiRNNCell(
       [single_cell() for _ in range(num_layers)])

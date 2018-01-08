@@ -198,6 +198,6 @@ TEST_F(RpcRendezvousMgrTest, TransferDummyDeviceContext) {
   dc->Unref();
 }
 
-// NOTE: Remote Send/Recv is better tested in worker_test.cc
+// NOTE: Remote Send/Recv is better tested in worker_test.cc id:1151 gh:1152
 
 }  // namespace tensorflow

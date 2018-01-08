@@ -54,7 +54,7 @@ bool ResolveStridedSliceAttributes::Run(Model* model, std::size_t op_index) {
   op->stop_indices = stop_array.GetBuffer<ArrayDataType::kInt32>().data;
   op->strides = stride_array.GetBuffer<ArrayDataType::kInt32>().data;
 
-  // TODO(dkalenichenko): Delete the extra inputs?
+  // TODO (dkalenichenko): Delete the extra inputs? id:1488 gh:1489
 
   return true;
 }

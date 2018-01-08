@@ -269,7 +269,7 @@ INSTANTIATE_TEST_CASE_P(
         R1Spec{64 * 1024, 32 * 1024, 33 * 1024, 1},
         R1Spec{64 * 1024, 32 * 1024 + 1, 33 * 1024 - 1, 1},
         R1Spec{64 * 1024, 32 * 1024 - 17, 36 * 1024 - 18, 1},
-// TODO(b/69425338): This uses too much memory on GPU.
+// TODO (b/69425338): This uses too much memory on GPU. id:493 gh:494
 #ifndef XLA_TEST_BACKEND_GPU
         R1Spec{16 * 1024 * 1024, 4 * 1024 * 1024, 12 * 1024 * 1024, 1},
         R1Spec{16 * 1024 * 1024, 4 * 1024 * 1024 + 1, 12 * 1024 * 1024 - 1, 1},

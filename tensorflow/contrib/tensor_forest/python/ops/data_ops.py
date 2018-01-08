@@ -49,7 +49,7 @@ def CastToFloat(tensor):
     return tensor
 
 
-# TODO(gilberth): If protos are ever allowed in dynamically loaded custom
+# TODO (gilberth): If protos are ever allowed in dynamically loaded custom id:2185 gh:2186
 # op libraries, convert this to a proto like a sane person.
 class TensorForestDataSpec(object):
 
@@ -126,7 +126,7 @@ def ParseDataTensorOrDict(data):
     for k in sorted(data.keys()):
       is_sparse = isinstance(data[k], sparse_tensor.SparseTensor)
       if is_sparse:
-        # TODO(gilberth): support sparse continuous.
+        # TODO (gilberth): support sparse continuous. id:962 gh:963
         if data[k].dtype == dtypes.float32:
           logging.info('TensorForest does not support sparse continuous.')
           continue

@@ -22,7 +22,7 @@ import gast
 
 from tensorflow.contrib.py2tf.pyct import anno
 
-# TODO(mdan): Add support for PY3 (e.g. Param vs arg).
+# TODO (mdan): Add support for PY3 (e.g. Param vs arg). id:2148 gh:2149
 
 
 class Scope(object):
@@ -86,7 +86,7 @@ class AccessResolver(gast.NodeTransformer):
     self.scope = Scope(None)
 
   def visit_Name(self, node):
-    # TODO(mdan): This is insufficient for object fields, e.g. hp.learning_rate.
+    # TODO (mdan): This is insufficient for object fields, e.g. hp.learning_rate. id:916 gh:917
     self.generic_visit(node)
     if isinstance(node.ctx, gast.Store):
       self.scope.mark_write(node.id)
@@ -96,7 +96,7 @@ class AccessResolver(gast.NodeTransformer):
     elif isinstance(node.ctx, gast.Param):
       # Param contexts appear in function defs, so they have the meaning of
       # defining a variable.
-      # TODO(mdan): This bay be incorrect with nested functions.
+      # TODO (mdan): This bay be incorrect with nested functions. id:1528 gh:1529
       # For nested functions, we'll have to add the notion of hiding args from
       # the parent scope, not writing to them.
       self.scope.mark_write(node.id)
@@ -121,7 +121,7 @@ class AccessResolver(gast.NodeTransformer):
     self.scope = args_scope
     for n in node.args:
       self.visit(n)
-    # TODO(mdan): Account starargs, kwargs
+    # TODO (mdan): Account starargs, kwargs id:1285 gh:1286
     for n in node.keywords:
       self.visit(n)
     anno.setanno(node, 'args_scope', args_scope)
@@ -143,7 +143,7 @@ class AccessResolver(gast.NodeTransformer):
     anno.setanno(node, 'body_scope', body_scope)
     if node.orelse:
       raise NotImplementedError()
-      # TODO(mdan): Add support for orelse.
+      # TODO (mdan): Add support for orelse. id:974 gh:975
     self.scope = current_scope
     return node
 

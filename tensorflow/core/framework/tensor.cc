@@ -577,7 +577,7 @@ TensorBuffer* FromProtoField<bfloat16>(Allocator* a, const TensorProto& in,
 template <typename T>
 void ToProtoField(const TensorBuffer& in, int64 n, TensorProto* out) {
   const T* data = in.base<const T>();
-  // NOTE: T may not the same as
+  // NOTE: T may not the same as id:1753 gh:1754
   // ProtoHelper<T>::FieldType::value_type.  E.g., T==int16,
   // ProtoHelper<T>::FieldType::value_type==int32.  If performance is
   // critical, we can specialize T=float and do memcpy directly.
@@ -753,7 +753,7 @@ class SubBuffer : public TensorBuffer {
     CHECK_LE(this->base<T>(), root_limit);
     CHECK_LE(this->base<T>() + n, root_limit);
     // Hold a ref of the underlying root buffer.
-    // NOTE: 'buf' is a sub-buffer inside the 'root_' buffer.
+    // NOTE: 'buf' is a sub-buffer inside the 'root_' buffer. id:1333 gh:1334
     root_->Ref();
   }
 
@@ -828,7 +828,7 @@ bool Tensor::FromProto(Allocator* a, const TensorProto& proto) {
   set_dtype(proto.dtype());
   UnrefIfNonNull(buf_);
   buf_ = p;
-  // TODO(misard) add tracking of which kernels and steps are calling
+  // TODO (misard) add tracking of which kernels and steps are calling id:2503 gh:2504
   // FromProto.
   if (buf_ != nullptr && buf_->data() != nullptr && LogMemory::IsEnabled()) {
     LogMemory::RecordTensorAllocation("Unknown (from Proto)",
@@ -987,14 +987,14 @@ string Tensor::SummarizeValue(int64 max_entries) const {
       return SummarizeArray<int64>(limit, num_elts, shape_, data);
       break;
     case DT_BOOL:
-      // TODO(tucker): Is it better to emit "True False..."?  This
+      // TODO (tucker): Is it better to emit "True False..."?  This id:1203 gh:1204
       // will emit "1 0..." which is more compact.
       return SummarizeArray<bool>(limit, num_elts, shape_, data);
       break;
     default: {
       // All irregular cases
       string ret;
-      // TODO(irving): Don't call flat every time around this
+      // TODO (irving): Don't call flat every time around this id:1957 gh:1958
       // loop.
       for (size_t i = 0; i < limit; ++i) {
         if (i > 0) strings::StrAppend(&ret, " ");
@@ -1007,7 +1007,7 @@ string Tensor::SummarizeValue(int64 max_entries) const {
             strings::StrAppend(&ret, v.DebugString());
           } break;
           default:
-            // TODO(zhifengc, josh11b): Pretty-print other types (bool,
+            // TODO (zhifengc, josh11b): Pretty-print other types (bool, id:1756 gh:1757
             // complex64, quantized).
             strings::StrAppend(&ret, "?");
         }

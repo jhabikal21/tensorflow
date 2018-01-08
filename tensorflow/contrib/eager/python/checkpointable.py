@@ -71,7 +71,7 @@ class Checkpointable(object):
 
   def __init__(self):
     # Basically less useful OrderedDicts but without the reference cycles.
-    # TODO(allenl): Switch these to OrderedDict once TensorFlow supports only
+    # TODO (allenl): Switch these to OrderedDict once TensorFlow supports only id:568 gh:569
     # Python 3.6+.
     self._checkpoint_dependencies = []  # A list of _CheckpointableReference
     # objects.
@@ -114,7 +114,7 @@ class Checkpointable(object):
       getter = kwargs.pop("getter")
     else:
       getter = variable_scope.get_variable
-    # TODO(allenl): handle deferred loading
+    # TODO (allenl): handle deferred loading id:602 gh:603
     new_variable = getter(
         name=name, shape=shape, dtype=dtype, initializer=initializer, **kwargs)
     self._owned_variables.append(
@@ -176,7 +176,7 @@ class Checkpointable(object):
         _CheckpointableReference(
             name=name,
             ref=checkpointable,
-            # TODO(allenl): Should this be exposed to allow users to stop
+            # TODO (allenl): Should this be exposed to allow users to stop id:540 gh:541
             # depending on things and still load checkpoints when not using
             # names?
             local_uid=len(self._checkpoint_dependencies)))
@@ -349,7 +349,7 @@ def _serialize_slot_variables(checkpointable_objects, path_to_root,
   return named_slot_variables
 
 
-# TODO(allenl): Convenience utility for saving multiple objects (i.e. construct
+# TODO (allenl): Convenience utility for saving multiple objects (i.e. construct id:603 gh:604
 # a root Checkpointable if passed a list of Checkpointables).
 def _serialize_object_graph(root_checkpointable):
   """Determine checkpoint keys for variables and build a serialized graph.

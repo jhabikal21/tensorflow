@@ -56,7 +56,7 @@ def _is_resource(v):
 def _create_slot_var(primary, val, scope, validate_shape, shape, dtype):
   """Helper function for creating a slot variable."""
 
-  # TODO(lukaszkaiser): Consider allowing partitioners to be set in the current
+  # TODO (lukaszkaiser): Consider allowing partitioners to be set in the current id:3320 gh:3321
   # scope.
   current_partitioner = variable_scope.get_variable_scope().partitioner
   variable_scope.get_variable_scope().set_partitioner(None)

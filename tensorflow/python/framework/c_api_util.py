@@ -142,7 +142,7 @@ def new_tf_operations(graph):
   Yields:
     wrapped TF_Operation
   """
-  # TODO(b/69679162): do this more efficiently
+  # TODO (b/69679162): do this more efficiently id:2744 gh:2745
   for c_op in tf_operations(graph):
     try:
       graph._get_operation_by_tf_operation(c_op)  # pylint: disable=protected-access

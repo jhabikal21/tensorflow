@@ -138,7 +138,7 @@ class MPIRendezvousMgr : public BaseRendezvousMgr {
   ~MPIRendezvousMgr() {
     delete mpiutils_;
     fprintf(stderr, "Delete MPIRendezvousMgr \n");
-    // TODO(jbedorf) stop background_thread_
+    // TODO (jbedorf) stop background_thread_ id:958 gh:959
     MPI_CHECK(MPI_Finalize());
   }
 

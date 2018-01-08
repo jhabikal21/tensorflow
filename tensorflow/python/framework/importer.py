@@ -38,7 +38,7 @@ from tensorflow.python.util import compat
 from tensorflow.python.util.deprecation import deprecated_args
 
 
-# TODO(josh11b): SWIG the code from node_def_util instead of duplicating
+# TODO (josh11b): SWIG the code from node_def_util instead of duplicating id:2958 gh:2959
 # the logic here.
 def _GetNodeAttr(node_def, attr_name):
   if attr_name not in node_def.attr:
@@ -423,7 +423,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
   op_dict = op_def_registry.get_registered_ops()
 
   if producer_op_list is not None:
-    # TODO(skyewm): make a copy of graph_def so we're not mutating the argument?
+    # TODO (skyewm): make a copy of graph_def so we're not mutating the argument? id:3214 gh:3215
     _RemoveDefaultAttrs(op_dict, producer_op_list, graph_def)
 
   graph = ops.get_default_graph()
@@ -463,8 +463,8 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
     # no-op, so this only has the effect of updating the Python state (usually
     # _DefinedFunction.add_to_graph also adds the function to the TF_Graph).
     #
-    # TODO(skyewm): fetch the TF_Functions directly from the TF_Graph
-    # TODO(skyewm): avoid sending serialized FunctionDefs back to the TF_Graph
+    # TODO (skyewm): fetch the TF_Functions directly from the TF_Graph id:2292 gh:2293
+    # TODO (skyewm): avoid sending serialized FunctionDefs back to the TF_Graph id:2758 gh:2759
     if graph_def.library and graph_def.library.function:
       # pylint: disable=protected-access
       functions = function._from_library(graph_def.library)
@@ -513,7 +513,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
 
     # LINT.IfChange
     with ops.name_scope(name, 'import', input_map.values()) as scope:
-      # TODO(ashankar): Should this just copy over or should it do some
+      # TODO (ashankar): Should this just copy over or should it do some id:3254 gh:3255
       # more nuanced merging? For example, the graph may already have some
       # marked "bad versions" and we don't want to lose those because of
       # what's in graph_def.versions? The C++ ImporGraphDef does something
@@ -522,7 +522,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
 
       input_map = _ConvertInputMapValues(name, input_map)
 
-      # NOTE(mrry): We do this in two passes, because there may be a cycle in
+      # NOTE (mrry): We do this in two passes, because there may be a cycle in id:2960 gh:2961
       # `graph_def`.
 
       # 1. Add operations without their inputs.
@@ -587,7 +587,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
             value.list.CopyFrom(attr_value_pb2.AttrValue.ListValue(
                 s=new_class_values))
 
-        # NOTE(mrry): We cannot use zip here because control inputs do not
+        # NOTE (mrry): We cannot use zip here because control inputs do not id:3217 gh:3218
         # appear in the list of input_types.
         for i, input_name in enumerate(
             [_CanonicalInputName(x) for x in node.input]):
@@ -653,7 +653,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
 
         if not g._is_function(op.type):  # pylint: disable=protected-access
           # Execute shape inference for this op.
-          # NOTE(mrry): If the graph contains a cycle, the full shape
+          # NOTE (mrry): If the graph contains a cycle, the full shape id:2294 gh:2295
           # information may not be available for this op's inputs.
           ops.set_shapes_for_outputs(op)
         # For nodes with _output_shapes set, set the output shapes.
@@ -703,7 +703,7 @@ def import_graph_def(graph_def, input_map=None, return_elements=None,
 
           del op.node_def.attr['_output_shapes']
 
-        # NOTE(mrry): We do this after configuring the inputs, because
+        # NOTE (mrry): We do this after configuring the inputs, because id:2760 gh:2761
         # the result of the device functions may depend on the inputs.
         if apply_device_function:
           with _MaybeDevice(node.device):

@@ -93,7 +93,7 @@ def _get_feeds_for_indexed_slices(feed, feed_val):
 # feeds of one or more tensors and their corresponding values: `feed_fn1` is
 # used to feed a run, `feed_fn2` to set up a partial run.
 #
-# TODO(touts): We could reimplement these as specialized _FeedMapper
+# TODO (touts): We could reimplement these as specialized _FeedMapper id:3046 gh:3047
 # implementations after we refactor the feed handling code to use them.
 #
 # Eventually, this registration could be opened up to support custom Tensor
@@ -236,7 +236,7 @@ class _FetchMapper(object):
       raise TypeError('Fetch argument %r has invalid type %r' %
                       (fetch, type(fetch)))
     elif isinstance(fetch, (list, tuple)):
-      # NOTE(touts): This is also the code path for namedtuples.
+      # NOTE (touts): This is also the code path for namedtuples. id:2804 gh:2805
       return _ListFetchMapper(fetch)
     elif isinstance(fetch, dict):
       return _DictFetchMapper(fetch)
@@ -401,7 +401,7 @@ class _FetchHandler(object):
   result structure matching the user-provided structure for fetches, but
   containing the corresponding results.
   """
-  # TODO(touts): Make this class also take care of destructuring the feed
+  # TODO (touts): Make this class also take care of destructuring the feed id:3096 gh:3097
   # dict instead of doing it in the callers.
 
   def __init__(self, graph, fetches, feeds, feed_handles=None):
@@ -947,7 +947,7 @@ class BaseSession(SessionInterface):
     Raises:
       tf.errors.OpError: Or one of its subclasses on error.
     """
-    # TODO(touts): Support feeding and fetching the same tensor.
+    # TODO (touts): Support feeding and fetching the same tensor. id:2189 gh:2190
     return self._run(handle, fetches, feed_dict, None, None)
 
   def partial_run_setup(self, fetches, feeds=None):
@@ -1013,7 +1013,7 @@ class BaseSession(SessionInterface):
           raise e
 
     # Validate and process fetches.
-    # TODO(touts): Support feeding and fetching the same tensor.
+    # TODO (touts): Support feeding and fetching the same tensor. id:2658 gh:2657
     fetch_handler = _FetchHandler(self._graph, fetches, {})
 
     # Set up a graph with feeds and fetches for partial run.
@@ -1116,7 +1116,7 @@ class BaseSession(SessionInterface):
     # We need to keep the returned movers alive for the following _do_run().
     # These movers are no longer needed when _do_run() completes, and
     # are deleted when `movers` goes out of scope when this _run() ends.
-    # TODO(yuanbyu, keveman): Revisit whether we should just treat feeding
+    # TODO (yuanbyu, keveman): Revisit whether we should just treat feeding id:3049 gh:3050
     # of a handle from a different device as an error.
     _ = self._update_with_movers(feed_dict_tensor, feed_map)
     final_fetches = fetch_handler.fetches()
@@ -1172,7 +1172,7 @@ class BaseSession(SessionInterface):
       if not isinstance(feed_list, (list, tuple)):
         raise TypeError('`feed_list` must be a list or tuple.')
       # Delegate any non-empty feed lists to the existing `run()` logic.
-      # TODO(mrry): Refactor the feed handling logic from
+      # TODO (mrry): Refactor the feed handling logic from id:2807 gh:2808
       # `Session._run()` so that we can convert the feeds to a list of
       # strings here.
       def _generic_run(*feed_args, **kwargs):
@@ -1364,7 +1364,7 @@ class BaseSession(SessionInterface):
 
   def _extend_graph(self):
     # Nothing to do if we're using the new session interface
-    # TODO(skyewm): remove this function altogether eventually
+    # TODO (skyewm): remove this function altogether eventually id:3098 gh:3099
     if self._created_with_new_api: return
 
     # Ensure any changes to the graph are reflected in the runtime.
@@ -1507,7 +1507,7 @@ class Session(BaseSession):
 
     """
     super(Session, self).__init__(target, graph, config=config)
-    # NOTE(mrry): Create these on first `__enter__` to avoid a reference cycle.
+    # NOTE (mrry): Create these on first `__enter__` to avoid a reference cycle. id:2193 gh:2194
     self._default_graph_context_manager = None
     self._default_session_context_manager = None
 

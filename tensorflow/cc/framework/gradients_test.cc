@@ -40,7 +40,7 @@ using ops::StopGradient;
 using ops::Unstack;
 using ops::Variable;
 
-// TODO(andydavis) Add more unit tests once more gradient functions are ported.
+// TODO (andydavis) Add more unit tests once more gradient functions are ported. id:102 gh:103
 class GradientsTest : public ::testing::Test {
  protected:
   GradientsTest()
@@ -258,7 +258,7 @@ TEST_F(GradientsTest, StackUnstack_StopBackprop) {
 
     if (expected) {
       // Construct backward graph.
-      // NOTE: We should only expect the grad function for unpack in the
+      // NOTE: We should only expect the grad function for unpack in the id:115 gh:116
       // gradients graph, based on the requested grad outputs.
       auto unpack_grad = Stack(scope, {dx, dy, dz});
     } else {

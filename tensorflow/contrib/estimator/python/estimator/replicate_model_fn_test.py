@@ -55,7 +55,7 @@ from tensorflow.python.training import device_setter
 from tensorflow.python.training import gradient_descent
 
 
-# TODO(isaprykin):  Parametrize all the tests on
+# TODO (isaprykin):  Parametrize all the tests on id:616 gh:617
 #   replicate_model_fn._VariableDistributionMode when it's supported.
 class DNNClassifierIntegrationTest(test_util.TensorFlowTestCase):
 

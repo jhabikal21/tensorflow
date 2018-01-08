@@ -533,7 +533,7 @@ void PerformCollectiveOp(TensorTable& tensor_table, MPIResponse response) {
 //      cannot explicitly synchronize memcpys or kernels with it. As a result,
 //      MPIAllreduce and MPIAllgather must be AsyncOpKernels to ensure proper
 //      ordering of memcpys and kernels with respect to TF streams.
-//      4. NOTE: We cannot guarantee that all the MPI processes reduce their
+//      4. NOTE: We cannot guarantee that all the MPI processes reduce their id:905 gh:906
 //      tensors in the same order. Thus, there must be a way to ensure the
 //      reduction memcpys and kernels occur for correct tensors across all
 //      ranks at the same time. We choose to use a coordinator (rank ID 0) to
@@ -569,12 +569,12 @@ void PerformCollectiveOp(TensorTable& tensor_table, MPIResponse response) {
 //      response from the coordinator. At that point, the tick ends.
 //      If instead of "DONE" they receive "SHUTDOWN", they exit their
 //      background loop.
-// TODO: Use the global mpi_global state variable instead of a local one
+// TODO: Use the global mpi_global state variable instead of a local one id:1510 gh:1511
 void BackgroundThreadLoop() {
 #if GOOGLE_CUDA
   // Set the device, so that this thread uses the same GPU context as the
   // calling thread.
-  // TODO: Ensure that this is operating correctly. The background thread
+  // TODO: Ensure that this is operating correctly. The background thread id:1275 gh:1276
   // needs to be able to control all GPUs that the rank has access to, and
   // might be more than 1 GPU. Tensors could be resident in any of the
   // GPUs, so the background thread's accumulate and copy kernels might need
@@ -621,7 +621,7 @@ void BackgroundThreadLoop() {
   // Notify calling thread that initialization is complete
   mpi_global.cv.notify_all();
 
-  // TODO: MOVE MESSAGE TABLE INITIALIZATION TO LIBRARY LOAD!
+  // TODO: MOVE MESSAGE TABLE INITIALIZATION TO LIBRARY LOAD! id:961 gh:962
   // Initialize the tensor count table. No tensors are available yet.
   if (is_coordinator) {
     mpi_global.message_table =
@@ -631,7 +631,7 @@ void BackgroundThreadLoop() {
   // The coordinator sends a SHUTDOWN message to trigger shutdown.
   bool should_shut_down = false;
   do {
-    // TODO: Eliminate the need for thread sleep by making all activity
+    // TODO: Eliminate the need for thread sleep by making all activity id:2139 gh:2140
     // depend on other activity (e.g. condition or MPI waits).
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
@@ -808,7 +808,7 @@ Status InitializeMPIOnce(bool gpu) {
 #endif
 
   // Start the MPI background thread, which assumes MPI is initialized
-  // TODO: Change this to a Tensorflow thread
+  // TODO: Change this to a Tensorflow thread id:907 gh:908
   mpi_global.background_thread = std::thread(BackgroundThreadLoop);
 
   // Wait to ensure that the background thread has finished initializing MPI
@@ -1064,7 +1064,7 @@ class MPIAllgatherOp : public AsyncOpKernel {
       }
     } else {
       // Collect the total output tensor sizing from the sizing tensor
-      // NOTE: The sizing tensor is forced to be placed on the CPU by
+      // NOTE: The sizing tensor is forced to be placed on the CPU by id:1512 gh:1513
       // declaring the input as HostMemory, so it is valid to read it here.
       const int64* sizing_array =
           (const int64*)sizing_tensor->tensor_data().data();

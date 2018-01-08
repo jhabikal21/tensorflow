@@ -38,7 +38,7 @@ def discriminator_model(inputs, _):
 
 
 def get_gan_model():
-  # TODO(joelshor): Find a better way of creating a variable scope.
+  # TODO (joelshor): Find a better way of creating a variable scope. id:592 gh:593
   with variable_scope.variable_scope('generator') as gen_scope:
     pass
   with variable_scope.variable_scope('discriminator') as dis_scope:
@@ -82,7 +82,7 @@ class SummariesTest(test.TestCase):
     with self.test_session(use_gpu=True):
       summary.merge_all().eval()
 
-  # TODO(joelshor): Add correctness test.
+  # TODO (joelshor): Add correctness test. id:666 gh:667
   def testAddImageComparisonSummaries(self):
     summaries.add_image_comparison_summaries(
         get_gan_model(), display_diffs=True)

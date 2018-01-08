@@ -131,7 +131,7 @@ bool IsCompilableCall(const NodeDef& call_def,
     // LocalExecutor, which interacts poorly with the LocalExecutor used by
     // tf2xla to translate the TF graph into XLA.  So we avoid this for now.
     //
-    // TODO(b/36139787): Create a mechanism to set inlining hints.
+    // TODO (b/36139787): Create a mechanism to set inlining hints. id:166 gh:167
     VLOG(2) << "Can't compile noinline function: " << fdef.DebugString();
     return false;
   }
@@ -284,7 +284,7 @@ bool IsCompilable(FunctionLibraryRuntime* flr, const NodeDef& ndef) {
 
 Status MarkForCompilationPass::Run(
     const GraphOptimizationPassOptions& options) {
-  // TODO(phawkins): precompute the "GetCompilationDevice" properties of each
+  // TODO (phawkins): precompute the "GetCompilationDevice" properties of each id:121 gh:122
   // device ahead of time.
   OptimizerOptions::GlobalJitLevel global_jit_level =
       options.session_options->config.graph_options()

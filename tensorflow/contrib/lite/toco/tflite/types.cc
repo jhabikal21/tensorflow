@@ -57,7 +57,7 @@ void CopyBuffer(const ::tflite::Buffer& buffer, Array* array) {
       return ::tflite::TensorType_STRING;
     default:
       // FLOAT32 is filled for unknown data types.
-      // TODO(ycling): Implement type inference in TF Lite interpreter.
+      // TODO (ycling): Implement type inference in TF Lite interpreter. id:860 gh:861
       return ::tflite::TensorType_FLOAT32;
   }
 }

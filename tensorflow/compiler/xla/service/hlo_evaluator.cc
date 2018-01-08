@@ -147,7 +147,7 @@ StatusOr<std::unique_ptr<Literal>> ElementWiseUnaryOpImpl(
   const auto shape = instruction->shape();
   const auto* operand = instruction->operand(0);
 
-  // TODO(b/35950897, b/27796129): add DCHECK back once implicit broadcast is
+  // TODO (b/35950897, b/27796129): add DCHECK back once implicit broadcast is id:375 gh:376
   // removed.
   if (!ShapeUtil::SameDimensions(shape, operand->shape())) {
     return Unimplemented(
@@ -204,7 +204,7 @@ class HloEvaluator::TypedVisitor : public DfsHloVisitorWithDefault {
                          HloOpcodeString(hlo_instruction->opcode()).c_str());
   }
 
-  // TODO(b/35950897): many of the stl functions used in the handlers are not
+  // TODO (b/35950897): many of the stl functions used in the handlers are not id:372 gh:373
   // overloaded for every XLA primitive types.
 
   template <typename NativeT,
@@ -1656,7 +1656,7 @@ class HloEvaluator::TypedVisitor : public DfsHloVisitorWithDefault {
     const auto* lhs = instruction->operand(0);
     const auto* rhs = instruction->operand(1);
 
-    // TODO(b/35950897, b/27796129): add DCHECK back once implicit broadcast
+    // TODO (b/35950897, b/27796129): add DCHECK back once implicit broadcast id:388 gh:389
     // is removed.
     if (!(ShapeUtil::SameDimensions(shape, rhs->shape()) &&
           ShapeUtil::SameDimensions(lhs->shape(), rhs->shape()))) {
@@ -1691,7 +1691,7 @@ class HloEvaluator::TypedVisitor : public DfsHloVisitorWithDefault {
     const auto* rhs = instruction->operand(1);
     const auto* ehs = instruction->operand(2);
 
-    // TODO(b/35950897, b/27796129): add DCHECK back once implicit
+    // TODO (b/35950897, b/27796129): add DCHECK back once implicit id:376 gh:377
     // broadcast is removed.
     if (!(ShapeUtil::SameDimensions(shape, lhs->shape()) &&
           ShapeUtil::SameDimensions(lhs->shape(), rhs->shape()) &&
@@ -2002,7 +2002,7 @@ Status HloEvaluator::HandleCompare(HloInstruction* compare) {
   HloOpcode opcode = compare->opcode();
   auto lhs = compare->operand(0);
   auto rhs = compare->operand(1);
-  // TODO(b/35950897, b/27796129): add DCHECK back once implicit broadcast is
+  // TODO (b/35950897, b/27796129): add DCHECK back once implicit broadcast is id:430 gh:431
   // removed.
   if (!(ShapeUtil::SameDimensions(compare->shape(), rhs->shape()) &&
         ShapeUtil::SameDimensions(lhs->shape(), rhs->shape()))) {

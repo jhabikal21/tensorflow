@@ -292,7 +292,7 @@ def _bias_add_grad_flops(graph, node):
 
 def _verify_conv_data_format(node):
   """Verifies data format for pooling and convolutional operations."""
-  # TODO(xpan): P1: Support NCHW
+  # TODO (xpan): P1: Support NCHW id:3280 gh:3281
   if node.attr["data_format"].s != b"NHWC":
     raise ValueError("Only NHWC format is supported in flops computations")
 

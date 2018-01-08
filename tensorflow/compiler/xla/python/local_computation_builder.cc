@@ -21,7 +21,7 @@ namespace xla {
 
 namespace swig {
 
-// TODO(b/34473877) Ideally XLA would support AllReduce among arbitrary sets of
+// TODO (b/34473877) Ideally XLA would support AllReduce among arbitrary sets of id:245 gh:246
 // device handles instead of needing to set the number of replicas at XLA
 // service initialization time.
 tensorflow::mutex g_replica_count_mutex(tensorflow::LINKER_INITIALIZED);

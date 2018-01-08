@@ -35,7 +35,7 @@ class Scope(object):
         most recently assigned to the symbol.
   """
 
-  # TODO(mdan): Should rather use a CFG here?
+  # TODO (mdan): Should rather use a CFG here? id:975 gh:976
 
   def __init__(self, parent):
     """Create a new scope.
@@ -109,7 +109,7 @@ class TypeInfoResolver(gast.NodeTransformer):
           # This is then a constructor.
           anno.setanno(node.value, 'type', target_obj)
           anno.setanno(node.value, 'type_fqn', anno.getanno(target, 'fqn'))
-          # TODO(mdan): Raise an error if constructor has side effects.
+          # TODO (mdan): Raise an error if constructor has side effects. id:2153 gh:2154
           # We can have a whitelist of no-side-effects constructors.
           # We can also step inside the constructor and further analyze.
 
@@ -136,7 +136,7 @@ class TypeInfoResolver(gast.NodeTransformer):
         # Possible example of this kind:
         #   foo = module.Foo()
         #   foo.bar.baz()
-        # TODO(mdan): This should be doable by using the FQN.
+        # TODO (mdan): This should be doable by using the FQN. id:921 gh:922
         raise ValueError('Dont know how to handle object properties yet.')
       # In the example below, object_source is 'tr.train.Optimizer()':
       #   opt = tf.train.Optimizer()

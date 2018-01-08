@@ -179,7 +179,7 @@ class _ReuseMode(enum.Enum):
   # otherwise created.
   AUTO_REUSE = 1
 
-  # TODO(alive): For TensorFlow 2.0, Deprecate True/False/None API in favor of
+  # TODO (alive): For TensorFlow 2.0, Deprecate True/False/None API in favor of id:3455 gh:3456
   #              enum values.
   # REUSE_FALSE = 2
   # REUSE_TRUE = 3
@@ -867,7 +867,7 @@ def no_regularizer(_):
   return None
 
 
-# TODO(alive): support caching devices and partitioned variables in Eager mode.
+# TODO (alive): support caching devices and partitioned variables in Eager mode. id:2579 gh:2580
 class VariableScope(object):
   """Variable scope object to carry defaults to provide to `get_variable`.
 

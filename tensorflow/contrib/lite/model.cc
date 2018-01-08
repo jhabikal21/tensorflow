@@ -211,7 +211,7 @@ T* MallocPOD() {
 //
 // Returns memory that must be feed.
 //
-// TODO(nupurgarg): Pass in void ** and return TfLiteStatus to ensure program
+// TODO (nupurgarg): Pass in void ** and return TfLiteStatus to ensure program id:1462 gh:1463
 // crashes if error reporter is called.
 void* ParseOpData(const Operator* op, BuiltinOperator op_type,
                   ErrorReporter* error_reporter) {
@@ -266,7 +266,7 @@ void* ParseOpData(const Operator* op, BuiltinOperator op_type,
   void* builtin_data = nullptr;
   switch (op_type) {
     case BuiltinOperator_CALL:
-      // TODO(aselle): Implement call in BuiltinOptions, but nullptrs are
+      // TODO (aselle): Implement call in BuiltinOptions, but nullptrs are id:1206 gh:1207
       // ok for now, since there is no call implementation either.
       break;
     case BuiltinOperator_CUSTOM:
@@ -631,8 +631,8 @@ TfLiteStatus InterpreterBuilder::ParseTensors(
     if (q_params) {
       // Note that the schema could hold per-channel quantization parameters
       // but we really only support one value for the whole tensor.
-      // TODO(aselle): This breaks as well if these are nullptr's.
-      // TODO(aselle): This assumes non per-channel quantization.
+      // TODO (aselle): This breaks as well if these are nullptr's. id:914 gh:915
+      // TODO (aselle): This assumes non per-channel quantization. id:2084 gh:2085
       if (q_params->scale()) quantization.scale = q_params->scale()->Get(0);
       if (q_params->zero_point())
         quantization.zero_point = q_params->zero_point()->Get(0);
@@ -665,7 +665,7 @@ TfLiteStatus InterpreterBuilder::ParseTensors(
     }
     auto get_readonly_data = [&](const char** buffer_data,
                                  size_t* buffer_size) {
-      // TODO(aselle): Check what happens if we have an unspecified size
+      // TODO (aselle): Check what happens if we have an unspecified size id:827 gh:828
       // constant.
       *buffer_data = nullptr;
       if (tensor->buffer() == 0) return kTfLiteOk;

@@ -255,10 +255,10 @@ XLA_TEST_F(ParamsTest, HundredLargeR1Parameters) {
 // Timeout last observed on 2017-11-20.
 #ifdef NDEBUG
 
-// TODO(b/65525254) Fails on GPU on 2017-09-10 because we try to reserve too
+// TODO (b/65525254) Fails on GPU on 2017-09-10 because we try to reserve too id:442 gh:443
 // much space in parameter memory for the kernel.
 //
-// TODO(b/65526061) Failed on CPU on 2017-09-10 due to timeout in LLVM
+// TODO (b/65526061) Failed on CPU on 2017-09-10 due to timeout in LLVM id:464 gh:465
 // compilation.
 XLA_TEST_F(ParamsTest,
            DISABLED_ON_CPU(DISABLED_ON_GPU(ThreeThousandParameters))) {
@@ -287,10 +287,10 @@ XLA_TEST_F(ParamsTest,
   ComputeAndCompareR0<float>(&builder, target, param_data, ErrorSpec(0.0001f));
 }
 
-// TODO(b/65525254) Fails on GPU on 2017-09-10 because we try to reserve too
+// TODO (b/65525254) Fails on GPU on 2017-09-10 because we try to reserve too id:444 gh:445
 // much space in parameter memory for the kernel.
 //
-// TODO(b/65526061) Failed on CPU on 2017-09-10 due to timeout in LLVM
+// TODO (b/65526061) Failed on CPU on 2017-09-10 due to timeout in LLVM id:484 gh:485
 // compilation.
 XLA_TEST_F(ParamsTest, DISABLED_ON_CPU(DISABLED_ON_GPU(
                            ThreeThousandParametersAndOutputElements))) {
@@ -349,7 +349,7 @@ XLA_TEST_F(ParamsTest, DISABLED_ON_CPU(DISABLED_ON_GPU(
 // }
 // result = {p0, p1, ..., pN}
 //
-// TODO(b/70173746): Times out during compilation on GPU and CPU backends as of
+// TODO (b/70173746): Times out during compilation on GPU and CPU backends as of id:447 gh:448
 // 2017-12-12.
 XLA_TEST_F(ParamsTest,
            DISABLED_ON_CPU(DISABLED_ON_GPU(ManyParametersIntoWhileLoop))) {

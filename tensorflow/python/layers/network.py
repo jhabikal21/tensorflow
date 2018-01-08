@@ -226,7 +226,7 @@ class GraphNetwork(base.Layer):
 
   def __init__(self, inputs, outputs, name=None):  # pylint: disable=super-init-not-called
     if context.in_eager_mode():
-      # TODO(fchollet): check that all inputs and outputs are DeferredTensors.
+      # TODO (fchollet): check that all inputs and outputs are DeferredTensors. id:2488 gh:2489
       pass
 
     self._init_set_name(name)
@@ -557,7 +557,7 @@ class GraphNetwork(base.Layer):
     Raises:
         ValueError: In case of invalid layer name or index.
     """
-    # TODO(fchollet): We could build a dictionary based on layer names
+    # TODO (fchollet): We could build a dictionary based on layer names id:3007 gh:3008
     # since they are constant, but we have not done that yet.
     if index is not None:
       if len(self.layers) <= index:
@@ -833,7 +833,7 @@ class GraphNetwork(base.Layer):
     # Dictionary mapping reference tensors to tuples
     # (computed tensor, compute mask)
     # we assume a 1:1 mapping from tensor to mask
-    # TODO(fchollet): raise exception when a `.compute_mask()` call
+    # TODO (fchollet): raise exception when a `.compute_mask()` call id:3506 gh:3507
     # does not return a list the same size as `call`
     tensor_map = {}
     for x, y, mask in zip(self.inputs, inputs, masks):

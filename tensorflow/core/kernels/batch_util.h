@@ -23,7 +23,7 @@ namespace batch_util {
 
 // Copies element into the index^th slice of parent (in the 0th dimension).
 //
-// NOTE(mrry): The `element` argument is taken by value. Use `std::move()`
+// NOTE (mrry): The `element` argument is taken by value. Use `std::move()` id:2589 gh:2588
 // to move the `element` argument into this function, and the implementation
 // may be able to optimize the copy to a move. This is particularly important
 // for DT_STRING tensors.
