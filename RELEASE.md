@@ -1,4 +1,4 @@
-# Release 1.5.0
+# Release 1.5.0    s
 
 ## Breaking Changes
 * Prebuilt binaries are now built against CUDA 9 and cuDNN 7.
